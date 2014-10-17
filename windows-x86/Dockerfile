@@ -1,14 +1,7 @@
-FROM debian:jessie
+FROM steeve/cross-compiler:base
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 
-RUN apt-get update && apt-get -y --force-yes install \
-                        bash \
-                        curl \
-                        pkg-config \
-                        build-essential \
-                        file \
-                        mingw-w64 \
-                        tar xz-utils bzip2 gzip sed
+RUN apt-get update && apt-get -y install mingw-w64
 
 ENV CROSS_TRIPLE i686-w64-mingw32
 ENV CROSS_ROOT /usr/${CROSS_TRIPLE}

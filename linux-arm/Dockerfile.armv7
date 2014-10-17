@@ -1,21 +1,12 @@
-FROM debian:jessie
+FROM steeve/cross-compiler:base
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
-
-RUN apt-get update && apt-get -y --force-yes install \
-                        bash \
-                        curl \
-                        pkg-config \
-                        build-essential \
-                        file \
-                        tar xz-utils bzip2 gzip sed
-
 
 # Add the cross compiler sources
 RUN echo "deb     http://toolchains.secretsauce.net unstable main" >> /etc/apt/sources.list && \
     dpkg --add-architecture armhf && \
     curl -L http://toolchains.secretsauce.net/key.gpg | apt-key add -
 
-RUN apt-get update && apt-get -y --force-yes install \
+RUN apt-get update && apt-get -y install \
                         gcc-4.9-arm-linux-gnueabihf \
                         g++-4.9-arm-linux-gnueabihf
 

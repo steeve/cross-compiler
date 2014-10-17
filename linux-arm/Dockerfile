@@ -1,14 +1,5 @@
-FROM debian:jessie
+FROM steeve/cross-compiler:base
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
-
-RUN apt-get update && apt-get -y --force-yes install \
-                        bash \
-                        curl \
-                        pkg-config \
-                        build-essential \
-                        file \
-                        rsync \
-                        tar xz-utils bzip2 gzip sed
 
 ENV CROSS_TRIPLE arm-linux-gnueabihf
 ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
