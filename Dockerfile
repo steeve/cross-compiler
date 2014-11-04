@@ -4,6 +4,7 @@ MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 RUN apt-get update && apt-get -y install \
                         bash \
                         curl \
+                        wget \
                         pkg-config \
                         build-essential \
                         file \
