@@ -9,7 +9,7 @@ ENV LD_LIBRARY_PATH ${CROSS_ROOT}/lib:${LD_LIBRARY_PATH}
 RUN mkdir -p ${CROSS_ROOT} && \
     cd /usr/bin && \
     ln -s ${CROSS_TRIPLE}-gcc ${CROSS_TRIPLE}-cc && \
-    ln -s ${CROSS_TRIPLE}-cpp ${CROSS_TRIPLE}-c++ && \
+    ln -s ${CROSS_TRIPLE}-g++ ${CROSS_TRIPLE}-c++ && \
     for i in ranlib nm ar; do \
         ln -s ${CROSS_TRIPLE}-gcc-${i}-4.7 ${CROSS_TRIPLE}-${i} ; \
     done

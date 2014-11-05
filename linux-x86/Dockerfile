@@ -15,7 +15,7 @@ RUN mkdir -p ${CROSS_ROOT} && \
     cd /usr/bin && \
     chmod +x ${CROSS_TRIPLE}.sh && \
     ln -s x86_64-linux-gnu-gcc x86_64-linux-gnu-cc && \
-    ln -s x86_64-linux-gnu-cpp x86_64-linux-gnu-c++ && \
+    ln -s x86_64-linux-gnu-g++ x86_64-linux-gnu-c++ && \
     ln -s ${CROSS_TRIPLE}.sh ${CROSS_TRIPLE}-cc && \
     ln -s ${CROSS_TRIPLE}.sh ${CROSS_TRIPLE}-c++ && \
     for i in ranlib nm ar; do \
