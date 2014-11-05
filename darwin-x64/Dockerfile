@@ -18,7 +18,7 @@ RUN apt-get update && \
 
 RUN curl -L https://github.com/tpoechtrager/osxcross/archive/master.tar.gz | tar xvz && \
     cd /osxcross-master/ && \
-    cd tarballs/ && wget https://www.dropbox.com/s/yfbesd249w10lpc/MacOSX${MAC_SDK_VERSION}.sdk.tar.xz && cd - && \
+    curl -L -o tarballs/MacOSX${MAC_SDK_VERSION}.sdk.tar.xz https://www.dropbox.com/s/yfbesd249w10lpc/MacOSX${MAC_SDK_VERSION}.sdk.tar.xz && \
     echo | SDK_VERSION=${MAC_SDK_VERSION} OSX_VERSION_MIN=10.6 ./build.sh && \
     mv /osxcross-master/target ${CROSS_ROOT} && \
     mkdir -p ${CROSS_ROOT}/lib && \
