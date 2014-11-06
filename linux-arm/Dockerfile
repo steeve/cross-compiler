@@ -1,5 +1,17 @@
-FROM steeve/cross-compiler:base
+# Can't use steeve/cross-compiler:base because gcc-linaro-arm-linux-gnueabihf-raspbian
+# requires GLIBC 2.14 and we have 2.13 on wheezy.
+FROM debian:jessie
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
+
+RUN apt-get update && apt-get -y install \
+                        bash \
+                        curl wget \
+                        pkg-config build-essential make automake autogen \
+                        tar xz-utils bzip2 gzip \
+                        file \
+                        rsync \
+                        sed \
+                        vim
 
 ENV CROSS_TRIPLE arm-linux-gnueabihf
 ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
