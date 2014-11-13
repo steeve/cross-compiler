@@ -20,6 +20,9 @@ RUN mkdir -p ${CROSS_ROOT} && \
     ln -s ${CROSS_TRIPLE}.sh ${CROSS_TRIPLE}-cc && \
     ln -s ${CROSS_TRIPLE}.sh ${CROSS_TRIPLE}-g++ && \
     ln -s ${CROSS_TRIPLE}.sh ${CROSS_TRIPLE}-c++ && \
+    for i in strip objdump; do \
+        ln -s ${i} ${CROSS_TRIPLE}-${i} ; \
+    done && \
     for i in ranlib nm ar; do \
         ln -s x86_64-linux-gnu-gcc-${i}-4.7 ${CROSS_TRIPLE}-${i} ; \
     done
