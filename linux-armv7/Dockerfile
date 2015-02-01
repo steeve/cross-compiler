@@ -17,6 +17,4 @@ ENV LD_LIBRARY_PATH ${CROSS_ROOT}/lib:${LD_LIBRARY_PATH}
 
 RUN cd /usr/bin && \
     ln -s ${CROSS_TRIPLE}-gcc-4.9 ${CROSS_TRIPLE}-cc && \
-    ln -s ${CROSS_TRIPLE}-gcc-4.9 ${CROSS_TRIPLE}-gcc && \
-    ln -s ${CROSS_TRIPLE}-g++-4.9 ${CROSS_TRIPLE}-g++ && \
     ln -s ${CROSS_TRIPLE}-g++-4.9 ${CROSS_TRIPLE}-c++
