@@ -7,7 +7,6 @@ RUN echo "deb http://emdebian.org/tools/debian/ jessie main" >> /etc/apt/sources
     curl http://emdebian.org/tools/debian/emdebian-toolchain-archive.key | apt-key add -
 
 RUN apt-get update && apt-get install -y \
-	apt-utils \
 	crossbuild-essential-armhf
 
 ENV CROSS_TRIPLE arm-linux-gnueabihf

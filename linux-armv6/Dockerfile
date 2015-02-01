@@ -10,7 +10,7 @@ ENV RASPBERRYPI_TOOLS_COMMIT 9c3d7b6ac692498dd36fec2872e0b55f910baac1
 # Enable 32 bits binaries
 RUN dpkg --add-architecture i386 && \
     apt-get update && \
-    apt-get install -y apt-utils libstdc++6:i386 libgcc1:i386 zlib1g:i386
+    apt-get install -y libstdc++6:i386 libgcc1:i386 zlib1g:i386
 
 # Raspberry Pi is ARMv6+VFP2, Debian armhf is ARMv7+VFP3
 # Since this Dockerfile is targeting linux-arm from Raspberry Pi onward,
