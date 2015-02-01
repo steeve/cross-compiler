@@ -1,4 +1,4 @@
-FROM debian:wheezy
+FROM debian:jessie
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 
 RUN apt-get update && apt-get -y install \
