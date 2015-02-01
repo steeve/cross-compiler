@@ -1,4 +1,4 @@
-FROM steeve/cross-compiler:base
+FROM rburns/cross-compiler:base
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 
 ENV CROSS_TRIPLE arm-linux-gnueabihf

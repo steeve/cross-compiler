@@ -1,14 +1,12 @@
-FROM steeve/cross-compiler:base
+FROM rburns/cross-compiler:base
 MAINTAINER Steeve Morin "steeve.morin@gmail.com"
 
 # Add the cross compiler sources
-RUN echo "deb     http://toolchains.secretsauce.net unstable main" >> /etc/apt/sources.list && \
+RUN echo "deb http://emdebian.org/tools/debian/ jessie main" >> /etc/apt/sources.list && \
     dpkg --add-architecture armhf && \
-    curl -L http://toolchains.secretsauce.net/key.gpg | apt-key add -
+    curl http://emdebian.org/tools/debian/emdebian-toolchain-archive.key | apt-key add -
 
-RUN apt-get update && apt-get -y install \
-                        gcc-4.9-arm-linux-gnueabihf \
-                        g++-4.9-arm-linux-gnueabihf
+RUN apt-get update && apt-get install -y crossbuild-essential-armhf
 
 ENV CROSS_TRIPLE arm-linux-gnueabihf
 ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
