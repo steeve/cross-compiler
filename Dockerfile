@@ -9,8 +9,12 @@ RUN apt-get update && apt-get -y install \
   bzip2 \
   curl \
   file \
+  git \
   gzip \
+  libssl-dev \
   make \
+  ncurses-dev \
+  ninja-build \
   pkg-config \
   rsync \
   sed \
@@ -18,3 +22,17 @@ RUN apt-get update && apt-get -y install \
   vim \
   wget \
   xz-utils
+
+# Build and install CMake from source.
+WORKDIR /usr/src
+# nighty-master 2015-05-04
+RUN git clone git://cmake.org/cmake.git CMake && \
+  cd CMake \
+  && git checkout 6cd6d50871ce28d0c72336a6aca01814487df5e1
+RUN mkdir CMake-build
+WORKDIR /usr/src/CMake-build
+RUN /usr/src/CMake/bootstrap \
+    --parallel=$(ls /sys/bus/cpu/devices | wc -w) \
+    --prefix=/usr && \
+  make -j$(ls /sys/bus/cpu/devices | wc -w) install && \
+  rm -rf *
