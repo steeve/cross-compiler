@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Steeve Morin "steeve.morin@gmail.com"
+MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 RUN apt-get update && apt-get -y install \
                         bash \
