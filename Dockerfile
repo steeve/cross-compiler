@@ -32,7 +32,7 @@ RUN git clone git://cmake.org/cmake.git CMake && \
 RUN mkdir CMake-build
 WORKDIR /usr/src/CMake-build
 RUN /usr/src/CMake/bootstrap \
-    --parallel=$(ls /sys/bus/cpu/devices | wc -w) \
+    --parallel=$(nproc) \
     --prefix=/usr && \
-  make -j$(ls /sys/bus/cpu/devices | wc -w) install && \
+  make -j$(nproc) install && \
   rm -rf *
