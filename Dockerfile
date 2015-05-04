@@ -2,11 +2,19 @@ FROM debian:jessie
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 RUN apt-get update && apt-get -y install \
-                        bash \
-                        curl wget \
-                        pkg-config build-essential make automake autogen \
-                        tar xz-utils bzip2 gzip \
-                        file \
-                        rsync \
-                        sed \
-                        vim
+  automake \
+  autogen \
+  bash \
+  build-essential \
+  bzip2 \
+  curl \
+  file \
+  gzip \
+  make \
+  pkg-config \
+  rsync \
+  sed \
+  tar \
+  vim \
+  wget \
+  xz-utils
