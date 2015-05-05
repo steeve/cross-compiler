@@ -45,10 +45,10 @@ RUN dpkg --add-architecture i386 && \
   wine hostname
 
 WORKDIR /usr/src
-# mxe master 2015-05-04
+# mxe master 2015-03-12, prior to mingw-w64 update, which is based on GCC 5
 RUN git clone https://github.com/mxe/mxe.git && \
   cd mxe && \
-  git checkout e56d6e7876a0a5253c4cce10a9198f0203d56923
+  git checkout 149afe17a43c50c234dcadeb4a69e61e272a747a
 WORKDIR /usr/src/mxe
 COPY settings.mk /usr/src/mxe/
 RUN make -j$(nproc)
