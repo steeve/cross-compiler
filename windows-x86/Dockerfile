@@ -38,6 +38,11 @@ RUN apt-get update && apt-get -y install \
   wget \
   wine \
   xz-utils
+# Set up wine
+RUN dpkg --add-architecture i386 && \
+  apt-get update && \
+  apt-get install -y wine32 && \
+  wine hostname
 
 WORKDIR /usr/src
 # mxe master 2015-05-04
