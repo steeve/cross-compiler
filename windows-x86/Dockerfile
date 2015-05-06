@@ -41,11 +41,12 @@ RUN apt-get update && apt-get -y install \
 # Set up wine
 RUN dpkg --add-architecture i386 && \
   apt-get update && \
-  apt-get install -y wine32 && \
-  wine hostname
+  apt-get install -y wine32
+ENV WINEARCH win32
+RUN wine hostname
 
 WORKDIR /usr/src
-# mxe master 2015-03-12, prior to mingw-w64 update, which is based on GCC 5
+# mxe master 2015-03-12, prior to mingw-w64 update, based on GCC 4
 RUN git clone https://github.com/mxe/mxe.git && \
   cd mxe && \
   git checkout 149afe17a43c50c234dcadeb4a69e61e272a747a

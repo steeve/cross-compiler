@@ -22,7 +22,7 @@ linux-armv7:
 windows-x86: base windows-x86/Dockerfile windows-x86/settings.mk
 	$(DOCKER) build -t $(IMAGE)-windows-x86 windows-x86
 
-windows-x64:
+windows-x64: base windows-x64/Dockerfile windows-x64/settings.mk
 	$(DOCKER) build -t $(IMAGE)-windows-x64 windows-x64
 
 base: Dockerfile
