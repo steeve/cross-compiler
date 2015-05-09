@@ -14,5 +14,7 @@ RUN apt-get update && apt-get install -y \
 
 WORKDIR /usr/src
 
+# Note: Toolchain file support is currently in debian Experimental:
+# https://wiki.debian.org/CrossToolchains#In_jessie_.28Debian_8.29
 COPY Toolchain.cmake /usr/src/
 ENV CMAKE_TOOLCHAIN_FILE /usr/src/Toolchain.cmake
