@@ -8,7 +8,9 @@ RUN echo "deb http://emdebian.org/tools/debian/ jessie main" >> /etc/apt/sources
 
 RUN apt-get update && apt-get install -y \
   crossbuild-essential-armhf \
-  gfortran-arm-linux-gnueabihf
+  gfortran-arm-linux-gnueabihf \
+  qemu-user \
+  qemu-user-static
 
 WORKDIR /usr/src
 
