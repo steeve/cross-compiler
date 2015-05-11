@@ -14,8 +14,8 @@ RUN apt-get update && apt-get -y install \
   libssl-dev \
   make \
   ncurses-dev \
-  ninja-build \
   pkg-config \
+  python \
   rsync \
   sed \
   tar \
@@ -27,8 +27,8 @@ RUN apt-get update && apt-get -y install \
 WORKDIR /usr/src
 # nighty-master 2015-05-04
 RUN git clone git://cmake.org/cmake.git CMake && \
-  cd CMake \
-  && git checkout 6cd6d50871ce28d0c72336a6aca01814487df5e1
+  cd CMake && \
+  git checkout 6cd6d50871ce28d0c72336a6aca01814487df5e1
 RUN mkdir CMake-build
 WORKDIR /usr/src/CMake-build
 RUN /usr/src/CMake/bootstrap \
@@ -36,3 +36,12 @@ RUN /usr/src/CMake/bootstrap \
     --prefix=/usr && \
   make -j$(nproc) install && \
   rm -rf *
+WORKDIR /usr/src
+
+# Build and install Ninja from source
+RUN git clone https://github.com/martine/ninja.git && \
+  cd ninja && \
+  git checkout v1.5.3 && \
+  python ./configure.py --bootstrap && \
+  ./ninja && \
+  cp ./ninja /usr/bin/
