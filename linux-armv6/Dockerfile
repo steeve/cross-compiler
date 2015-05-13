@@ -1,11 +1,5 @@
-FROM rburns/cross-compiler:base
-MAINTAINER Steeve Morin "steeve.morin@gmail.com"
-
-ENV CROSS_TRIPLE arm-linux-gnueabihf
-ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
-ENV PATH ${PATH}:${CROSS_ROOT}/bin
-ENV LD_LIBRARY_PATH ${CROSS_ROOT}/lib:${LD_LIBRARY_PATH}
-ENV RASPBERRYPI_TOOLS_COMMIT 9c3d7b6ac692498dd36fec2872e0b55f910baac1
+FROM thewtex/cross-compiler-base
+MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Enable 32 bits binaries
 RUN dpkg --add-architecture i386 && \
@@ -19,8 +13,11 @@ RUN dpkg --add-architecture i386 && \
 # of performance.
 # See: https://wiki.debian.org/RaspberryPi
 # We are also using the 4.7 version of the toolchain, so that glibc=2.13
+ENV CROSS_TRIPLE arm-linux-gnueabihf
+ENV RASPBERRYPI_TOOLS_COMMIT 9c3d7b6ac692498dd36fec2872e0b55f910baac1
 RUN curl -L https://github.com/raspberrypi/tools/archive/${RASPBERRYPI_TOOLS_COMMIT}.tar.gz | tar xvz --wildcards --no-anchored "*gcc-linaro-${CROSS_TRIPLE}-raspbian*" && \
-    rsync -av /tools-${RASPBERRYPI_TOOLS_COMMIT}/arm-bcm2708/gcc-linaro-${CROSS_TRIPLE}-raspbian/* /usr && \
-    cd /usr/bin && \
-    ln -s ${CROSS_TRIPLE}-gcc ${CROSS_TRIPLE}-cc && \
-    rm -rf /tools-${RASPBERRYPI_TOOLS_COMMIT}
+    rsync -av /usr/src/tools-${RASPBERRYPI_TOOLS_COMMIT}/arm-bcm2708/gcc-linaro-${CROSS_TRIPLE}-raspbian/ /usr/ && \
+    rm -rf /usr/src/tools-${RASPBERRYPI_TOOLS_COMMIT}
+
+COPY Toolchain.cmake /usr/${CROSS_TRIPLE}/
+ENV CMAKE_TOOLCHAIN_FILE /usr/${CROSS_TRIPLE}/Toolchain.cmake

@@ -13,7 +13,7 @@ linux-x86:
 linux-x64:
 	$(DOCKER) build -t $(IMAGE)-linux-x64 linux-x64
 
-linux-armv6:
+linux-armv6: base linux-armv6/Dockerfile linux-armv6/Toolchain.cmake
 	$(DOCKER) build -t $(IMAGE)-linux-armv6 linux-armv6
 
 linux-armv7: base linux-armv7/Dockerfile linux-armv7/Toolchain.cmake
