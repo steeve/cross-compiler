@@ -6,6 +6,11 @@ RUN dpkg --add-architecture i386 && \
     apt-get update && \
     apt-get install -y libstdc++6:i386 libgcc1:i386 zlib1g:i386
 
+# The cross-compiling emulator
+RUN apt-get update && apt-get install -y \
+  qemu-user \
+  qemu-user-static
+
 # Raspberry Pi is ARMv6+VFP2, Debian armhf is ARMv7+VFP3
 # Since this Dockerfile is targeting linux-arm from Raspberry Pi onward,
 # we're sticking with it's custom built cross-compiler with hardfp support.
