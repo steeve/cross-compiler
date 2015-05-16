@@ -1,8 +1,8 @@
 DOCKER = docker
 IMAGE = thewtex/cross-compiler
 
-android-arm:
-	$(DOCKER) build -t $(IMAGE)-android-arm linux-arm
+android-arm: base android-arm/Dockerfile
+	$(DOCKER) build -t $(IMAGE)-android-arm android-arm
 
 darwin-x64:
 	$(DOCKER) build -t $(IMAGE)-darwin-x64 darwin-x64
