@@ -7,6 +7,9 @@ android-arm: base android-arm/Dockerfile
 darwin-x64:
 	$(DOCKER) build -t $(IMAGE)-darwin-x64 darwin-x64
 
+javascript-asmjs: base javascript-asmjs/Dockerfile
+	$(DOCKER) build -t $(IMAGE)-javascript-asmjs javascript-asmjs
+
 linux-x86:
 	$(DOCKER) build -t $(IMAGE)-darwin-x86 darwin-x86
 
