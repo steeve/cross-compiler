@@ -12,9 +12,12 @@ RUN apt-get update && apt-get install -y \
   qemu-user \
   qemu-user-static
 
+ENV CROSS_TRIPLE arm-linux-gnueabihf
+ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
+
 WORKDIR /usr/src
 
 # Note: Toolchain file support is currently in debian Experimental:
 # https://wiki.debian.org/CrossToolchains#In_jessie_.28Debian_8.29
-COPY Toolchain.cmake /usr/lib/arm-linux-gnueabihf/
-ENV CMAKE_TOOLCHAIN_FILE /usr/lib/arm-linux-gnueabihf/Toolchain.cmake
+COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
+ENV CMAKE_TOOLCHAIN_FILE /usr/lib/${CROSS_TRIPLE}/Toolchain.cmake

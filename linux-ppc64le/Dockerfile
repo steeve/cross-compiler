@@ -10,6 +10,9 @@ RUN apt-get update && apt-get install -y \
   crossbuild-essential-ppc64el \
   gfortran-powerpc64le-linux-gnu
 
+ENV CROSS_TRIPLE powerpc64le-linux-gnu
+ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
+
 WORKDIR /usr/src
 
 RUN apt-get update && \
@@ -24,5 +27,5 @@ RUN apt-get update && \
 # Note: Toolchain file support is currently in debian Experimental according to:
 # https://wiki.debian.org/CrossToolchains#In_jessie_.28Debian_8.29
 # We can switch to that when it becomes stable.
-COPY Toolchain.cmake /usr/lib/powerpc64le-linux-gnu/
-ENV CMAKE_TOOLCHAIN_FILE /usr/lib/powerpc64le-linux-gnu/Toolchain.cmake
+COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
+ENV CMAKE_TOOLCHAIN_FILE /usr/lib/${CROSS_TRIPLE}/Toolchain.cmake
