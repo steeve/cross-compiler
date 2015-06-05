@@ -25,5 +25,5 @@ RUN mkdir -p /build && \
     cd / && \
     rm -rf /build
 
-COPY Toolchain.cmake /${CROSS_ROOT}/
-ENV CMAKE_TOOLCHAIN_FILE /${CROSS_ROOT}/Toolchain.cmake
+COPY Toolchain.cmake ${CROSS_ROOT}/
+ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake

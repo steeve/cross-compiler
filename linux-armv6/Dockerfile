@@ -26,8 +26,8 @@ RUN curl -L https://github.com/raspberrypi/tools/archive/${RASPBERRYPI_TOOLS_COM
     rsync -av /usr/src/tools-${RASPBERRYPI_TOOLS_COMMIT}/arm-bcm2708/gcc-linaro-${CROSS_TRIPLE}-raspbian/ /usr/ && \
     rm -rf /usr/src/tools-${RASPBERRYPI_TOOLS_COMMIT}
 # Allow dynamically linked executables to run with qemu-arm
-ENV QEMU_LD_PREFIX /${CROSS_ROOT}/libc
-ENV QEMU_SET_ENV "LD_LIBRARY_PATH=/${CROSS_ROOT}/lib:/${CROSS_ROOT}/libc/lib/${CROSS_TRIPLE}/"
+ENV QEMU_LD_PREFIX ${CROSS_ROOT}/libc
+ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${CROSS_ROOT}/libc/lib/${CROSS_TRIPLE}/"
 
-COPY Toolchain.cmake /${CROSS_ROOT}/
-ENV CMAKE_TOOLCHAIN_FILE /${CROSS_ROOT}/Toolchain.cmake
+COPY Toolchain.cmake ${CROSS_ROOT}/
+ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
