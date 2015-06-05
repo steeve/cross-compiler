@@ -25,10 +25,9 @@ RUN apt-get update && apt-get -y install \
 
 # Build and install CMake from source.
 WORKDIR /usr/src
-# nighty-master 2015-05-04
 RUN git clone git://cmake.org/cmake.git CMake && \
   cd CMake && \
-  git checkout 6cd6d50871ce28d0c72336a6aca01814487df5e1
+  git checkout v3.3.0-rc1
 RUN mkdir CMake-build
 WORKDIR /usr/src/CMake-build
 RUN /usr/src/CMake/bootstrap \
