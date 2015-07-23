@@ -44,7 +44,7 @@ WORKDIR /usr/src
 # Build and install Ninja from source
 RUN git clone https://github.com/martine/ninja.git && \
   cd ninja && \
-  git checkout v1.5.3 && \
+  git checkout v1.6.0 && \
   python ./configure.py --bootstrap && \
   ./ninja && \
   cp ./ninja /usr/bin/
