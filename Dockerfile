@@ -11,6 +11,7 @@ RUN apt-get update && apt-get -y install \
   file \
   git \
   gzip \
+  libcurl4-openssl-dev \
   libssl-dev \
   make \
   ncurses-dev \
@@ -33,7 +34,10 @@ WORKDIR /usr/src/CMake-build
 RUN /usr/src/CMake/bootstrap \
     --parallel=$(nproc) \
     --prefix=/usr && \
-  make -j$(nproc) install && \
+  make -j$(nproc) && \
+  ./bin/cmake -DCMAKE_USE_SYSTEM_CURL:BOOL=ON \
+    -DCMAKE_USE_OPENSSL:BOOL=ON . && \
+  make install && \
   rm -rf *
 WORKDIR /usr/src
 
