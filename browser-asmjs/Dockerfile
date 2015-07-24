@@ -21,4 +21,4 @@ RUN cd /usr && \
 
 ENV PATH /usr/emsdk_portable:/usr/emsdk_portable/clang/tag-e${EMSCRIPTEN_VERSION}/build_tag-e${EMSCRIPTEN_VERSION}_64/bin:/usr/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}:${PATH}
 
-ENV CMAKE_TOOLCHAIN_FILE /usr/emsdk_portable/emscripten/master/cmake/Modules/Platform/Emscripten.cmake
+ENV CMAKE_TOOLCHAIN_FILE /usr/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/cmake/Modules/Platform/Emscripten.cmake
