@@ -8,7 +8,7 @@ RUN curl -sL https://deb.nodesource.com/setup | bash - && \
     nodejs \
     python2.7
 
-ENV EMSCRIPTEN_VERSION 1.34.3
+ENV EMSCRIPTEN_VERSION 1.35.4
 RUN cd /usr && \
   curl -L https://s3.amazonaws.com/mozilla-games/emscripten/releases/emsdk-portable.tar.gz | tar xz && \
   cd ./emsdk_portable && \
