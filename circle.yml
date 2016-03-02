@@ -10,3 +10,10 @@ dependencies:
 test:
   override:
     - make base
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push thewtex/cross-compiler-base
