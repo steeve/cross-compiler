@@ -1,0 +1,12 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - docker info
+    - docker pull thewtex/cross-compiler-base
+
+test:
+  override:
+    - make base
