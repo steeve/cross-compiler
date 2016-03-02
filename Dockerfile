@@ -7,6 +7,7 @@ RUN apt-get update && apt-get -y install \
   bash \
   build-essential \
   bzip2 \
+  ca-certificates \
   curl \
   file \
   git \
@@ -22,24 +23,25 @@ RUN apt-get update && apt-get -y install \
   tar \
   vim \
   wget \
-  xz-utils
+  xz-utils && \
+  apt-get -y clean
 
 # Build and install CMake from source.
 WORKDIR /usr/src
 RUN git clone git://cmake.org/cmake.git CMake && \
   cd CMake && \
-  git checkout v3.4.3
-RUN mkdir CMake-build
-WORKDIR /usr/src/CMake-build
-RUN /usr/src/CMake/bootstrap \
+  git checkout v3.4.3 && \
+  cd .. && mkdir CMake-build && \
+  /usr/src/CMake/bootstrap \
     --parallel=$(nproc) \
     --prefix=/usr && \
   make -j$(nproc) && \
   ./bin/cmake -DCMAKE_USE_SYSTEM_CURL:BOOL=ON \
+    -DCMAKE_BUILD_TYPE:STRING=Release \
     -DCMAKE_USE_OPENSSL:BOOL=ON . && \
   make install && \
-  rm -rf *
-WORKDIR /usr/src
+  cd .. && \
+  rm -rf CMake*
 
 # Build and install Ninja from source
 RUN git clone https://github.com/martine/ninja.git && \
@@ -47,4 +49,5 @@ RUN git clone https://github.com/martine/ninja.git && \
   git checkout v1.6.0 && \
   python ./configure.py --bootstrap && \
   ./ninja && \
-  cp ./ninja /usr/bin/
+  cp ./ninja /usr/bin/ && \
+  cd .. && rm -rf ninja
