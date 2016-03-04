@@ -10,6 +10,7 @@ dependencies:
 test:
   override:
     - make base
+    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-base python /usr/src/test/run.py --emulator 'sh -c'
 
 deployment:
   hub:
