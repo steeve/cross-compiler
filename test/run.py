@@ -14,21 +14,31 @@ import subprocess
 import sys
 import tempfile
 
-def test_none_build_system(build_dir, language, source):
+def test_none_build_system(build_dir, language, source, linker_flags):
+    build_cmd = list()
     if language == 'C':
         compiler = os.getenv('CC', 'cc')
     elif language == 'C++':
-        compiler = os.getenv('C++', 'c++')
+        compiler = os.getenv('CXX', 'c++')
     else:
         print('Unknown language: ' + language)
         return 1
+    build_cmd.append(compiler)
+    if linker_flags:
+        build_cmd.extend(linker_flags)
+    build_cmd.append(source)
+
     print('Building ' + source + ' by calling ' + compiler + '...')
+    print(' '.join(build_cmd))
     sys.stdout.flush()
-    return subprocess.call([compiler, source])
+
+    return subprocess.call(build_cmd)
 
 
-def test_cmake_build_system(build_dir, source, emulator):
+def test_cmake_build_system(build_dir, language, source, emulator, linker_flags):
     shutil.copy(source, build_dir)
+    print('Building ' + source + ' with CMake...')
+
     with open('CMakeLists.txt', 'w') as fp:
         fp.write('cmake_minimum_required(VERSION 3.0)\n')
         fp.write('project(test-compiler)\n')
@@ -36,13 +46,23 @@ def test_cmake_build_system(build_dir, source, emulator):
         if emulator:
             fp.write('enable_testing()\n')
             fp.write('add_test(emulator-in-cmake a.out)\n')
+
     os.mkdir('build')
     os.chdir('build')
-    print('Building ' + source + ' with CMake...')
+
+    cmake_configuration_cmd = ['cmake', '..']
+    if linker_flags:
+        cmake_configuration_cmd.insert(1,
+                '-DCMAKE_EXE_LINKER_FLAGS="{0}"'.format(' '.join(linker_flags)))
+    toolchain_file = os.getenv('CMAKE_TOOLCHAIN_FILE')
+    if toolchain_file:
+        cmake_configuration_cmd.insert(1,
+                '-DCMAKE_TOOLCHAIN_FILE={0}'.format(toolchain_file))
+    print(' '.join(cmake_configuration_cmd))
     sys.stdout.flush()
-    if subprocess.call(['cmake', '..']):
+    if subprocess.call(cmake_configuration_cmd):
         return 1
-    if subprocess.call(['make']):
+    if subprocess.call(['make', 'VERBOSE=1']):
         return 1
     if emulator:
         if subprocess.call(['ctest']):
@@ -51,16 +71,16 @@ def test_cmake_build_system(build_dir, source, emulator):
     return 0
 
 
-def test_source(source, language, build_system, emulator):
+def test_source(source, language, build_system, emulator, linker_flags):
     result = 0
     cwd = os.getcwd()
     build_dir = tempfile.mkdtemp()
     os.chdir(build_dir)
 
     if build_system == 'None':
-        result += test_none_build_system(build_dir, language, source)
+        result += test_none_build_system(build_dir, language, source, linker_flags)
     elif build_system == 'CMake':
-        result += test_cmake_build_system(build_dir, source, emulator)
+        result += test_cmake_build_system(build_dir, language, source, emulator, linker_flags)
     else:
         print('Unknown build system: ' + build_system)
         result += 1
@@ -78,44 +98,54 @@ def test_source(source, language, build_system, emulator):
     return result
 
 
-def test_build_system(test_dir, language, build_system, emulator):
+def test_build_system(test_dir, language, build_system, emulator, linker_flags):
     print('\n\n--------------------------------------------------------')
     print('Testing ' + build_system + ' build system with the ' +
           language + ' language\n')
     sys.stdout.flush()
     result = 0
     for source in glob.glob(os.path.join(test_dir, language, '*')):
-        result += test_source(source, language, build_system, emulator)
+        result += test_source(source, language, build_system, emulator, linker_flags)
     return result
 
 
-def test_language(test_dir, language, build_systems, emulator):
+def test_language(test_dir, language, build_systems, emulator, linker_flags):
     result = 0
     for build_system in build_systems:
-        result += test_build_system(test_dir, language, build_system, emulator)
+        result += test_build_system(test_dir,
+                language,
+                build_system,
+                emulator,
+                linker_flags)
     return result
 
 
 def run_tests(test_dir, languages=('C', 'C++'), build_systems=('None', 'CMake'),
-        emulator=None):
+        emulator=None, linker_flags=None):
     """Run the tests found in test_dir where each directory corresponds to an
     entry in languages. Every source within a language directory is built. The
     output executable is also run with the emulator if provided."""
     result = 0
     for language in languages:
-        result += test_language(test_dir, language, build_systems, emulator)
+        result += test_language(test_dir,
+                language,
+                build_systems,
+                emulator,
+                linker_flags)
     return result
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
             description='Test the cross-compiler toolchain.')
-    parser.add_argument('--languages', nargs='+', default=['C', 'C++'],
+    parser.add_argument('--languages', '-l', nargs='+', default=['C', 'C++'],
             help='Languages to test. Options: C C++')
-    parser.add_argument('--build-systems', nargs='+', default=['None', 'CMake'],
+    parser.add_argument('--build-systems', '-b', nargs='+', default=['None', 'CMake'],
             help='Build systems to test. Options: None CMake')
     parser.add_argument('--emulator', '-e',
             help='Emulator used to test generated executables')
+    parser.add_argument('--linker-flags', '-w', nargs='+',
+            help='Extra compilation linker flags')
     args = parser.parse_args()
 
     test_dir = os.path.dirname(os.path.abspath(__file__))
@@ -123,4 +153,5 @@ if __name__ == '__main__':
     sys.exit(run_tests(test_dir,
         languages=args.languages,
         build_systems=args.build_systems,
-        emulator=args.emulator) != 0)
+        emulator=args.emulator,
+        linker_flags=args.linker_flags) != 0)

@@ -6,11 +6,14 @@ dependencies:
   override:
     - docker info
     - docker pull thewtex/cross-compiler-base
+    - docker pull thewtex/cross-compiler-android-arm
 
 test:
   override:
     - make base
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-base python /usr/src/test/run.py --emulator 'sh -c'
+    - make android-arm
+    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-android-arm python /usr/src/test/run.py
 
 deployment:
   hub:
@@ -18,3 +21,4 @@ deployment:
     commands:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push thewtex/cross-compiler-base
+      - docker push thewtex/cross-compiler-android-arm
