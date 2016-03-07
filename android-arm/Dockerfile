@@ -6,8 +6,14 @@ RUN apt-get update && apt-get install -y \
   qemu-user \
   qemu-user-static
 
-ENV CROSS_TRIPLE arm-linux-androideabi
-ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
+ENV CROSS_TRIPLE=arm-linux-androideabi
+ENV CROSS_ROOT=/usr/${CROSS_TRIPLE}
+ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
+    AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
+    CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gcc \
+    CPP=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-cpp \
+    CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++ \
+    LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld
 
 ENV ANDROID_NDK_REVISION 10e
 RUN mkdir -p /build && \
