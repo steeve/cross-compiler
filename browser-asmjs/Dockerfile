@@ -3,7 +3,7 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # The cross-compiling emulator
 RUN curl -sL https://deb.nodesource.com/setup | bash - && \
-  apt-get install -y \
+  apt-get install -y --no-install-recommends \
     default-jre \
     nodejs \
     python2.7
