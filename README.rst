@@ -21,3 +21,10 @@ thewtex/cross-compiler-base
 thewtex/cross-compiler-android-arm
   |android-arm-images| The Android NDK standalone toolchain for the arm
   architecture.
+
+
+.. |browser-asmjs-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-browser-asmjs:latest.svg
+  :target: https://imagelayers.io/?images=thewtex/cross-compiler-browser-asmjs:latest
+
+thewtex/cross-compiler-browser-asmjs
+  |browser-asmjs-images| The Emscripten JavaScript cross compiler.
