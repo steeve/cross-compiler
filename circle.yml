@@ -7,6 +7,7 @@ dependencies:
     - docker info
     - docker pull thewtex/cross-compiler-base
     - docker pull thewtex/cross-compiler-android-arm
+    - docker pull thewtex/cross-compiler-browser-asmjs
 
 test:
   override:
@@ -14,6 +15,8 @@ test:
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-base python /usr/src/test/run.py --emulator 'sh -c'
     - make android-arm
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-android-arm python /usr/src/test/run.py
+    - make browser-asmjs
+    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-browser-asmjs python /usr/src/test/run.py --emulator /usr/bin/node --exe-suffix ".js"
 
 deployment:
   hub:

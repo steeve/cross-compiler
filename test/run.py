@@ -35,7 +35,8 @@ def test_none_build_system(build_dir, language, source, linker_flags):
     return subprocess.call(build_cmd)
 
 
-def test_cmake_build_system(build_dir, language, source, emulator, linker_flags):
+def test_cmake_build_system(build_dir, language, source, emulator, linker_flags,
+        exe_suffix):
     shutil.copy(source, build_dir)
     print('Building ' + source + ' with CMake...')
 
@@ -45,7 +46,7 @@ def test_cmake_build_system(build_dir, language, source, emulator, linker_flags)
         fp.write('add_executable(a.out ' + os.path.basename(source) + ')\n')
         if emulator:
             fp.write('enable_testing()\n')
-            fp.write('add_test(emulator-in-cmake a.out)\n')
+            fp.write('add_test(NAME emulator-in-cmake COMMAND a.out)\n')
 
     os.mkdir('build')
     os.chdir('build')
@@ -67,11 +68,12 @@ def test_cmake_build_system(build_dir, language, source, emulator, linker_flags)
     if emulator:
         if subprocess.call(['ctest']):
             return 1
-    shutil.copy('a.out', build_dir)
+    shutil.copy('a.out' + exe_suffix, build_dir)
     return 0
 
 
-def test_source(source, language, build_system, emulator, linker_flags):
+def test_source(source, language, build_system, emulator, linker_flags,
+        exe_suffix):
     result = 0
     cwd = os.getcwd()
     build_dir = tempfile.mkdtemp()
@@ -80,14 +82,15 @@ def test_source(source, language, build_system, emulator, linker_flags):
     if build_system == 'None':
         result += test_none_build_system(build_dir, language, source, linker_flags)
     elif build_system == 'CMake':
-        result += test_cmake_build_system(build_dir, language, source, emulator, linker_flags)
+        result += test_cmake_build_system(build_dir, language, source, emulator,
+                linker_flags, exe_suffix)
     else:
         print('Unknown build system: ' + build_system)
         result += 1
 
     if emulator:
         cmd = emulator
-        cmd += ' ' + os.path.join(build_dir, 'a.out')
+        cmd += ' ' + os.path.join(build_dir, 'a.out' + exe_suffix)
         print('Running ' + cmd + '...')
         sys.stdout.flush()
         result += subprocess.call(cmd, shell=True)
@@ -98,30 +101,34 @@ def test_source(source, language, build_system, emulator, linker_flags):
     return result
 
 
-def test_build_system(test_dir, language, build_system, emulator, linker_flags):
+def test_build_system(test_dir, language, build_system, emulator, linker_flags,
+        exe_suffix):
     print('\n\n--------------------------------------------------------')
     print('Testing ' + build_system + ' build system with the ' +
           language + ' language\n')
     sys.stdout.flush()
     result = 0
     for source in glob.glob(os.path.join(test_dir, language, '*')):
-        result += test_source(source, language, build_system, emulator, linker_flags)
+        result += test_source(source, language, build_system, emulator,
+                linker_flags, exe_suffix)
     return result
 
 
-def test_language(test_dir, language, build_systems, emulator, linker_flags):
+def test_language(test_dir, language, build_systems, emulator, linker_flags,
+        exe_suffix):
     result = 0
     for build_system in build_systems:
         result += test_build_system(test_dir,
                 language,
                 build_system,
                 emulator,
-                linker_flags)
+                linker_flags,
+                exe_suffix)
     return result
 
 
 def run_tests(test_dir, languages=('C', 'C++'), build_systems=('None', 'CMake'),
-        emulator=None, linker_flags=None):
+        emulator=None, linker_flags=None, exe_suffix=''):
     """Run the tests found in test_dir where each directory corresponds to an
     entry in languages. Every source within a language directory is built. The
     output executable is also run with the emulator if provided."""
@@ -131,7 +138,8 @@ def run_tests(test_dir, languages=('C', 'C++'), build_systems=('None', 'CMake'),
                 language,
                 build_systems,
                 emulator,
-                linker_flags)
+                linker_flags,
+                exe_suffix)
     return result
 
 
@@ -146,6 +154,8 @@ if __name__ == '__main__':
             help='Emulator used to test generated executables')
     parser.add_argument('--linker-flags', '-w', nargs='+',
             help='Extra compilation linker flags')
+    parser.add_argument('--exe-suffix', '-s', default='',
+            help='Suffix for generated executables')
     args = parser.parse_args()
 
     test_dir = os.path.dirname(os.path.abspath(__file__))
@@ -154,4 +164,5 @@ if __name__ == '__main__':
         languages=args.languages,
         build_systems=args.build_systems,
         emulator=args.emulator,
-        linker_flags=args.linker_flags) != 0)
+        linker_flags=args.linker_flags,
+        exe_suffix=args.exe_suffix) != 0)
