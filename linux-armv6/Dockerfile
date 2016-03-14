@@ -13,6 +13,12 @@ RUN apt-get update && apt-get install -y \
 
 ENV CROSS_TRIPLE arm-linux-gnueabihf
 ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
+ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
+    AR=/usr/bin/${CROSS_TRIPLE}-ar \
+    CC=/usr/bin/${CROSS_TRIPLE}-gcc \
+    CPP=/usr/bin/${CROSS_TRIPLE}-cpp \
+    CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
+    LD=/usr/bin/${CROSS_TRIPLE}-ld
 
 # Raspberry Pi is ARMv6+VFP2, Debian armhf is ARMv7+VFP3
 # Since this Dockerfile is targeting linux-arm from Raspberry Pi onward,
