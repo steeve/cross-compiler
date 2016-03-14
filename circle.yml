@@ -8,6 +8,7 @@ dependencies:
     - docker pull thewtex/cross-compiler-base
     - docker pull thewtex/cross-compiler-android-arm
     - docker pull thewtex/cross-compiler-browser-asmjs
+    - docker pull thewtex/cross-compiler-linux-armv6
 
 test:
   override:
@@ -17,6 +18,8 @@ test:
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-android-arm python /usr/src/test/run.py
     - make browser-asmjs
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-browser-asmjs python /usr/src/test/run.py --emulator /usr/bin/node --exe-suffix ".js"
+    - make linux-armv6
+    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-armv6 python /usr/src/test/run.py --emulator /usr/bin/qemu-arm
 
 deployment:
   hub:
@@ -25,3 +28,5 @@ deployment:
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push thewtex/cross-compiler-base
       - docker push thewtex/cross-compiler-android-arm
+      - docker push thewtex/cross-compiler-browser-asmjs
+      - docker push thewtex/cross-compiler-linux-armv6
