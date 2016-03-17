@@ -31,7 +31,7 @@ WORKDIR /usr/src
 RUN git clone git://cmake.org/cmake.git CMake && \
   cd CMake && \
   git checkout v3.4.3 && \
-  cd .. && mkdir CMake-build && \
+  cd .. && mkdir CMake-build && cd CMake-build && \
   /usr/src/CMake/bootstrap \
     --parallel=$(nproc) \
     --prefix=/usr && \
