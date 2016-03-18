@@ -9,6 +9,7 @@ dependencies:
     - docker pull thewtex/cross-compiler-android-arm
     - docker pull thewtex/cross-compiler-browser-asmjs
     - docker pull thewtex/cross-compiler-linux-armv6
+    - docker pull thewtex/cross-compiler-linux-armv7
 
 test:
   override:

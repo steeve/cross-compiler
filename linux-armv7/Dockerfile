@@ -14,6 +14,12 @@ RUN apt-get update && apt-get install -y \
 
 ENV CROSS_TRIPLE arm-linux-gnueabihf
 ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
+ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
+    AR=/usr/bin/${CROSS_TRIPLE}-ar \
+    CC=/usr/bin/${CROSS_TRIPLE}-gcc \
+    CPP=/usr/bin/${CROSS_TRIPLE}-cpp \
+    CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
+    LD=/usr/bin/${CROSS_TRIPLE}-ld
 
 WORKDIR /usr/src
 
