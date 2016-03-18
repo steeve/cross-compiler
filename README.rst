@@ -36,3 +36,10 @@ thewtex/cross-compiler-browser-asmjs
 thewtex/cross-compiler-linux-armv6
   |linux-armv6-images| Linux ARMv6 cross compiler toolchain for the Raspberry
   Pi, etc.
+
+
+.. |linux-armv7-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-armv7:latest.svg
+  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-armv7:latest
+
+thewtex/cross-compiler-linux-armv7
+  |linux-armv7-images| Generic Linux armv7 cross compiler toolchain.

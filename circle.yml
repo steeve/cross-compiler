@@ -21,6 +21,8 @@ test:
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-browser-asmjs python /usr/src/test/run.py --emulator /usr/bin/node --exe-suffix ".js"
     - make linux-armv6
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-armv6 python /usr/src/test/run.py --emulator /usr/bin/qemu-arm
+    - make linux-armv7
+    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-armv7 python /usr/src/test/run.py --emulator /usr/bin/qemu-arm
 
 deployment:
   hub:
@@ -31,3 +33,4 @@ deployment:
       - docker push thewtex/cross-compiler-android-arm
       - docker push thewtex/cross-compiler-browser-asmjs
       - docker push thewtex/cross-compiler-linux-armv6
+      - docker push thewtex/cross-compiler-linux-armv7
