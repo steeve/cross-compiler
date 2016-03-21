@@ -43,3 +43,11 @@ thewtex/cross-compiler-linux-armv6
 
 thewtex/cross-compiler-linux-armv7
   |linux-armv7-images| Generic Linux armv7 cross compiler toolchain.
+
+
+.. |linux-ppc64le-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-ppc64le:latest.svg
+  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-ppc64le:latest
+
+thewtex/cross-compiler-linux-ppc64le
+  |linux-ppc64le-images| Linux PowerPC 64 little endian cross compiler
+  toolchain for the POWER8, etc.
