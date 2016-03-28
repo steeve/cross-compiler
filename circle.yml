@@ -11,6 +11,7 @@ dependencies:
     - docker pull thewtex/cross-compiler-linux-armv6
     - docker pull thewtex/cross-compiler-linux-armv7
     - docker pull thewtex/cross-compiler-linux-ppc64le
+    - docker pull thewtex/cross-compiler-linux-x64
 
 test:
   override:
@@ -26,6 +27,8 @@ test:
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-armv7 python /usr/src/test/run.py --emulator /usr/bin/qemu-arm
     - make linux-ppc64le
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-ppc64le python /usr/src/test/run.py --emulator /usr/bin/qemu-ppc64le --languages C
+    - make linux-x64
+    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-x64 python /usr/src/test/run.py
 
 deployment:
   hub:
@@ -38,3 +41,4 @@ deployment:
       - docker push thewtex/cross-compiler-linux-armv6
       - docker push thewtex/cross-compiler-linux-armv7
       - docker push thewtex/cross-compiler-linux-ppc64le
+      - docker push thewtex/cross-compiler-linux-x64
