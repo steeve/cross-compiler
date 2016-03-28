@@ -51,3 +51,11 @@ thewtex/cross-compiler-linux-armv7
 thewtex/cross-compiler-linux-ppc64le
   |linux-ppc64le-images| Linux PowerPC 64 little endian cross compiler
   toolchain for the POWER8, etc.
+
+
+.. |linux-x64-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-x64:latest.svg
+  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-x64:latest
+
+thewtex/cross-compiler-linux-x64
+  |linux-x64-images| Linux x86_64 / amd64 compiler. Since the tool is for
+  x86_64 also, this is not actually a cross compiler.
