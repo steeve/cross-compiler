@@ -57,5 +57,13 @@ thewtex/cross-compiler-linux-ppc64le
   :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-x64:latest
 
 thewtex/cross-compiler-linux-x64
-  |linux-x64-images| Linux x86_64 / amd64 compiler. Since the tool is for
-  x86_64 also, this is not actually a cross compiler.
+  |linux-x64-images| Linux x86_64 / amd64 compiler. Since the Docker image is
+  natively x86_64, this is not actually a cross compiler.
+
+
+.. |linux-x86-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-x86:latest.svg
+  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-x86:latest
+
+thewtex/cross-compiler-linux-x86
+  |linux-x86-images| Linux i686 compiler. Since the Docker image is
+  natively x86_64 with i386 multi-arch support, this is not actually a cross compiler.
