@@ -11,7 +11,7 @@ browser-asmjs: base browser-asmjs/Dockerfile
 	$(DOCKER) build -t $(IMAGE)-browser-asmjs browser-asmjs
 
 linux-x86:
-	$(DOCKER) build -t $(IMAGE)-darwin-x86 darwin-x86
+	$(DOCKER) build -t $(IMAGE)-linux-x86 linux-x86
 
 linux-x64:
 	$(DOCKER) build -t $(IMAGE)-linux-x64 linux-x64
