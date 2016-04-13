@@ -67,3 +67,10 @@ thewtex/cross-compiler-linux-x64
 thewtex/cross-compiler-linux-x86
   |linux-x86-images| Linux i686 compiler. Since the Docker image is
   natively x86_64 with i386 multi-arch support, this is not actually a cross compiler.
+
+
+.. |windows-x64-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-windows-x64:latest.svg
+  :target: https://imagelayers.io/?images=thewtex/cross-compiler-windows-x64:latest
+
+thewtex/cross-compiler-windows-x64
+  |windows-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64.
