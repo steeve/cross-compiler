@@ -13,6 +13,7 @@ dependencies:
     - docker pull thewtex/cross-compiler-linux-ppc64le
     - docker pull thewtex/cross-compiler-linux-x64
     - docker pull thewtex/cross-compiler-linux-x86
+    - docker pull thewtex/cross-compiler-windows-x64
 
 test:
   override:
@@ -32,6 +33,9 @@ test:
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-x64 python /usr/src/test/run.py
     - make linux-x86
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-x86 python /usr/src/test/run.py
+    - make windows-x64:
+        timeout: 3000
+    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-windows-x64 python /usr/src/test/run.py --emulator /usr/bin/wine --exe-suffix ".exe"
 
 deployment:
   hub:
@@ -46,3 +50,4 @@ deployment:
       - docker push thewtex/cross-compiler-linux-ppc64le
       - docker push thewtex/cross-compiler-linux-x64
       - docker push thewtex/cross-compiler-linux-x86
+      - docker push thewtex/cross-compiler-windows-x64

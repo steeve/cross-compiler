@@ -14,7 +14,7 @@ import subprocess
 import sys
 import tempfile
 
-def test_none_build_system(build_dir, language, source, linker_flags):
+def test_none_build_system(build_dir, language, source, linker_flags, exe_suffix):
     build_cmd = list()
     if language == 'C':
         compiler = os.getenv('CC', 'cc')
@@ -27,6 +27,9 @@ def test_none_build_system(build_dir, language, source, linker_flags):
     if linker_flags:
         build_cmd.extend(linker_flags)
     build_cmd.append(source)
+
+    build_cmd.append('-o')
+    build_cmd.append('a.out' + exe_suffix)
 
     print('Building ' + source + ' by calling ' + compiler + '...')
     print(' '.join(build_cmd))
@@ -80,7 +83,8 @@ def test_source(source, language, build_system, emulator, linker_flags,
     os.chdir(build_dir)
 
     if build_system == 'None':
-        result += test_none_build_system(build_dir, language, source, linker_flags)
+        result += test_none_build_system(build_dir, language, source,
+                linker_flags, exe_suffix)
     elif build_system == 'CMake':
         result += test_cmake_build_system(build_dir, language, source, emulator,
                 linker_flags, exe_suffix)
