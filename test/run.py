@@ -76,7 +76,7 @@ def test_cmake_build_system(build_dir, language, source, emulator, linker_flags,
 
 
 def test_source(source, language, build_system, emulator, linker_flags,
-        exe_suffix):
+        exe_suffix, debug):
     result = 0
     cwd = os.getcwd()
     build_dir = tempfile.mkdtemp()
@@ -100,13 +100,18 @@ def test_source(source, language, build_system, emulator, linker_flags,
         result += subprocess.call(cmd, shell=True)
 
     os.chdir(cwd)
-    shutil.rmtree(build_dir)
+    if not debug:
+        print('Deleting temporary build directory ' + build_dir)
+        shutil.rmtree(build_dir)
+    else:
+        print('Keeping temporary build directory ' + build_dir)
+
     sys.stdout.flush()
     return result
 
 
 def test_build_system(test_dir, language, build_system, emulator, linker_flags,
-        exe_suffix):
+        exe_suffix, debug):
     print('\n\n--------------------------------------------------------')
     print('Testing ' + build_system + ' build system with the ' +
           language + ' language\n')
@@ -114,12 +119,12 @@ def test_build_system(test_dir, language, build_system, emulator, linker_flags,
     result = 0
     for source in glob.glob(os.path.join(test_dir, language, '*')):
         result += test_source(source, language, build_system, emulator,
-                linker_flags, exe_suffix)
+                linker_flags, exe_suffix, debug)
     return result
 
 
 def test_language(test_dir, language, build_systems, emulator, linker_flags,
-        exe_suffix):
+        exe_suffix, debug):
     result = 0
     for build_system in build_systems:
         result += test_build_system(test_dir,
@@ -127,12 +132,13 @@ def test_language(test_dir, language, build_systems, emulator, linker_flags,
                 build_system,
                 emulator,
                 linker_flags,
-                exe_suffix)
+                exe_suffix,
+                debug)
     return result
 
 
 def run_tests(test_dir, languages=('C', 'C++'), build_systems=('None', 'CMake'),
-        emulator=None, linker_flags=None, exe_suffix=''):
+        emulator=None, linker_flags=None, exe_suffix='', debug=False):
     """Run the tests found in test_dir where each directory corresponds to an
     entry in languages. Every source within a language directory is built. The
     output executable is also run with the emulator if provided."""
@@ -143,7 +149,8 @@ def run_tests(test_dir, languages=('C', 'C++'), build_systems=('None', 'CMake'),
                 build_systems,
                 emulator,
                 linker_flags,
-                exe_suffix)
+                exe_suffix,
+                debug)
     return result
 
 
@@ -160,6 +167,8 @@ if __name__ == '__main__':
             help='Extra compilation linker flags')
     parser.add_argument('--exe-suffix', '-s', default='',
             help='Suffix for generated executables')
+    parser.add_argument('--debug', '-d', action='store_true',
+            help='Do not remove temporary build directory')
     args = parser.parse_args()
 
     test_dir = os.path.dirname(os.path.abspath(__file__))
@@ -169,4 +178,5 @@ if __name__ == '__main__':
         build_systems=args.build_systems,
         emulator=args.emulator,
         linker_flags=args.linker_flags,
-        exe_suffix=args.exe_suffix) != 0)
+        exe_suffix=args.exe_suffix,
+        debug=args.debug) != 0)
