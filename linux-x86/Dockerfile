@@ -14,6 +14,7 @@ ENV PATH ${PATH}:${CROSS_ROOT}/bin
 RUN mkdir -p ${CROSS_ROOT}/bin
 COPY ${CROSS_TRIPLE}.sh ${CROSS_ROOT}/bin/${CROSS_TRIPLE}.sh
 COPY ${CROSS_TRIPLE}-as.sh ${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as.sh
+COPY ${CROSS_TRIPLE}-noop.sh ${CROSS_ROOT}/bin/${CROSS_TRIPLE}-noop.sh
 RUN cd ${CROSS_ROOT}/bin && \
   chmod +x ${CROSS_TRIPLE}.sh && \
   ln -s /usr/bin/x86_64-linux-gnu-gcc && \
@@ -22,7 +23,8 @@ RUN cd ${CROSS_ROOT}/bin && \
   ln -s ${CROSS_TRIPLE}.sh ${CROSS_TRIPLE}-gcc && \
   ln -s ${CROSS_TRIPLE}.sh ${CROSS_TRIPLE}-g++ && \
   ln -s ${CROSS_TRIPLE}-as.sh ${CROSS_TRIPLE}-as && \
-  ln -s /usr/bin/x86_64-linux-gnu-ar ${CROSS_TRIPLE}-ar
+  ln -s /usr/bin/x86_64-linux-gnu-ar ${CROSS_TRIPLE}-ar && \
+  ln -s ${CROSS_TRIPLE}-noop.sh ${CROSS_TRIPLE}-noop
 ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
     CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gcc \

@@ -17,4 +17,4 @@ set(CMAKE_ASM_COMPILER ${CMAKE_C_COMPILER})
 # like FindOpenSSL.
 set(CMAKE_IGNORE_PATH /usr/lib/x86_64-linux-gnu/ /usr/lib/x86_64-linux-gnu/lib/)
 
-set(CMAKE_CROSSCOMPILING_EMULATOR sh -c)
+set(CMAKE_CROSSCOMPILING_EMULATOR /usr/${cross_triple}/bin/${cross_triple}-noop)
