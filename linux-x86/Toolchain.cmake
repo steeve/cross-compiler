@@ -12,7 +12,6 @@ set(cross_triple "i686-linux-gnu")
 set(CMAKE_C_COMPILER /usr/${cross_triple}/bin/${cross_triple}-gcc)
 set(CMAKE_CXX_COMPILER /usr/${cross_triple}/bin/${cross_triple}-g++)
 set(CMAKE_ASM_COMPILER ${CMAKE_C_COMPILER})
-set(CMAKE_AR /usr/${cross_triple}/bin/${cross_triple}-ar)
 
 # Discard path returned by pkg-config and associated with HINTS in module
 # like FindOpenSSL.
