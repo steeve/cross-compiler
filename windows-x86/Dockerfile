@@ -20,6 +20,7 @@ RUN apt-get update && apt-get -y install \
   gperf \
   intltool \
   libffi-dev \
+  libgdk-pixbuf2.0-dev \
   libtool-bin \
   libltdl-dev \
   libssl-dev \
@@ -27,6 +28,7 @@ RUN apt-get update && apt-get -y install \
   libc6-dev-i386 \
   make \
   openssl \
+  p7zip-full \
   patch \
   perl \
   pkg-config \
@@ -46,10 +48,10 @@ ENV WINEARCH win32
 RUN wine hostname
 
 WORKDIR /usr/src
-# mxe master 2015-03-12, prior to mingw-w64 update, based on GCC 4
+# mxe master 2016-04-09
 RUN git clone https://github.com/mxe/mxe.git && \
   cd mxe && \
-  git checkout 149afe17a43c50c234dcadeb4a69e61e272a747a
+  git checkout 4accc990de7741f4d5aa37e368a732f3d47d803a
 WORKDIR /usr/src/mxe
 COPY settings.mk /usr/src/mxe/
 RUN make -j$(nproc)
