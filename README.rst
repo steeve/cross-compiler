@@ -74,3 +74,10 @@ thewtex/cross-compiler-linux-x86
 
 thewtex/cross-compiler-windows-x64
   |windows-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64.
+
+
+.. |windows-x86-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-windows-x86:latest.svg
+  :target: https://imagelayers.io/?images=thewtex/cross-compiler-windows-x86:latest
+
+thewtex/cross-compiler-windows-x86
+  |windows-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64.
