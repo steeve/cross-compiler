@@ -10,7 +10,11 @@ RUN apt-get update && apt-get install -y \
   crossbuild-essential-armhf \
   gfortran-arm-linux-gnueabihf \
   qemu-user \
-  qemu-user-static
+  qemu-user-static \
+  libbz2-dev:armhf \
+  libexpat1-dev:armhf \
+  ncurses-dev:armhf \
+  libssl-dev:armhf
 
 ENV CROSS_TRIPLE arm-linux-gnueabihf
 ENV CROSS_ROOT /usr/${CROSS_TRIPLE}

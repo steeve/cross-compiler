@@ -12,9 +12,9 @@ set(cross_triple "i686-linux-gnu")
 set(CMAKE_C_COMPILER /usr/${cross_triple}/bin/${cross_triple}-gcc)
 set(CMAKE_CXX_COMPILER /usr/${cross_triple}/bin/${cross_triple}-g++)
 set(CMAKE_ASM_COMPILER ${CMAKE_C_COMPILER})
-set(CMAKE_AR /usr/${cross_triple}/bin/${cross_triple}-ar)
 
-# Prevent 64-bit libraries from being discovered
+# Discard path returned by pkg-config and associated with HINTS in module
+# like FindOpenSSL.
 set(CMAKE_IGNORE_PATH /usr/lib/x86_64-linux-gnu/ /usr/lib/x86_64-linux-gnu/lib/)
 
-set(CMAKE_CROSSCOMPILING_EMULATOR sh -c)
+set(CMAKE_CROSSCOMPILING_EMULATOR /usr/${cross_triple}/bin/${cross_triple}-noop)
