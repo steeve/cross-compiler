@@ -8,7 +8,11 @@ RUN echo "deb http://emdebian.org/tools/debian/ jessie main" >> /etc/apt/sources
 
 RUN apt-get update && apt-get install -y \
   crossbuild-essential-ppc64el \
-  gfortran-powerpc64le-linux-gnu
+  gfortran-powerpc64le-linux-gnu \
+  libbz2-dev:ppc64el \
+  libexpat1-dev:ppc64el \
+  ncurses-dev:ppc64el \
+  libssl-dev:ppc64el
 
 WORKDIR /usr/src
 

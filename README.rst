@@ -65,8 +65,7 @@ thewtex/cross-compiler-linux-x64
   :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-x86:latest
 
 thewtex/cross-compiler-linux-x86
-  |linux-x86-images| Linux i686 compiler. Since the Docker image is
-  natively x86_64 with i386 multi-arch support, this is not actually a cross compiler.
+  |linux-x86-images| Linux i686 cross compiler.
 
 
 .. |windows-x64-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-windows-x64:latest.svg
