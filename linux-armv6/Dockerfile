@@ -27,10 +27,14 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
 # of performance.
 # See: https://wiki.debian.org/RaspberryPi
 # We are also using the 4.7 version of the toolchain, so that glibc=2.13
-ENV RASPBERRYPI_TOOLS_COMMIT 9c3d7b6ac692498dd36fec2872e0b55f910baac1
-RUN curl -L https://github.com/raspberrypi/tools/archive/${RASPBERRYPI_TOOLS_COMMIT}.tar.gz | tar xvz --wildcards --no-anchored "*gcc-linaro-${CROSS_TRIPLE}-raspbian*" && \
-    rsync -av /usr/src/tools-${RASPBERRYPI_TOOLS_COMMIT}/arm-bcm2708/gcc-linaro-${CROSS_TRIPLE}-raspbian/ /usr/ && \
-    rm -rf /usr/src/tools-${RASPBERRYPI_TOOLS_COMMIT}
+
+# Instead of cloning the whole repo (>1GB at the of writing this), we want to do a so-called "sparse checkout" with "shallow cloning":
+# https://stackoverflow.com/questions/600079/is-there-any-way-to-clone-a-git-repositorys-sub-directory-only/13738951#13738951
+
+RUN mkdir rpi_tools && cd rpi_tools && git init && git remote add -f origin https://github.com/raspberrypi/tools && \
+    git config core.sparseCheckout true && echo "arm-bcm2708/gcc-linaro-${CROSS_TRIPLE}-raspbian" >> .git/info/sparse-checkout && \
+    git pull --depth=1 origin master && rsync -av arm-bcm2708/gcc-linaro-${CROSS_TRIPLE}-raspbian/ /usr/ && rm -rf ../rpi_tools
+
 # Allow dynamically linked executables to run with qemu-arm
 ENV QEMU_LD_PREFIX ${CROSS_ROOT}/libc
 ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${CROSS_ROOT}/libc/lib/${CROSS_TRIPLE}/"
