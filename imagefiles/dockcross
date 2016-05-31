@@ -180,7 +180,7 @@ docker run -i -t --rm \
 #
 #   To install the dockcross helper, run the following commands:
 #
-#       docker run thewtex/raspberry-pi-cross-compiler > dockcross
+#       docker run thewtex/cross-compiler-linux-armv7 > dockcross
 #       chmod +x dockcross
 #
 #   You may then wish to move dockcross to somewhere in your path.
