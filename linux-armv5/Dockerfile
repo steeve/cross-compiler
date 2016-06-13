@@ -1,11 +1,15 @@
 FROM thewtex/cross-compiler-base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-# This is for ARMv5 "legacy" devices which do not support hard float VFP instructions.
-# https://wiki.debian.org/CrossToolchains
-RUN dpkg --add-architecture armel && \
-    apt-get update && \
-    apt-get install -y crossbuild-essential-armel
+# This is for ARMv5 "legacy" (armel) devices which do NOT support hard float
+# VFP instructions (armhf).
+
+# From https://wiki.debian.org/CrossToolchains, installing for jessie
+RUN echo "deb http://emdebian.org/tools/debian/ jessie main" > /etc/apt/sources.list.d/emdebian.list \
+&& curl http://emdebian.org/tools/debian/emdebian-toolchain-archive.key | apt-key add - \
+&& sed -i 's/httpredir.debian.org/http.debian.net/' /etc/apt/sources.list \
+&& dpkg --add-architecture armel \
+&& apt-get update && apt-get install -y crossbuild-essential-armel
 
 # The cross-compiling emulator
 RUN apt-get update && apt-get install -y \
