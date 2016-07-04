@@ -20,16 +20,16 @@ This image is not intended to be run manually. Instead, there is a helper script
 
 To install the helper script, run the image with no arguments, and redirect the output to a file::
 
-  docker run CROSS_COMPILER_IMAGE_NAME > dockcross
-  chmod +x dockcross
-  mv dockcross ~/bin/
+  docker run --rm CROSS_COMPILER_IMAGE_NAME > ./dockcross
+  chmod +x ./dockcross
+  mv ./dockcross ~/bin/
 
 Usage
 =====
 
 For the impatient, here's a one-liner to compile a hello world for armv7::
 
-  docker run thewtex/cross-compiler-linux-armv7 > dockcross && chmod +x dockcross && ./dockcross gcc test/C/hello.c -o hello_arm
+  docker run --rm thewtex/cross-compiler-linux-armv7 > ./dockcross && chmod +x ./dockcross && ./dockcross gcc test/C/hello.c -o hello_arm
 
 Note how invoking any toolchain command (make, gcc, etc...) is just a matter of prepending **dockcross** in the commandline::
 
@@ -65,12 +65,12 @@ DOCKCROSS_IMAGE / --image <docker-image-name>
 
 The docker image to run.
 
-Default: thewtex/cross-compiler-linux-armv7
+Default: image with which the script was created
 
 DOCKCROSS_ARGS / --args <docker-run-args>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Extra arguments to pass to the `docker run` command.
+Extra arguments to pass to the ``docker run`` command.
 
 Examples
 ========
