@@ -6,12 +6,12 @@ Dockerfiles for cross compiling in a Docker container.
 Features
 ========
 
-* different toolchains for cross compiling
-* commands in the container are run as the calling user, so that any created files have the expected ownership (ie. not root)
-* make variables (`CC`, `LD` etc) are set to point to the appropriate tools in the container
-* cmake and ninja are precompiled available with a toolchain file for cmake
-* current directory is mounted as the container's workdir, `/build`
-* works with boot2docker on OSX and Docker for Mac beta (1.11.1-beta12)
+* Different toolchains for cross compiling.
+* Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
+* Make variables (`CC`, `LD` etc) are set to point to the appropriate tools in the container.
+* Recent cmake and ninja are precompiled. Toolchain files available for cmake.
+* Current directory is mounted as the container's workdir, ``/build``.
+* Works with boot2docker on OSX and Docker for Mac beta (1.11.1-beta12).
 
 Installation
 ============
@@ -20,52 +20,55 @@ This image is not intended to be run manually. Instead, there is a helper script
 
 To install the helper script, run the image with no arguments, and redirect the output to a file::
 
-        docker run CROSS_COMPILER_IMAGE_NAME > dockcross
-        chmod +x dockcross
-        mv dockcross ~/bin/
+  docker run CROSS_COMPILER_IMAGE_NAME > dockcross
+  chmod +x dockcross
+  mv dockcross ~/bin/
 
 Usage
 =====
 
 For the impatient, here's a one-liner to compile a hello world for armv7::
 
-    docker run thewtex/cross-compiler-linux-armv7 > dockcross && chmod +x dockcross && ./dockcross gcc test/C/hello.c -o hello_arm
+  docker run thewtex/cross-compiler-linux-armv7 > dockcross && chmod +x dockcross && ./dockcross gcc test/C/hello.c -o hello_arm
 
-Note how invoking any toolchain command (make, gcc, etc...) is just a matter of prepending **dockcross** in the commandline:
+Note how invoking any toolchain command (make, gcc, etc...) is just a matter of prepending **dockcross** in the commandline::
 
-`dockcross [command] [args...]`
+  dockcross [command] [args...]
 
-Dockcross will thus execute the given command-line inside the container, along with all arguments passed after the command.
+The dockcross script will execute the given command-line inside the container, along with all arguments passed after the command.
 
-Alternatively, if the command matches one of the dockcross built-in commands (see below), that will be executed locally.
+Alternatively, if the command matches one of the dockcross built-in commands (see below), they will be executed locally.
 
 
 Built-in commands
 =================
 
-- `dockcross -- [command] [args...]`: Forces a command to run inside the container (in case of a name clash with a built-in command), use `--` before the command.
-- `dockcross update-image`: Fetch the latest version of the docker image.
-- `dockcross update-script`: Update the installed dockcross script with the one bundled in the image.
-- `dockcross update`: Update both the docker image, and the dockcross script.
+- ``dockcross -- [command] [args...]``: Forces a command to run inside the container (in case of a name clash with a built-in command), use ``--`` before the command.
+- ``dockcross update-image``: Fetch the latest version of the docker image.
+- ``dockcross update-script``: Update the installed dockcross script with the one bundled in the image.
+- ``dockcross update``: Update both the docker image, and the dockcross script.
 
 Configuration
 =============
 
 The following command-line options and environment variables are used. In all cases, the command-line option overrides the environment variable.
 
-### DOCKCROSS_CONFIG / --config <path-to-config-file>
+DOCKCROSS_CONFIG / --config <path-to-config-file>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This file is sourced if it exists.
 
-Default: `~/.dockcross`
+Default: ``~/.dockcross``
 
-### DOCKCROSS_IMAGE / --image <docker-image-name>
+DOCKCROSS_IMAGE / --image <docker-image-name>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The docker image to run.
 
 Default: thewtex/cross-compiler-linux-armv7
 
-### DOCKCROSS_ARGS / --args <docker-run-args>
+DOCKCROSS_ARGS / --args <docker-run-args>
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Extra arguments to pass to the `docker run` command.
 
@@ -77,11 +80,11 @@ Examples
 3. **dockcross ninja -Cbuild**: Run ninja in the generated build directory.
 4. **dockcross bash -c 'find . -name \*.o | sort > objects.txt'**
 
-Note that commands are executed verbatim. If you require any shell processing for environment variable expansion or redirection, please use `bash -c 'command args...'`.
+Note that commands are executed verbatim. If you require any shell processing for environment variable expansion or redirection, please use ``bash -c 'command args...'``.
 
 ---
 
-Credits go to `sdt/docker-raspberry-pi-cross-compiler <https://github.com/sdt/docker-raspberry-pi-cross-compiler>`_, who invented the base of this **dockcross** script.
+Credits go to `sdt/docker-raspberry-pi-cross-compiler <https://github.com/sdt/docker-raspberry-pi-cross-compiler>`_, who invented the base of the **dockcross** script.
 
 
 CI status
