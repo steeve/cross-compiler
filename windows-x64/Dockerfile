@@ -57,8 +57,6 @@ COPY settings.mk /usr/src/mxe/
 RUN make -j$(nproc)
 
 ENV PATH ${PATH}:/usr/src/mxe/usr/bin
-ENV CMAKE_TOOLCHAIN_FILE /usr/src/mxe/usr/x86_64-w64-mingw32.static/share/cmake/mxe-conf.cmake
-RUN echo 'set(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine")' >> ${CMAKE_TOOLCHAIN_FILE}
 ENV CROSS_TRIPLE x86_64-w64-mingw32.static
 ENV AS=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-as \
     AR=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-ar \
@@ -67,4 +65,8 @@ ENV AS=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-as \
     CXX=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-g++ \
     LD=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-ld
 
-WORKDIR /usr/src
+ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-windows-x64
+WORKDIR /build
+
+ENV CMAKE_TOOLCHAIN_FILE /usr/src/mxe/usr/x86_64-w64-mingw32.static/share/cmake/mxe-conf.cmake
+RUN echo 'set(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine")' >> ${CMAKE_TOOLCHAIN_FILE}

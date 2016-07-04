@@ -4,8 +4,15 @@
 # container at runtime.
 
 if [[ $# == 0 ]]; then
-    # Presumably the image has been run directly, so help the user get started.
-    cat /dockcross/dockcross
+    # Presumably the image has been run directly, so help the user get
+    # started by outputting the dockcross script
+    if [[ -n $DEFAULT_DOCKCROSS_IMAGE ]]; then
+        head -n 2 /dockcross/dockcross
+        echo "DEFAULT_DOCKCROSS_IMAGE=$DEFAULT_DOCKCROSS_IMAGE"
+        tail -n +4 /dockcross/dockcross
+    else
+        cat /dockcross/dockcross
+    fi
     exit 0
 fi
 

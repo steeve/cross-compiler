@@ -27,3 +27,5 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
 
 ENV QEMU_LD_PREFIX ${CROSS_ROOT}/libc
 ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${CROSS_ROOT}/libc/lib/${CROSS_TRIPLE}/"
+
+ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-linux-armv5

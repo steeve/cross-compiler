@@ -9,3 +9,5 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
     CPP=/usr/bin/${CROSS_TRIPLE}-cpp \
     CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
     LD=/usr/bin/${CROSS_TRIPLE}-ld
+
+ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-linux-x64

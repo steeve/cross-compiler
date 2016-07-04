@@ -31,5 +31,7 @@ RUN mkdir -p /build && \
     cd / && \
     rm -rf /build
 
+ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-android-arm
+
 COPY Toolchain.cmake ${CROSS_ROOT}/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
