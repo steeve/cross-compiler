@@ -40,7 +40,7 @@ COPY imagefiles/.bashrc /root/
 WORKDIR /usr/src
 RUN git clone git://cmake.org/cmake.git CMake && \
    cd CMake && \
-   git checkout v3.4.3 && \
+   git checkout v3.6.0-rc4 && \
    cd .. && mkdir CMake-build && cd CMake-build && \
    /usr/src/CMake/bootstrap \
      --parallel=$(nproc) \
@@ -56,7 +56,7 @@ RUN git clone git://cmake.org/cmake.git CMake && \
 # Build and install Ninja from source
 RUN git clone https://github.com/martine/ninja.git && \
    cd ninja && \
-   git checkout v1.6.0 && \
+   git checkout v1.7.1 && \
    python ./configure.py --bootstrap && \
    ./ninja && \
    cp ./ninja /usr/bin/ && \
