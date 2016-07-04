@@ -30,6 +30,12 @@ RUN apt-get update && apt-get -y install \
   xz-utils && \
   apt-get -y clean
 
+WORKDIR /usr/share
+RUN git clone https://github.com/nojhan/liquidprompt.git && \
+  cd liquidprompt && \
+  git checkout v_1.11
+COPY imagefiles/.bashrc /root/
+
 # Build and install CMake from source.
 WORKDIR /usr/src
 RUN git clone git://cmake.org/cmake.git CMake && \

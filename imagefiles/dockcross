@@ -138,7 +138,7 @@ FINAL_ARGS=${ARG_ARGS-${DOCKCROSS_ARGS}}
 
 # If we are not running via boot2docker
 if [ -z $DOCKER_HOST ]; then
-    USER_IDS="-e BUILDER_UID=$( id -u ) -e BUILDER_GID=$( id -g )"
+    USER_IDS="-e BUILDER_UID=$( id -u ) -e BUILDER_GID=$( id -g ) -e BUILDER_USER=$( id -un ) -e BUILDER_GROUP=$( id -gn )"
 fi
 
 #------------------------------------------------------------------------------
