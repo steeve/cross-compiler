@@ -67,17 +67,26 @@ command:help() {
         fi
     else
         cat >&2 <<ENDHELP
-usage: dockcross command [args]
+Usage: dockcross [options] [--] command [args]
 
-By default, runs the given command in an dockcross container.
+By default, run the given *command* in an dockcross Docker container.
 
-Builtin commands:
+The *options* can be one of:
+
+    --args|-a           Extra args to the *docker run* command
+    --image|-i          Docker cross-compiler image to use
+    --config|-c         Bash script to source before running this script
+
+
+Additionally, there are special update commands:
+
     update-image
     update-script
     update
 
-For command help use: $0 help <command>
+For update command help use: $0 help <command>
 ENDHELP
+        exit 1
     fi
 }
 
