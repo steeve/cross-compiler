@@ -23,3 +23,5 @@ RUN curl -L https://github.com/tpoechtrager/osxcross/archive/master.tar.gz | tar
     mv /osxcross-master/target ${CROSS_ROOT} && \
     mkdir -p ${CROSS_ROOT}/lib && \
     rm -rf /osxcross-master
+
+ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-darwin-x64

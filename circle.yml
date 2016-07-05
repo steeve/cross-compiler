@@ -47,7 +47,7 @@ test:
     - make windows-x86:
         timeout: 3000
     - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-windows-x86 python /usr/src/test/run.py --emulator /usr/bin/wine --exe-suffix ".exe"
-    - docker run thewtex/cross-compiler-linux-armv7 > dockcross && chmod +x dockcross && ./dockcross gcc test/C/hello.c -o hello_arm
+    - docker run thewtex/cross-compiler-linux-armv7 > ./dockcross && chmod +x ./dockcross && ./dockcross bash -c '$CC test/C/hello.c -o hello_arm'
 
 deployment:
   hub:

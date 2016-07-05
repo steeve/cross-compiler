@@ -34,6 +34,8 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
     CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
     LD=/usr/bin/${CROSS_TRIPLE}-ld
 
+ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-linux-ppc64le
+
 # Note: Toolchain file support is currently in debian Experimental according to:
 # https://wiki.debian.org/CrossToolchains#In_jessie_.28Debian_8.29
 # We can switch to that when it becomes stable.

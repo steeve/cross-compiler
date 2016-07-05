@@ -36,4 +36,6 @@ RUN cd /tmp && \
   $CC /tmp/first_run.c && \
   rm /tmp/first_run.* a.out.js
 
+ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-browser-asmjs
+
 ENV CMAKE_TOOLCHAIN_FILE /usr/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/cmake/Modules/Platform/Emscripten.cmake

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+DEFAULT_DOCKCROSS_IMAGE=thewtex/cross-compiler-base
+
 #------------------------------------------------------------------------------
 # Helpers
 #
@@ -123,14 +125,13 @@ done
 # 3. defaults
 
 # Source the config file if it exists
-DEFAULT_CONFIG=~/.dockcross
-FINAL_CONFIG=${ARG_CONFIG-${DOCKCROSS_CONFIG-$DEFAULT_CONFIG}}
+DEFAULT_DOCKCROSS_CONFIG=~/.dockcross
+FINAL_CONFIG=${ARG_CONFIG-${DOCKCROSS_CONFIG-$DEFAULT_DOCKCROSS_CONFIG}}
 
 [[ -f "$FINAL_CONFIG" ]] && source "$FINAL_CONFIG"
 
 # Set the docker image
-DEFAULT_IMAGE=thewtex/cross-compiler-base
-FINAL_IMAGE=${ARG_IMAGE-${DOCKCROSS_IMAGE-$DEFAULT_IMAGE}}
+FINAL_IMAGE=${ARG_IMAGE-${DOCKCROSS_IMAGE-$DEFAULT_DOCKCROSS_IMAGE}}
 
 # Set the docker run extra args (if any)
 FINAL_ARGS=${ARG_ARGS-${DOCKCROSS_ARGS}}
@@ -178,11 +179,12 @@ docker run -i -t --rm \
 #
 #   This image is not intended to be run manually.
 #
-#   To install the dockcross helper, run the following commands:
+#   To create a dockcross helper script for the
+#   thewtex/cross-compiler-linux-armv7 image, run:
 #
-#       docker run thewtex/cross-compiler-linux-armv7 > dockcross
+#       docker run --rm thewtex/cross-compiler-linux-armv7 > dockcross
 #       chmod +x dockcross
 #
-#   You may then wish to move dockcross to somewhere in your path.
+#   You may then wish to move the dockcross script to somewhere in your path.
 #
 ################################################################################

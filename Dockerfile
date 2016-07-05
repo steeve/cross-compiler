@@ -46,7 +46,7 @@ RUN git clone git://cmake.org/cmake.git CMake && \
    make install && \
    cd .. && \
    rm -rf CMake*
- 
+
 # Build and install Ninja from source
 RUN git clone https://github.com/martine/ninja.git && \
    cd ninja && \
