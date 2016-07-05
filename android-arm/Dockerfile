@@ -29,7 +29,10 @@ RUN mkdir -p /build && \
       --platform=android-14 \
       --install-dir=${CROSS_ROOT} && \
     cd / && \
-    rm -rf /build
+    rm -rf /build && \
+    find ${CROSS_ROOT} -exec chmod a+r '{}' \; && \
+    find ${CROSS_ROOT} -executable -exec chmod a+x '{}' \;
+
 
 ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-android-arm
 
