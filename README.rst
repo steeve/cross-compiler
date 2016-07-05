@@ -122,6 +122,12 @@ thewtex/cross-compiler-android-arm
 thewtex/cross-compiler-browser-asmjs
   |browser-asmjs-images| The Emscripten JavaScript cross compiler.
 
+.. |linux-armv5-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-armv5:latest.svg
+  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-armv5:latest
+
+thewtex/cross-compiler-linux-armv5
+  |linux-armv5-images| Linux armv5 cross compiler toolchain for legacy devices
+  like the Parrot AR Drone.
 
 .. |linux-armv6-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-armv6:latest.svg
   :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-armv6:latest
