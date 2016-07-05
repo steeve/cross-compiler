@@ -91,17 +91,17 @@ while [[ $# != 0 ]]; do
             break
             ;;
 
-        --args)
+        --args|-a)
             ARG_ARGS="$2"
             shift 2
             ;;
 
-        --config)
+        --config|-c)
             ARG_CONFIG="$2"
             shift 2
             ;;
 
-        --image)
+        --image|-i)
             ARG_IMAGE="$2"
             shift 2
             ;;
