@@ -24,30 +24,41 @@ dependencies:
 test:
   override:
     - make base
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-base python /usr/src/test/run.py --emulator 'sh -c'
+    - docker run --rm thewtex/cross-compiler-base > ./dockcross-base && chmod +x ./dockcross-base
+    - ./dockcross-base python test/run.py --emulator 'sh -c'
     - make android-arm
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-android-arm python /usr/src/test/run.py
+    - docker run --rm thewtex/cross-compiler-android-arm > ./dockcross-android-arm && chmod +x ./dockcross-android-arm
+    - ./dockcross-android-arm python test/run.py
     - make browser-asmjs
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-browser-asmjs python /usr/src/test/run.py --emulator /usr/bin/node --exe-suffix ".js"
+    - docker run --rm thewtex/cross-compiler-browser-asmjs > ./dockcross-browser-asmjs && chmod +x ./dockcross-browser-asmjs
+    - ./dockcross-browser-asmjs python test/run.py --emulator /usr/bin/node --exe-suffix ".js"
     - make linux-armv5
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-armv5 python /usr/src/test/run.py --emulator /usr/bin/qemu-arm
+    - docker run --rm thewtex/cross-compiler-linux-armv5 > ./dockcross-linux-armv5 && chmod +x ./dockcross-linux-armv5
+    - ./dockcross-linux-armv5 python test/run.py --emulator /usr/bin/qemu-arm
     - make linux-armv6
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-armv6 python /usr/src/test/run.py --emulator /usr/bin/qemu-arm
+    - docker run --rm thewtex/cross-compiler-linux-armv6 > ./dockcross-linux-armv6 && chmod +x ./dockcross-linux-armv6
+    - ./dockcross-linux-armv6 python test/run.py --emulator /usr/bin/qemu-arm
     - make linux-armv7
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-armv7 python /usr/src/test/run.py --emulator /usr/bin/qemu-arm
+    - docker run --rm thewtex/cross-compiler-linux-armv7 > ./dockcross-linux-armv7 && chmod +x ./dockcross-linux-armv7
+    - ./dockcross-linux-armv7 python test/run.py --emulator /usr/bin/qemu-arm
+    - ./dockcross-linux-armv7 && chmod +x ./dockcross-linux-armv7 && ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
     - make linux-ppc64le
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-ppc64le python /usr/src/test/run.py --emulator /usr/bin/qemu-ppc64le --languages C
+    - docker run --rm thewtex/cross-compiler-linux-ppc64le > ./dockcross-linux-ppc64le && chmod +x ./dockcross-linux-ppc64le
+    - ./dockcross-linux-ppc64le python test/run.py --emulator /usr/bin/qemu-ppc64le --languages C
     - make linux-x64
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-x64 python /usr/src/test/run.py
+    - docker run --rm thewtex/cross-compiler-linux-x64 > ./dockcross-linux-x64 && chmod +x ./dockcross-linux-x64
+    - ./dockcross-linux-x64 python test/run.py
     - make linux-x86
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-linux-x86 python /usr/src/test/run.py
+    - docker run --rm thewtex/cross-compiler-linux-x86 > ./dockcross-linux-x86 && chmod +x ./dockcross-linux-x86
+    - ./dockcross-linux-x86 python test/run.py
     - make windows-x64:
         timeout: 3000
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-windows-x64 python /usr/src/test/run.py --emulator /usr/bin/wine --exe-suffix ".exe"
+    - docker run --rm thewtex/cross-compiler-windows-x64 > ./dockcross-windows-x64 && chmod +x ./dockcross-windows-x64
+    - ./dockcross-windows-x64 python test/run.py --emulator /usr/bin/wine --exe-suffix ".exe"
     - make windows-x86:
         timeout: 3000
-    - docker run --rm -v ~/cross-compilers/test/:/usr/src/test:ro thewtex/cross-compiler-windows-x86 python /usr/src/test/run.py --emulator /usr/bin/wine --exe-suffix ".exe"
-    - docker run thewtex/cross-compiler-linux-armv7 > ./dockcross && chmod +x ./dockcross && ./dockcross bash -c '$CC test/C/hello.c -o hello_arm'
+    - docker run --rm thewtex/cross-compiler-windows-x86 > ./dockcross-windows-x86 && chmod +x ./dockcross-windows-x86
+    - ./dockcross-windows-x86 python test/run.py --emulator /usr/bin/wine --exe-suffix ".exe"
 
 deployment:
   hub:
