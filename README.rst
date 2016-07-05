@@ -18,7 +18,8 @@ Installation
 
 This image is not intended to be run manually. Instead, there is a helper script which comes bundled with the image.
 
-To install the helper script, run the image with no arguments, and redirect the output to a file::
+To install the helper script, run one of the images with no arguments, and
+redirect the output to a file::
 
   docker run --rm CROSS_COMPILER_IMAGE_NAME > ./dockcross
   chmod +x ./dockcross
@@ -29,21 +30,25 @@ Usage
 
 For the impatient, here's a one-liner to compile a hello world for armv7::
 
-  docker run --rm thewtex/cross-compiler-linux-armv7 > ./dockcross && chmod +x ./dockcross && ./dockcross gcc test/C/hello.c -o hello_arm
+  docker run --rm thewtex/cross-compiler-linux-armv7 > ./dockcross-linux-armv7
+  chmod +x ./dockcross-linux-armv7
+  ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
 
-Note how invoking any toolchain command (make, gcc, etc...) is just a matter of prepending **dockcross** in the commandline::
+Note how invoking any toolchain command (make, gcc, etc...) is just a matter of prepending the **dockcross** script on the commandline::
 
-  dockcross [command] [args...]
+  dockcross-linux-armv7 [command] [args...]
 
-The dockcross script will execute the given command-line inside the container, along with all arguments passed after the command.
+The dockcross script will execute the given command-line inside the container,
+along with all arguments passed after the command.
 
-Alternatively, if the command matches one of the dockcross built-in commands (see below), they will be executed locally.
+Alternatively, a special update command can be exected that will update the
+source cross-compiler Docker image or the dockcross script itself.
 
 
-Built-in commands
-=================
+Built-in update commands
+========================
 
-- ``dockcross -- [command] [args...]``: Forces a command to run inside the container (in case of a name clash with a built-in command), use ``--`` before the command.
+- ``dockcross [--] command [args...]``: Forces a command to run inside the container (in case of a name clash with a built-in command), use ``--`` before the command.
 - ``dockcross update-image``: Fetch the latest version of the docker image.
 - ``dockcross update-script``: Update the installed dockcross script with the one bundled in the image.
 - ``dockcross update``: Update both the docker image, and the dockcross script.
@@ -53,21 +58,22 @@ Configuration
 
 The following command-line options and environment variables are used. In all cases, the command-line option overrides the environment variable.
 
-DOCKCROSS_CONFIG / --config <path-to-config-file>
+DOCKCROSS_CONFIG / --config|-c <path-to-config-file>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-This file is sourced if it exists.
+This file is sourced, if it exists, before executing the rest of the dockcross
+script.
 
 Default: ``~/.dockcross``
 
-DOCKCROSS_IMAGE / --image <docker-image-name>
+DOCKCROSS_IMAGE / --image|-i <docker-image-name>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The docker image to run.
+The docker cross-compiler image to run.
 
-Default: image with which the script was created
+Default: image with which the script was created.
 
-DOCKCROSS_ARGS / --args <docker-run-args>
+DOCKCROSS_ARGS / --args|-a <docker-run-args>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Extra arguments to pass to the ``docker run`` command.
