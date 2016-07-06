@@ -2,7 +2,7 @@ FROM thewtex/cross-compiler-base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # The cross-compiling emulator
-RUN curl -sL https://deb.nodesource.com/setup | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash - && \
   apt-get install -y --no-install-recommends \
     default-jre \
     nodejs \
