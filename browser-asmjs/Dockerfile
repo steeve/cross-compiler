@@ -28,13 +28,17 @@ ENV CC=/usr/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/emcc \
   AR=/usr/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/emar
 
 # Emscripten generates system libraries the firsts time it runs
+ADD test/ /tmp/test/
 RUN cd /tmp && \
   /bin/echo -e "#include <iostream>\nint main() { std::cout << \"first run\"; return 0; }" > /tmp/first_run.cxx && \
-  $CXX /tmp/first_run.cxx && \
+  $CXX /tmp/first_run.cxx -o a.out.js && \
   rm /tmp/first_run.* && \
   /bin/echo -e "#include <stdio.h>\nint main() { printf(\"first run\"); return 0; }" > /tmp/first_run.c && \
-  $CC /tmp/first_run.c && \
-  rm /tmp/first_run.* a.out.js
+  $CC /tmp/first_run.c -o a.out.js && \
+  rm /tmp/first_run.* a.out.js && \
+  cd /tmp/test && \
+  python /tmp/test/run.py; python /tmp/test/run.py && \
+  cd && rm -rf /tmp/test
 
 ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-browser-asmjs
 

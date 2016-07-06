@@ -8,7 +8,9 @@ darwin-x64:
 	$(DOCKER) build -t $(IMAGE)-darwin-x64 darwin-x64
 
 browser-asmjs: base browser-asmjs/Dockerfile
+	cp -r test browser-asmjs/
 	$(DOCKER) build -t $(IMAGE)-browser-asmjs browser-asmjs
+	rm -rf browser-asmjs/test
 
 linux-x86:
 	$(DOCKER) build -t $(IMAGE)-linux-x86 linux-x86

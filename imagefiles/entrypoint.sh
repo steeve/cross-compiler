@@ -26,8 +26,9 @@ if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
     groupadd -o -g $BUILDER_GID $BUILDER_GROUP 2> /dev/null
     useradd -o -m -g $BUILDER_GID -u $BUILDER_UID $BUILDER_USER 2> /dev/null
     export HOME=/home/${BUILDER_USER}
-    cp /root/.bashrc $HOME
-    chown $BUILDER_UID:$BUILDER_GID $HOME/.bashrc
+    shopt -s dotglob
+    cp -r /root/* $HOME/
+    chown -R $BUILDER_UID:$BUILDER_GID $HOME/*
 
     # Run the command as the specified user/group.
     exec chpst -u :$BUILDER_UID:$BUILDER_GID "$@"
