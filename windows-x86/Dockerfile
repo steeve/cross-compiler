@@ -5,7 +5,7 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 # Other dependencies are from the listed MXE requirements:
 #   http://mxe.cc/#requirements
 # 'cmake' is omitted because it is installed from source in the base image
-RUN apt-get update && apt-get -y install \
+RUN apt-get update && apt-get -y --force-yes install \
   autoconf \
   automake \
   autopoint \
