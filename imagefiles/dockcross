@@ -151,31 +151,6 @@ if [ -z $DOCKER_HOST ]; then
 fi
 
 #------------------------------------------------------------------------------
-# Command-line processing
-#
-if [[ $# == 0 ]]; then
-    command:help
-    exit
-fi
-
-case $1 in
-
-    --)
-        # Everything after this is the command-line to be executed
-        shift
-        ;;
-
-    *)
-        # If this is a builtin command, execute it, otherwise fall through
-        if has command $1; then
-            command:$1 "${@:2}" # array slice skipping first element
-            exit $?
-        fi
-        ;;
-
-esac
-
-#------------------------------------------------------------------------------
 # Now, finally, run the command in a container
 #
 docker run -i -t --rm \
