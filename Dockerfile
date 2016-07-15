@@ -68,6 +68,7 @@ RUN git clone https://github.com/martine/ninja.git && \
    cp ./ninja /usr/bin/ && \
    cd .. && rm -rf ninja
 
+RUN echo "root:root" | chpasswd
 WORKDIR /build
 ENTRYPOINT ["/dockcross/entrypoint.sh"]
 
