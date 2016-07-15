@@ -1,11 +1,6 @@
 FROM thewtex/cross-compiler-base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-# Insert this line before "RUN apt-get update" to dynamically
-# replace httpredir.debian.org with a single working domain
-# in attempt to "prevent" the "Error reading from server" error.
-RUN sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list
-
 # WINE is used as an emulator for try_run and tests with CMake.
 # Other dependencies are from the listed MXE requirements:
 #   http://mxe.cc/#requirements

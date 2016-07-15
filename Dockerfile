@@ -1,6 +1,12 @@
 FROM debian:jessie
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
+# Insert this line before "RUN apt-get update" to dynamically
+# replace httpredir.debian.org with a single working domain
+# in attempt to "prevent" the "Error reading from server" error.
+RUN apt-get update && apt-get install -y curl && \
+  sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list
+
 RUN apt-get update && apt-get -y install \
   automake \
   autogen \
