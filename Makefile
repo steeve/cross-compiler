@@ -18,6 +18,9 @@ linux-x86:
 linux-x64:
 	$(DOCKER) build -t $(IMAGE)-linux-x64 linux-x64
 
+linux-arm64: base linux-arm64/Dockerfile linux-arm64/Toolchain.cmake
+	$(DOCKER) build -t $(IMAGE)-linux-arm64 linux-arm64
+
 linux-armv5: base linux-armv5/Dockerfile linux-armv5/Toolchain.cmake
 	$(DOCKER) build -t $(IMAGE)-linux-armv5 linux-armv5
 
@@ -39,6 +42,6 @@ windows-x64: base windows-x64/Dockerfile windows-x64/settings.mk
 base: Dockerfile
 	$(DOCKER) build -t $(IMAGE)-base .
 
-all: base android-arm darwin-x64 linux-x86 linux-x64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
+all: base android-arm darwin-x64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
 
-.PHONY: all base android-arm darwin-x64 linux-x86 linux-x64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
+.PHONY: all base android-arm darwin-x64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
