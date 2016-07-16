@@ -154,7 +154,7 @@ fi
 # Now, finally, run the command in a container
 #
 docker run -i -t --rm \
-    -v $PWD:/build \
+    -v $PWD:/work \
     $USER_IDS \
     $FINAL_ARGS \
     $FINAL_IMAGE "$@"

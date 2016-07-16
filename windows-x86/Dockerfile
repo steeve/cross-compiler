@@ -66,7 +66,7 @@ ENV AS=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-as \
     LD=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-ld
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/windows-x86
-WORKDIR /build
+WORKDIR /work
 
 ENV CMAKE_TOOLCHAIN_FILE /usr/src/mxe/usr/i686-w64-mingw32.static/share/cmake/mxe-conf.cmake
 RUN echo 'set(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine")' >> ${CMAKE_TOOLCHAIN_FILE}
