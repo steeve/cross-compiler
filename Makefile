@@ -1,6 +1,8 @@
 DOCKER = docker
 ORG = dockcross
 
+default: base android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
+
 android-arm: base android-arm/Dockerfile
 	$(DOCKER) build -t $(ORG)/android-arm android-arm
 
@@ -15,7 +17,7 @@ browser-asmjs: base browser-asmjs/Dockerfile
 linux-x86: base linux-x86/Dockerfile linux-x86/Toolchain.cmake
 	$(DOCKER) build -t $(ORG)/linux-x86 linux-x86
 
-linux-x64: base linux-x64/Dockerfile linux-x64/Toolchain.cmake
+linux-x64: base linux-x64/Dockerfile
 	$(DOCKER) build -t $(ORG)/linux-x64 linux-x64
 
 linux-arm64: base linux-arm64/Dockerfile linux-arm64/Toolchain.cmake
@@ -44,4 +46,4 @@ base: Dockerfile
 
 all: base android-arm darwin-x64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
 
-.PHONY: all base android-arm darwin-x64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
+.PHONY: default all base android-arm darwin-x64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
