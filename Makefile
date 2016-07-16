@@ -15,7 +15,7 @@ browser-asmjs: base browser-asmjs/Dockerfile
 linux-x86: base linux-x86/Dockerfile linux-x86/Toolchain.cmake
 	$(DOCKER) build -t $(ORG)/linux-x86 linux-x86
 
-linux-x64: base linux-x64/Dockerfile linux-x64/Toolchain.cmake
+linux-x64: base linux-x64/Dockerfile
 	$(DOCKER) build -t $(ORG)/linux-x64 linux-x64
 
 linux-arm64: base linux-arm64/Dockerfile linux-arm64/Toolchain.cmake
