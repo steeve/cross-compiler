@@ -46,8 +46,8 @@ dockcross/browser-asmjs
   :target: https://imagelayers.io/?images=dockcross/linux-arm64:latest
 
 dockcross/linux-arm64
-  |linux-arm64-images| Linux arm64 cross compiler toolchain for legacy devices
-  like the Parrot AR Drone.
+  |linux-arm64-images| Cross compiler for the 64-bit RM platform on Linux,
+  also known as AArch64.
 
 .. |linux-armv5-images| image:: https://badge.imagelayers.io/dockcross/linux-armv5:latest.svg
   :target: https://imagelayers.io/?images=dockcross/linux-armv5:latest
