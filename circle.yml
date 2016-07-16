@@ -35,7 +35,7 @@ test:
     - ./dockcross-browser-asmjs python test/run.py --emulator /usr/bin/node --exe-suffix ".js"
     - make linux-arm64
     - docker run --rm dockcross/linux-arm64 > ./dockcross-linux-arm64 && chmod +x ./dockcross-linux-arm64
-    - ./dockcross-linux-arm64 python test/run.py --emulator /usr/bin/qemu-arm
+    - ./dockcross-linux-arm64 python test/run.py --emulator /usr/bin/qemu-aarch64
     - make linux-armv5
     - docker run --rm dockcross/linux-armv5 > ./dockcross-linux-armv5 && chmod +x ./dockcross-linux-armv5
     - ./dockcross-linux-armv5 python test/run.py --emulator /usr/bin/qemu-arm
