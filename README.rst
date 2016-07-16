@@ -3,15 +3,17 @@ dockcross
 
 Cross compiling toolchains in Docker images.
 
+
 Features
 --------
 
 * Different toolchains for cross compiling.
 * Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
 * Make variables (`CC`, `LD` etc) are set to point to the appropriate tools in the container.
-* Recent cmake and ninja are precompiled. Toolchain files available for cmake.
+* Recent `CMake <https://cmake.org>`_ and ninja are precompiled. Toolchain files available for CMake.
 * Current directory is mounted as the container's workdir, ``/build``.
 * Works with boot2docker on OSX and Docker for Mac beta (1.11.1-beta12).
+
 
 Cross compilers
 ---------------
@@ -107,10 +109,13 @@ dockcross/windows-x64
 dockcross/windows-x86
   |windows-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64.
 
+
 Installation
 ------------
 
-This image is not intended to be run manually. Instead, there is a helper script which comes bundled with the image.
+This image does not need to be run manually. Instead, there is a helper script
+to execute build commands on source code existing on the local host filesystem. This
+script is bundled with the image.
 
 To install the helper script, run one of the images with no arguments, and
 redirect the output to a file::
@@ -119,38 +124,47 @@ redirect the output to a file::
   chmod +x ./dockcross
   mv ./dockcross ~/bin/
 
+Where `CROSS_COMPILER_IMAGE_NAME` is the name of the cross-compiler toolchain
+Docker instance, e.g. `dockcross/linux-armv7`.
+
+
 Usage
 -----
 
-For the impatient, here's a one-liner to compile a hello world for armv7::
+For the impatient, here's how to compile a hello world for armv7::
 
   docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7
   chmod +x ./dockcross-linux-armv7
   ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
 
-Note how invoking any toolchain command (make, gcc, etc...) is just a matter of prepending the **dockcross** script on the commandline::
+Note how invoking any toolchain command (make, gcc, etc.) is just a matter of prepending the **dockcross** script on the commandline::
 
-  dockcross-linux-armv7 [command] [args...]
+  ./dockcross-linux-armv7 [command] [args...]
 
 The dockcross script will execute the given command-line inside the container,
-along with all arguments passed after the command.
-
-Alternatively, a special update command can be exected that will update the
-source cross-compiler Docker image or the dockcross script itself.
+along with all arguments passed after the command. Commands that evaluate
+environmental variable in the image, like `$CC` above, should be exected in
+`bash -c`. The present working directory is mounted within the image, which
+can be used to make source code available in the Docker container.
 
 
 Built-in update commands
 ------------------------
+
+A special update command can be exected that will update the
+source cross-compiler Docker image or the dockcross script itself.
 
 - ``dockcross [--] command [args...]``: Forces a command to run inside the container (in case of a name clash with a built-in command), use ``--`` before the command.
 - ``dockcross update-image``: Fetch the latest version of the docker image.
 - ``dockcross update-script``: Update the installed dockcross script with the one bundled in the image.
 - ``dockcross update``: Update both the docker image, and the dockcross script.
 
+
 Configuration
 -------------
 
-The following command-line options and environment variables are used. In all cases, the command-line option overrides the environment variable.
+The following environmental variables and command-line options are used. In
+all cases, the command-line option overrides the environment variable.
 
 DOCKCROSS_CONFIG / --config|-c <path-to-config-file>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -163,14 +177,15 @@ Default: ``~/.dockcross``
 DOCKCROSS_IMAGE / --image|-i <docker-image-name>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The docker cross-compiler image to run.
+The Docker cross-compiler image to run.
 
-Default: image with which the script was created.
+Default: Image with which the script was created.
 
 DOCKCROSS_ARGS / --args|-a <docker-run-args>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Extra arguments to pass to the ``docker run`` command.
+
 
 Examples
 --------
@@ -178,9 +193,11 @@ Examples
 1. **dockcross make**: Build the Makefile in the current directory.
 2. **dockcross cmake -Bbuild -H. -GNinja***: Run CMake with a build directory "build" for the CMakeLists.txt in the current directory and generate `ninja` files.
 3. **dockcross ninja -Cbuild**: Run ninja in the generated build directory.
-4. **dockcross bash -c 'find . -name \*.o | sort > objects.txt'**
+4. **dockcross bash -c 'find . -name \*.o | sort > objects.txt'**.
 
-Note that commands are executed verbatim. If you require any shell processing for environment variable expansion or redirection, please use ``bash -c 'command args...'``.
+Note that commands are executed verbatim. If any shell processing for
+environment variable expansion or redirection is required, please use
+`bash -c 'command args...'`.
 
 ---
 
