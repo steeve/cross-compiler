@@ -24,45 +24,20 @@ dependencies:
 
 test:
   override:
-    - make base
-    - docker run --rm dockcross/base > ./dockcross-base && chmod +x ./dockcross-base
-    - ./dockcross-base python test/run.py --emulator 'sh -c'
-    - make android-arm
-    - docker run --rm dockcross/android-arm > ./dockcross-android-arm && chmod +x ./dockcross-android-arm
-    - ./dockcross-android-arm python test/run.py
-    - make browser-asmjs
-    - docker run --rm dockcross/browser-asmjs > ./dockcross-browser-asmjs && chmod +x ./dockcross-browser-asmjs
-    - ./dockcross-browser-asmjs python test/run.py --emulator /usr/bin/node --exe-suffix ".js"
-    - make linux-arm64
-    - docker run --rm dockcross/linux-arm64 > ./dockcross-linux-arm64 && chmod +x ./dockcross-linux-arm64
-    - ./dockcross-linux-arm64 python test/run.py --emulator /usr/bin/qemu-arm
-    - make linux-armv5
-    - docker run --rm dockcross/linux-armv5 > ./dockcross-linux-armv5 && chmod +x ./dockcross-linux-armv5
-    - ./dockcross-linux-armv5 python test/run.py --emulator /usr/bin/qemu-arm
-    - make linux-armv6
-    - docker run --rm dockcross/linux-armv6 > ./dockcross-linux-armv6 && chmod +x ./dockcross-linux-armv6
-    - ./dockcross-linux-armv6 python test/run.py --emulator /usr/bin/qemu-arm
-    - make linux-armv7
-    - docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7 && chmod +x ./dockcross-linux-armv7
-    - ./dockcross-linux-armv7 python test/run.py --emulator /usr/bin/qemu-arm
-    - ./dockcross-linux-armv7 && chmod +x ./dockcross-linux-armv7 && ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
-    - make linux-ppc64le
-    - docker run --rm dockcross/linux-ppc64le > ./dockcross-linux-ppc64le && chmod +x ./dockcross-linux-ppc64le
-    - ./dockcross-linux-ppc64le python test/run.py --emulator /usr/bin/qemu-ppc64le --languages C
-    - make linux-x64
-    - docker run --rm dockcross/linux-x64 > ./dockcross-linux-x64 && chmod +x ./dockcross-linux-x64
-    - ./dockcross-linux-x64 python test/run.py
-    - make linux-x86
-    - docker run --rm dockcross/linux-x86 > ./dockcross-linux-x86 && chmod +x ./dockcross-linux-x86
-    - ./dockcross-linux-x86 python test/run.py
-    - make windows-x64:
+    - make base/test
+    - make android-arm/test
+    - make browser-asmjs/test
+    - make linux-arm64/test
+    - make linux-armv5/test
+    - make linux-armv6/test
+    - make linux-armv7/test
+    - make linux-ppc64le/test
+    - make linux-x64/test
+    - make linux-x86/test
+    - make windows-x64/test:
         timeout: 3000
-    - docker run --rm dockcross/windows-x64 > ./dockcross-windows-x64 && chmod +x ./dockcross-windows-x64
-    - ./dockcross-windows-x64 python test/run.py --emulator /usr/bin/wine --exe-suffix ".exe"
-    - make windows-x86:
+    - make windows-x86/test:
         timeout: 3000
-    - docker run --rm dockcross/windows-x86 > ./dockcross-windows-x86 && chmod +x ./dockcross-windows-x86
-    - ./dockcross-windows-x86 python test/run.py --emulator /usr/bin/wine --exe-suffix ".exe"
 
 deployment:
   hub:
