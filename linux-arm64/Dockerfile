@@ -1,4 +1,4 @@
-FROM thewtex/cross-compiler-base
+FROM dockcross/base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Add the cross compiler sources
@@ -34,7 +34,7 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
     CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
     LD=/usr/bin/${CROSS_TRIPLE}-ld
 
-ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-linux-arm64
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-arm64
 WORKDIR /build
 
 # Note: Toolchain file support is currently in debian Experimental according to:

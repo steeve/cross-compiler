@@ -1,10 +1,10 @@
-cross-compilers
----------------
+dockcross
+=========
 
-Dockerfiles for cross compiling in a Docker container.
+Cross compiling toolchains in Docker images.
 
 Features
-========
+--------
 
 * Different toolchains for cross compiling.
 * Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
@@ -13,8 +13,102 @@ Features
 * Current directory is mounted as the container's workdir, ``/build``.
 * Works with boot2docker on OSX and Docker for Mac beta (1.11.1-beta12).
 
+Cross compilers
+---------------
+
+.. image:: https://circleci.com/gh/dockcross/cross-compilers/tree/master.svg?style=svg
+  :target: https://circleci.com/gh/dockcross/cross-compilers/tree/master
+
+
+.. |base-images| image:: https://badge.imagelayers.io/dockcross/base:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/base:latest
+
+dockcross/base
+  |base-images| Base image for other toolchain images. From Debian Jessie with GCC,
+  make, autotools, CMake, Ninja, Git, and Python.
+
+
+.. |android-arm-images| image:: https://badge.imagelayers.io/dockcross/android-arm:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/android-arm:latest
+
+dockcross/android-arm
+  |android-arm-images| The Android NDK standalone toolchain for the arm
+  architecture.
+
+
+.. |browser-asmjs-images| image:: https://badge.imagelayers.io/dockcross/browser-asmjs:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/browser-asmjs:latest
+
+dockcross/browser-asmjs
+  |browser-asmjs-images| The Emscripten JavaScript cross compiler.
+
+.. |linux-arm64-images| image:: https://badge.imagelayers.io/dockcross/linux-arm64:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/linux-arm64:latest
+
+dockcross/linux-arm64
+  |linux-arm64-images| Linux arm64 cross compiler toolchain for legacy devices
+  like the Parrot AR Drone.
+
+.. |linux-armv5-images| image:: https://badge.imagelayers.io/dockcross/linux-armv5:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/linux-armv5:latest
+
+dockcross/linux-armv5
+  |linux-armv5-images| Linux armv5 cross compiler toolchain for legacy devices
+  like the Parrot AR Drone.
+
+.. |linux-armv6-images| image:: https://badge.imagelayers.io/dockcross/linux-armv6:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/linux-armv6:latest
+
+dockcross/linux-armv6
+  |linux-armv6-images| Linux ARMv6 cross compiler toolchain for the Raspberry
+  Pi, etc.
+
+
+.. |linux-armv7-images| image:: https://badge.imagelayers.io/dockcross/linux-armv7:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/linux-armv7:latest
+
+dockcross/linux-armv7
+  |linux-armv7-images| Generic Linux armv7 cross compiler toolchain.
+
+
+.. |linux-ppc64le-images| image:: https://badge.imagelayers.io/dockcross/linux-ppc64le:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/linux-ppc64le:latest
+
+dockcross/linux-ppc64le
+  |linux-ppc64le-images| Linux PowerPC 64 little endian cross compiler
+  toolchain for the POWER8, etc.
+
+
+.. |linux-x64-images| image:: https://badge.imagelayers.io/dockcross/linux-x64:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/linux-x64:latest
+
+dockcross/linux-x64
+  |linux-x64-images| Linux x86_64 / amd64 compiler. Since the Docker image is
+  natively x86_64, this is not actually a cross compiler.
+
+
+.. |linux-x86-images| image:: https://badge.imagelayers.io/dockcross/linux-x86:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/linux-x86:latest
+
+dockcross/linux-x86
+  |linux-x86-images| Linux i686 cross compiler.
+
+
+.. |windows-x64-images| image:: https://badge.imagelayers.io/dockcross/windows-x64:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/windows-x64:latest
+
+dockcross/windows-x64
+  |windows-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64.
+
+
+.. |windows-x86-images| image:: https://badge.imagelayers.io/dockcross/windows-x86:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/windows-x86:latest
+
+dockcross/windows-x86
+  |windows-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64.
+
 Installation
-============
+------------
 
 This image is not intended to be run manually. Instead, there is a helper script which comes bundled with the image.
 
@@ -26,11 +120,11 @@ redirect the output to a file::
   mv ./dockcross ~/bin/
 
 Usage
-=====
+-----
 
 For the impatient, here's a one-liner to compile a hello world for armv7::
 
-  docker run --rm thewtex/cross-compiler-linux-armv7 > ./dockcross-linux-armv7
+  docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7
   chmod +x ./dockcross-linux-armv7
   ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
 
@@ -46,7 +140,7 @@ source cross-compiler Docker image or the dockcross script itself.
 
 
 Built-in update commands
-========================
+------------------------
 
 - ``dockcross [--] command [args...]``: Forces a command to run inside the container (in case of a name clash with a built-in command), use ``--`` before the command.
 - ``dockcross update-image``: Fetch the latest version of the docker image.
@@ -54,7 +148,7 @@ Built-in update commands
 - ``dockcross update``: Update both the docker image, and the dockcross script.
 
 Configuration
-=============
+-------------
 
 The following command-line options and environment variables are used. In all cases, the command-line option overrides the environment variable.
 
@@ -79,7 +173,7 @@ DOCKCROSS_ARGS / --args|-a <docker-run-args>
 Extra arguments to pass to the ``docker run`` command.
 
 Examples
-========
+--------
 
 1. **dockcross make**: Build the Makefile in the current directory.
 2. **dockcross cmake -Bbuild -H. -GNinja***: Run CMake with a build directory "build" for the CMakeLists.txt in the current directory and generate `ninja` files.
@@ -91,98 +185,3 @@ Note that commands are executed verbatim. If you require any shell processing fo
 ---
 
 Credits go to `sdt/docker-raspberry-pi-cross-compiler <https://github.com/sdt/docker-raspberry-pi-cross-compiler>`_, who invented the base of the **dockcross** script.
-
-
-CI status
----------
-
-.. image:: https://circleci.com/gh/thewtex/cross-compilers/tree/master.svg?style=svg
-  :target: https://circleci.com/gh/thewtex/cross-compilers/tree/master
-
-
-.. |base-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-base:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-base:latest
-
-thewtex/cross-compiler-base
-  |base-images| Base image for other toolchain images. From Debian Jessie with GCC,
-  make, autotools, CMake, Ninja, Git, and Python.
-
-
-.. |android-arm-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-android-arm:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-android-arm:latest
-
-thewtex/cross-compiler-android-arm
-  |android-arm-images| The Android NDK standalone toolchain for the arm
-  architecture.
-
-
-.. |browser-asmjs-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-browser-asmjs:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-browser-asmjs:latest
-
-thewtex/cross-compiler-browser-asmjs
-  |browser-asmjs-images| The Emscripten JavaScript cross compiler.
-
-.. |linux-arm64-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-arm64:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-arm64:latest
-
-thewtex/cross-compiler-linux-arm64
-  |linux-arm64-images| Linux arm64 cross compiler toolchain for legacy devices
-  like the Parrot AR Drone.
-
-.. |linux-armv5-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-armv5:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-armv5:latest
-
-thewtex/cross-compiler-linux-armv5
-  |linux-armv5-images| Linux armv5 cross compiler toolchain for legacy devices
-  like the Parrot AR Drone.
-
-.. |linux-armv6-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-armv6:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-armv6:latest
-
-thewtex/cross-compiler-linux-armv6
-  |linux-armv6-images| Linux ARMv6 cross compiler toolchain for the Raspberry
-  Pi, etc.
-
-
-.. |linux-armv7-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-armv7:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-armv7:latest
-
-thewtex/cross-compiler-linux-armv7
-  |linux-armv7-images| Generic Linux armv7 cross compiler toolchain.
-
-
-.. |linux-ppc64le-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-ppc64le:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-ppc64le:latest
-
-thewtex/cross-compiler-linux-ppc64le
-  |linux-ppc64le-images| Linux PowerPC 64 little endian cross compiler
-  toolchain for the POWER8, etc.
-
-
-.. |linux-x64-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-x64:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-x64:latest
-
-thewtex/cross-compiler-linux-x64
-  |linux-x64-images| Linux x86_64 / amd64 compiler. Since the Docker image is
-  natively x86_64, this is not actually a cross compiler.
-
-
-.. |linux-x86-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-linux-x86:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-linux-x86:latest
-
-thewtex/cross-compiler-linux-x86
-  |linux-x86-images| Linux i686 cross compiler.
-
-
-.. |windows-x64-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-windows-x64:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-windows-x64:latest
-
-thewtex/cross-compiler-windows-x64
-  |windows-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64.
-
-
-.. |windows-x86-images| image:: https://badge.imagelayers.io/thewtex/cross-compiler-windows-x86:latest.svg
-  :target: https://imagelayers.io/?images=thewtex/cross-compiler-windows-x86:latest
-
-thewtex/cross-compiler-windows-x86
-  |windows-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64.

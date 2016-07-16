@@ -1,4 +1,4 @@
-FROM thewtex/cross-compiler-base
+FROM dockcross/base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # This is for ARMv5 "legacy" (armel) devices which do NOT support hard float
@@ -28,7 +28,7 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
 ENV QEMU_LD_PREFIX ${CROSS_ROOT}/libc
 ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${CROSS_ROOT}/libc/lib/${CROSS_TRIPLE}/"
 
-ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-linux-armv5
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-armv5
 
 COPY Toolchain.cmake ${CROSS_ROOT}/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake

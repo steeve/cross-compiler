@@ -1,4 +1,4 @@
-FROM thewtex/cross-compiler-base
+FROM dockcross/base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 ENV CROSS_TRIPLE x86_64-linux-gnu
@@ -10,4 +10,4 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
     CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
     LD=/usr/bin/${CROSS_TRIPLE}-ld
 
-ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-linux-x64
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-x64

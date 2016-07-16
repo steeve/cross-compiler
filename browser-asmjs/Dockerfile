@@ -1,4 +1,4 @@
-FROM thewtex/cross-compiler-base
+FROM dockcross/base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # The cross-compiling emulator
@@ -40,6 +40,6 @@ RUN cd /tmp && \
   python /tmp/test/run.py; python /tmp/test/run.py && \
   cd && rm -rf /tmp/test
 
-ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-browser-asmjs
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/browser-asmjs
 
 ENV CMAKE_TOOLCHAIN_FILE /usr/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/cmake/Modules/Platform/Emscripten.cmake
