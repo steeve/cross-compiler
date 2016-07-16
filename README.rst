@@ -133,6 +133,7 @@ Usage
 
 For the impatient, here's how to compile a hello world for armv7::
 
+  cd ~/src/dockcross
   docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7
   chmod +x ./dockcross-linux-armv7
   ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
