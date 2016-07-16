@@ -18,12 +18,12 @@ WORKDIR /usr/src
 
 RUN apt-get update && \
   apt-get install -y libglib2.0-dev zlib1g-dev libpixman-1-dev && \
-  curl -L http://wiki.qemu-project.org/download/qemu-2.5.0.tar.bz2 | tar xj && \
-  cd qemu-2.5.0 && \
+  curl -L http://wiki.qemu-project.org/download/qemu-2.6.0.tar.bz2 | tar xj && \
+  cd qemu-2.6.0 && \
   ./configure --target-list=ppc64le-linux-user --prefix=/usr && \
   make -j$(nproc) && \
   make install && \
-  cd .. && rm -rf qemu-2.5.0
+  cd .. && rm -rf qemu-2.6.0
 
 ENV CROSS_TRIPLE powerpc64le-linux-gnu
 ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
