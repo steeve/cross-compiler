@@ -24,19 +24,19 @@ dependencies:
 
 test:
   override:
-    - make base/test
-    - make android-arm/test
-    - make browser-asmjs/test
-    - make linux-arm64/test
-    - make linux-armv5/test
-    - make linux-armv6/test
-    - make linux-armv7/test
-    - make linux-ppc64le/test
-    - make linux-x64/test
-    - make linux-x86/test
-    - make windows-x64/test:
+    - make base.test
+    - make android-arm.test
+    - make browser-asmjs.test
+    - make linux-arm64.test
+    - make linux-armv5.test
+    - make linux-armv6.test
+    - make linux-armv7.test
+    - make linux-ppc64le.test
+    - make linux-x64.test
+    - make linux-x86.test
+    - make windows-x64.test:
         timeout: 3000
-    - make windows-x86/test:
+    - make windows-x86.test:
         timeout: 3000
 
 deployment:

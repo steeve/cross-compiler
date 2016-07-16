@@ -89,6 +89,7 @@ base: Dockerfile
 	$(DOCKER) build -t $(ORG)/base .
 
 base.test: base test/run.py
+	mkdir -p $(BIN)
 	$(DOCKER) run --rm dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
 	$(BIN)/dockcross-base python test/run.py --emulator 'sh -c'
 
