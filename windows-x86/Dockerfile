@@ -1,4 +1,4 @@
-FROM thewtex/cross-compiler-base
+FROM dockcross/base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # WINE is used as an emulator for try_run and tests with CMake.
@@ -65,7 +65,7 @@ ENV AS=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-as \
     CXX=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-g++ \
     LD=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-ld
 
-ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-windows-x86
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/windows-x86
 WORKDIR /build
 
 ENV CMAKE_TOOLCHAIN_FILE /usr/src/mxe/usr/i686-w64-mingw32.static/share/cmake/mxe-conf.cmake

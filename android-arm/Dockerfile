@@ -1,4 +1,4 @@
-FROM thewtex/cross-compiler-base
+FROM dockcross/base
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # The cross-compiling emulator
@@ -34,7 +34,7 @@ RUN mkdir -p /build && \
     find ${CROSS_ROOT} -executable -exec chmod a+x '{}' \;
 
 
-ENV DEFAULT_DOCKCROSS_IMAGE thewtex/cross-compiler-android-arm
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/android-arm
 
 COPY Toolchain.cmake ${CROSS_ROOT}/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
