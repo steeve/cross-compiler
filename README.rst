@@ -18,8 +18,8 @@ Features
 Cross compilers
 ---------------
 
-.. image:: https://circleci.com/gh/dockcross/cross-compilers/tree/master.svg?style=svg
-  :target: https://circleci.com/gh/dockcross/cross-compilers/tree/master
+.. image:: https://circleci.com/gh/dockcross/dockcross/tree/master.svg?style=svg
+  :target: https://circleci.com/gh/dockcross/dockcross/tree/master
 
 
 .. |base-images| image:: https://badge.imagelayers.io/dockcross/base:latest.svg
@@ -168,7 +168,7 @@ The following environmental variables and command-line options are used. In
 all cases, the command-line option overrides the environment variable.
 
 DOCKCROSS_CONFIG / --config|-c <path-to-config-file>
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This file is sourced, if it exists, before executing the rest of the dockcross
 script.
@@ -176,14 +176,14 @@ script.
 Default: ``~/.dockcross``
 
 DOCKCROSS_IMAGE / --image|-i <docker-image-name>
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The Docker cross-compiler image to run.
 
 Default: Image with which the script was created.
 
 DOCKCROSS_ARGS / --args|-a <docker-run-args>
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Extra arguments to pass to the ``docker run`` command.
 
