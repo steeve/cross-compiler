@@ -45,7 +45,6 @@ test:
     - make linux-armv7
     - docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7 && chmod +x ./dockcross-linux-armv7
     - ./dockcross-linux-armv7 python test/run.py --emulator /usr/bin/qemu-arm
-    - ./dockcross-linux-armv7 && chmod +x ./dockcross-linux-armv7 && ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
     - make linux-ppc64le
     - docker run --rm dockcross/linux-ppc64le > ./dockcross-linux-ppc64le && chmod +x ./dockcross-linux-ppc64le
     - ./dockcross-linux-ppc64le python test/run.py --emulator /usr/bin/qemu-ppc64le --languages C
