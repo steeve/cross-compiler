@@ -69,7 +69,7 @@ RUN git clone https://github.com/martine/ninja.git && \
    cd .. && rm -rf ninja
 
 RUN echo "root:root" | chpasswd
-WORKDIR /build
+WORKDIR /work
 ENTRYPOINT ["/dockcross/entrypoint.sh"]
 
 COPY imagefiles/entrypoint.sh imagefiles/dockcross /dockcross/
