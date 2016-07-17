@@ -3,6 +3,9 @@ dockcross
 
 Cross compiling toolchains in Docker images.
 
+.. image:: https://circleci.com/gh/dockcross/dockcross/tree/master.svg?style=svg
+  :target: https://circleci.com/gh/dockcross/dockcross/tree/master
+
 
 Features
 --------
@@ -17,10 +20,6 @@ Features
 
 Cross compilers
 ---------------
-
-.. image:: https://circleci.com/gh/dockcross/dockcross/tree/master.svg?style=svg
-  :target: https://circleci.com/gh/dockcross/dockcross/tree/master
-
 
 .. |base-images| image:: https://badge.imagelayers.io/dockcross/base:latest.svg
   :target: https://imagelayers.io/?images=dockcross/base:latest
@@ -194,10 +193,10 @@ Examples
 1. **dockcross make**: Build the Makefile in the current directory.
 2. **dockcross cmake -Bbuild -H. -GNinja***: Run CMake with a build directory "build" for the CMakeLists.txt in the current directory and generate `ninja` files.
 3. **dockcross ninja -Cbuild**: Run ninja in the generated build directory.
-4. **dockcross bash -c '$CC test/C/hello.c -o hello'** Build the hello.c file
+4. **dockcross bash -c '$CC test/C/hello.c -o hello'**: Build the hello.c file
    with the compiler identified with the `CC` environmental variable in the
    build environment.
-5. **dockcross bash**. Run a shell in the build environment.
+5. **dockcross bash**: Run a shell in the build environment.
 
 Note that commands are executed verbatim. If any shell processing for
 environment variable expansion or redirection is required, please use
