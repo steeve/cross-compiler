@@ -58,6 +58,7 @@ RUN git clone git://cmake.org/cmake.git CMake && \
    make install && \
    cd .. && \
    rm -rf CMake*
+# Wrappers that point to CMAKE_TOOLCHAIN_FILE
 
 # Build and install Ninja from source
 RUN git clone https://github.com/martine/ninja.git && \
@@ -67,6 +68,8 @@ RUN git clone https://github.com/martine/ninja.git && \
    ./ninja && \
    cp ./ninja /usr/bin/ && \
    cd .. && rm -rf ninja
+COPY imagefiles/cmake.sh /usr/local/bin/cmake
+COPY imagefiles/ccmake.sh /usr/local/bin/ccmake
 
 RUN echo "root:root" | chpasswd
 WORKDIR /work
