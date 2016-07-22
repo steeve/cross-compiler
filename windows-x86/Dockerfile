@@ -48,10 +48,10 @@ ENV WINEARCH win32
 RUN wine hostname
 
 WORKDIR /usr/src
-# mxe master 2016-04-09
+# mxe master 2016-07-21
 RUN git clone https://github.com/mxe/mxe.git && \
   cd mxe && \
-  git checkout 4accc990de7741f4d5aa37e368a732f3d47d803a
+  git checkout 041ab69b457edd7b9944e6ae7b85f915e2596c2c
 WORKDIR /usr/src/mxe
 COPY settings.mk /usr/src/mxe/
 RUN make -j$(nproc)

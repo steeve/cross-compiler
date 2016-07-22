@@ -58,10 +58,6 @@ def test_cmake_build_system(build_dir, language, source, emulator, linker_flags,
     if linker_flags:
         cmake_configuration_cmd.insert(1,
                 '-DCMAKE_EXE_LINKER_FLAGS="{0}"'.format(' '.join(linker_flags)))
-    toolchain_file = os.getenv('CMAKE_TOOLCHAIN_FILE')
-    if toolchain_file:
-        cmake_configuration_cmd.insert(1,
-                '-DCMAKE_TOOLCHAIN_FILE={0}'.format(toolchain_file))
     print(' '.join(cmake_configuration_cmd))
     sys.stdout.flush()
     if subprocess.call(cmake_configuration_cmd):
