@@ -15,7 +15,7 @@ Features
 * Make variables (`CC`, `LD` etc) are set to point to the appropriate tools in the container.
 * Recent `CMake <https://cmake.org>`_ and ninja are precompiled. Toolchain files configured for CMake.
 * Current directory is mounted as the container's workdir, ``/work``.
-* Works with the Docker Toolbox Mac OSX.
+* Works with the `Docker Toolbox <https://www.docker.com/products/docker-toolbox>`_ on Mac OSX.
 
 
 Cross compilers
