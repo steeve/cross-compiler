@@ -194,13 +194,15 @@ Extra arguments to pass to the ``docker run`` command.
 Examples
 --------
 
-1. **dockcross make**: Build the Makefile in the current directory.
-2. **dockcross cmake -Bbuild -H. -GNinja**: Run CMake with a build directory "build" for the CMakeLists.txt in the current directory and generate `ninja` files.
-3. **dockcross ninja -Cbuild**: Run ninja in the generated build directory.
-4. **dockcross bash -c '$CC test/C/hello.c -o hello'**: Build the hello.c file
-   with the compiler identified with the `CC` environmental variable in the
+1. ``dockcross make``: Build the *Makefile* in the current directory.
+2. ``dockcross cmake -Bbuild -H. -GNinja``: Run CMake with a build directory
+   ``./build`` for a *CMakeLists.txt* file in the current directory and generate
+   ``ninja`` build configuration files.
+3. ``dockcross ninja -Cbuild``: Run ninja in the ``./build`` directory.
+4. ``dockcross bash -c '$CC test/C/hello.c -o hello'``: Build the *hello.c* file
+   with the compiler identified with the ``CC`` environmental variable in the
    build environment.
-5. **dockcross bash**: Run an interactive shell in the build environment.
+5. ``dockcross bash``: Run an interactive shell in the build environment.
 
 Note that commands are executed verbatim. If any shell processing for
 environment variable expansion or redirection is required, please use
