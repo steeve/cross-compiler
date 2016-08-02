@@ -13,9 +13,9 @@ Features
 * Different toolchains for cross compiling.
 * Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
 * Make variables (`CC`, `LD` etc) are set to point to the appropriate tools in the container.
-* Recent `CMake <https://cmake.org>`_ and ninja are precompiled. Toolchain files available for CMake.
+* Recent `CMake <https://cmake.org>`_ and ninja are precompiled. Toolchain files configured for CMake.
 * Current directory is mounted as the container's workdir, ``/work``.
-* Works with boot2docker on OSX and Docker for Mac beta (1.11.1-beta12).
+* Works with the Docker Toolbox Mac OSX.
 
 
 Cross compilers
@@ -43,12 +43,14 @@ dockcross/android-arm
 dockcross/browser-asmjs
   |browser-asmjs-images| The Emscripten JavaScript cross compiler.
 
+
 .. |linux-arm64-images| image:: https://badge.imagelayers.io/dockcross/linux-arm64:latest.svg
   :target: https://imagelayers.io/?images=dockcross/linux-arm64:latest
 
 dockcross/linux-arm64
-  |linux-arm64-images| Cross compiler for the 64-bit RM platform on Linux,
+  |linux-arm64-images| Cross compiler for the 64-bit ARM platform on Linux,
   also known as AArch64.
+
 
 .. |linux-armv5-images| image:: https://badge.imagelayers.io/dockcross/linux-armv5:latest.svg
   :target: https://imagelayers.io/?images=dockcross/linux-armv5:latest
@@ -56,6 +58,7 @@ dockcross/linux-arm64
 dockcross/linux-armv5
   |linux-armv5-images| Linux armv5 cross compiler toolchain for legacy devices
   like the Parrot AR Drone.
+
 
 .. |linux-armv6-images| image:: https://badge.imagelayers.io/dockcross/linux-armv6:latest.svg
   :target: https://imagelayers.io/?images=dockcross/linux-armv6:latest
@@ -143,7 +146,7 @@ Note how invoking any toolchain command (make, gcc, etc.) is just a matter of pr
 
 The dockcross script will execute the given command-line inside the container,
 along with all arguments passed after the command. Commands that evaluate
-environmental variable in the image, like `$CC` above, should be exected in
+environmental variable in the image, like `$CC` above, should be executed in
 `bash -c`. The present working directory is mounted within the image, which
 can be used to make source code available in the Docker container.
 
@@ -151,7 +154,7 @@ can be used to make source code available in the Docker container.
 Built-in update commands
 ------------------------
 
-A special update command can be exected that will update the
+A special update command can be executed that will update the
 source cross-compiler Docker image or the dockcross script itself.
 
 - ``dockcross [--] command [args...]``: Forces a command to run inside the container (in case of a name clash with a built-in command), use ``--`` before the command.
@@ -191,12 +194,12 @@ Examples
 --------
 
 1. **dockcross make**: Build the Makefile in the current directory.
-2. **dockcross cmake -Bbuild -H. -GNinja***: Run CMake with a build directory "build" for the CMakeLists.txt in the current directory and generate `ninja` files.
+2. **dockcross cmake -Bbuild -H. -GNinja**: Run CMake with a build directory "build" for the CMakeLists.txt in the current directory and generate `ninja` files.
 3. **dockcross ninja -Cbuild**: Run ninja in the generated build directory.
 4. **dockcross bash -c '$CC test/C/hello.c -o hello'**: Build the hello.c file
    with the compiler identified with the `CC` environmental variable in the
    build environment.
-5. **dockcross bash**: Run a shell in the build environment.
+5. **dockcross bash**: Run an interactive shell in the build environment.
 
 Note that commands are executed verbatim. If any shell processing for
 environment variable expansion or redirection is required, please use
