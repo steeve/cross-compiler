@@ -43,3 +43,9 @@ RUN cd /tmp && \
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/browser-asmjs
 
 ENV CMAKE_TOOLCHAIN_FILE /usr/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/cmake/Modules/Platform/Emscripten.cmake
+# CMakeForceCompiler was marked deprecated in CMake 3.6.0. It emits many
+# warnings when using Emscripten. These changes can be removed in a future
+# version of Emscripten when it is disabled or removed per:
+# https://github.com/kripken/emscripten/pull/4477
+RUN sed -i -e '/CMakeForceCompiler/d' -e '/CMAKE_FORCE_C/d' $CMAKE_TOOLCHAIN_FILE
+
