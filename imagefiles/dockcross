@@ -153,7 +153,7 @@ fi
 #------------------------------------------------------------------------------
 # Now, finally, run the command in a container
 #
-docker run -i -t --rm \
+docker run --rm \
     -v $PWD:/work \
     $USER_IDS \
     $FINAL_ARGS \
