@@ -202,7 +202,7 @@ Examples
 4. ``dockcross bash -c '$CC test/C/hello.c -o hello'``: Build the *hello.c* file
    with the compiler identified with the ``CC`` environmental variable in the
    build environment.
-5. ``dockcross bash``: Run an interactive shell in the build environment.
+5. ``dockcross --args -it bash``: Run an interactive shell in the build environment.
 
 Note that commands are executed verbatim. If any shell processing for
 environment variable expansion or redirection is required, please use
