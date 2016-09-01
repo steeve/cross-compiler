@@ -188,7 +188,8 @@ Default: Image with which the script was created.
 DOCKCROSS_ARGS / --args|-a <docker-run-args>
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Extra arguments to pass to the ``docker run`` command.
+Extra arguments to pass to the ``docker run`` command. Quote the entire set of
+args if they contain spaces.
 
 
 Examples
