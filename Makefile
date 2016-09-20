@@ -71,12 +71,15 @@ linux-ppc64le.test: linux-ppc64le test/run.py
 	$(DOCKER) run --rm dockcross/linux-ppc64le > $(BIN)/dockcross-linux-ppc64le && chmod +x $(BIN)/dockcross-linux-ppc64le
 	$(BIN)/dockcross-linux-ppc64le python test/run.py --languages C
 
-manylinux-x64: base manylinux-x64/Dockerfile
-	$(DOCKER) build -t $(ORG)/manylinux-x64 manylinux-x64
+manylinux-x64/Dockerfile: manylinux-x64/Dockerfile.in common.docker
+	cpp -o manylinux-x64/Dockerfile -I$(shell pwd) manylinux-x64/Dockerfile.in
+
+manylinux-x64: manylinux-x64/Dockerfile
+	$(DOCKER) build -t $(ORG)/manylinux-x64 -f manylinux-x64/Dockerfile .
 
 manylinux-x64.test: manylinux-x64 test/run.py
 	$(DOCKER) run --rm dockcross/manylinux-x64 > $(BIN)/dockcross-manylinux-x64 && chmod +x $(BIN)/dockcross-manylinux-x64
-	$(BIN)/dockcross-manylinux-x64 python test/run.py
+	$(BIN)/dockcross-manylinux-x64 /opt/python/cp35-cp35m/bin/python test/run.py
 
 windows-x86: base windows-x86/Dockerfile windows-x86/settings.mk
 	$(DOCKER) build -t $(ORG)/windows-x86 windows-x86
