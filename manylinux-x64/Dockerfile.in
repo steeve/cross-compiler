@@ -9,6 +9,9 @@ RUN cd /opt && \\
   cd admin/runit-2.1.2 && \\
   ./package/install
 
+COPY manylinux-x64/install-skbuild.sh /usr/local/bin
+RUN /usr/local/bin/install-skbuild.sh
+
 ENV CROSS_TRIPLE x86_64-linux-gnu
 ENV CROSS_ROOT /opt/rh/devtoolset-2/root/usr/bin
 ENV AS=${CROSS_ROOT}/as \\
