@@ -72,7 +72,7 @@ linux-ppc64le.test: linux-ppc64le test/run.py
 	$(BIN)/dockcross-linux-ppc64le python test/run.py --languages C
 
 manylinux-x64/Dockerfile: manylinux-x64/Dockerfile.in common.docker
-	cpp -o manylinux-x64/Dockerfile -I$(shell pwd) manylinux-x64/Dockerfile.in
+	sed '/common.docker/ r common.docker' manylinux-x64/Dockerfile.in > manylinux-x64/Dockerfile
 
 manylinux-x64: manylinux-x64/Dockerfile
 	$(DOCKER) build -t $(ORG)/manylinux-x64 -f manylinux-x64/Dockerfile .
@@ -96,7 +96,7 @@ windows-x64.test: windows-x64 test/run.py
 	$(BIN)/dockcross-windows-x64 python test/run.py --exe-suffix ".exe"
 
 Dockerfile: Dockerfile.in common.docker
-	cpp -o Dockerfile Dockerfile.in
+	sed '/common.docker/ r common.docker' Dockerfile.in > Dockerfile
 
 base: Dockerfile
 	$(DOCKER) build -t $(ORG)/base .
