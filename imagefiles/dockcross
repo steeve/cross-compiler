@@ -93,6 +93,7 @@ ENDHELP
 #------------------------------------------------------------------------------
 # Option processing
 #
+special_update_command=''
 while [[ $# != 0 ]]; do
     case $1 in
 
@@ -114,7 +115,10 @@ while [[ $# != 0 ]]; do
             ARG_IMAGE="$2"
             shift 2
             ;;
-
+        update|update-image|update-script)
+            special_update_command=$1
+            break
+            ;;
         -*)
             err Unknown option \"$1\"
             command:help
@@ -141,6 +145,11 @@ FINAL_CONFIG=${ARG_CONFIG-${DOCKCROSS_CONFIG-$DEFAULT_DOCKCROSS_CONFIG}}
 
 # Set the docker image
 FINAL_IMAGE=${ARG_IMAGE-${DOCKCROSS_IMAGE-$DEFAULT_DOCKCROSS_IMAGE}}
+
+# Handle specicial update command
+[[ "$special_update_command" == "update" ]] && command:update && exit
+[[ "$special_update_command" == "update-script" ]] && command:update-script && exit
+[[ "$special_update_command" == "update-image" ]] && command:update-image && exit
 
 # Set the docker run extra args (if any)
 FINAL_ARGS=${ARG_ARGS-${DOCKCROSS_ARGS}}
