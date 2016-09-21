@@ -1,0 +1,37 @@
+WORKDIR /usr/share
+RUN git clone "https://github.com/nojhan/liquidprompt.git" && \
+  cd liquidprompt && \
+  git checkout v_1.11
+COPY imagefiles/.bashrc /root/
+
+WORKDIR /usr/src
+RUN git clone "git://cmake.org/cmake.git" CMake && \
+   cd CMake && \
+   git checkout v3.6.1 && \
+   cd .. && mkdir CMake-build && cd CMake-build && \
+   /usr/src/CMake/bootstrap \
+     --parallel=$(nproc) \
+     --prefix=/usr && \
+   make -j$(nproc) && \
+   ./bin/cmake \
+     -DCMAKE_BUILD_TYPE:STRING=Release \
+     -DCMAKE_USE_OPENSSL:BOOL=ON . && \
+   make install && \
+   cd .. && \
+   rm -rf CMake*
+
+RUN git clone "https://github.com/martine/ninja.git" && \
+   cd ninja && \
+   git checkout v1.7.1 && \
+   ([ -e /opt/python/cp35-cp35m/bin/python ] && /opt/python/cp35-cp35m/bin/python ./configure.py --bootstrap) || python ./configure.py --bootstrap && \
+   ./ninja && \
+   cp ./ninja /usr/bin/ && \
+   cd .. && rm -rf ninja
+COPY imagefiles/cmake.sh /usr/local/bin/cmake
+COPY imagefiles/ccmake.sh /usr/local/bin/ccmake
+
+RUN echo "root:root" | chpasswd
+WORKDIR /work
+ENTRYPOINT ["/dockcross/entrypoint.sh"]
+
+COPY imagefiles/entrypoint.sh imagefiles/dockcross /dockcross/

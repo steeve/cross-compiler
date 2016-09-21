@@ -99,6 +99,14 @@ dockcross/linux-x86
   |linux-x86-images| Linux i686 cross compiler.
 
 
+.. |manylinux-x64-images| image:: https://badge.imagelayers.io/dockcross/manylinux-x64:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/manylinux-x64:latest
+
+dockcross/manylinux-x64
+  |manylinux-x64-images| Docker `manylinux <https://github.com/pypa/manylinux>`_ image for building Linux x86_64 / amd64 `Python wheel packages <http://pythonwheels.com/>`_.
+  Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
+
+
 .. |windows-x64-images| image:: https://badge.imagelayers.io/dockcross/windows-x64:latest.svg
   :target: https://imagelayers.io/?images=dockcross/windows-x64:latest
 
