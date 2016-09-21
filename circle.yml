@@ -7,39 +7,68 @@ machine:
     - docker
 
 dependencies:
+  cache_directories:
+    - "~/docker"
+
   override:
     - docker info
+    - if [[ -e ~/docker/base.tar ]]; then docker load -i ~/docker/base.tar; fi
     - docker pull dockcross/base
+    - if [[ -e ~/docker/android-arm.tar ]]; then docker load -i ~/docker/android-arm.tar; fi
     - docker pull dockcross/android-arm
+    - if [[ -e ~/docker/browser-asmjs.tar ]]; then docker load -i ~/docker/browser-asmjs.tar; fi
     - docker pull dockcross/browser-asmjs
+    - if [[ -e ~/docker/linux-arm64.tar ]]; then docker load -i ~/docker/linux-arm64.tar; fi
     - docker pull dockcross/linux-arm64
+    - if [[ -e ~/docker/linux-armv5.tar ]]; then docker load -i ~/docker/linux-armv5.tar; fi
     - docker pull dockcross/linux-armv5
+    - if [[ -e ~/docker/linux-armv6.tar ]]; then docker load -i ~/docker/linux-armv6.tar; fi
     - docker pull dockcross/linux-armv6
+    - if [[ -e ~/docker/linux-armv7.tar ]]; then docker load -i ~/docker/linux-armv7.tar; fi
     - docker pull dockcross/linux-armv7
+    - if [[ -e ~/docker/linux-ppc64le.tar ]]; then docker load -i ~/docker/linux-ppc64le.tar; fi
     - docker pull dockcross/linux-ppc64le
+    - if [[ -e ~/docker/linux-x64.tar ]]; then docker load -i ~/docker/linux-x64.tar; fi
     - docker pull dockcross/linux-x64
+    - if [[ -e ~/docker/linux-x86.tar ]]; then docker load -i ~/docker/linux-x86.tar; fi
     - docker pull dockcross/linux-x86
+    - if [[ -e ~/docker/manylinux-x64.tar ]]; then docker load -i ~/docker/manylinux-x64.tar; fi
     - docker pull dockcross/manylinux-x64
+    - if [[ -e ~/docker/windows-x64.tar ]]; then docker load -i ~/docker/windows-x64.tar; fi
     - docker pull dockcross/windows-x64
+    - if [[ -e ~/docker/windows-x86.tar ]]; then docker load -i ~/docker/windows-x86.tar; fi
     - docker pull dockcross/windows-x86
 
 test:
   override:
     - make base.test
+    - mkdir -p ~/docker; docker save dockcross/base > ~/docker/base.tar
     - make android-arm.test
+    - mkdir -p ~/docker; docker save dockcross/android-arm > ~/docker/android-arm.tar
     - make browser-asmjs.test
+    - mkdir -p ~/docker; docker save dockcross/browser-asmjs > ~/docker/browser-asmjs.tar
     - make linux-arm64.test
+    - mkdir -p ~/docker; docker save dockcross/linux-arm64 > ~/docker/linux-arm64.tar
     - make linux-armv5.test
+    - mkdir -p ~/docker; docker save dockcross/linux-armv5 > ~/docker/linux-armv5.tar
     - make linux-armv6.test
+    - mkdir -p ~/docker; docker save dockcross/linux-armv6 > ~/docker/linux-armv6.tar
     - make linux-armv7.test
+    - mkdir -p ~/docker; docker save dockcross/linux-armv7 > ~/docker/linux-armv7.tar
     - make linux-ppc64le.test
+    - mkdir -p ~/docker; docker save dockcross/linux-ppc64le > ~/docker/linux-ppc64le.tar
     - make linux-x64.test
+    - mkdir -p ~/docker; docker save dockcross/linux-x64 > ~/docker/linux-x64.tar
     - make linux-x86.test
+    - mkdir -p ~/docker; docker save dockcross/linux-x86 > ~/docker/linux-x86.tar
     - make manylinux-x64.test
+    - mkdir -p ~/docker; docker save dockcross/manylinux-x64 > ~/docker/manylinux-x64.tar
     - make windows-x64.test:
         timeout: 3000
+    - mkdir -p ~/docker; docker save dockcross/windows-x64 > ~/docker/windows-x64.tar
     - make windows-x86.test:
         timeout: 3000
+    - mkdir -p ~/docker; docker save dockcross/windows-x86 > ~/docker/windows-x86.tar
 
 deployment:
   hub:
