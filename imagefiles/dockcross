@@ -146,10 +146,27 @@ FINAL_CONFIG=${ARG_CONFIG-${DOCKCROSS_CONFIG-$DEFAULT_DOCKCROSS_CONFIG}}
 # Set the docker image
 FINAL_IMAGE=${ARG_IMAGE-${DOCKCROSS_IMAGE-$DEFAULT_DOCKCROSS_IMAGE}}
 
-# Handle specicial update command
-[[ "$special_update_command" == "update" ]] && command:update && exit
-[[ "$special_update_command" == "update-script" ]] && command:update-script && exit
-[[ "$special_update_command" == "update-image" ]] && command:update-image && exit
+# Handle special update command
+if [ "$special_update_command" != "" ]; then
+    case $special_update_command in
+
+        update)
+            command:update
+            exit $?
+            ;;
+
+        update-image)
+            command:update-image
+            exit $?
+            ;;
+
+        update-script)
+            command:update-script
+            exit $?
+            ;;
+
+    esac
+fi
 
 # Set the docker run extra args (if any)
 FINAL_ARGS=${ARG_ARGS-${DOCKCROSS_ARGS}}
