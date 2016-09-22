@@ -5,20 +5,10 @@ RUN git clone "https://github.com/nojhan/liquidprompt.git" && \
 COPY imagefiles/.bashrc /root/
 
 WORKDIR /usr/src
-RUN git clone "git://cmake.org/cmake.git" CMake && \
-   cd CMake && \
-   git checkout v3.6.1 && \
-   cd .. && mkdir CMake-build && cd CMake-build && \
-   /usr/src/CMake/bootstrap \
-     --parallel=$(nproc) \
-     --prefix=/usr && \
-   make -j$(nproc) && \
-   ./bin/cmake \
-     -DCMAKE_BUILD_TYPE:STRING=Release \
-     -DCMAKE_USE_OPENSSL:BOOL=ON . && \
-   make install && \
-   cd .. && \
-   rm -rf CMake*
+RUN curl -O https://cmake.org/files/v3.6/cmake-3.6.2-Linux-x86_64.tar.gz && \
+   tar xzf cmake-3.6.2-Linux-x86_64.tar.gz && \
+   cp -a cmake-3.6.2-Linux-x86_64/* /usr/ && \
+   rm -rf cmake-3.6.2-Linux-x86_64
 
 RUN git clone "https://github.com/martine/ninja.git" && \
    cd ninja && \
