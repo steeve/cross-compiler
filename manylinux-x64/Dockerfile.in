@@ -12,6 +12,8 @@ RUN cd /opt && \
 COPY manylinux-x64/install-skbuild.sh /usr/local/bin
 RUN /usr/local/bin/install-skbuild.sh
 
+RUN yum -y install sudo
+
 ENV CROSS_TRIPLE x86_64-linux-gnu
 ENV CROSS_ROOT /opt/rh/devtoolset-2/root/usr/bin
 ENV AS=${CROSS_ROOT}/as \
