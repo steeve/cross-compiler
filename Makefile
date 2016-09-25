@@ -91,6 +91,17 @@ base.test: base
 	$(DOCKER) run --rm dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
 
 #
+# display
+#
+display_default_images:
+	for image in $(DEFAULT_IMAGES); do echo $$image; done
+
+display_all_images:
+	for image in $(ALL_IMAGES); do echo $$image; done
+
+$(VERBOSE).SILENT: display_default_images display_all_images
+
+#
 # build implicit rule
 #
 $(STANDARD_IMAGES): base
