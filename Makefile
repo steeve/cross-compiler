@@ -23,7 +23,7 @@ browser-asmjs.test: browser-asmjs test/run.py
 	$(DOCKER) run --rm dockcross/browser-asmjs > $(BIN)/dockcross-browser-asmjs && chmod +x $(BIN)/dockcross-browser-asmjs
 	$(BIN)/dockcross-browser-asmjs python test/run.py --exe-suffix ".js"
 
-linux-x86: base linux-x86/Dockerfile linux-x86/Toolchain.cmake
+linux-x86: base linux-x86/Dockerfile
 	$(DOCKER) build -t $(ORG)/linux-x86 linux-x86
 
 linux-x86.test: linux-x86 test/run.py
@@ -37,35 +37,35 @@ linux-x64.test: linux-x64 test/run.py
 	$(DOCKER) run --rm dockcross/linux-x64 > $(BIN)/dockcross-linux-x64 && chmod +x $(BIN)/dockcross-linux-x64
 	$(BIN)/dockcross-linux-x64 python test/run.py
 
-linux-arm64: base linux-arm64/Dockerfile linux-arm64/Toolchain.cmake
+linux-arm64: base linux-arm64/Dockerfile
 	$(DOCKER) build -t $(ORG)/linux-arm64 linux-arm64
 
 linux-arm64.test: linux-arm64 test/run.py
 	$(DOCKER) run --rm dockcross/linux-arm64 > $(BIN)/dockcross-linux-arm64 && chmod +x $(BIN)/dockcross-linux-arm64
 	$(BIN)/dockcross-linux-arm64 python test/run.py
 
-linux-armv5: base linux-armv5/Dockerfile linux-armv5/Toolchain.cmake
+linux-armv5: base linux-armv5/Dockerfile
 	$(DOCKER) build -t $(ORG)/linux-armv5 linux-armv5
 
 linux-armv5.test: linux-armv5 test/run.py
 	$(DOCKER) run --rm dockcross/linux-armv5 > $(BIN)/dockcross-linux-armv5 && chmod +x $(BIN)/dockcross-linux-armv5
 	$(BIN)/dockcross-linux-armv5 python test/run.py
 
-linux-armv6: base linux-armv6/Dockerfile linux-armv6/Toolchain.cmake
+linux-armv6: base linux-armv6/Dockerfile
 	$(DOCKER) build -t $(ORG)/linux-armv6 linux-armv6
 
 linux-armv6.test: linux-armv6 test/run.py
 	$(DOCKER) run --rm dockcross/linux-armv6 > $(BIN)/dockcross-linux-armv6 && chmod +x $(BIN)/dockcross-linux-armv6
 	$(BIN)/dockcross-linux-armv6 python test/run.py
 
-linux-armv7: base linux-armv7/Dockerfile linux-armv7/Toolchain.cmake
+linux-armv7: base linux-armv7/Dockerfile
 	$(DOCKER) build -t $(ORG)/linux-armv7 linux-armv7
 
 linux-armv7.test: linux-armv7 test/run.py
 	$(DOCKER) run --rm dockcross/linux-armv7 > $(BIN)/dockcross-linux-armv7 && chmod +x $(BIN)/dockcross-linux-armv7
 	$(BIN)/dockcross-linux-armv7 python test/run.py
 
-linux-ppc64le: base linux-ppc64le/Dockerfile linux-ppc64le/Toolchain.cmake
+linux-ppc64le: base linux-ppc64le/Dockerfile
 	$(DOCKER) build -t $(ORG)/linux-ppc64le linux-ppc64le
 
 linux-ppc64le.test: linux-ppc64le test/run.py
