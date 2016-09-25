@@ -1,8 +1,9 @@
 DOCKER = docker
 ORG = dockcross
 BIN = bin
+IMAGES = android-arm linux-x86 linux-x64 manylinux-x64 manylinux-x86 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
 
-images: base android-arm linux-x86 linux-x64 manylinux-x64 manylinux-x86 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
+images: base $(IMAGES)
 
 test: base.test android-arm.test linux-x86.test linux-x64.test manylinux-x64.test manylinux-x86.test linux-arm64.test linux-armv5.test linux-armv6.test linux-armv7.test windows-x86.test windows-x64.test
 
@@ -115,4 +116,4 @@ base.test: base test/run.py
 	mkdir -p $(BIN)
 	$(DOCKER) run --rm dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
 
-.PHONY: images base android-arm linux-x86 linux-x64 manylinux-x64 manylinux-x86 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64 tests %.test
+.PHONY: base images $(IMAGES) tests %.test
