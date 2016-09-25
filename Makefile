@@ -6,6 +6,8 @@ STANDARD_IMAGES = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-
 
 IMAGES = $(STANDARD_IMAGES) manylinux-x64 manylinux-x86
 
+STANDARD_TESTS = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7
+
 images: base $(IMAGES)
 
 test: base.test $(addsuffix .test,$(IMAGES))
@@ -13,9 +15,10 @@ test: base.test $(addsuffix .test,$(IMAGES))
 $(STANDARD_IMAGES): base
 	$(DOCKER) build -t $(ORG)/$@ $@
 
-android-arm.test: android-arm
-	$(DOCKER) run --rm dockcross/android-arm > $(BIN)/dockcross-android-arm && chmod +x $(BIN)/dockcross-android-arm
-	$(BIN)/dockcross-android-arm python test/run.py
+.SECONDEXPANSION:
+$(addsuffix .test,$(STANDARD_TESTS)): $$(basename $$@)
+	$(DOCKER) run --rm dockcross/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
+	$(BIN)/dockcross-$(basename $@) python test/run.py
 
 browser-asmjs: base
 	cp -r test browser-asmjs/
@@ -25,30 +28,6 @@ browser-asmjs: base
 browser-asmjs.test: browser-asmjs
 	$(DOCKER) run --rm dockcross/browser-asmjs > $(BIN)/dockcross-browser-asmjs && chmod +x $(BIN)/dockcross-browser-asmjs
 	$(BIN)/dockcross-browser-asmjs python test/run.py --exe-suffix ".js"
-
-linux-x86.test: linux-x86
-	$(DOCKER) run --rm dockcross/linux-x86 > $(BIN)/dockcross-linux-x86 && chmod +x $(BIN)/dockcross-linux-x86
-	$(BIN)/dockcross-linux-x86 python test/run.py
-
-linux-x64.test: linux-x64
-	$(DOCKER) run --rm dockcross/linux-x64 > $(BIN)/dockcross-linux-x64 && chmod +x $(BIN)/dockcross-linux-x64
-	$(BIN)/dockcross-linux-x64 python test/run.py
-
-linux-arm64.test: linux-arm64
-	$(DOCKER) run --rm dockcross/linux-arm64 > $(BIN)/dockcross-linux-arm64 && chmod +x $(BIN)/dockcross-linux-arm64
-	$(BIN)/dockcross-linux-arm64 python test/run.py
-
-linux-armv5.test: linux-armv5
-	$(DOCKER) run --rm dockcross/linux-armv5 > $(BIN)/dockcross-linux-armv5 && chmod +x $(BIN)/dockcross-linux-armv5
-	$(BIN)/dockcross-linux-armv5 python test/run.py
-
-linux-armv6.test: linux-armv6
-	$(DOCKER) run --rm dockcross/linux-armv6 > $(BIN)/dockcross-linux-armv6 && chmod +x $(BIN)/dockcross-linux-armv6
-	$(BIN)/dockcross-linux-armv6 python test/run.py
-
-linux-armv7.test: linux-armv7
-	$(DOCKER) run --rm dockcross/linux-armv7 > $(BIN)/dockcross-linux-armv7 && chmod +x $(BIN)/dockcross-linux-armv7
-	$(BIN)/dockcross-linux-armv7 python test/run.py
 
 linux-ppc64le: base
 	$(DOCKER) build -t $(ORG)/linux-ppc64le linux-ppc64le
