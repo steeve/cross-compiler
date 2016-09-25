@@ -1,0 +1,38 @@
+FROM quay.io/pypa/manylinux1_i686:latest
+MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
+
+#include "common.docker"
+
+RUN cd /opt && \
+  wget "http://smarden.org/runit/runit-2.1.2.tar.gz" && \
+  tar xvzf runit-2.1.2.tar.gz && \
+  cd admin/runit-2.1.2 && \
+  ./package/install
+
+COPY manylinux-x64/install-skbuild.sh /usr/local/bin
+RUN /usr/local/bin/install-skbuild.sh
+
+RUN yum -y install sudo
+
+ENV CROSS_TRIPLE i686-linux-gnu
+ENV CROSS_ROOT /opt/rh/devtoolset-2/root/usr/bin
+ENV AS=${CROSS_ROOT}/as \
+    AR=${CROSS_ROOT}/ar \
+    CC=${CROSS_ROOT}/gcc \
+    CPP=${CROSS_ROOT}/cpp \
+    CXX=${CROSS_ROOT}/g++ \
+    LD=${CROSS_ROOT}/ld
+
+COPY linux-x86/${CROSS_TRIPLE}-noop.sh /usr/bin/${CROSS_TRIPLE}-noop
+
+COPY manylinux-x86/Toolchain.cmake ${CROSS_ROOT}/../lib/
+ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/../lib/Toolchain.cmake
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux-x86
+
+RUN curl -O https://cmake.org/files/v3.6/cmake-3.6.2-Linux-i386.tar.gz && \
+   tar xzf cmake-3.6.2-Linux-i386.tar.gz && \
+   cp -a cmake-3.6.2-Linux-i386/* /usr/ && \
+   rm -rf cmake-3.6.2-Linux-i386
+
+COPY linux-x86/linux32-entrypoint.sh /dockcross/
+ENTRYPOINT ["/dockcross/linux32-entrypoint.sh"]
