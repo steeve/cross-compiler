@@ -13,24 +13,31 @@ ORG = dockcross
 BIN = bin
 
 # These images are built using the "build implicit rule"
-STANDARD_IMAGES = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
+STANDARD_IMAGES = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-ppc64le windows-x86 windows-x64
 
-# These images are associated with the 'images' target
-IMAGES = $(STANDARD_IMAGES) manylinux-x64 manylinux-x86
+# These images are expected to have explicit rules for *both* build and testing
+NON_STANDARD_IMAGES = browser-asmjs manylinux-x64 manylinux-x86
+
+# This list all available images
+ALL_IMAGES = $(STANDARD_IMAGES) $(NON_STANDARD_IMAGES)
+
+# Set DEFAULT_IMAGES by excluding experimental images from ALL_IMAGES
+DEFAULT_IMAGES = $(filter-out browser-asmjs linux-ppc64le, $(ALL_IMAGES))
 
 # Optional arguments for test runner (test/run.py) associated with "testing implicit rule"
+linux-ppc64le.test_ARGS = --languages C
 windows-x86.test_ARGS = --exe-suffix ".exe"
 windows-x64.test_ARGS = --exe-suffix ".exe"
 
 #
-# images: This target builds all IMAGES (because it is the first one, it is built by default)
+# images: This target builds all DEFAULT_IMAGES (because it is the first one, it is built by default)
 #
-images: base $(IMAGES)
+images: base $(DEFAULT_IMAGES)
 
 #
 # test: This target ensures all IMAGES are built and run the associated tests
 #
-test: base.test $(addsuffix .test,$(IMAGES))
+test: base.test $(addsuffix .test,$(DEFAULT_IMAGES))
 
 #
 # browser-asmjs
@@ -43,16 +50,6 @@ browser-asmjs: base
 browser-asmjs.test: browser-asmjs
 	$(DOCKER) run --rm dockcross/browser-asmjs > $(BIN)/dockcross-browser-asmjs && chmod +x $(BIN)/dockcross-browser-asmjs
 	$(BIN)/dockcross-browser-asmjs python test/run.py --exe-suffix ".js"
-
-#
-# linux-ppc64le
-#
-linux-ppc64le: base
-	$(DOCKER) build -t $(ORG)/linux-ppc64le linux-ppc64le
-
-linux-ppc64le.test: linux-ppc64le
-	$(DOCKER) run --rm dockcross/linux-ppc64le > $(BIN)/dockcross-linux-ppc64le && chmod +x $(BIN)/dockcross-linux-ppc64le
-	$(BIN)/dockcross-linux-ppc64le python test/run.py --languages C
 
 #
 # manylinux-x64
@@ -107,4 +104,4 @@ $(addsuffix .test,$(STANDARD_IMAGES)): $$(basename $$@)
 	$(DOCKER) run --rm dockcross/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
 	$(BIN)/dockcross-$(basename $@) python test/run.py $($@_ARGS)
 
-.PHONY: base images $(IMAGES) tests %.test
+.PHONY: base images $(ALL_IMAGES) test %.test
