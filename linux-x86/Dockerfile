@@ -40,3 +40,6 @@ ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-x86
 # https://wiki.debian.org/CrossToolchains#In_jessie_.28Debian_8.29
 COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
 ENV CMAKE_TOOLCHAIN_FILE /usr/lib/${CROSS_TRIPLE}/Toolchain.cmake
+
+COPY linux32-entrypoint.sh /dockcross/
+ENTRYPOINT ["/dockcross/linux32-entrypoint.sh"]
