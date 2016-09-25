@@ -6,7 +6,9 @@ STANDARD_IMAGES = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-
 
 IMAGES = $(STANDARD_IMAGES) manylinux-x64 manylinux-x86
 
-STANDARD_TESTS = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7
+# Arguments for test/run.py associated with standard images
+windows-x86.test_ARGS = --exe-suffix ".exe"
+windows-x64.test_ARGS = --exe-suffix ".exe"
 
 images: base $(IMAGES)
 
@@ -16,9 +18,9 @@ $(STANDARD_IMAGES): base
 	$(DOCKER) build -t $(ORG)/$@ $@
 
 .SECONDEXPANSION:
-$(addsuffix .test,$(STANDARD_TESTS)): $$(basename $$@)
+$(addsuffix .test,$(STANDARD_IMAGES)): $$(basename $$@)
 	$(DOCKER) run --rm dockcross/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
-	$(BIN)/dockcross-$(basename $@) python test/run.py
+	$(BIN)/dockcross-$(basename $@) python test/run.py $($@_ARGS)
 
 browser-asmjs: base
 	cp -r test browser-asmjs/
@@ -55,14 +57,6 @@ manylinux-x86: manylinux-x86/Dockerfile
 manylinux-x86.test: manylinux-x86
 	$(DOCKER) run --rm dockcross/manylinux-x86 > $(BIN)/dockcross-manylinux-x86 && chmod +x $(BIN)/dockcross-manylinux-x86
 	$(BIN)/dockcross-manylinux-x86 /opt/python/cp35-cp35m/bin/python test/run.py
-
-windows-x86.test: windows-x86
-	$(DOCKER) run --rm dockcross/windows-x86 > $(BIN)/dockcross-windows-x86 && chmod +x $(BIN)/dockcross-windows-x86
-	$(BIN)/dockcross-windows-x86 python test/run.py  --exe-suffix ".exe"
-
-windows-x64.test: windows-x64
-	$(DOCKER) run --rm dockcross/windows-x64 > $(BIN)/dockcross-windows-x64 && chmod +x $(BIN)/dockcross-windows-x64
-	$(BIN)/dockcross-windows-x64 python test/run.py --exe-suffix ".exe"
 
 Dockerfile: Dockerfile.in common.docker
 	sed '/common.docker/ r common.docker' Dockerfile.in > Dockerfile
