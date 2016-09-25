@@ -107,6 +107,14 @@ dockcross/manylinux-x64
   Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
 
 
+.. |manylinux-x86-images| image:: https://badge.imagelayers.io/dockcross/manylinux-x86:latest.svg
+  :target: https://imagelayers.io/?images=dockcross/manylinux-x86:latest
+
+dockcross/manylinux-x86
+  |manylinux-x86-images| Docker `manylinux <https://github.com/pypa/manylinux>`_ image for building Linux i686 `Python wheel packages <http://pythonwheels.com/>`_.
+  Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
+
+
 .. |windows-x64-images| image:: https://badge.imagelayers.io/dockcross/windows-x64:latest.svg
   :target: https://imagelayers.io/?images=dockcross/windows-x64:latest
 

@@ -2,9 +2,9 @@ DOCKER = docker
 ORG = dockcross
 BIN = bin
 
-images: base android-arm linux-x86 linux-x64 manylinux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
+images: base android-arm linux-x86 linux-x64 manylinux-x64 manylinux-x86 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64
 
-test: base.test android-arm.test linux-x86.test linux-x64.test manylinux-x64.test linux-arm64.test linux-armv5.test linux-armv6.test linux-armv7.test windows-x86.test windows-x64.test
+test: base.test android-arm.test linux-x86.test linux-x64.test manylinux-x64.test manylinux-x86.test linux-arm64.test linux-armv5.test linux-armv6.test linux-armv7.test windows-x86.test windows-x64.test
 
 android-arm: base android-arm/Dockerfile
 	$(DOCKER) build -t $(ORG)/android-arm android-arm
@@ -81,6 +81,16 @@ manylinux-x64.test: manylinux-x64 test/run.py
 	$(DOCKER) run --rm dockcross/manylinux-x64 > $(BIN)/dockcross-manylinux-x64 && chmod +x $(BIN)/dockcross-manylinux-x64
 	$(BIN)/dockcross-manylinux-x64 /opt/python/cp35-cp35m/bin/python test/run.py
 
+manylinux-x86/Dockerfile: manylinux-x86/Dockerfile.in common.docker
+	sed '/common.docker/ r common.docker' manylinux-x86/Dockerfile.in > manylinux-x86/Dockerfile
+
+manylinux-x86: manylinux-x86/Dockerfile
+	$(DOCKER) build -t $(ORG)/manylinux-x86 -f manylinux-x86/Dockerfile .
+
+manylinux-x86.test: manylinux-x86 test/run.py
+	$(DOCKER) run --rm dockcross/manylinux-x86 > $(BIN)/dockcross-manylinux-x86 && chmod +x $(BIN)/dockcross-manylinux-x86
+	$(BIN)/dockcross-manylinux-x86 /opt/python/cp35-cp35m/bin/python test/run.py
+
 windows-x86: base windows-x86/Dockerfile windows-x86/settings.mk
 	$(DOCKER) build -t $(ORG)/windows-x86 windows-x86
 
@@ -105,4 +115,4 @@ base.test: base test/run.py
 	mkdir -p $(BIN)
 	$(DOCKER) run --rm dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
 
-.PHONY: images base android-arm linux-x86 linux-x64 manylinux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64 tests %.test
+.PHONY: images base android-arm linux-x86 linux-x64 manylinux-x64 manylinux-x86 linux-arm64 linux-armv5 linux-armv6 linux-armv7 windows-x86 windows-x64 tests %.test

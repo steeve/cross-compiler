@@ -34,6 +34,8 @@ dependencies:
     - docker pull dockcross/linux-x86
     - if [[ -e ~/docker/manylinux-x64.tar ]]; then docker load -i ~/docker/manylinux-x64.tar; fi
     - docker pull dockcross/manylinux-x64
+    - if [[ -e ~/docker/manylinux-x86.tar ]]; then docker load -i ~/docker/manylinux-x86.tar; fi
+    - docker pull dockcross/manylinux-x86
     - if [[ -e ~/docker/windows-x64.tar ]]; then docker load -i ~/docker/windows-x64.tar; fi
     - docker pull dockcross/windows-x64
     - if [[ -e ~/docker/windows-x86.tar ]]; then docker load -i ~/docker/windows-x86.tar; fi
@@ -63,6 +65,8 @@ test:
     - mkdir -p ~/docker; docker save dockcross/linux-x86 > ~/docker/linux-x86.tar
     - make manylinux-x64.test
     - mkdir -p ~/docker; docker save dockcross/manylinux-x64 > ~/docker/manylinux-x64.tar
+    - make manylinux-x86.test
+    - mkdir -p ~/docker; docker save dockcross/manylinux-x86 > ~/docker/manylinux-x86.tar
     - make windows-x64.test:
         timeout: 3000
     - mkdir -p ~/docker; docker save dockcross/windows-x64 > ~/docker/windows-x64.tar
@@ -86,5 +90,6 @@ deployment:
       - docker push dockcross/linux-x64
       - docker push dockcross/linux-x86
       - docker push dockcross/manylinux-x64
+      - docker push dockcross/manylinux-x86
       - docker push dockcross/windows-x64
       - docker push dockcross/windows-x86
