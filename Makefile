@@ -114,6 +114,6 @@ $(addsuffix .test,$(STANDARD_IMAGES)): $$(basename $$@)
 test.prerequisites:
 	mkdir -p $(BIN)
 
-$(addsuffix .test,$(IMAGES)): test.prerequisites
+$(addsuffix .test,base $(IMAGES)): test.prerequisites
 
 .PHONY: base images $(IMAGES) test %.test
