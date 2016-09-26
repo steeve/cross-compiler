@@ -180,6 +180,35 @@ source cross-compiler Docker image or the dockcross script itself.
 - ``dockcross update``: Update both the docker image, and the dockcross script.
 
 
+Download all images
+-------------------
+
+To easily download all images, the convenience target ``display_images`` could be used::
+
+  curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
+  for image in $(make -f dockcross-Makefile display_images); do
+    echo "Pulling dockcross/$image"
+    docker pull dockcross/$image
+  done
+
+Install all dockcross scripts
+-----------------------------
+
+To automatically install in ``~/bin`` the dockcross scripts for each images already downloaded, the
+convenience target ``display_images`` could be used::
+
+  curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
+  for image in $(make -f dockcross-Makefile display_images); do
+    if [[ $(docker images -q dockcross/$image) == "" ]]; then
+      echo "~/bin/dockcross-$image skipping: image not found locally"
+      continue
+    fi
+    echo "~/bin/dockcross-$image ok"
+    docker run dockcross/$image > ~/bin/dockcross-$image && \
+    chmod u+x  ~/bin/dockcross-$image
+  done
+
+
 Configuration
 -------------
 
