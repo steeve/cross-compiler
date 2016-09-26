@@ -84,7 +84,6 @@ base: Dockerfile
 	$(DOCKER) build -t $(ORG)/base .
 
 base.test: base
-	mkdir -p $(BIN)
 	$(DOCKER) run --rm dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
 
 #
@@ -108,5 +107,13 @@ $(STANDARD_IMAGES): base
 $(addsuffix .test,$(STANDARD_IMAGES)): $$(basename $$@)
 	$(DOCKER) run --rm dockcross/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
 	$(BIN)/dockcross-$(basename $@) python test/run.py $($@_ARGS)
+
+#
+# testing prerequisites implicit rule
+#
+test.prerequisites:
+	mkdir -p $(BIN)
+
+$(addsuffix .test,$(IMAGES)): test.prerequisites
 
 .PHONY: base images $(IMAGES) test %.test
