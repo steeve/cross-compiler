@@ -19,10 +19,7 @@ STANDARD_IMAGES = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-
 NON_STANDARD_IMAGES = browser-asmjs manylinux-x64 manylinux-x86
 
 # This list all available images
-ALL_IMAGES = $(STANDARD_IMAGES) $(NON_STANDARD_IMAGES)
-
-# Set DEFAULT_IMAGES by excluding experimental images from ALL_IMAGES
-DEFAULT_IMAGES = $(filter-out browser-asmjs linux-ppc64le, $(ALL_IMAGES))
+IMAGES = $(STANDARD_IMAGES) $(NON_STANDARD_IMAGES)
 
 # Optional arguments for test runner (test/run.py) associated with "testing implicit rule"
 linux-ppc64le.test_ARGS = --languages C
@@ -30,14 +27,14 @@ windows-x86.test_ARGS = --exe-suffix ".exe"
 windows-x64.test_ARGS = --exe-suffix ".exe"
 
 #
-# images: This target builds all DEFAULT_IMAGES (because it is the first one, it is built by default)
+# images: This target builds all IMAGES (because it is the first one, it is built by default)
 #
-images: base $(DEFAULT_IMAGES)
+images: base $(IMAGES)
 
 #
 # test: This target ensures all IMAGES are built and run the associated tests
 #
-test: base.test $(addsuffix .test,$(DEFAULT_IMAGES))
+test: base.test $(addsuffix .test,$(IMAGES))
 
 #
 # browser-asmjs
@@ -93,13 +90,10 @@ base.test: base
 #
 # display
 #
-display_default_images:
-	for image in $(DEFAULT_IMAGES); do echo $$image; done
+display_images:
+	for image in $(IMAGES); do echo $$image; done
 
-display_all_images:
-	for image in $(ALL_IMAGES); do echo $$image; done
-
-$(VERBOSE).SILENT: display_default_images display_all_images
+$(VERBOSE).SILENT: display_images
 
 #
 # build implicit rule
@@ -115,4 +109,4 @@ $(addsuffix .test,$(STANDARD_IMAGES)): $$(basename $$@)
 	$(DOCKER) run --rm dockcross/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
 	$(BIN)/dockcross-$(basename $@) python test/run.py $($@_ARGS)
 
-.PHONY: base images $(ALL_IMAGES) test %.test
+.PHONY: base images $(IMAGES) test %.test
