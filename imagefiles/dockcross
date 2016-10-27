@@ -180,11 +180,16 @@ fi
 # Now, finally, run the command in a container
 #
 tty -s && TTY_ARGS=-ti || TTY_ARGS=
-docker run $TTY_ARGS --rm \
+CONTAINER_NAME=dockcross
+docker run $TTY_ARGS --name $CONTAINER_NAME \
     -v $PWD:/work \
     $USER_IDS \
     $FINAL_ARGS \
     $FINAL_IMAGE "$@"
+
+docker rm -f $CONTAINER_NAME > /dev/null && \
+  echo "Successfull removed container: $CONTAINER_NAME" || \
+  (echo "Failed to remove container: Ignoring error" && true)
 
 ################################################################################
 #
