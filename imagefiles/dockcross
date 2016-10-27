@@ -180,11 +180,20 @@ fi
 # Now, finally, run the command in a container
 #
 tty -s && TTY_ARGS=-ti || TTY_ARGS=
-docker run $TTY_ARGS --rm \
+CONTAINER_NAME=dockcross_$(cat /dev/urandom | base64 | tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1)
+docker run $TTY_ARGS --name $CONTAINER_NAME \
     -v $PWD:/work \
     $USER_IDS \
     $FINAL_ARGS \
     $FINAL_IMAGE "$@"
+run_exit_code=$?
+
+# Deleting the container while ignoring error is required because of
+# https://circleci.com/docs/docker-btrfs-error/.
+# See issue dockcross/dockcross#50 for more details.
+docker rm -f $CONTAINER_NAME > /dev/null || true
+
+exit $run_exit_code
 
 ################################################################################
 #
