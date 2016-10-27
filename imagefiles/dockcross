@@ -187,9 +187,7 @@ docker run $TTY_ARGS --name $CONTAINER_NAME \
     $FINAL_ARGS \
     $FINAL_IMAGE "$@"
 
-docker rm -f $CONTAINER_NAME > /dev/null && \
-  echo "Successfull removed container: $CONTAINER_NAME" || \
-  (echo "Failed to remove container: Ignoring error" && true)
+docker rm -f $CONTAINER_NAME > /dev/null || true
 
 ################################################################################
 #
