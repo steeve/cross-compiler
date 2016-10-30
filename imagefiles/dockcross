@@ -180,7 +180,7 @@ fi
 # Now, finally, run the command in a container
 #
 tty -s && TTY_ARGS=-ti || TTY_ARGS=
-CONTAINER_NAME=dockcross_$(cat /dev/urandom | base64 | tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1)
+CONTAINER_NAME=dockcross_$(head -c 500 /dev/urandom | base64 | tr -dc 'a-zA-Z0-9' | fold -w 7 | head -n 1)
 docker run $TTY_ARGS --name $CONTAINER_NAME \
     -v $PWD:/work \
     $USER_IDS \
