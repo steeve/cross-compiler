@@ -22,108 +22,108 @@ Features
 Cross compilers
 ---------------
 
-.. |base-images| image:: https://badge.imagelayers.io/dockcross/base:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/base:latest
+.. |base-images| image:: https://images.microbadger.com/badges/image/dockcross/base.svg
+  :target: https://microbadger.com/images/dockcross/base
 
 dockcross/base
   |base-images| Base image for other toolchain images. From Debian Jessie with GCC,
   make, autotools, CMake, Ninja, Git, and Python.
 
 
-.. |android-arm-images| image:: https://badge.imagelayers.io/dockcross/android-arm:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/android-arm:latest
+.. |android-arm-images| image:: https://images.microbadger.com/badges/image/dockcross/android-arm.svg
+  :target: https://microbadger.com/images/dockcross/android-arm
 
 dockcross/android-arm
   |android-arm-images| The Android NDK standalone toolchain for the arm
   architecture.
 
 
-.. |browser-asmjs-images| image:: https://badge.imagelayers.io/dockcross/browser-asmjs:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/browser-asmjs:latest
+.. |browser-asmjs-images| image:: https://images.microbadger.com/badges/image/dockcross/browser-asmjs.svg
+  :target: https://microbadger.com/images/dockcross/browser-asmjs
 
 dockcross/browser-asmjs
   |browser-asmjs-images| The Emscripten JavaScript cross compiler.
 
 
-.. |linux-arm64-images| image:: https://badge.imagelayers.io/dockcross/linux-arm64:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/linux-arm64:latest
+.. |linux-arm64-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-arm64.svg
+  :target: https://microbadger.com/images/dockcross/linux-arm64
 
 dockcross/linux-arm64
   |linux-arm64-images| Cross compiler for the 64-bit ARM platform on Linux,
   also known as AArch64.
 
 
-.. |linux-armv5-images| image:: https://badge.imagelayers.io/dockcross/linux-armv5:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/linux-armv5:latest
+.. |linux-armv5-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-armv5.svg
+  :target: https://microbadger.com/images/dockcross/linux-armv5
 
 dockcross/linux-armv5
   |linux-armv5-images| Linux armv5 cross compiler toolchain for legacy devices
   like the Parrot AR Drone.
 
 
-.. |linux-armv6-images| image:: https://badge.imagelayers.io/dockcross/linux-armv6:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/linux-armv6:latest
+.. |linux-armv6-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-armv6.svg
+  :target: https://microbadger.com/images/dockcross/linux-armv6
 
 dockcross/linux-armv6
   |linux-armv6-images| Linux ARMv6 cross compiler toolchain for the Raspberry
   Pi, etc.
 
 
-.. |linux-armv7-images| image:: https://badge.imagelayers.io/dockcross/linux-armv7:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/linux-armv7:latest
+.. |linux-armv7-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-armv7.svg
+  :target: https://microbadger.com/images/dockcross/linux-armv7
 
 dockcross/linux-armv7
   |linux-armv7-images| Generic Linux armv7 cross compiler toolchain.
 
 
-.. |linux-ppc64le-images| image:: https://badge.imagelayers.io/dockcross/linux-ppc64le:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/linux-ppc64le:latest
+.. |linux-ppc64le-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-ppc64le.svg
+  :target: https://microbadger.com/images/dockcross/linux-ppc64le
 
 dockcross/linux-ppc64le
   |linux-ppc64le-images| Linux PowerPC 64 little endian cross compiler
   toolchain for the POWER8, etc.
 
 
-.. |linux-x64-images| image:: https://badge.imagelayers.io/dockcross/linux-x64:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/linux-x64:latest
+.. |linux-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-x64.svg
+  :target: https://microbadger.com/images/dockcross/linux-x64
 
 dockcross/linux-x64
   |linux-x64-images| Linux x86_64 / amd64 compiler. Since the Docker image is
   natively x86_64, this is not actually a cross compiler.
 
 
-.. |linux-x86-images| image:: https://badge.imagelayers.io/dockcross/linux-x86:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/linux-x86:latest
+.. |linux-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-x86.svg
+  :target: https://microbadger.com/images/dockcross/linux-x86
 
 dockcross/linux-x86
   |linux-x86-images| Linux i686 cross compiler.
 
 
-.. |manylinux-x64-images| image:: https://badge.imagelayers.io/dockcross/manylinux-x64:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/manylinux-x64:latest
+.. |manylinux-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/manylinux-x64.svg
+  :target: https://microbadger.com/images/dockcross/manylinux-x64
 
 dockcross/manylinux-x64
   |manylinux-x64-images| Docker `manylinux <https://github.com/pypa/manylinux>`_ image for building Linux x86_64 / amd64 `Python wheel packages <http://pythonwheels.com/>`_.
   Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
 
 
-.. |manylinux-x86-images| image:: https://badge.imagelayers.io/dockcross/manylinux-x86:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/manylinux-x86:latest
+.. |manylinux-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/manylinux-x86.svg
+  :target: https://microbadger.com/images/dockcross/manylinux-x86
 
 dockcross/manylinux-x86
   |manylinux-x86-images| Docker `manylinux <https://github.com/pypa/manylinux>`_ image for building Linux i686 `Python wheel packages <http://pythonwheels.com/>`_.
   Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
 
 
-.. |windows-x64-images| image:: https://badge.imagelayers.io/dockcross/windows-x64:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/windows-x64:latest
+.. |windows-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-x64.svg
+  :target: https://microbadger.com/images/dockcross/windows-x64
 
 dockcross/windows-x64
   |windows-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64.
 
 
-.. |windows-x86-images| image:: https://badge.imagelayers.io/dockcross/windows-x86:latest.svg
-  :target: https://imagelayers.io/?images=dockcross/windows-x86:latest
+.. |windows-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-x86.svg
+  :target: https://microbadger.com/images/dockcross/windows-x86
 
 dockcross/windows-x86
   |windows-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64.
