@@ -49,3 +49,13 @@ ENV CMAKE_TOOLCHAIN_FILE /usr/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION
 # https://github.com/kripken/emscripten/pull/4477
 RUN sed -i -e '/CMakeForceCompiler/d' -e '/CMAKE_FORCE_C/d' $CMAKE_TOOLCHAIN_FILE
 
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG IMAGE
+ARG VCS_REF
+ARG VCS_URL
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name=$IMAGE \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url=$VCS_URL \
+      org.label-schema.schema-version="1.0"
