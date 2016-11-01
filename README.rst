@@ -163,7 +163,7 @@ Note how invoking any toolchain command (make, gcc, etc.) is just a matter of pr
 
 The dockcross script will execute the given command-line inside the container,
 along with all arguments passed after the command. Commands that evaluate
-environmental variable in the image, like `$CC` above, should be executed in
+environmental variables in the image, like `$CC` above, should be executed in
 `bash -c`. The present working directory is mounted within the image, which
 can be used to make source code available in the Docker container.
 
