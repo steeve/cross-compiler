@@ -7,4 +7,6 @@ RUN cd /opt && \
 COPY manylinux-common/install-python-packages.sh /usr/local/bin
 RUN /usr/local/bin/install-python-packages.sh
 
-RUN yum -y install sudo
+RUN yum -y install sudo && \
+  sed -i 's/Defaults    requiretty/#Defaults    requiretty/' /etc/sudoers
+
