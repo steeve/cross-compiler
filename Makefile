@@ -56,8 +56,8 @@ browser-asmjs.test: browser-asmjs
 #
 # manylinux-x64
 #
-manylinux-x64/Dockerfile: manylinux-x64/Dockerfile.in common.docker
-	sed '/common.docker/ r common.docker' manylinux-x64/Dockerfile.in > manylinux-x64/Dockerfile
+manylinux-x64/Dockerfile: manylinux-x64/Dockerfile.in common.docker common.manylinux
+	sed -e '/common.docker/ r common.docker' -e '/common.manylinux/ r common.manylinux' manylinux-x64/Dockerfile.in > manylinux-x64/Dockerfile
 
 manylinux-x64: manylinux-x64/Dockerfile
 	$(DOCKER) build -t $(ORG)/manylinux-x64 \
@@ -74,8 +74,8 @@ manylinux-x64.test: manylinux-x64
 #
 # manylinux-x86
 #
-manylinux-x86/Dockerfile: manylinux-x86/Dockerfile.in common.docker
-	sed '/common.docker/ r common.docker' manylinux-x86/Dockerfile.in > manylinux-x86/Dockerfile
+manylinux-x86/Dockerfile: manylinux-x86/Dockerfile.in common.docker common.manylinux
+	sed -e '/common.docker/ r common.docker' -e '/common.manylinux/ r common.manylinux' manylinux-x86/Dockerfile.in > manylinux-x86/Dockerfile
 
 manylinux-x86: manylinux-x86/Dockerfile
 	$(DOCKER) build -t $(ORG)/manylinux-x86 \
