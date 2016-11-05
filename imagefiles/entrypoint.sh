@@ -31,6 +31,11 @@ if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
     cp -r /root/* $HOME/
     chown -R $BUILDER_UID:$BUILDER_GID $HOME/*
 
+    # Additional updates specific to the image
+    if [[ -e /dockcross/pre_exec.sh ]]; then
+        /dockcross/pre_exec.sh
+    fi
+
     # Run the command as the specified user/group.
     exec chpst -u :$BUILDER_UID:$BUILDER_GID "$@"
 else
