@@ -8,8 +8,8 @@ WORKDIR /usr/src
 RUN wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz && \
   tar -xzvf openssl-1.0.2j.tar.gz && \
   cd openssl-1.0.2j && \
-  WRAPPER=$([[ $DEFAULT_DOCKCROSS_IMAGE == "dockcross/manylinux-x86" ]] && echo "linux32") && \
-  CONFIG_FLAG=$([[ $DEFAULT_DOCKCROSS_IMAGE == "dockcross/manylinux-x86" ]] && echo "-m32") && \
+  WRAPPER=$( [ $DEFAULT_DOCKCROSS_IMAGE = "dockcross/manylinux-x86" ] && echo "linux32" || echo "") && \
+  CONFIG_FLAG=$( [ $DEFAULT_DOCKCROSS_IMAGE = "dockcross/manylinux-x86" ] && echo "-m32" || echo "") && \
   ${WRAPPER} ./config $CONFIG_FLAG && \
   ${WRAPPER} make && \
   cd .. && \
