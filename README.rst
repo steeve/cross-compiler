@@ -10,11 +10,12 @@ Cross compiling toolchains in Docker images.
 Features
 --------
 
-* Different toolchains for cross compiling.
+* Pre-built and configured toolchains for cross compiling.
 * Most images also contain an emulator for the target system.
 * Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
 * Make variables (`CC`, `LD` etc) are set to point to the appropriate tools in the container.
-* Recent `CMake <https://cmake.org>`_ and ninja are precompiled. Toolchain files configured for CMake.
+* Recent `CMake <https://cmake.org>`_ and ninja are precompiled.
+* Toolchain files configured for CMake.
 * Current directory is mounted as the container's workdir, ``/work``.
 * Works with the `Docker Toolbox <https://www.docker.com/products/docker-toolbox>`_ on Mac OSX.
 
