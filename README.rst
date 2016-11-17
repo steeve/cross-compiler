@@ -254,6 +254,16 @@ Note that commands are executed verbatim. If any shell processing for
 environment variable expansion or redirection is required, please use
 `bash -c 'command args...'`.
 
+
+Articles
+--------
+
+- `dockcross: C++ Write Once, Run Anywhere
+  <https://nbviewer.jupyter.org/format/slides/github/dockcross/cxx-write-once-run-anywhere/blob/master/dockcross_CXX_Write_Once_Run_Anywhere.ipynb#/>`_
+- `Cross-compiling binaries for multiple architectures with Docker
+  <http://blogs.nopcode.org/brainstorm/2016/07/26/cross-compiling-with-docker>`_
+
+
 ---
 
 Credits go to `sdt/docker-raspberry-pi-cross-compiler <https://github.com/sdt/docker-raspberry-pi-cross-compiler>`_, who invented the base of the **dockcross** script.
