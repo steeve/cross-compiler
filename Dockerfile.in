@@ -1,8 +1,8 @@
 FROM debian:jessie
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-RUN apt-get update && apt-get install -y curl && \
-  sed -i "s/httpredir.debian.org/`curl -s -D - http://httpredir.debian.org/demo/debian/ | awk '/^Link:/ { print $2 }' | sed -e 's@<http://\(.*\)/debian/>;@\1@g'`/" /etc/apt/sources.list
+RUN REPO=http://cdn-fastly.deb.debian.org && \
+  echo "deb $REPO/debian jessie main\ndeb $REPO/debian jessie-updates main\ndeb $REPO/debian-security jessie/updates main" > /etc/apt/sources.list
 
 RUN apt-get update && apt-get -y install \
   automake \
