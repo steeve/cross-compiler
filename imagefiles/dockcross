@@ -171,9 +171,26 @@ fi
 # Set the docker run extra args (if any)
 FINAL_ARGS=${ARG_ARGS-${DOCKCROSS_ARGS}}
 
-# If we are not running via boot2docker
-if [ -z $DOCKER_HOST ]; then
+# Bash on Ubuntu on Windows
+UBUNTU_ON_WINDOWS=$(grep -l Microsoft /proc/version)
+# MSYS, Git Bash, etc.
+MSYS=$(grep -l MINGW /proc/version)
+
+if [ -z "$UBUNTU_ON_WINDOWS" -a -z "$MSYS" ]; then
     USER_IDS="-e BUILDER_UID=$( id -u ) -e BUILDER_GID=$( id -g ) -e BUILDER_USER=$( id -un ) -e BUILDER_GROUP=$( id -gn )"
+fi
+
+# Change the PWD when working in Docker on Windows
+if [ -n "$UBUNTU_ON_WINDOWS" ]; then
+    HOST_PWD=$PWD
+    HOST_PWD=${HOST_PWD/\/mnt\//}
+    HOST_PWD=${HOST_PWD/\//:\/}
+elif [ -n "$MSYS" ]; then
+    HOST_PWD=$PWD
+    HOST_PWD=${HOST_PWD/\//}
+    HOST_PWD=${HOST_PWD/\//:\/}
+else
+    HOST_PWD=$PWD
 fi
 
 #------------------------------------------------------------------------------
@@ -182,7 +199,7 @@ fi
 tty -s && TTY_ARGS=-ti || TTY_ARGS=
 CONTAINER_NAME=dockcross_$RANDOM
 docker run $TTY_ARGS --name $CONTAINER_NAME \
-    -v $PWD:/work \
+    -v $HOST_PWD:/work \
     $USER_IDS \
     $FINAL_ARGS \
     $FINAL_IMAGE "$@"

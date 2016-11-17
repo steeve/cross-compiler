@@ -10,7 +10,7 @@ DOCKER = docker
 ORG = dockcross
 
 # Directory where to generate the dockcross script for each images (e.g bin/dockcross-manylinux-x64)
-BIN = bin
+BIN = ./bin
 
 # These images are built using the "build implicit rule"
 STANDARD_IMAGES = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-ppc64le windows-x86 windows-x64
@@ -95,7 +95,7 @@ manylinux-x86.test: manylinux-x86
 Dockerfile: Dockerfile.in common.docker
 	sed '/common.docker/ r common.docker' Dockerfile.in > Dockerfile
 
-base: Dockerfile
+base: Dockerfile imagefiles/
 	$(DOCKER) build -t $(ORG)/base \
 		--build-arg IMAGE=$(ORG)/base \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
