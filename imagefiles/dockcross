@@ -199,7 +199,7 @@ fi
 tty -s && TTY_ARGS=-ti || TTY_ARGS=
 CONTAINER_NAME=dockcross_$RANDOM
 docker run $TTY_ARGS --name $CONTAINER_NAME \
-    -v $HOST_PWD:/work \
+    -v "$HOST_PWD":/work \
     $USER_IDS \
     $FINAL_ARGS \
     $FINAL_IMAGE "$@"
