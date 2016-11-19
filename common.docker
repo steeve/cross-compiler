@@ -35,7 +35,7 @@ RUN wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz && \
     -DOPENSSL_ROOT_DIR:PATH=/usr/src/openssl-1.0.2j \
     . && \
   ${WRAPPER} make install && \
-  cd .. && rm -rf CMake* && rm -rf /usr/src/openssl-1.0.2j
+  cd .. && rm -rf CMake* && rm -rf /usr/src/openssl-1.0.2j*
 
 RUN git clone "https://github.com/ninja-build/ninja.git" && \
    cd ninja && \
