@@ -10,8 +10,8 @@ WORKDIR /usr/src
 RUN wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz && \
   tar -xzvf openssl-1.0.2j.tar.gz && \
   cd openssl-1.0.2j && \
-  WRAPPER=$( [ $DEFAULT_DOCKCROSS_IMAGE = "dockcross/manylinux-x86" ] && echo "linux32" || echo "") && \
-  CONFIG_FLAG=$( [ $DEFAULT_DOCKCROSS_IMAGE = "dockcross/manylinux-x86" ] && echo "-m32" || echo "") && \
+  WRAPPER=$( [ "$DEFAULT_DOCKCROSS_IMAGE" = "dockcross/manylinux-x86" ] && echo "linux32" || echo "") && \
+  CONFIG_FLAG=$( [ "$DEFAULT_DOCKCROSS_IMAGE" = "dockcross/manylinux-x86" ] && echo "-m32" || echo "") && \
   ${WRAPPER} ./config --prefix=/usr $CONFIG_FLAG && \
   ${WRAPPER} make && \
   ( \
@@ -35,7 +35,7 @@ RUN wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz && \
     -DOPENSSL_ROOT_DIR:PATH=/usr/src/openssl-1.0.2j \
     . && \
   ${WRAPPER} make install && \
-  cd .. && rm -rf CMake* && rm -rf /usr/src/openssl-1.0.2j
+  cd .. && rm -rf CMake* && rm -rf /usr/src/openssl-1.0.2j*
 
 RUN git clone "https://github.com/ninja-build/ninja.git" && \
    cd ninja && \
