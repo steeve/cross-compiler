@@ -6,6 +6,6 @@ set(cross_triple "x86_64-linux-gnu")
 
 set(CMAKE_C_COMPILER /usr/bin/${cross_triple}-gcc)
 set(CMAKE_CXX_COMPILER /usr/bin/${cross_triple}-g++)
-set(CMAKE_ASM_COMPILER /usr/bin/${cross_triple}-as)
+set(CMAKE_ASM_COMPILER ${CMAKE_C_COMPILER})
 
 set(CMAKE_CROSSCOMPILING_EMULATOR /usr/bin/${cross_triple}-noop)
