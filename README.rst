@@ -17,7 +17,7 @@ Features
 * Recent `CMake <https://cmake.org>`_ and ninja are precompiled.
 * Toolchain files configured for CMake.
 * Current directory is mounted as the container's workdir, ``/work``.
-* Works with the `Docker for Mac <https://docs.docker.com/docker-for-mac/>`_ and `Docker for Windows <https://docs.docker.com/docker-for-windows/`_.
+* Works with the `Docker for Mac <https://docs.docker.com/docker-for-mac/>`_ and `Docker for Windows <https://docs.docker.com/docker-for-windows/>`_.
 
 
 Cross compilers
