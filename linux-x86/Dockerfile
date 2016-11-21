@@ -9,8 +9,7 @@ RUN dpkg --add-architecture i386 && \
     libstdc++6:i386 \
     libbz2-dev:i386 \
     libexpat1-dev:i386 \
-    ncurses-dev:i386 \
-    libssl-dev:i386
+    ncurses-dev:i386
 
 ENV CROSS_TRIPLE i686-linux-gnu
 ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
@@ -33,6 +32,12 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
     CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gcc \
     CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++
+
+
+COPY install-openssl.sh /dockcross/
+RUN \
+  /dockcross/install-openssl.sh -32 && \
+  rm /dockcross/install-openssl.sh
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-x86
 
