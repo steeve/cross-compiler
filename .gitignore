@@ -2,3 +2,5 @@ bin
 dockcross
 */test/
 Dockerfile
+*/install-openssl.sh
+!imagefiles/install-openssl.sh

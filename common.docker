@@ -6,36 +6,16 @@ COPY imagefiles/.bashrc /root/
 
 WORKDIR /usr/src
 
-
-RUN wget https://www.openssl.org/source/openssl-1.0.2j.tar.gz && \
-  tar -xzvf openssl-1.0.2j.tar.gz && \
-  cd openssl-1.0.2j && \
-  WRAPPER=$( [ "$DEFAULT_DOCKCROSS_IMAGE" = "dockcross/manylinux-x86" ] && echo "linux32" || echo "") && \
-  CONFIG_FLAG=$( [ "$DEFAULT_DOCKCROSS_IMAGE" = "dockcross/manylinux-x86" ] && echo "-m32" || echo "") && \
-  ${WRAPPER} ./config --prefix=/usr $CONFIG_FLAG && \
-  ${WRAPPER} make && \
-  ( \
-    ( echo $DEFAULT_DOCKCROSS_IMAGE | grep -E "linux-x(86|64)" ) && \
-    ${WRAPPER} make install || \
-    echo "Skipping OpenSSL installation" \
-  ) && \
-  cd .. && \
-  git clone git://cmake.org/cmake.git CMake && \
-  cd CMake && \
-  git checkout ab2ae4823c3b60347825da4b851cd4e676f8bed1 && \
-  mkdir /usr/src/CMake-build && \
-  cd /usr/src/CMake-build && \
-  ${WRAPPER} /usr/src/CMake/bootstrap \
-    --parallel=$(grep -c processor /proc/cpuinfo) \
-    --prefix=/usr && \
-  ${WRAPPER} make -j$(grep -c processor /proc/cpuinfo) && \
-  ${WRAPPER} ./bin/cmake \
-    -DCMAKE_BUILD_TYPE:STRING=Release \
-    -DCMAKE_USE_OPENSSL:BOOL=ON \
-    -DOPENSSL_ROOT_DIR:PATH=/usr/src/openssl-1.0.2j \
-    . && \
-  ${WRAPPER} make install && \
-  cd .. && rm -rf CMake* && rm -rf /usr/src/openssl-1.0.2j*
+COPY imagefiles/install-openssl.sh imagefiles/install-cmake.sh /dockcross/
+RUN \
+  if [ "$DEFAULT_DOCKCROSS_IMAGE" = "dockcross/manylinux-x86" ]; then \
+    /dockcross/install-openssl.sh -32 && \
+    /dockcross/install-cmake.sh -32 || exit 1; \
+  else \
+    /dockcross/install-openssl.sh && \
+    /dockcross/install-cmake.sh || exit 1; \
+  fi; \
+  rm /dockcross/install-openssl.sh /dockcross/install-cmake.sh
 
 RUN git clone "https://github.com/ninja-build/ninja.git" && \
    cd ninja && \

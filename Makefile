@@ -118,6 +118,7 @@ $(VERBOSE).SILENT: display_images
 # build implicit rule
 #
 $(STANDARD_IMAGES): base
+	cp imagefiles/install-openssl.sh $@/
 	$(DOCKER) build -t $(ORG)/$@ \
 		--build-arg IMAGE=$(ORG)/$@ \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \

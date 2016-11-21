@@ -15,8 +15,6 @@ RUN apt-get update && apt-get -y install \
   file \
   git \
   gzip \
-  libcurl4-openssl-dev \
-  libssl-dev \
   make \
   ncurses-dev \
   pkg-config \
