@@ -101,8 +101,8 @@ manylinux-x86.test: manylinux-x86
 #
 # base
 #
-Dockerfile: Dockerfile.in common.docker
-	sed '/common.docker/ r common.docker' Dockerfile.in > Dockerfile
+Dockerfile: Dockerfile.in common.docker common.debian
+	sed -e '/common.docker/ r common.docker' -e '/common.debian/ r common.debian' Dockerfile.in > Dockerfile
 
 base: Dockerfile imagefiles/
 	$(DOCKER) build -t $(ORG)/base \

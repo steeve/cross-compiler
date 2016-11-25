@@ -1,35 +1,7 @@
 FROM debian:jessie
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-RUN REPO=http://cdn-fastly.deb.debian.org && \
-  echo "deb $REPO/debian jessie main\ndeb $REPO/debian jessie-updates main\ndeb $REPO/debian-security jessie/updates main" > /etc/apt/sources.list
-
-RUN apt-get update && apt-get -y install \
-  automake \
-  autogen \
-  bash \
-  build-essential \
-  bzip2 \
-  ca-certificates \
-  curl \
-  file \
-  git \
-  gzip \
-  make \
-  ncurses-dev \
-  pkg-config \
-  libtool \
-  python \
-  rsync \
-  sed \
-  bison \
-  flex \
-  tar \
-  vim \
-  wget \
-  runit \
-  xz-utils && \
-  apt-get -y clean
+#include "common.debian"
 
 #include "common.docker"
 
