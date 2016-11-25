@@ -34,7 +34,7 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++
 
 
-COPY install-openssl.sh /dockcross/
+COPY imagefiles/install-openssl.sh /dockcross/
 RUN \
   /dockcross/install-openssl.sh -32 && \
   rm /dockcross/install-openssl.sh

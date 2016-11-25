@@ -17,15 +17,14 @@ RUN \
   fi; \
   rm /dockcross/install-openssl.sh /dockcross/install-cmake.sh
 
-RUN git clone "https://github.com/ninja-build/ninja.git" && \
-   cd ninja && \
-   git checkout v1.7.1 && \
-   ([ -e /opt/python/cp35-cp35m/bin/python ] && /opt/python/cp35-cp35m/bin/python ./configure.py --bootstrap) || python ./configure.py --bootstrap && \
-   ./ninja && \
-   cp ./ninja /usr/bin/ && \
-   cd .. && rm -rf ninja
 COPY imagefiles/cmake.sh /usr/local/bin/cmake
 COPY imagefiles/ccmake.sh /usr/local/bin/ccmake
+
+COPY imagefiles/install-ninja.sh /dockcross/
+RUN \
+  /dockcross/install-ninja.sh \
+    -python $([ -e /opt/python/cp35-cp35m/bin/python ] && echo "/opt/python/cp35-cp35m/bin/python" || echo "python") && \
+  rm /dockcross/install-ninja.sh
 
 RUN echo "root:root" | chpasswd
 WORKDIR /work
