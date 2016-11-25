@@ -2,5 +2,6 @@ bin
 dockcross
 */test/
 Dockerfile
+browser-asmjs/Dockerfile
 */imagefiles/*
 !imagefiles/*
