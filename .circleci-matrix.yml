@@ -81,7 +81,6 @@ command:
       echo "Saving dockcross/$IMAGE into ~/docker cache - done"
 
     fi
-  - |
     if [[ $STEP == "deployment" ]]; then
       docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       if [[ $CIRCLE_NODE_INDEX == 0 ]] && [[ ! -f ~/BASE_PUSHED ]]; then
