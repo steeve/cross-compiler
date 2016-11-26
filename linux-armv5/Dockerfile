@@ -1,4 +1,4 @@
-FROM dockcross/base
+FROM dockcross/base:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # This is for ARMv5 "legacy" (armel) devices which do NOT support hard float
