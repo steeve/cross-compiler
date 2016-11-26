@@ -1,3 +1,4 @@
+
 env:
   - IMAGE=android-arm
   - IMAGE=browser-asmjs
@@ -80,7 +81,7 @@ command:
       mkdir -p ~/docker; time docker save dockcross/$IMAGE > ~/docker/$IMAGE.tar
       echo "Saving dockcross/$IMAGE into ~/docker cache - done"
     fi
-    if [[ $STEP == "deployment" ]]; then
+    if [[ $STEP == "deployment" ]] && [[ "$CIRCLE_BRANCH" == "master" ]]; then
       echo "Docker login"
       docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       echo "Docker login - done"

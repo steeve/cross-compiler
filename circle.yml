@@ -26,13 +26,8 @@ test:
         timeout: 3000
         environment:
           STEP: test
+    - circleci-matrix:
+        parallel: true
+        environment:
+          STEP: deployment
 
-deployment:
-  hub:
-    branch: master
-    commands:
-      - circleci-matrix:
-          parallel: true
-          timeout: 1800
-          environment:
-            STEP: deployment
