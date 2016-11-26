@@ -39,7 +39,7 @@ test: base.test $(addsuffix .test,$(IMAGES))
 #
 # browser-asmjs
 #
-browser-asmjs: base browser-asmjs/Dockerfile.in common.docker common.debian
+browser-asmjs: browser-asmjs/Dockerfile.in common.docker common.debian
 	sed -e '/common.docker/ r common.docker' -e '/common.debian/ r common.debian' $@/Dockerfile.in > $@/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	cp -r test browser-asmjs/

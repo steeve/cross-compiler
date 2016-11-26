@@ -1,4 +1,4 @@
-FROM dockcross/base
+FROM dockcross/base:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Add the cross compiler sources
