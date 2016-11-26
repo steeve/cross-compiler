@@ -79,10 +79,11 @@ command:
       echo "Saving dockcross/$IMAGE into ~/docker cache"
       mkdir -p ~/docker; time docker save dockcross/$IMAGE > ~/docker/$IMAGE.tar
       echo "Saving dockcross/$IMAGE into ~/docker cache - done"
-
     fi
     if [[ $STEP == "deployment" ]]; then
+      echo "Docker login"
       docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      echo "Docker login - done"
       if [[ $CIRCLE_NODE_INDEX == 0 ]] && [[ ! -f ~/BASE_PUSHED ]]; then
         echo "Pushing dockcross/base"
         time docker push dockcross/base

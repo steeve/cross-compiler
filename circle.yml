@@ -33,5 +33,6 @@ deployment:
     commands:
       - circleci-matrix:
           parallel: true
+          timeout: 1800
           environment:
             STEP: deployment
