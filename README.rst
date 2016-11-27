@@ -210,8 +210,8 @@ convenience target ``display_images`` could be used::
   done
 
 
-Configuration
--------------
+Dockcross configuration
+-----------------------
 
 The following environmental variables and command-line options are used. In
 all cases, the command-line option overrides the environment variable.
@@ -236,6 +236,18 @@ DOCKCROSS_ARGS / --args|-a <docker-run-args>
 
 Extra arguments to pass to the ``docker run`` command. Quote the entire set of
 args if they contain spaces.
+
+
+Pre-project dockcross configuration
+-----------------------------------
+
+If a shell script named ``.dockcross`` is found in the current directory where
+the dockcross script is started, it is executed before the dockcross script
+``command`` argument.  The shell script is expected to have a shebang like
+``#!/bin/bash``.
+
+For example, commands like ``git config --global advice.detachedHead false`` can
+be added to this script.
 
 
 Examples

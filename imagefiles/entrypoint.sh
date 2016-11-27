@@ -35,6 +35,11 @@ if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
         /dockcross/pre_exec.sh
     fi
 
+    # Execute project specific pre execution hook
+    if [[ -e /work/.dockcross ]]; then
+       chpst -u :$BUILDER_UID:$BUILDER_GID /work/.dockcross
+    fi
+
     # Run the command as the specified user/group.
     exec chpst -u :$BUILDER_UID:$BUILDER_GID "$@"
 else
