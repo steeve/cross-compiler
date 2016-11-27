@@ -49,7 +49,7 @@ cd /usr/src
 
 # Download
 if [ ! -f ./openssl-$OPENSSL_VERSION.tar.gz ]; then
-  wget https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz
+  wget --progress=bar:force https://www.openssl.org/source/openssl-$OPENSSL_VERSION.tar.gz
 else
   rm -rf ./openssl-$OPENSSL_VERSION
 fi

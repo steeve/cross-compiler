@@ -1,5 +1,5 @@
 RUN cd /opt && \
-  wget "http://smarden.org/runit/runit-2.1.2.tar.gz" && \
+  wget --progress=bar:force "http://smarden.org/runit/runit-2.1.2.tar.gz" && \
   tar xvzf runit-2.1.2.tar.gz && \
   cd admin/runit-2.1.2 && \
   ./package/install
