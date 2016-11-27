@@ -26,7 +26,7 @@ command:
           fi
 
           echo "Pulling dockcross/base"
-          time docker pull dockcross/base
+          time docker pull dockcross/base | cat
           echo "Pulling dockcross/base - done"
 
           time make base.test
@@ -48,6 +48,7 @@ command:
             exit_code=$?
             if [[ $exit_code -eq 0 ]]; then break; elif [[ $exit_code -eq 1 ]]; then echo -n "."; else exit $exit_code;fi
           done
+          echo ""
           echo "Waiting for node0 - done"
 
           echo "Copying base image from node0"
@@ -68,7 +69,7 @@ command:
       fi
 
       echo "Pulling dockcross/$IMAGE"
-      time docker pull dockcross/$IMAGE
+      time docker pull dockcross/$IMAGE | cat
       echo "Pulling dockcross/$IMAGE - done"
 
       echo "Loading base.tar from ~/docker cache"
@@ -87,12 +88,12 @@ command:
       echo "Docker login - done"
       if [[ $CIRCLE_NODE_INDEX == 0 ]] && [[ ! -f ~/BASE_PUSHED ]]; then
         echo "Pushing dockcross/base"
-        time docker push dockcross/base
+        time docker push dockcross/base | cat
         echo "Pulling dockcross/base - done"
         touch ~/BASE_PUSHED
       fi
 
       echo "Pushing dockcross/$IMAGE"
-      time docker push dockcross/$IMAGE
+      time docker push dockcross/$IMAGE | cat
       echo "Pushing dockcross/$IMAGE - done"
     fi
