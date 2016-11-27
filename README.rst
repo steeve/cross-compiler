@@ -238,7 +238,7 @@ Extra arguments to pass to the ``docker run`` command. Quote the entire set of
 args if they contain spaces.
 
 
-Pre-project dockcross configuration
+Per-project dockcross configuration
 -----------------------------------
 
 If a shell script named ``.dockcross`` is found in the current directory where
