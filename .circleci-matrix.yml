@@ -48,6 +48,7 @@ command:
             exit_code=$?
             if [[ $exit_code -eq 0 ]]; then break; elif [[ $exit_code -eq 1 ]]; then echo -n "."; else exit $exit_code;fi
           done
+          echo ""
           echo "Waiting for node0 - done"
 
           echo "Copying base image from node0"
