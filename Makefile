@@ -26,6 +26,13 @@ linux-ppc64le.test_ARGS = --languages C
 windows-x86.test_ARGS = --exe-suffix ".exe"
 windows-x64.test_ARGS = --exe-suffix ".exe"
 
+# On CircleCI, do not attempt to delete container
+# See https://circleci.com/docs/docker-btrfs-error/
+RM = "--rm"
+ifeq ("$(CIRCLECI)", "true")
+	RM = ""
+endif
+
 #
 # images: This target builds all IMAGES (because it is the first one, it is built by default)
 #
@@ -54,7 +61,7 @@ browser-asmjs: browser-asmjs/Dockerfile.in common.docker common.debian
 
 browser-asmjs.test: browser-asmjs
 	cp -r test browser-asmjs/
-	$(DOCKER) run --rm dockcross/browser-asmjs > $(BIN)/dockcross-browser-asmjs && chmod +x $(BIN)/dockcross-browser-asmjs
+	$(DOCKER) run $(RM) dockcross/browser-asmjs > $(BIN)/dockcross-browser-asmjs && chmod +x $(BIN)/dockcross-browser-asmjs
 	$(BIN)/dockcross-browser-asmjs python test/run.py --exe-suffix ".js"
 	rm -rf browser-asmjs/test
 
@@ -75,7 +82,7 @@ manylinux-x64: manylinux-x64/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux-x64.test: manylinux-x64
-	$(DOCKER) run --rm dockcross/manylinux-x64 > $(BIN)/dockcross-manylinux-x64 && chmod +x $(BIN)/dockcross-manylinux-x64
+	$(DOCKER) run $(RM) dockcross/manylinux-x64 > $(BIN)/dockcross-manylinux-x64 && chmod +x $(BIN)/dockcross-manylinux-x64
 	$(BIN)/dockcross-manylinux-x64 /opt/python/cp35-cp35m/bin/python test/run.py
 
 #
@@ -95,7 +102,7 @@ manylinux-x86: manylinux-x86/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux-x86.test: manylinux-x86
-	$(DOCKER) run --rm dockcross/manylinux-x86 > $(BIN)/dockcross-manylinux-x86 && chmod +x $(BIN)/dockcross-manylinux-x86
+	$(DOCKER) run $(RM) dockcross/manylinux-x86 > $(BIN)/dockcross-manylinux-x86 && chmod +x $(BIN)/dockcross-manylinux-x86
 	$(BIN)/dockcross-manylinux-x86 /opt/python/cp35-cp35m/bin/python test/run.py
 
 #
@@ -111,7 +118,7 @@ base: Dockerfile imagefiles/
 		.
 
 base.test: base
-	$(DOCKER) run --rm dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
+	$(DOCKER) run $(RM) dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
 
 #
 # display
@@ -139,7 +146,7 @@ $(STANDARD_IMAGES): base
 #
 .SECONDEXPANSION:
 $(addsuffix .test,$(STANDARD_IMAGES)): $$(basename $$@)
-	$(DOCKER) run --rm dockcross/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
+	$(DOCKER) run $(RM) dockcross/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
 	$(BIN)/dockcross-$(basename $@) python test/run.py $($@_ARGS)
 
 #
