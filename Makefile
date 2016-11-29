@@ -28,9 +28,9 @@ windows-x64.test_ARGS = --exe-suffix ".exe"
 
 # On CircleCI, do not attempt to delete container
 # See https://circleci.com/docs/docker-btrfs-error/
-RM = "--rm"
+RM = --rm
 ifeq ("$(CIRCLECI)", "true")
-	RM = ""
+	RM =
 endif
 
 #
