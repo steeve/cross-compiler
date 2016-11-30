@@ -6,6 +6,7 @@ RUN apt-get update && apt-get -y install \
   autogen \
   bash \
   build-essential \
+  bc \
   bzip2 \
   ca-certificates \
   curl \
