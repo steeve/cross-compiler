@@ -172,9 +172,9 @@ fi
 FINAL_ARGS=${ARG_ARGS-${DOCKCROSS_ARGS}}
 
 # Bash on Ubuntu on Windows
-UBUNTU_ON_WINDOWS=$(grep -l Microsoft /proc/version)
+UBUNTU_ON_WINDOWS=$([ -e /proc/version ] && grep -l Microsoft /proc/version || echo "")
 # MSYS, Git Bash, etc.
-MSYS=$(grep -l MINGW /proc/version)
+MSYS=$([ -e /proc/version ] && grep -l MINGW /proc/version || echo "")
 
 if [ -z "$UBUNTU_ON_WINDOWS" -a -z "$MSYS" ]; then
     USER_IDS="-e BUILDER_UID=$( id -u ) -e BUILDER_GID=$( id -g ) -e BUILDER_USER=$( id -un ) -e BUILDER_GROUP=$( id -gn )"
