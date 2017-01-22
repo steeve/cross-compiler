@@ -76,6 +76,11 @@ dockcross/linux-armv6
 dockcross/linux-armv7
   |linux-armv7-images| Generic Linux armv7 cross compiler toolchain.
 
+.. |linux-mipsel-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-mipsel.svg
+  :target: https://microbadger.com/images/dockcross/linux-mipsel
+
+dockcross/linux-mipsel
+  |linux-mipsel-images| Linux mipsel cross compiler toolchain for little endian MIPS GNU systems.
 
 .. |linux-ppc64le-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-ppc64le.svg
   :target: https://microbadger.com/images/dockcross/linux-ppc64le
