@@ -1,0 +1,15 @@
+RUN cd /opt && \
+  wget --progress=bar:force "http://smarden.org/runit/runit-2.1.2.tar.gz" && \
+  tar xvzf runit-2.1.2.tar.gz && \
+  cd admin/runit-2.1.2 && \
+  ./package/install
+
+COPY manylinux-common/install-python-packages.sh /usr/local/bin
+RUN /usr/local/bin/install-python-packages.sh
+
+COPY manylinux-common/pre_exec.sh /dockcross/pre_exec.sh
+
+RUN yum -y install sudo && \
+  sed -i 's/Defaults    requiretty/#Defaults    requiretty/' /etc/sudoers && \
+  visudo -c
+
