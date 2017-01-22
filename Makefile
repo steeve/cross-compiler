@@ -13,7 +13,7 @@ ORG = dockcross
 BIN = ./bin
 
 # These images are built using the "build implicit rule"
-STANDARD_IMAGES = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-ppc64le windows-x86 windows-x64
+STANDARD_IMAGES = android-arm linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-mipsel linux-ppc64le windows-x86 windows-x64
 
 # These images are expected to have explicit rules for *both* build and testing
 NON_STANDARD_IMAGES = browser-asmjs manylinux-x64 manylinux-x86
