@@ -34,11 +34,11 @@ help:update-image() {
 }
 
 command:update-script() {
-    if cmp -s <( docker run $FINAL_IMAGE ) $0; then
+    if cmp -s <( docker run --rm $FINAL_IMAGE ) $0; then
         echo $0 is up to date
     else
         echo -n Updating $0 '... '
-        docker run $FINAL_IMAGE > $0 && echo ok
+        docker run --rm $FINAL_IMAGE > $0 && echo ok
     fi
 }
 
