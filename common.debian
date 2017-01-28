@@ -1,7 +1,9 @@
 RUN REPO=http://cdn-fastly.deb.debian.org && \
   echo "deb $REPO/debian jessie main\ndeb $REPO/debian jessie-updates main\ndeb $REPO/debian-security jessie/updates main" > /etc/apt/sources.list
 
-RUN apt-get update && apt-get -y install \
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install \
   automake \
   autogen \
   bash \
@@ -27,4 +29,4 @@ RUN apt-get update && apt-get -y install \
   wget \
   runit \
   xz-utils && \
-  apt-get -y clean
+  apt-get clean
