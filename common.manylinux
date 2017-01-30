@@ -9,7 +9,7 @@ RUN /usr/local/bin/install-python-packages.sh
 
 COPY manylinux-common/pre_exec.sh /dockcross/pre_exec.sh
 
-RUN yum -y install sudo && \
+RUN yum -y install pax zip sudo && \
   sed -i 's/Defaults    requiretty/#Defaults    requiretty/' /etc/sudoers && \
   visudo -c
 
