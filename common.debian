@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install \
   pkg-config \
   libtool \
   python \
+  python-pip \
   rsync \
   sed \
   bison \
