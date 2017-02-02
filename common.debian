@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install \
   file \
   git \
   gzip \
+  zip \
   make \
   ncurses-dev \
   pkg-config \
