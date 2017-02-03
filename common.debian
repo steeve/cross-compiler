@@ -3,7 +3,7 @@ RUN REPO=http://cdn-fastly.deb.debian.org && \
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install \
+RUN apt-get update --yes && apt-get install --yes \
   automake \
   autogen \
   bash \
@@ -32,4 +32,4 @@ RUN apt-get update && apt-get install \
   wget \
   runit \
   xz-utils && \
-  apt-get clean
+  apt-get clean --yes
