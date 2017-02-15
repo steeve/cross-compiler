@@ -16,14 +16,14 @@ RUN apt-get update && apt-get install -y \
   qemu-user \
   qemu-user-static
 
-ENV CROSS_TRIPLE mips-linux-gnueabi
+ENV CROSS_TRIPLE mipsel-linux-gnueabi
 ENV CROSS_ROOT /usr/bin
-ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
-    AR=/usr/bin/${CROSS_TRIPLE}-ar \
-    CC=/usr/bin/${CROSS_TRIPLE}-gcc \
-    CPP=/usr/bin/${CROSS_TRIPLE}-cpp \
-    CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
-    LD=/usr/bin/${CROSS_TRIPLE}-ld
+ENV AS=${CROSS_ROOT}/${CROSS_TRIPLE}-as \
+    AR=${CROSS_ROOT}/${CROSS_TRIPLE}-ar \
+    CC=${CROSS_ROOT}/${CROSS_TRIPLE}-gcc \
+    CPP=${CROSS_ROOT}/${CROSS_TRIPLE}-cpp \
+    CXX=${CROSS_ROOT}/${CROSS_TRIPLE}-g++ \
+    LD=${CROSS_ROOT}/${CROSS_TRIPLE}-ld
 
 ENV QEMU_LD_PREFIX ${CROSS_ROOT}/libc
 ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${CROSS_ROOT}/libc/lib/${CROSS_TRIPLE}/"
