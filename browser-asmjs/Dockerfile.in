@@ -9,7 +9,7 @@ RUN rm /bin/sh && ln -s /bin/dash /bin/sh
 
 #include "common.docker"
 
-ENV EMSCRIPTEN_VERSION 1.36.14
+ENV EMSCRIPTEN_VERSION 1.37.3
 
 ENV PATH /emsdk_portable:/emsdk_portable/clang/tag-e${EMSCRIPTEN_VERSION}/build_tag-e${EMSCRIPTEN_VERSION}_64/bin:/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}:${PATH}
 ENV CC=/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/emcc \
