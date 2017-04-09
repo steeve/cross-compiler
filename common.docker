@@ -26,7 +26,7 @@ RUN \
     -python $([ -e /opt/python/cp35-cp35m/bin/python ] && echo "/opt/python/cp35-cp35m/bin/python" || echo "python") && \
   rm /dockcross/install-ninja.sh
 
-RUN pip install conan
+RUN $([ -e /opt/python/cp35-cp35m/bin/python ] && echo "/opt/python/cp35-cp35m/bin/python" || echo "python") -m pip install conan
 
 RUN echo "root:root" | chpasswd
 WORKDIR /work
