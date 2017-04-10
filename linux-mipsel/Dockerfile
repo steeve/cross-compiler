@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y \
   qemu-user \
   qemu-user-static
 
-ENV CROSS_TRIPLE mipsel-linux-gnueabi
+ENV CROSS_TRIPLE mipsel-linux-gnu
 ENV CROSS_ROOT /usr/bin
 ENV AS=${CROSS_ROOT}/${CROSS_TRIPLE}-as \
     AR=${CROSS_ROOT}/${CROSS_TRIPLE}-ar \
