@@ -26,7 +26,7 @@ while [ $# -gt 0 ]; do
 done
 
 # Download
-REV=v1.7.1
+REV=v1.7.2
 wget --progress=bar:force https://github.com/ninja-build/ninja/archive/$REV.tar.gz -O ninja.tar.gz
 mkdir ninja
 tar -xzvf ./ninja.tar.gz --strip-components=1 -C ./ninja
