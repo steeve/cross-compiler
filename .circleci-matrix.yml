@@ -6,6 +6,7 @@ env:
   - IMAGE=linux-armv5
   - IMAGE=linux-armv6
   - IMAGE=linux-armv7
+  - IMAGE=linux-mipsel
   - IMAGE=linux-ppc64le
   - IMAGE=linux-x64
   - IMAGE=linux-x86
