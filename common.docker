@@ -19,6 +19,8 @@ RUN \
 
 COPY imagefiles/cmake.sh /usr/local/bin/cmake
 COPY imagefiles/ccmake.sh /usr/local/bin/ccmake
+# /opt/rh/devtoolset-2/root/usr/bin/sudo expects sudo at this location
+COPY imagefiles/sudo.sh /usr/bin/sudo
 
 COPY imagefiles/install-ninja.sh /dockcross/
 RUN \
