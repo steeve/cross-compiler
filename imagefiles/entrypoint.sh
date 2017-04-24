@@ -24,7 +24,6 @@ if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
 
     groupadd -o -g $BUILDER_GID $BUILDER_GROUP 2> /dev/null
     useradd -o -m -g $BUILDER_GID -u $BUILDER_UID $BUILDER_USER 2> /dev/null
-    echo "$BUILDER_USER    ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
     export HOME=/home/${BUILDER_USER}
     shopt -s dotglob
     cp -r /root/* $HOME/
@@ -37,11 +36,15 @@ if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
 
     # Execute project specific pre execution hook
     if [[ -e /work/.dockcross ]]; then
-       chpst -u :$BUILDER_UID:$BUILDER_GID /work/.dockcross
+       gosu $BUILDER_UID:$BUILDER_GID /work/.dockcross
     fi
 
+    # Enable passwordless sudo capabilities for the user
+    chown root:$BUILDER_GID $(which gosu)
+    chmod +s $(which gosu)
+
     # Run the command as the specified user/group.
-    exec chpst -u :$BUILDER_UID:$BUILDER_GID "$@"
+    exec gosu $BUILDER_UID:$BUILDER_GID "$@"
 else
     # Just run the command as root.
     exec "$@"
