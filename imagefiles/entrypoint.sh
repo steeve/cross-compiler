@@ -41,7 +41,7 @@ if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
 
     # Enable passwordless sudo capabilities for the user
     chown root:$BUILDER_GID $(which gosu)
-    chmod +s $(which gosu)
+    chmod +s $(which gosu); sync
 
     # Run the command as the specified user/group.
     exec gosu $BUILDER_UID:$BUILDER_GID "$@"
