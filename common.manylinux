@@ -23,5 +23,5 @@ RUN /usr/local/bin/install-python-packages.sh
 
 COPY manylinux-common/pre_exec.sh /dockcross/pre_exec.sh
 
-RUN yum -y install pax zip \
+RUN yum -y install pax zip openssh-clients \
   && yum clean all

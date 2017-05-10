@@ -193,6 +193,16 @@ else
     HOST_PWD=$PWD
 fi
 
+# Mount Additional Volumes
+if [ -z "$SSH_DIR" ]; then
+    SSH_DIR="$HOME/.ssh"
+fi
+
+HOST_VOLUMES=
+if [ -e "$SSH_DIR" ]; then
+    HOST_VOLUMES+="-v $SSH_DIR:/home/$(id -un)/.ssh"
+fi
+
 #------------------------------------------------------------------------------
 # Now, finally, run the command in a container
 #
@@ -200,6 +210,7 @@ tty -s && TTY_ARGS=-ti || TTY_ARGS=
 CONTAINER_NAME=dockcross_$RANDOM
 docker run $TTY_ARGS --name $CONTAINER_NAME \
     -v "$HOST_PWD":/work \
+    $HOST_VOLUMES \
     $USER_IDS \
     $FINAL_ARGS \
     $FINAL_IMAGE "$@"

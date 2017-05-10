@@ -24,6 +24,7 @@ RUN apt-get update --yes && apt-get install --no-install-recommends --yes \
   python-pip \
   rsync \
   sed \
+  ssh \
   bison \
   flex \
   tar \
