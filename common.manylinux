@@ -1,8 +1,3 @@
-
-ADD imagefiles/etc/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo
-ADD imagefiles/etc/CentOS-Vault.repo /etc/yum.repos.d/CentOS-Vault.repo
-ADD imagefiles/etc/libselinux.repo /etc/yum.repos.d/libselinux.repo
-
 ENV GOSU_VERSION 1.10
 RUN set -x \
 	&& yum -y install epel-release \
