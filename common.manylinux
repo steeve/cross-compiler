@@ -12,6 +12,7 @@ RUN set -x \
 	&& chmod +x /usr/bin/gosu \
 	&& gosu nobody true \
 	&& yum clean all
+RUN rm /opt/rh/devtoolset-2/root/usr/bin/sudo
 
 COPY manylinux-common/install-python-packages.sh /usr/local/bin
 RUN /usr/local/bin/install-python-packages.sh
