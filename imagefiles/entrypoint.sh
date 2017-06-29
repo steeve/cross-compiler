@@ -27,7 +27,7 @@ if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
     export HOME=/home/${BUILDER_USER}
     shopt -s dotglob
     cp -r /root/* $HOME/
-    chown -R $BUILDER_UID:$BUILDER_GID $HOME/*
+    chown -R $BUILDER_UID:$BUILDER_GID $HOME
 
     # Additional updates specific to the image
     if [[ -e /dockcross/pre_exec.sh ]]; then
