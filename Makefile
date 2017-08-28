@@ -50,7 +50,7 @@ browser-asmjs: browser-asmjs/Dockerfile.in common.docker common.debian
 	sed -e '/common.docker/ r common.docker' -e '/common.debian/ r common.debian' $@/Dockerfile.in > $@/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	cp -r test browser-asmjs/
-	$(DOCKER) build -t $(ORG)/browser-asmjs \
+	$(DOCKER) build -t $(ORG)/browser-asmjs:latest \
 		--build-arg IMAGE=$(ORG)/browser-asmjs \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
@@ -73,7 +73,7 @@ manylinux-x64/Dockerfile: manylinux-x64/Dockerfile.in common.docker common.manyl
 
 manylinux-x64: manylinux-x64/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
-	$(DOCKER) build -t $(ORG)/manylinux-x64 \
+	$(DOCKER) build -t $(ORG)/manylinux-x64:latest \
 		--build-arg IMAGE=$(ORG)/manylinux-x64 \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
@@ -93,7 +93,7 @@ manylinux-x86/Dockerfile: manylinux-x86/Dockerfile.in common.docker common.manyl
 
 manylinux-x86: manylinux-x86/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
-	$(DOCKER) build -t $(ORG)/manylinux-x86 \
+	$(DOCKER) build -t $(ORG)/manylinux-x86:latest \
 		--build-arg IMAGE=$(ORG)/manylinux-x86 \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
@@ -112,7 +112,7 @@ Dockerfile: Dockerfile.in common.docker common.debian
 	sed -e '/common.docker/ r common.docker' -e '/common.debian/ r common.debian' Dockerfile.in > Dockerfile
 
 base: Dockerfile imagefiles/
-	$(DOCKER) build -t $(ORG)/base \
+	$(DOCKER) build -t $(ORG)/base:latest \
 		--build-arg IMAGE=$(ORG)/base \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		.
@@ -133,7 +133,7 @@ $(VERBOSE).SILENT: display_images
 #
 $(STANDARD_IMAGES): base
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
-	$(DOCKER) build -t $(ORG)/$@ \
+	$(DOCKER) build -t $(ORG)/$@:latest \
 		--build-arg IMAGE=$(ORG)/$@ \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
