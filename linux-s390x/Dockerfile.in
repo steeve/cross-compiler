@@ -1,6 +1,6 @@
 FROM dockcross/base:latest
 
-# This is for 32-bit Big-Endian S390X devices with hard floating point enabled
+# This is for 64-bit S390X Linux machine
 
 #include "common.crosstool"
 
