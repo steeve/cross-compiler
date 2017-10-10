@@ -1,9 +1,12 @@
+build-settings: &build-settings
+  machine: true
+  working_directory: ~/dockcross
+  resource_class: large
+
 version: 2
 jobs:
   base:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - checkout
       - run:
@@ -23,9 +26,7 @@ jobs:
             - ~/docker/base.tar
             - ~/dockcross
   android-arm:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -44,9 +45,7 @@ jobs:
           key: android-arm-assets-{{ .Revision }}
           paths: ~/docker/android-arm.tar
   browser-asmjs:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -65,9 +64,7 @@ jobs:
           key: browser-asmjs-assets-{{ .Revision }}
           paths: ~/docker/browser-asmjs.tar
   linux-arm64:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -86,9 +83,7 @@ jobs:
           key: linux-arm64-assets-{{ .Revision }}
           paths: ~/docker/linux-arm64.tar
   linux-armv5:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -107,9 +102,7 @@ jobs:
           key: linux-armv5-assets-{{ .Revision }}
           paths: ~/docker/linux-armv5.tar
   linux-armv6:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -128,9 +121,7 @@ jobs:
           key: linux-armv6-assets-{{ .Revision }}
           paths: ~/docker/linux-armv6.tar
   linux-armv7:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -149,9 +140,7 @@ jobs:
           key: linux-armv7-assets-{{ .Revision }}
           paths: ~/docker/linux-armv7.tar
   linux-mipsel:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -170,9 +159,7 @@ jobs:
           key: linux-mipsel-assets-{{ .Revision }}
           paths: ~/docker/linux-mipsel.tar
   linux-s390x:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -191,9 +178,7 @@ jobs:
           key: linux-s390x-assets-{{ .Revision }}
           paths: ~/docker/linux-s390x.tar
   linux-ppc64le:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -212,9 +197,7 @@ jobs:
           key: linux-ppc64le-assets-{{ .Revision }}
           paths: ~/docker/linux-ppc64le.tar
   linux-x64:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -233,9 +216,7 @@ jobs:
           key: linux-x64-assets-{{ .Revision }}
           paths: ~/docker/linux-x64.tar
   linux-x86:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -254,9 +235,7 @@ jobs:
           key: linux-x86-assets-{{ .Revision }}
           paths: ~/docker/linux-x86.tar
   manylinux-x64:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -275,9 +254,7 @@ jobs:
           key: manylinux-x64-assets-{{ .Revision }}
           paths: ~/docker/manylinux-x64.tar
   manylinux-x86:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -296,9 +273,7 @@ jobs:
           key: manylinux-x86-assets-{{ .Revision }}
           paths: ~/docker/manylinux-x86.tar
   windows-x64:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -317,9 +292,7 @@ jobs:
           key: windows-x64-assets-{{ .Revision }}
           paths: ~/docker/windows-x64.tar
   windows-x86:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
@@ -338,9 +311,7 @@ jobs:
           key: windows-x86-assets-{{ .Revision }}
           paths: ~/docker/windows-x86.tar
   deploy:
-    machine: true
-    working_directory: ~/dockcross
-    resource_class: large
+    <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
