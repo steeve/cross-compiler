@@ -48,10 +48,10 @@ ENV WINEARCH win64
 RUN wine hostname
 
 WORKDIR /usr/src
-# mxe master 2016-10-25
+# mxe master 2017-10-25
 RUN git clone https://github.com/mxe/mxe.git && \
   cd mxe && \
-  git checkout 2c8b747d9cf58672040ff7443d2c365dba978fa5
+  git checkout 994ad47302e8811614b7eb49fc05234942b95b89
 WORKDIR /usr/src/mxe
 COPY settings.mk /usr/src/mxe/
 RUN make -j$(nproc)
@@ -70,6 +70,10 @@ WORKDIR /work
 
 ENV CMAKE_TOOLCHAIN_FILE /usr/src/mxe/usr/x86_64-w64-mingw32.static/share/cmake/mxe-conf.cmake
 RUN echo 'set(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine")' >> ${CMAKE_TOOLCHAIN_FILE}
+RUN cd /usr/local/bin \
+  && rm cmake \
+  && ln -s /usr/src/mxe/usr/bin/x86_64-w64-mingw32.static-cmake cmake \
+  && ln -s /usr/src/mxe/usr/bin/x86_64-w64-mingw32.static-cpack cpack
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
