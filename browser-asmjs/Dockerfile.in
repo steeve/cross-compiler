@@ -1,4 +1,4 @@
-FROM trzeci/emscripten:sdk-tag-1.37.21-64bit
+FROM trzeci/emscripten:sdk-tag-1.37.28-64bit
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Revert back to "/bin/sh" as default shell
@@ -9,7 +9,7 @@ RUN rm /bin/sh && ln -s /bin/dash /bin/sh
 
 #include "common.docker"
 
-ENV EMSCRIPTEN_VERSION 1.37.21
+ENV EMSCRIPTEN_VERSION 1.37.28
 
 ENV PATH /emsdk_portable:/emsdk_portable/llvm/clang/bin/:/emsdk_portable/sdk/:${PATH}
 ENV CC=/emsdk_portable/sdk/emcc \
@@ -20,8 +20,7 @@ ENV DEFAULT_DOCKCROSS_IMAGE dockcross/browser-asmjs
 
 ENV CMAKE_TOOLCHAIN_FILE /emsdk_portable/sdk/cmake/Modules/Platform/Emscripten.cmake
 
-RUN chmod 777 /emsdk_portable/.cache*
-
+RUN mkdir -p /emsdk_portable/.cache && chmod -R 777 /emsdk_portable/.cache*
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
