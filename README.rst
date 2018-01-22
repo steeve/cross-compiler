@@ -165,6 +165,7 @@ redirect the output to a file::
 Where `CROSS_COMPILER_IMAGE_NAME` is the name of the cross-compiler toolchain
 Docker instance, e.g. `dockcross/linux-armv7`.
 
+Only 64-bit images are provided; a 64-bit host system is required.
 
 Usage
 -----
