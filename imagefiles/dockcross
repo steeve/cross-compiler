@@ -183,7 +183,7 @@ fi
 
 # Change the PWD when working in Docker on Windows
 if [ -n "$UBUNTU_ON_WINDOWS" ]; then
-    HOST_PWD=$PWD
+    HOST_PWD=`pwd -P`
     HOST_PWD=${HOST_PWD/\/mnt\//}
     HOST_PWD=${HOST_PWD/\//:\/}
 elif [ -n "$MSYS" ]; then
