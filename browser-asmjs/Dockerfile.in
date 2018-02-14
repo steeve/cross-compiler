@@ -20,8 +20,6 @@ ENV DEFAULT_DOCKCROSS_IMAGE dockcross/browser-asmjs
 
 ENV CMAKE_TOOLCHAIN_FILE /emsdk_portable/sdk/cmake/Modules/Platform/Emscripten.cmake
 
-RUN mkdir -p /emsdk_portable/.cache && chmod -R 777 /emsdk_portable/.cache*
-
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG IMAGE
