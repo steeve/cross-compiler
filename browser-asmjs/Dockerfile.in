@@ -1,0 +1,32 @@
+FROM trzeci/emscripten-slim:sdk-tag-1.37.29-64bit
+MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
+
+# Revert back to "/bin/sh" as default shell
+# See https://github.com/asRIA/emscripten-docker/blob/master/Dockerfile.in#L4
+RUN rm /bin/sh && ln -s /bin/dash /bin/sh
+
+#include "common.debian"
+
+#include "common.docker"
+
+ENV EMSCRIPTEN_VERSION 1.37.29
+
+ENV PATH /emsdk_portable:/emsdk_portable/llvm/clang/bin/:/emsdk_portable/sdk/:${PATH}
+ENV CC=/emsdk_portable/sdk/emcc \
+  CXX=/emsdk_portable/sdk/em++ \
+  AR=/emsdk_portable/sdk/emar
+
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/browser-asmjs
+
+ENV CMAKE_TOOLCHAIN_FILE /emsdk_portable/sdk/cmake/Modules/Platform/Emscripten.cmake
+
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG IMAGE
+ARG VCS_REF
+ARG VCS_URL
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name=$IMAGE \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url=$VCS_URL \
+      org.label-schema.schema-version="1.0"

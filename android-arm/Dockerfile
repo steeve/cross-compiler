@@ -1,26 +1,49 @@
-FROM steeve/cross-compiler:base
-MAINTAINER Steeve Morin "steeve.morin@gmail.com"
+FROM dockcross/base:latest
+MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-RUN apt-get update && apt-get -y --force-yes install \
-                        bash \
-                        curl \
-                        pkg-config \
-                        build-essential \
-                        file \
-                        tar xz-utils bzip2 gzip sed
+# The cross-compiling emulator
+RUN apt-get update && apt-get install -y \
+  qemu-user \
+  qemu-user-static \
+  unzip
 
-ENV CROSS_TRIPLE arm-linux-androideabi
-ENV CROSS_ROOT /usr/${CROSS_TRIPLE}
-ENV PATH ${PATH}:${CROSS_ROOT}/bin
-ENV LD_LIBRARY_PATH ${CROSS_ROOT}/lib:${LD_LIBRARY_PATH}
+ENV CROSS_TRIPLE=arm-linux-androideabi
+ENV CROSS_ROOT=/usr/${CROSS_TRIPLE}
+ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
+    AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
+    CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gcc \
+    CPP=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-cpp \
+    CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++ \
+    LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld
 
+ENV ANDROID_NDK_REVISION 13b
 RUN mkdir -p /build && \
     cd /build && \
-    curl -L http://dl.google.com/android/ndk/android-ndk32-r10b-linux-x86_64.tar.bz2 | tar xvj && \
-    cd /build/android-ndk-r10b && \
-    /bin/bash ./build/tools/make-standalone-toolchain.sh --platform=android-14 --install-dir=${CROSS_ROOT} && \
+    curl -O https://dl.google.com/android/repository/android-ndk-r${ANDROID_NDK_REVISION}-linux-x86_64.zip && \
+    unzip ./android-ndk-r${ANDROID_NDK_REVISION}-linux-x86_64.zip && \
+    cd android-ndk-r${ANDROID_NDK_REVISION} && \
+    ./build/tools/make_standalone_toolchain.py \
+      --arch arm \
+      --api 16 \
+      --install-dir=${CROSS_ROOT} && \
     cd / && \
-    rm -rf /build
+    rm -rf /build && \
+    find ${CROSS_ROOT} -exec chmod a+r '{}' \; && \
+    find ${CROSS_ROOT} -executable -exec chmod a+x '{}' \;
 
-RUN cd ${CROSS_ROOT}/bin && \
-    ln -s ${CROSS_TRIPLE}-gcc ${CROSS_TRIPLE}-cc
+
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/android-arm
+
+COPY Toolchain.cmake ${CROSS_ROOT}/
+ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
+
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG IMAGE
+ARG VCS_REF
+ARG VCS_URL
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name=$IMAGE \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url=$VCS_URL \
+      org.label-schema.schema-version="1.0"
