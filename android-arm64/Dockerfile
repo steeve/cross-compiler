@@ -7,7 +7,7 @@ RUN apt-get update && apt-get install -y \
   qemu-user-static \
   unzip
 
-ENV CROSS_TRIPLE=aarch64-linux-androideabi
+ENV CROSS_TRIPLE=aarch64-linux-android
 ENV CROSS_ROOT=/usr/${CROSS_TRIPLE}
 ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
