@@ -17,7 +17,7 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld
 
 ENV ANDROID_NDK_REVISION 13b
-ENV ANDROID_NDK_API 16
+ENV ANDROID_NDK_API 21
 RUN mkdir -p /build && \
     cd /build && \
     curl -O https://dl.google.com/android/repository/android-ndk-r${ANDROID_NDK_REVISION}-linux-x86_64.zip && \
