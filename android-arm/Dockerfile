@@ -25,7 +25,7 @@ RUN mkdir -p /build && \
     cd android-ndk-r${ANDROID_NDK_REVISION} && \
     ./build/tools/make_standalone_toolchain.py \
       --arch arm \
-      --api $(ANDROID_NDK_API) \
+      --api ${ANDROID_NDK_API} \
       --stl=libc++ \
       --install-dir=${CROSS_ROOT} && \
     cd / && \
