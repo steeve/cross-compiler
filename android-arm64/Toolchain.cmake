@@ -1,7 +1,7 @@
 set(CMAKE_SYSTEM_NAME Android)
 set(CMAKE_SYSTEM_VERSION 1)
 
-set(cross_triple arm-linux-androideabi)
+set(cross_triple aarch64-linux-android)
 set(CMAKE_ANDROID_STANDALONE_TOOLCHAIN /usr/${cross_triple}/)
 set(CMAKE_ANDROID_ARM_MODE 1)
 set(CMAKE_ANDROID_ARM_NEON 1)
@@ -16,3 +16,4 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 set(CMAKE_SYSROOT /usr/${cross_triple}/sysroot)
 
 set(CMAKE_CROSSCOMPILING_EMULATOR /usr/bin/qemu-arm)
+
