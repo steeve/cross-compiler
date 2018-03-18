@@ -16,7 +16,7 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++ \
     LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld
 
-ENV ANDROID_NDK_REVISION 13b
+ENV ANDROID_NDK_REVISION 16b
 ENV ANDROID_NDK_API 16
 RUN mkdir -p /build && \
     cd /build && \
