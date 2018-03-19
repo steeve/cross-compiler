@@ -21,6 +21,15 @@ Features
 * Works with the `Docker for Mac <https://docs.docker.com/docker-for-mac/>`_ and `Docker for Windows <https://docs.docker.com/docker-for-windows/>`_.
 
 
+What is the difference between `dockcross` and `dockbuild` ?
+------------------------------------------------------------
+
+The key difference is that `dockbuild <https://github.com/dockbuild/dockbuild#readme>`_
+images use the same method to conveniently isolate the build environment as
+`dockcross <https://github.com/dockcross/dockcross#readme>`_ but they do **NOT** provide
+a toolchain file.
+
+
 Cross compilers
 ---------------
 
