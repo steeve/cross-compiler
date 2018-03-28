@@ -11,9 +11,9 @@ ENV CROSS_TRIPLE=arm-linux-androideabi
 ENV CROSS_ROOT=/usr/${CROSS_TRIPLE}
 ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
-    CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gcc \
+    CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-clang \
     CPP=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-cpp \
-    CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++ \
+    CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-clang++ \
     LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld
 
 ENV ANDROID_NDK_REVISION 16b
