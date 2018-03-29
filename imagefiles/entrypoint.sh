@@ -9,7 +9,9 @@ if [[ $# == 0 ]]; then
     if [[ -n $DEFAULT_DOCKCROSS_IMAGE ]]; then
         head -n 2 /dockcross/dockcross
         echo "DEFAULT_DOCKCROSS_IMAGE=$DEFAULT_DOCKCROSS_IMAGE"
-        tail -n +4 /dockcross/dockcross
+        tail -n +4 /dockcross/dockcross |
+          sed -e "s@dockcross\/linux\-armv7@${DEFAULT_DOCKCROSS_IMAGE}@g" |
+          sed -e "s@dockcross\-linux\-armv7@${DEFAULT_DOCKCROSS_IMAGE//\//-}@g"
     else
         cat /dockcross/dockcross
     fi
