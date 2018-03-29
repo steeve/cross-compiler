@@ -323,7 +323,7 @@ Articles
 - `dockcross: C++ Write Once, Run Anywhere
   <https://nbviewer.jupyter.org/format/slides/github/dockcross/cxx-write-once-run-anywhere/blob/master/dockcross_CXX_Write_Once_Run_Anywhere.ipynb#/>`_
 - `Cross-compiling binaries for multiple architectures with Docker
-  <http://blogs.nopcode.org/brainstorm/2016/07/26/cross-compiling-with-docker>`_
+  <https://web.archive.org/web/20170912153531/http://blogs.nopcode.org/brainstorm/2016/07/26/cross-compiling-with-docker>`_
 
 
 ---
