@@ -49,6 +49,13 @@ dockcross/android-arm
   architecture.
 
 
+.. |android-arm64-images| image:: https://images.microbadger.com/badges/image/dockcross/android-arm64.svg
+  :target: https://microbadger.com/images/dockcross/android-arm64
+
+dockcross/android-arm64
+  |android-arm64-images| The Android NDK standalone toolchain for the arm64
+  architecture.
+
 .. |browser-asmjs-images| image:: https://images.microbadger.com/badges/image/dockcross/browser-asmjs.svg
   :target: https://microbadger.com/images/dockcross/browser-asmjs
 
