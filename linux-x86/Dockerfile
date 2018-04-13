@@ -34,11 +34,6 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++
 
 
-COPY imagefiles/install-openssl.sh /dockcross/
-RUN \
-  /dockcross/install-openssl.sh -32 && \
-  rm /dockcross/install-openssl.sh
-
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-x86
 
 # Note: Toolchain file support is currently in debian Experimental:

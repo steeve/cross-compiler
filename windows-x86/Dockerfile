@@ -72,7 +72,6 @@ ENV CMAKE_TOOLCHAIN_FILE /usr/src/mxe/usr/i686-w64-mingw32.static/share/cmake/mx
 RUN echo 'set(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine")' >> ${CMAKE_TOOLCHAIN_FILE}
 RUN cd /usr/local/bin \
   && rm cmake \
-  && rm cpack \
   && ln -s /usr/src/mxe/usr/bin/i686-w64-mingw32.static-cmake cmake \
   && ln -s /usr/src/mxe/usr/bin/i686-w64-mingw32.static-cpack cpack
 

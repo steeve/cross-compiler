@@ -2,6 +2,7 @@ ENV GOSU_VERSION 1.10
 RUN set -x \
 	&& yum -y install epel-release \
 	&& yum -y install gpg \
+	&& yum -y install zlib-devel gettext \
 	&& dpkgArch=$(if test $(uname -m) = "x86_64"; then echo amd64; else echo i386; fi) \
 	&& curl -o /usr/bin/gosu -LO "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" \
 	&& curl -o /tmp/gosu.asc -LO "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch.asc" \

@@ -3,9 +3,9 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux-x86
 
-#include "common.docker"
-
 #include "common.manylinux"
+
+#include "common.docker"
 
 ENV CROSS_TRIPLE i686-linux-gnu
 ENV CROSS_ROOT /opt/rh/devtoolset-2/root/usr/bin

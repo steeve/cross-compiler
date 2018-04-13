@@ -13,7 +13,7 @@ RUN apt-get update --yes && apt-get install --no-install-recommends --yes \
   ca-certificates \
   curl \
   file \
-  git \
+  gettext \
   gzip \
   zip \
   make \
@@ -31,7 +31,8 @@ RUN apt-get update --yes && apt-get install --no-install-recommends --yes \
   pax \
   vim \
   wget \
-  xz-utils && \
+  xz-utils \
+  zlib1g-dev && \
   apt-get clean --yes
 
 ENV GOSU_VERSION 1.10
