@@ -377,26 +377,28 @@ jobs:
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker push dockcross/browser-asmjs:latest
             fi
-      - restore_cache:
-          key: linux-arm64-assets-{{ .Revision }}
-      - deploy:
-          name: Deploy linux-arm64
-          command: |
-            docker load -i ~/docker/linux-arm64.tar
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-arm64:latest
-            fi
-      - restore_cache:
-          key: linux-armv5-assets-{{ .Revision }}
-      - deploy:
-          name: Deploy linux-armv5
-          command: |
-            docker load -i ~/docker/linux-armv5.tar
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-armv5:latest
-            fi
+      # Image build currently broken. See #209
+      #- restore_cache:
+          #key: linux-arm64-assets-{{ .Revision }}
+      #- deploy:
+          #name: Deploy linux-arm64
+          #command: |
+            #docker load -i ~/docker/linux-arm64.tar
+            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              #docker login -u $DOCKER_USER -p $DOCKER_PASS
+              #docker push dockcross/linux-arm64:latest
+            #fi
+      # Image build currently broken. See #209
+      #- restore_cache:
+          #key: linux-armv5-assets-{{ .Revision }}
+      #- deploy:
+          #name: Deploy linux-armv5
+          #command: |
+            #docker load -i ~/docker/linux-armv5.tar
+            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              #docker login -u $DOCKER_USER -p $DOCKER_PASS
+              #docker push dockcross/linux-armv5:latest
+            #fi
       - restore_cache:
           key: linux-armv6-assets-{{ .Revision }}
       - deploy:
@@ -407,26 +409,28 @@ jobs:
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker push dockcross/linux-armv6:latest
             fi
-      - restore_cache:
-          key: linux-armv7-assets-{{ .Revision }}
-      - deploy:
-          name: Deploy linux-armv7
-          command: |
-            docker load -i ~/docker/linux-armv7.tar
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-armv7:latest
-            fi
-      - restore_cache:
-          key: linux-mipsel-assets-{{ .Revision }}
-      - deploy:
-          name: Deploy linux-mipsel
-          command: |
-            docker load -i ~/docker/linux-mipsel.tar
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-mipsel:latest
-            fi
+      # Image build currently broken. See #209
+      #- restore_cache:
+          #key: linux-armv7-assets-{{ .Revision }}
+      #- deploy:
+          #name: Deploy linux-armv7
+          #command: |
+            #docker load -i ~/docker/linux-armv7.tar
+            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              #docker login -u $DOCKER_USER -p $DOCKER_PASS
+              #docker push dockcross/linux-armv7:latest
+            #fi
+      # Image build currently broken. See #209
+      #- restore_cache:
+          #key: linux-mipsel-assets-{{ .Revision }}
+      #- deploy:
+          #name: Deploy linux-mipsel
+          #command: |
+            #docker load -i ~/docker/linux-mipsel.tar
+            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              #docker login -u $DOCKER_USER -p $DOCKER_PASS
+              #docker push dockcross/linux-mipsel:latest
+            #fi
       - restore_cache:
           key: linux-s390x-assets-{{ .Revision }}
       - deploy:
@@ -437,16 +441,17 @@ jobs:
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker push dockcross/linux-s390x:latest
             fi
-      - restore_cache:
-          key: linux-ppc64le-assets-{{ .Revision }}
-      - deploy:
-          name: Deploy linux-ppc64le
-          command: |
-            docker load -i ~/docker/linux-ppc64le.tar
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-ppc64le:latest
-            fi
+      # Image build currently broken. See #209
+      #- restore_cache:
+          #key: linux-ppc64le-assets-{{ .Revision }}
+      #- deploy:
+          #name: Deploy linux-ppc64le
+          #command: |
+            #docker load -i ~/docker/linux-ppc64le.tar
+            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              #docker login -u $DOCKER_USER -p $DOCKER_PASS
+              #docker push dockcross/linux-ppc64le:latest
+            #fi
       - restore_cache:
           key: linux-x64-assets-{{ .Revision }}
       - deploy:
