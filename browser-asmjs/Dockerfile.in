@@ -1,4 +1,4 @@
-FROM trzeci/emscripten-slim:sdk-tag-1.37.29-64bit
+FROM trzeci/emscripten-slim:sdk-tag-1.37.36-64bit
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Revert back to "/bin/sh" as default shell
