@@ -4,10 +4,8 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Add sources.list
 COPY sources.list /etc/apt/sources.list
-
-RUN apt-get update && apt-get install -y \
-  crossbuild-essential-arm64 \
-  gfortran-aarch64-linux-gnu \
+RUN dpkg --add-architecture arm64 ; apt-get update ; apt-get -y upgrade ; apt-get update ;
+RUN apt-get install -y \
   libbz2-dev:arm64 \
   libexpat1-dev:arm64 \
   ncurses-dev:arm64 \
