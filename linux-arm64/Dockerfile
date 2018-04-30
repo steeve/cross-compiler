@@ -24,12 +24,12 @@ RUN apt-get update && \
 
 ENV CROSS_TRIPLE aarch64-unknown-linux-gnueabi
 ENV CROSS_ROOT /opt/x-tools/${CROSS_TRIPLE}
-ENV AS=/opt/x-tools/${CROSS_TRIPLE}-as \
-    AR=/opt/x-tools/${CROSS_TRIPLE}-ar \
-    CC=/opt/x-tools/${CROSS_TRIPLE}-gcc \
-    CPP=/opt/x-tools/${CROSS_TRIPLE}-cpp \
-    CXX=/opt/x-tools/${CROSS_TRIPLE}-g++ \
-    LD=/opt/x-tools/${CROSS_TRIPLE}-ld
+ENV AS=/opt/x-tools/${CROSS_TRIPLE}/bin/${CROSS_TRIPLE}-as \
+    AR=/opt/x-tools/${CROSS_TRIPLE}/bin/${CROSS_TRIPLE}-ar \
+    CC=/opt/x-tools/${CROSS_TRIPLE}/bin/${CROSS_TRIPLE}-gcc \
+    CPP=/opt/x-tools/${CROSS_TRIPLE}/bin/${CROSS_TRIPLE}-cpp \
+    CXX=/opt/x-tools/${CROSS_TRIPLE}/bin/${CROSS_TRIPLE}-g++ \
+    LD=/opt/x-tools/${CROSS_TRIPLE}/bin/${CROSS_TRIPLE}-ld
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-arm64
 WORKDIR /work
