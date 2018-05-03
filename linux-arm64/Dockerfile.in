@@ -1,6 +1,6 @@
 FROM dockcross/base:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
-#include "common.crosstool"
+
 
 # Add sources.list
 COPY sources.list /etc/apt/sources.list
@@ -9,12 +9,14 @@ RUN apt-get install -y \
   libbz2-dev:arm64 \
   libexpat1-dev:arm64 \
   ncurses-dev:arm64 \
-  libssl-dev:arm64
+  libssl-dev:arm64 \
+  python-dev
+
+#include "common.crosstool"
 
 WORKDIR /usr/src
 
-RUN apt-get update && \
-  apt-get install -y libglib2.0-dev zlib1g-dev libpixman-1-dev && \
+RUN apt-get install -y libglib2.0-dev zlib1g-dev libpixman-1-dev && \
   curl -L http://wiki.qemu-project.org/download/qemu-2.6.0.tar.bz2 | tar xj && \
   cd qemu-2.6.0 && \
   ./configure --target-list=aarch64-linux-user --prefix=/usr && \
