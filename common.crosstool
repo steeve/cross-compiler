@@ -19,6 +19,7 @@ RUN apt-get update --yes && apt-get install --no-install-recommends --yes \
   gawk \
   gperf \
   help2man \
+  python-dev \
   texinfo \
 && apt-get clean --yes
 
