@@ -23,7 +23,8 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
     CC=/usr/bin/${CROSS_TRIPLE}-gcc \
     CPP=/usr/bin/${CROSS_TRIPLE}-cpp-4.9 \
     CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
-    LD=/usr/bin/${CROSS_TRIPLE}-ld
+    LD=/usr/bin/${CROSS_TRIPLE}-ld \
+    FC=/usr/bin/${CROSS_TRIPLE}-gfortran
 
 ENV QEMU_LD_PREFIX ${CROSS_ROOT}/libc
 ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${CROSS_ROOT}/libc/lib/${CROSS_TRIPLE}/"

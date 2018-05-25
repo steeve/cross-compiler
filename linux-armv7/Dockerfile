@@ -23,7 +23,8 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
     CC=/usr/bin/${CROSS_TRIPLE}-gcc \
     CPP=/usr/bin/${CROSS_TRIPLE}-cpp-4.9 \
     CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
-    LD=/usr/bin/${CROSS_TRIPLE}-ld
+    LD=/usr/bin/${CROSS_TRIPLE}-ld \
+    FC=/usr/bin/${CROSS_TRIPLE}-gfortran
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-armv7
 

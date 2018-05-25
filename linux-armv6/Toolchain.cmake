@@ -4,11 +4,11 @@ set(CMAKE_SYSTEM_PROCESSOR arm)
 
 set(cross_triple "arm-linux-gnueabihf")
 
-set(CMAKE_C_COMPILER /usr/bin/${cross_triple}-gcc)
-set(CMAKE_CXX_COMPILER /usr/bin/${cross_triple}-g++)
-set(CMAKE_Fortran_COMPILER /usr/bin/${cross_triple}-gfortran)
+set(CMAKE_C_COMPILER $ENV{CC})
+set(CMAKE_CXX_COMPILER $ENV{CXX})
+set(CMAKE_Fortran_COMPILER $ENV{FC})
 
-set(CMAKE_FIND_ROOT_PATH /usr/${cross_triple} /usr/${cross_triple}/libc/usr)
+set(CMAKE_FIND_ROOT_PATH $ENV{CROSS_ROOT} $ENV{CROSS_ROOT}/libc/usr)
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)

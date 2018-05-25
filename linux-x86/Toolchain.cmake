@@ -9,8 +9,9 @@ set(CMAKE_SYSTEM_PROCESSOR i686)
 
 set(cross_triple "i686-linux-gnu")
 
-set(CMAKE_C_COMPILER /usr/${cross_triple}/bin/${cross_triple}-gcc)
-set(CMAKE_CXX_COMPILER /usr/${cross_triple}/bin/${cross_triple}-g++)
+set(CMAKE_C_COMPILER $ENV{CC})
+set(CMAKE_CXX_COMPILER $ENV{CXX})
+set(CMAKE_Fortran_COMPILER $ENV{FC})
 set(CMAKE_ASM_COMPILER ${CMAKE_C_COMPILER})
 
 # Discard path returned by pkg-config and associated with HINTS in module

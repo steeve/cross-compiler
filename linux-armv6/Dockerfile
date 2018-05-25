@@ -18,7 +18,8 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
     CC=/usr/bin/${CROSS_TRIPLE}-gcc \
     CPP=/usr/bin/${CROSS_TRIPLE}-cpp \
     CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
-    LD=/usr/bin/${CROSS_TRIPLE}-ld
+    LD=/usr/bin/${CROSS_TRIPLE}-ld \
+    FC=/usr/bin/${CROSS_TRIPLE}-gfortran
 
 # Raspberry Pi is ARMv6+VFP2, Debian armhf is ARMv7+VFP3
 # Since this Dockerfile is targeting linux-arm from Raspberry Pi onward,
