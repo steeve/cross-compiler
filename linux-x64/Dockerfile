@@ -8,7 +8,8 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
     CC=/usr/bin/${CROSS_TRIPLE}-gcc \
     CPP=/usr/bin/${CROSS_TRIPLE}-cpp \
     CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
-    LD=/usr/bin/${CROSS_TRIPLE}-ld
+    LD=/usr/bin/${CROSS_TRIPLE}-ld \
+    FC=/usr/bin/${CROSS_TRIPLE}-gfortran
 
 COPY ${CROSS_TRIPLE}-noop.sh /usr/bin/${CROSS_TRIPLE}-noop
 

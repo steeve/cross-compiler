@@ -63,7 +63,8 @@ ENV AS=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-as \
     CC=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-gcc \
     CPP=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-cpp \
     CXX=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-g++ \
-    LD=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-ld
+    LD=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-ld \
+    FC=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-gfortran
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/windows-x86
 WORKDIR /work

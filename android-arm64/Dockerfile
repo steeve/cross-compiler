@@ -15,7 +15,8 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-clang \
     CPP=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-cpp \
     CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-clang++ \
-    LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld
+    LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld \
+    FC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gfortran
 
 ENV ANDROID_NDK_REVISION 16b
 ENV ANDROID_NDK_API 21

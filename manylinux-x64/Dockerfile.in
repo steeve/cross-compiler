@@ -14,7 +14,8 @@ ENV AS=${CROSS_ROOT}/as \
     CC=${CROSS_ROOT}/gcc \
     CPP=${CROSS_ROOT}/cpp \
     CXX=${CROSS_ROOT}/g++ \
-    LD=${CROSS_ROOT}/ld
+    LD=${CROSS_ROOT}/ld \
+    FC=${CROSS_ROOT}/gfortran
 
 COPY linux-x64/${CROSS_TRIPLE}-noop.sh /usr/bin/${CROSS_TRIPLE}-noop
 
