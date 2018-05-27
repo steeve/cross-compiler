@@ -183,18 +183,15 @@ fi
 
 # Change the PWD when working in Docker on Windows
 if [ -n "$UBUNTU_ON_WINDOWS" ]; then
-    WSL_ROOT = "/\/mnt\//"
-
+    WSL_ROOT="/mnt/"
     CFG_FILE=/etc/wsl.conf
     CFG_CONTENT=$(cat $CFG_FILE | sed -r '/[^=]+=[^=]+/!d' | sed -r 's/\s+=\s/=/g')
     eval "$CFG_CONTENT"
-    if [ -n "$root"]
+    if [ -n "$root" ]; then
         WSL_ROOT=$root
-
+    fi
     HOST_PWD=`pwd -P`
-    
     HOST_PWD=${HOST_PWD/$WSL_ROOT//}
-    HOST_PWD=${HOST_PWD/\//:\/}
 elif [ -n "$MSYS" ]; then
     HOST_PWD=$PWD
     HOST_PWD=${HOST_PWD/\//}
