@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -ex
+set -o pipefail
 
 if ! command -v curl &> /dev/null; then
 	echo >&2 'error: "curl" not found!'
@@ -20,7 +21,9 @@ url_key="https://github.com/tianon/gosu/releases/download/${GOSU_VERSION}/gosu-$
 # download and verify the signature
 export GNUPGHOME="$(mktemp -d)"
 
-gpg --keyserver pool.sks-keyservers.net --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
+gpg --keyserver hkp://pool.sks-keyservers.net:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 || \
+gpg --keyserver hkp://pgp.key-server.io:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4 || \
+gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
 
 echo "Downloading $url"
 curl -o /usr/local/bin/gosu -# -SL $url
