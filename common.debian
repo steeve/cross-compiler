@@ -1,7 +1,8 @@
 RUN REPO=http://cdn-fastly.deb.debian.org && \
   echo "deb $REPO/debian jessie main\ndeb $REPO/debian jessie-updates main\ndeb $REPO/debian-security jessie/updates main" > /etc/apt/sources.list
 
-COPY imagefiles/install-gosu-binary.sh /dockcross/
+# Image build scripts
+COPY imagefiles/install-gosu-binary.sh /buildscripts/
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -39,6 +40,6 @@ RUN \
     zlib1g-dev \
   && \
   apt-get clean --yes && \
-  /dockcross/install-gosu-binary.sh && \
-  rm /dockcross/install-gosu-binary.sh
+  /buildscripts/install-gosu-binary.sh && \
+  rm -rf /buildscripts
 
