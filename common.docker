@@ -5,15 +5,15 @@ ARG CMAKE_VERSION=3.11.0
 
 # Image build scripts
 COPY \
+  imagefiles/build-and-install-cmake.sh \
+  imagefiles/build-and-install-curl.sh \
   imagefiles/build-and-install-git.sh \
-  imagefiles/utils.sh \
+  imagefiles/build-and-install-ninja.sh \
   imagefiles/build-and-install-openssl.sh \
   imagefiles/build-and-install-openssh.sh \
-  imagefiles/build-and-install-cmake.sh \
   imagefiles/install-cmake-binary.sh \
   imagefiles/install-liquidprompt-binary.sh \
-  imagefiles/build-and-install-curl.sh \
-  imagefiles/build-and-install-ninja.sh \
+  imagefiles/utils.sh \
   /buildscripts/
 
 RUN \
