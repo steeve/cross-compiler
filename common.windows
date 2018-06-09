@@ -91,6 +91,10 @@ RUN \
   cd /usr/src/mxe && \
   make -j$(nproc) && \
   #
+  # Cleanup: Remove all expect "usr" directory
+  #
+  find . -maxdepth 1 -type d  \( -path ./usr -o -path ".$" \) -prune -o -print -exec rm -rf {} \; && \
+  #
   # Update MXE toolchain file
   #
   echo 'set(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine")' >> ${CMAKE_TOOLCHAIN_FILE} && \
