@@ -314,6 +314,25 @@ jobs:
       - save_cache:
           key: windows-x64-assets-{{ .Revision }}
           paths: ~/docker/windows-x64.tar
+  windows-x64-posix:
+    <<: *build-settings
+    steps:
+      - restore_cache:
+          key: base-assets-{{ .Revision }}
+      - run:
+         no_output_timeout: 1.5h
+         name: windows-x64-posix build
+         command: |
+           docker load -i ~/docker/base.tar
+           make windows-x64-posix
+           docker save -o ~/docker/windows-x64-posix.tar dockcross/windows-x64-posix:latest
+      - run:
+         name: windows-x64-posix test
+         command: |
+           make windows-x64-posix.test
+      - save_cache:
+          key: windows-x64-posix-assets-{{ .Revision }}
+          paths: ~/docker/windows-x64-posix.tar
   windows-x86:
     <<: *build-settings
     steps:
@@ -501,6 +520,16 @@ jobs:
               docker push dockcross/windows-x64:latest
             fi
       - restore_cache:
+          key: windows-x64-posix-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy windows-x64-posix
+          command: |
+            docker load -i ~/docker/windows-x64-posix.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push dockcross/windows-x64-posix:latest
+            fi
+      - restore_cache:
           key: windows-x86-assets-{{ .Revision }}
       - deploy:
           name: Deploy windows-x86
@@ -565,6 +594,9 @@ workflows:
         - windows-x64:
             requires:
               - base
+        - windows-x64-posix:
+            requires:
+              - base
         - windows-x86:
             requires:
               - base
@@ -588,4 +620,5 @@ workflows:
               - manylinux-x64
               - manylinux-x86
               - windows-x64
+              - windows-x64-posix
               - windows-x86
