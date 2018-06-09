@@ -16,13 +16,13 @@ BIN = ./bin
 STANDARD_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-mips linux-mipsel linux-ppc64le windows-x86 windows-x64
 
 # Generated Dockerfiles.
-GEN_IMAGES = linux-s390x linux-mips manylinux-x86 manylinux-x64 browser-asmjs linux-arm64
+GEN_IMAGES = linux-s390x linux-mips manylinux-x86 manylinux-x64 browser-asmjs linux-arm64 windows-x86 windows-x64
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
 # These images are expected to have explicit rules for *both* build and testing
 NON_STANDARD_IMAGES = browser-asmjs manylinux-x64 manylinux-x86
 
-DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux common.crosstool
+DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux common.crosstool common.windows
 
 # This list all available images
 IMAGES = $(STANDARD_IMAGES) $(NON_STANDARD_IMAGES)
@@ -59,6 +59,7 @@ $(GEN_IMAGE_DOCKERFILES) Dockerfile: %Dockerfile: %Dockerfile.in $(DOCKER_COMPOS
 		-e '/common.debian/ r common.debian' \
 		-e '/common.manylinux/ r common.manylinux' \
 		-e '/common.crosstool/ r common.crosstool' \
+		-e '/common.windows/ r common.windows' \
 		$< > $@
 
 #
