@@ -3,6 +3,7 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 ENV WINEARCH win32
 ARG MXE_TARGET_ARCH=i686
+ARG MXE_TARGET_THREAD=
 
 #include "common.windows"
 
