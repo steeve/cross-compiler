@@ -4,17 +4,19 @@
 #
 # WINEARCH environment variable to either "win64" or "win32"
 # MXE_TARGET_ARCH argument to either "x86_64" or "i686". See http://mxe.cc/
+# MXE_TARGET_THREAD argument to either "" or ".posix". Default is win32. See http://mxe.cc/
 #
 # For example:
 #
 #  ENV WINEARCH win64
 #  ARG MXE_TARGET_ARCH=x86_64
+#  ARG MXE_TARGET_THREAD=
 #
 
 # mxe master 2017-10-25
 ARG MXE_GIT_TAG=994ad47302e8811614b7eb49fc05234942b95b89
 
-ENV CMAKE_TOOLCHAIN_FILE /usr/src/mxe/usr/${MXE_TARGET_ARCH}-w64-mingw32.static/share/cmake/mxe-conf.cmake
+ENV CMAKE_TOOLCHAIN_FILE /usr/src/mxe/usr/${MXE_TARGET_ARCH}-w64-mingw32.static${MXE_TARGET_THREAD}/share/cmake/mxe-conf.cmake
 
 ARG DEBIAN_FRONTEND=noninteractive
 
@@ -81,10 +83,10 @@ RUN \
   # Configure "settings.mk" required to build MXE
   #
   cd /usr/src/mxe && \
-  echo "MXE_TARGETS := ${MXE_TARGET_ARCH}-w64-mingw32.static" > settings.mk && \
-  echo "LOCAL_PKG_LIST := gcc"                                >> settings.mk && \
-  echo ".DEFAULT local-pkg-list:"                             >> settings.mk && \
-  echo "local-pkg-list: \$(LOCAL_PKG_LIST)"                   >> settings.mk && \
+  echo "MXE_TARGETS := ${MXE_TARGET_ARCH}-w64-mingw32.static${MXE_TARGET_THREAD}" > settings.mk && \
+  echo "LOCAL_PKG_LIST := gcc"                                                   >> settings.mk && \
+  echo ".DEFAULT local-pkg-list:"                                                >> settings.mk && \
+  echo "local-pkg-list: \$(LOCAL_PKG_LIST)"                                      >> settings.mk && \
   #
   # Build MXE
   #
@@ -104,11 +106,11 @@ RUN \
   #
   cd /usr/bin && \
   rm cmake cpack && \
-  ln -s /usr/src/mxe/usr/bin/${MXE_TARGET_ARCH}-w64-mingw32.static-cmake cmake && \
-  ln -s /usr/src/mxe/usr/bin/${MXE_TARGET_ARCH}-w64-mingw32.static-cpack cpack
+  ln -s /usr/src/mxe/usr/bin/${MXE_TARGET_ARCH}-w64-mingw32.static${MXE_TARGET_THREAD}-cmake cmake && \
+  ln -s /usr/src/mxe/usr/bin/${MXE_TARGET_ARCH}-w64-mingw32.static${MXE_TARGET_THREAD}-cpack cpack
 
 ENV PATH ${PATH}:/usr/src/mxe/usr/bin
-ENV CROSS_TRIPLE ${MXE_TARGET_ARCH}-w64-mingw32.static
+ENV CROSS_TRIPLE ${MXE_TARGET_ARCH}-w64-mingw32.static${MXE_TARGET_THREAD}
 ENV AS=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-as \
     AR=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-ar \
     CC=/usr/src/mxe/usr/bin/${CROSS_TRIPLE}-gcc \
