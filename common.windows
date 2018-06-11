@@ -91,9 +91,10 @@ RUN \
   cd /usr/src/mxe && \
   make -j$(nproc) && \
   #
-  # Cleanup: Remove all expect "usr" directory
+  # Cleanup: By keeping the MXE build system (Makefile, ...), derived images will be able to install
+  #          additional packages.
   #
-  find . -maxdepth 1 -type d  \( -path ./usr -o -path ".$" \) -prune -o -print -exec rm -rf {} \; && \
+  rm -rf .git log pkg && \
   #
   # Update MXE toolchain file
   #
