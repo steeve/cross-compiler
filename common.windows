@@ -27,7 +27,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 #
 RUN \
   apt-get update && \
-  apt-get -y install \
+  apt-get install --no-install-recommends --yes \
     autoconf \
     automake \
     autopoint \
