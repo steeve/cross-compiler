@@ -27,7 +27,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 #
 RUN \
   apt-get update && \
-  apt-get -y install \
+  apt-get install --no-install-recommends --yes \
     autoconf \
     automake \
     autopoint \
@@ -90,6 +90,11 @@ RUN \
   #
   cd /usr/src/mxe && \
   make -j$(nproc) && \
+  #
+  # Cleanup: By keeping the MXE build system (Makefile, ...), derived images will be able to install
+  #          additional packages.
+  #
+  rm -rf .git log pkg && \
   #
   # Update MXE toolchain file
   #
