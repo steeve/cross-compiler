@@ -1,14 +1,13 @@
 FROM dockcross/base:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-ENV WINEARCH win32
-ARG MXE_TARGET_ARCH=i686
-ARG MXE_TARGET_THREAD=
+ENV WINEARCH win64
+ARG MXE_TARGET_ARCH=x86_64
+ARG MXE_TARGET_THREAD=.posix
 
 #include "common.windows"
 
-ENV DEFAULT_DOCKCROSS_IMAGE dockcross/windows-x86
-WORKDIR /work
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/windows-x64-posix
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE

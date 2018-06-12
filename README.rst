@@ -201,14 +201,21 @@ dockcross/manylinux-x86
   :target: https://microbadger.com/images/dockcross/windows-x64
 
 dockcross/windows-x64
-  |windows-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64.
+  |windows-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads.
+
+
+.. |windows-x64-posix-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-x64-posix.svg
+  :target: https://microbadger.com/images/dockcross/windows-x64-posix
+
+dockcross/windows-x64-posix
+  |windows-x64-posix-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with posix threads.
 
 
 .. |windows-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-x86.svg
   :target: https://microbadger.com/images/dockcross/windows-x86
 
 dockcross/windows-x86
-  |windows-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64.
+  |windows-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads.
 
 
 Articles
