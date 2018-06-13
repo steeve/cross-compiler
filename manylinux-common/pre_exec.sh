@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 for DIR in /opt/python/*/lib/python*/site-packages; do
   chown -R $BUILDER_UID:$BUILDER_GID $DIR
