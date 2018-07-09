@@ -1,6 +1,9 @@
 FROM dockcross/base:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
-RUN dpkg --add-architecture arm64 ; apt-get update
+RUN \
+  sed -i '/debian-security/d' /etc/apt/sources.list && \
+  dpkg --add-architecture arm64 && \
+  apt-get update
 
 # The cross-compiling emulator
 RUN apt-get update && apt-get install -y \
