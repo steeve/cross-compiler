@@ -185,7 +185,7 @@ dockcross/linux-x86
   :target: https://microbadger.com/images/dockcross/manylinux-x64
 
 dockcross/manylinux-x64
-  |manylinux-x64-images| Docker `manylinux <https://github.com/pypa/manylinux>`_ image for building Linux x86_64 / amd64 `Python wheel packages <http://pythonwheels.com/>`_.
+  |manylinux-x64-images| Docker `manylinux <https://github.com/pypa/manylinux>`_ image for building Linux x86_64 / amd64 `Python wheel packages <http://pythonwheels.com/>`_. It includes Python 2.7, 3.4, 3.5, 3.6 and 3.7.
   Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
 
 
@@ -193,7 +193,7 @@ dockcross/manylinux-x64
   :target: https://microbadger.com/images/dockcross/manylinux-x86
 
 dockcross/manylinux-x86
-  |manylinux-x86-images| Docker `manylinux <https://github.com/pypa/manylinux>`_ image for building Linux i686 `Python wheel packages <http://pythonwheels.com/>`_.
+  |manylinux-x86-images| Docker `manylinux <https://github.com/pypa/manylinux>`_ image for building Linux i686 `Python wheel packages <http://pythonwheels.com/>`_. It includes Python 2.7, 3.4, 3.5, 3.6 and 3.7.
   Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
 
 
