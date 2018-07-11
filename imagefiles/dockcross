@@ -185,7 +185,7 @@ fi
 if [ -n "$UBUNTU_ON_WINDOWS" ]; then
     WSL_ROOT="/mnt/"
     CFG_FILE=/etc/wsl.conf
-	if [ -f CFG_FILE ]; then
+	if [ -f "$CFG_FILE" ]; then
 		CFG_CONTENT=$(cat $CFG_FILE | sed -r '/[^=]+=[^=]+/!d' | sed -r 's/\s+=\s/=/g')
 		eval "$CFG_CONTENT"
 		if [ -n "$root" ]; then
