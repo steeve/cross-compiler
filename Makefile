@@ -16,7 +16,7 @@ BIN = ./bin
 STANDARD_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-mips linux-mipsel linux-ppc64le windows-x86 windows-x64 windows-x64-posix
 
 # Generated Dockerfiles.
-GEN_IMAGES = linux-s390x linux-mips manylinux-x86 manylinux-x64 browser-asmjs linux-arm64 windows-x86 windows-x64 windows-x64-posix
+GEN_IMAGES = linux-s390x linux-mips manylinux-x86 manylinux-x64 browser-asmjs linux-arm64 windows-x86 windows-x64 windows-x64-posix linux-armv7
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
 # These images are expected to have explicit rules for *both* build and testing
