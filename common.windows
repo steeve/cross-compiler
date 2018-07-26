@@ -96,7 +96,7 @@ RUN \
   # Cleanup: By keeping the MXE build system (Makefile, ...), derived images will be able to install
   #          additional packages.
   #
-  rm -rf .git log pkg && \
+  rm -rf log pkg && \
   #
   # Update MXE toolchain file
   #
