@@ -13,6 +13,7 @@ RUN \
     gettext \
     openssh-clients \
     pax \
+    wget \
     zip \
   && \
 	yum clean all && \
