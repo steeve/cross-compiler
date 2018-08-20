@@ -106,18 +106,17 @@ jobs:
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
-      # Image build currently broken. See #209
-      #- run:
-         #name: linux-armv5 build
-         #no_output_timeout: 1.5h
-         #command: |
-           #docker load -i ~/docker/base.tar
-           #make linux-armv5
-           #docker save -o ~/docker/linux-armv5.tar dockcross/linux-armv5:latest
-      #- run:
-         #name: linux-armv5 test
-         #command: |
-           #make linux-armv5.test
+      - run:
+         name: linux-armv5 build
+         no_output_timeout: 1.5h
+         command: |
+           docker load -i ~/docker/base.tar
+           make linux-armv5
+           docker save -o ~/docker/linux-armv5.tar dockcross/linux-armv5:latest
+      - run:
+         name: linux-armv5 test
+         command: |
+           make linux-armv5.test
       - save_cache:
           key: linux-armv5-assets-{{ .Revision }}
           paths: ~/docker/linux-armv5.tar
@@ -145,18 +144,17 @@ jobs:
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
-      # Image build currently broken. See #209
-      #- run:
-         #name: linux-armv7 build
-         #no_output_timeout: 1.5h
-         #command: |
-           #docker load -i ~/docker/base.tar
-           #make linux-armv7
-           #docker save -o ~/docker/linux-armv7.tar dockcross/linux-armv7:latest
-      #- run:
-         #name: linux-armv7 test
-         #command: |
-           #make linux-armv7.test
+      - run:
+         name: linux-armv7 build
+         no_output_timeout: 1.5h
+         command: |
+           docker load -i ~/docker/base.tar
+           make linux-armv7
+           docker save -o ~/docker/linux-armv7.tar dockcross/linux-armv7:latest
+      - run:
+         name: linux-armv7 test
+         command: |
+           make linux-armv7.test
       - save_cache:
           key: linux-armv7-assets-{{ .Revision }}
           paths: ~/docker/linux-armv7.tar
@@ -405,17 +403,16 @@ jobs:
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker push dockcross/linux-arm64:latest
             fi
-      # Image build currently broken. See #209
-      #- restore_cache:
-          #key: linux-armv5-assets-{{ .Revision }}
-      #- deploy:
-          #name: Deploy linux-armv5
-          #command: |
-            #docker load -i ~/docker/linux-armv5.tar
-            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              #docker login -u $DOCKER_USER -p $DOCKER_PASS
-              #docker push dockcross/linux-armv5:latest
-            #fi
+      - restore_cache:
+          key: linux-armv5-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy linux-armv5
+          command: |
+            docker load -i ~/docker/linux-armv5.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push dockcross/linux-armv5:latest
+            fi
       - restore_cache:
           key: linux-armv6-assets-{{ .Revision }}
       - deploy:
@@ -426,17 +423,16 @@ jobs:
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker push dockcross/linux-armv6:latest
             fi
-      # Image build currently broken. See #209
-      #- restore_cache:
-          #key: linux-armv7-assets-{{ .Revision }}
-      #- deploy:
-          #name: Deploy linux-armv7
-          #command: |
-            #docker load -i ~/docker/linux-armv7.tar
-            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              #docker login -u $DOCKER_USER -p $DOCKER_PASS
-              #docker push dockcross/linux-armv7:latest
-            #fi
+      - restore_cache:
+          key: linux-armv7-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy linux-armv7
+          command: |
+            docker load -i ~/docker/linux-armv7.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push dockcross/linux-armv7:latest
+            fi
       # Image build currently broken. See #209
       #- restore_cache:
           #key: linux-mipsel-assets-{{ .Revision }}
@@ -557,17 +553,15 @@ workflows:
         - linux-arm64:
             requires:
               - base
-        # Image build currently broken. See #209
-        #- linux-armv5:
-            #requires:
-              #- base
+        - linux-armv5:
+            requires:
+              - base
         - linux-armv6:
             requires:
               - base
-        # Image build currently broken. See #209
-        #- linux-armv7:
-            #requires:
-              #- base
+        - linux-armv7:
+            requires:
+              - base
         # Image build currently broken. See #209
         #- linux-mipsel:
             #requires:
@@ -607,10 +601,9 @@ workflows:
               - android-arm64
               - browser-asmjs
               - linux-arm64
-              #- linux-armv5
+              - linux-armv5
               - linux-armv6
-              # Image build currently broken. See #209
-              #- linux-armv7
+              - linux-armv7
               #- linux-mipsel
               - linux-s390x
               # Image build currently broken. See #209
