@@ -302,7 +302,7 @@ Per-project dockcross configuration
 If a shell script named ``.dockcross`` is found in the current directory where
 the dockcross script is started, it is executed before the dockcross script
 ``command`` argument.  The shell script is expected to have a shebang like
-``#!/bin/bash``.
+``#!/usr/bin/env bash``.
 
 For example, commands like ``git config --global advice.detachedHead false`` can
 be added to this script.

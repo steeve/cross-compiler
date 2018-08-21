@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # This script operates in a current working directory. It downloads
 # "crosstool-ng", installs the base package, and then configures and installs

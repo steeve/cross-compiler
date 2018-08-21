@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env sh
 
 # Always pass the CMAKE_TOOLCHAIN_FILE variable to CMake when inside a
 # dockcross environment -- the CMAKE_TOOLCHAIN_FILE environmental variable is
