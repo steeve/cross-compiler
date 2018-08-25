@@ -1,7 +1,6 @@
 build-settings: &build-settings
   machine: true
   working_directory: ~/dockcross
-  resource_class: large
 
 version: 2
 jobs:
