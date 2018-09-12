@@ -13,8 +13,8 @@
 #  ARG MXE_TARGET_THREAD=
 #
 
-# mxe master 2017-10-25
-ARG MXE_GIT_TAG=994ad47302e8811614b7eb49fc05234942b95b89
+# mxe master 2018-09-08
+ARG MXE_GIT_TAG=842827a489087b77f51554655c0d4f48ddebd5a5
 
 ENV CMAKE_TOOLCHAIN_FILE /usr/src/mxe/usr/${MXE_TARGET_ARCH}-w64-mingw32.static${MXE_TARGET_THREAD}/share/cmake/mxe-conf.cmake
 
@@ -84,7 +84,7 @@ RUN \
   #
   cd /usr/src/mxe && \
   echo "MXE_TARGETS := ${MXE_TARGET_ARCH}-w64-mingw32.static${MXE_TARGET_THREAD}" > settings.mk && \
-  echo "LOCAL_PKG_LIST := gcc"                                                   >> settings.mk && \
+  echo "LOCAL_PKG_LIST := cc cmake"                                              >> settings.mk && \
   echo ".DEFAULT local-pkg-list:"                                                >> settings.mk && \
   echo "local-pkg-list: \$(LOCAL_PKG_LIST)"                                      >> settings.mk && \
   #
