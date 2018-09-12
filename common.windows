@@ -84,7 +84,7 @@ RUN \
   #
   cd /usr/src/mxe && \
   echo "MXE_TARGETS := ${MXE_TARGET_ARCH}-w64-mingw32.static${MXE_TARGET_THREAD}" > settings.mk && \
-  echo "LOCAL_PKG_LIST := cc"                                                    >> settings.mk && \
+  echo "LOCAL_PKG_LIST := cc cmake"                                              >> settings.mk && \
   echo ".DEFAULT local-pkg-list:"                                                >> settings.mk && \
   echo "local-pkg-list: \$(LOCAL_PKG_LIST)"                                      >> settings.mk && \
   #
