@@ -360,7 +360,10 @@ jobs:
             docker load -i ~/docker/base.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/base:latest
+              docker tag dockcross/base:latest dockcross/base:${TAG}
+              docker push dockcross/base:${TAG}
             fi
       - restore_cache:
           key: android-arm-assets-{{ .Revision }}
@@ -370,7 +373,10 @@ jobs:
             docker load -i ~/docker/android-arm.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/android-arm:latest
+              docker tag dockcross/android-arm:latest dockcross/android-arm:${TAG}
+              docker push dockcross/android-arm:${TAG}
             fi
       - restore_cache:
           key: android-arm64-assets-{{ .Revision }}
@@ -380,7 +386,10 @@ jobs:
             docker load -i ~/docker/android-arm64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/android-arm64:latest
+              docker tag dockcross/android-arm64:latest dockcross/android-arm64:${TAG}
+              docker push dockcross/android-arm64:${TAG}
             fi
       - restore_cache:
           key: browser-asmjs-assets-{{ .Revision }}
@@ -390,7 +399,10 @@ jobs:
             docker load -i ~/docker/browser-asmjs.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/browser-asmjs:latest
+              docker tag dockcross/browser-asmjs:latest dockcross/browser-asmjs:${TAG}
+              docker push dockcross/browser-asmjs:${TAG}
             fi
       - restore_cache:
           key: linux-arm64-assets-{{ .Revision }}
@@ -400,7 +412,10 @@ jobs:
             docker load -i ~/docker/linux-arm64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-arm64:latest
+              docker tag dockcross/linux-arm64:latest dockcross/linux-arm64:${TAG}
+              docker push dockcross/linux-arm64:${TAG}
             fi
       - restore_cache:
           key: linux-armv5-assets-{{ .Revision }}
@@ -410,7 +425,10 @@ jobs:
             docker load -i ~/docker/linux-armv5.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-armv5:latest
+              docker tag dockcross/linux-armv5:latest dockcross/linux-armv5:${TAG}
+              docker push dockcross/linux-armv5:${TAG}
             fi
       - restore_cache:
           key: linux-armv6-assets-{{ .Revision }}
@@ -420,7 +438,10 @@ jobs:
             docker load -i ~/docker/linux-armv6.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-armv6:latest
+              docker tag dockcross/linux-armv6:latest dockcross/linux-armv6:${TAG}
+              docker push dockcross/linux-armv6:${TAG}
             fi
       - restore_cache:
           key: linux-armv7-assets-{{ .Revision }}
@@ -430,7 +451,10 @@ jobs:
             docker load -i ~/docker/linux-armv7.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-armv7:latest
+              docker tag dockcross/linux-armv7:latest dockcross/linux-armv7:${TAG}
+              docker push dockcross/linux-armv7:${TAG}
             fi
       # Image build currently broken. See #209
       #- restore_cache:
@@ -441,7 +465,10 @@ jobs:
             #docker load -i ~/docker/linux-mipsel.tar
             #if [ "${CIRCLE_BRANCH}" == "master" ]; then
               #docker login -u $DOCKER_USER -p $DOCKER_PASS
+              #TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               #docker push dockcross/linux-mipsel:latest
+              #docker tag dockcross/linux-mipsel:latest dockcross/linux-mipsel:${TAG}
+              #docker push dockcross/linux-mipsel:${TAG}
             #fi
       - restore_cache:
           key: linux-s390x-assets-{{ .Revision }}
@@ -451,7 +478,10 @@ jobs:
             docker load -i ~/docker/linux-s390x.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-s390x:latest
+              docker tag dockcross/linux-s390x:latest dockcross/linux-s390x:${TAG}
+              docker push dockcross/linux-s390x:${TAG}
             fi
       # Image build currently broken. See #209
       #- restore_cache:
@@ -462,7 +492,10 @@ jobs:
             #docker load -i ~/docker/linux-ppc64le.tar
             #if [ "${CIRCLE_BRANCH}" == "master" ]; then
               #docker login -u $DOCKER_USER -p $DOCKER_PASS
+              #TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               #docker push dockcross/linux-ppc64le:latest
+              #docker tag dockcross/linux-ppc64le:latest dockcross/linux-ppc64le:${TAG}
+              #docker push dockcross/linux-ppc64le:${TAG}
             #fi
       - restore_cache:
           key: linux-x64-assets-{{ .Revision }}
@@ -472,7 +505,10 @@ jobs:
             docker load -i ~/docker/linux-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-x64:latest
+              docker tag dockcross/linux-x64:latest dockcross/linux-x64:${TAG}
+              docker push dockcross/linux-x64:${TAG}
             fi
       - restore_cache:
           key: linux-x86-assets-{{ .Revision }}
@@ -482,7 +518,10 @@ jobs:
             docker load -i ~/docker/linux-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-x86:latest
+              docker tag dockcross/linux-x86:latest dockcross/linux-x86:${TAG}
+              docker push dockcross/linux-x86:${TAG}
             fi
       - restore_cache:
           key: manylinux-x64-assets-{{ .Revision }}
@@ -492,7 +531,10 @@ jobs:
             docker load -i ~/docker/manylinux-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/manylinux-x64:latest
+              docker tag dockcross/manylinux-x64:latest dockcross/manylinux-x64:${TAG}
+              docker push dockcross/manylinux-x64:${TAG}
             fi
       - restore_cache:
           key: manylinux-x86-assets-{{ .Revision }}
@@ -502,7 +544,10 @@ jobs:
             docker load -i ~/docker/manylinux-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/manylinux-x86:latest
+              docker tag dockcross/manylinux-x86:latest dockcross/manylinux-x86:${TAG}
+              docker push dockcross/manylinux-x86:${TAG}
             fi
       - restore_cache:
           key: windows-x64-assets-{{ .Revision }}
@@ -512,7 +557,10 @@ jobs:
             docker load -i ~/docker/windows-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/windows-x64:latest
+              docker tag dockcross/windows-x64:latest dockcross/windows-x64:${TAG}
+              docker push dockcross/windows-x64:${TAG}
             fi
       - restore_cache:
           key: windows-x64-posix-assets-{{ .Revision }}
@@ -522,7 +570,10 @@ jobs:
             docker load -i ~/docker/windows-x64-posix.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/windows-x64-posix:latest
+              docker tag dockcross/windows-x64-posix:latest dockcross/windows-x64-posix:${TAG}
+              docker push dockcross/windows-x64-posix:${TAG}
             fi
       - restore_cache:
           key: windows-x86-assets-{{ .Revision }}
@@ -532,7 +583,10 @@ jobs:
             docker load -i ~/docker/windows-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
+              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/windows-x86:latest
+              docker tag dockcross/windows-x86:latest dockcross/windows-x86:${TAG}
+              docker push dockcross/windows-x86:${TAG}
             fi
 
 workflows:

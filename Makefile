@@ -40,6 +40,9 @@ ifeq ("$(CIRCLECI)", "true")
 	RM =
 endif
 
+# Tag images with date and Git short hash in addition to revision
+TAG = $(shell date '+%Y%m%d')-$(shell git rev-parse --short HEAD)
+
 #
 # images: This target builds all IMAGES (because it is the first one, it is built by default)
 #
@@ -75,6 +78,7 @@ browser-asmjs: browser-asmjs/Dockerfile
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		browser-asmjs
+	$(DOCKER) tag $(ORG)/browser-asmjs:latest $(ORG)/browser-asmjs:$(TAG)
 	rm -rf browser-asmjs/test
 	rm -rf $@/imagefiles
 
@@ -95,6 +99,7 @@ manylinux-x64: manylinux-x64/Dockerfile
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		-f manylinux-x64/Dockerfile .
+	$(DOCKER) tag $(ORG)/manylinux-x64:latest $(ORG)/manylinux-x64:$(TAG)
 	rm -rf $@/imagefiles
 
 manylinux-x64.test: manylinux-x64
@@ -113,6 +118,7 @@ manylinux-x86: manylinux-x86/Dockerfile
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		-f manylinux-x86/Dockerfile .
+	$(DOCKER) tag $(ORG)/manylinux-x86:latest $(ORG)/manylinux-x86:$(TAG)
 	rm -rf $@/imagefiles
 
 manylinux-x86.test: manylinux-x86
@@ -152,6 +158,7 @@ $(STANDARD_IMAGES): %: %/Dockerfile base
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		$@
+	$(DOCKER) tag $(ORG)/$@:latest $(ORG)/$@:$(TAG)
 	rm -rf $@/imagefiles
 
 #

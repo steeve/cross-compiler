@@ -2,7 +2,7 @@
 
 set -ex
 
-OPENSSH_ROOT=V_7_6_P1
+OPENSSH_ROOT=V_7_9_P1
 
 cd /usr/src
 curl -LO https://github.com/openssh/openssh-portable/archive/${OPENSSH_ROOT}.tar.gz
@@ -14,7 +14,7 @@ cd ${OPENSSH_SRC_DIR}
 
 autoreconf
 
-./configure --prefix=/usr/local
+./configure --with-ssl-dir=/usr/local/ssl --prefix=/usr/local
 
 make -j1 install
 
