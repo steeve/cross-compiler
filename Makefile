@@ -78,7 +78,13 @@ browser-asmjs: browser-asmjs/Dockerfile
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		browser-asmjs
-	$(DOCKER) tag $(ORG)/browser-asmjs:latest $(ORG)/browser-asmjs:$(TAG)
+	$(DOCKER) build -t $(ORG)/browser-asmjs:$(TAG) \
+		--build-arg IMAGE=$(ORG)/browser-asmjs \
+		--build-arg VERSION=$(TAG) \
+		--build-arg VCS_REF=`git rev-parse --short HEAD` \
+		--build-arg VCS_URL=`git config --get remote.origin.url` \
+		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+		browser-asmjs
 	rm -rf browser-asmjs/test
 	rm -rf $@/imagefiles
 
