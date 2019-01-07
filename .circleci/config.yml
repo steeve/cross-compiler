@@ -73,7 +73,7 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make browser-asmjs
-           tagged=$(docker images -q -f 'since=dockcross/browser-asmjs:latest' --format '{{.Repository}}:{{.Tag}}')
+           tagged=$(docker images -q -f 'since=dockcross/browser-asmjs:latest' --format '{{.Repository}}:{{.Tag}}' | grep browser-asmjs)
            docker save -o ~/docker/browser-asmjs.tar dockcross/browser-asmjs:latest $tagged
       - run:
          name: browser-asmjs test
@@ -401,7 +401,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker push dockcross/browser-asmjs:latest
-              tagged=$(docker images -q -f 'since=dockcross/browser-asmjs:latest' --format '{{.Repository}}:{{.Tag}}')
+              tagged=$(docker images -q -f 'since=dockcross/browser-asmjs:latest' --format '{{.Repository}}:{{.Tag}}' | grep browser-asmjs)
               docker push $tagged
             fi
       - restore_cache:
