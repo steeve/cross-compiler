@@ -333,10 +333,25 @@ And then in the shell::
 What is the difference between `dockcross` and `dockbuild` ?
 ------------------------------------------------------------
 
-The key difference is that `dockbuild <https://github.com/dockbuild/dockbuild#readme>`_
-images use the same method to conveniently isolate the build environment as
-`dockcross <https://github.com/dockcross/dockcross#readme>`_ but they do **NOT** provide
-a toolchain file.
+The key difference is that `dockbuild
+<https://github.com/dockbuild/dockbuild#readme>`_ images do **NOT** provide
+a `toolchain file
+<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html`_
+but they use the same method
+to conveniently isolate the build environment as `dockcross
+<https://github.com/dockcross/dockcross#readme>`_.
+
+`dockbuild` is used to build binaries for Linux x86_64 / amd64 that will work
+across most Linux  distributions. `dockbuild` performs a native Linux build
+where the host build system is a Linux x86_64 / amd64 Docker image (so that it
+can be used for building binaries on any system which can run Docker images)
+and the target runtime system is Linux x86_x64 / amd64.
+
+`dockcross` is used to build binaries for many different platforms.
+`dockcross` performs a cross compilation where the host build system is a
+Linux x86_64 / amd64 Docker image (so that it can be used for building
+binaries on any system which can run Docker images) and the target runtime
+system varies.
 
 
 ---
