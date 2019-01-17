@@ -35,7 +35,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make android-arm
-           docker save -o ~/docker/android-arm.tar dockcross/android-arm:latest
+           tagged=$(docker images -q -f 'since=dockcross/android-arm:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-arm)
+           docker save -o ~/docker/android-arm.tar dockcross/android-arm:latest $tagged
       - run:
          name: android-arm test
          command: |
@@ -54,7 +55,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make android-arm64
-           docker save -o ~/docker/android-arm64.tar dockcross/android-arm64:latest
+           tagged=$(docker images -q -f 'since=dockcross/android-arm64:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-arm64)
+           docker save -o ~/docker/android-arm64.tar dockcross/android-arm64:latest $tagged
       - run:
          name: android-arm64 test
          command: |
@@ -93,7 +95,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-arm64
-           docker save -o ~/docker/linux-arm64.tar dockcross/linux-arm64:latest
+           tagged=$(docker images -q -f 'since=dockcross/linux-arm64:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-arm64)
+           docker save -o ~/docker/linux-arm64.tar dockcross/linux-arm64:latest $tagged
       - run:
          name: linux-arm64 test
          command: |
@@ -112,7 +115,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-armv5
-           docker save -o ~/docker/linux-armv5.tar dockcross/linux-armv5:latest
+           tagged=$(docker images -q -f 'since=dockcross/linux-armv5:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv5)
+           docker save -o ~/docker/linux-armv5.tar dockcross/linux-armv5:latest $tagged
       - run:
          name: linux-armv5 test
          command: |
@@ -131,7 +135,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-armv6
-           docker save -o ~/docker/linux-armv6.tar dockcross/linux-armv6:latest
+           tagged=$(docker images -q -f 'since=dockcross/linux-armv6:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv6)
+           docker save -o ~/docker/linux-armv6.tar dockcross/linux-armv6:latest $tagged
       - run:
          name: linux-armv6 test
          command: |
@@ -150,7 +155,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-armv7
-           docker save -o ~/docker/linux-armv7.tar dockcross/linux-armv7:latest
+           tagged=$(docker images -q -f 'since=dockcross/linux-armv7:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7)
+           docker save -o ~/docker/linux-armv7.tar dockcross/linux-armv7:latest $tagged
       - run:
          name: linux-armv7 test
          command: |
@@ -170,7 +176,8 @@ jobs:
          #command: |
            #docker load -i ~/docker/base.tar
            #make linux-mipsel
-           #docker save -o ~/docker/linux-mipsel.tar dockcross/linux-mipsel:latest
+           #tagged=$(docker images -q -f 'since=dockcross/linux-mipsel:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-mipsel)
+           #docker save -o ~/docker/linux-mipsel.tar dockcross/linux-mipsel:latest $tagged
       #- run:
          #name: linux-mipsel test
          #command: |
@@ -189,7 +196,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-s390x
-           docker save -o ~/docker/linux-s390x.tar dockcross/linux-s390x:latest
+           tagged=$(docker images -q -f 'since=dockcross/linux-s390x:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-s390x)
+           docker save -o ~/docker/linux-s390x.tar dockcross/linux-s390x:latest $tagged
       - run:
          name: linux-s390x test
          command: |
@@ -209,7 +217,8 @@ jobs:
          #command: |
            #docker load -i ~/docker/base.tar
            #make linux-ppc64le
-           #docker save -o ~/docker/linux-ppc64le.tar dockcross/linux-ppc64le:latest
+           #tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
+           #docker save -o ~/docker/linux-ppc64le.tar dockcross/linux-ppc64le:latest $tagged
       #- run:
          #name: linux-ppc64le test
          #command: |
@@ -228,7 +237,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-x64
-           docker save -o ~/docker/linux-x64.tar dockcross/linux-x64:latest
+           tagged=$(docker images -q -f 'since=dockcross/linux-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-x64)
+           docker save -o ~/docker/linux-x64.tar dockcross/linux-x64:latest $tagged
       - run:
          name: linux-x64 test
          command: |
@@ -247,7 +257,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make linux-x86
-           docker save -o ~/docker/linux-x86.tar dockcross/linux-x86:latest
+           tagged=$(docker images -q -f 'since=dockcross/linux-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-x86)
+           docker save -o ~/docker/linux-x86.tar dockcross/linux-x86:latest $tagged
       - run:
          name: linux-x86 test
          command: |
@@ -266,7 +277,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make manylinux-x64
-           docker save -o ~/docker/manylinux-x64.tar dockcross/manylinux-x64:latest
+           tagged=$(docker images -q -f 'since=dockcross/manylinux-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux-x64)
+           docker save -o ~/docker/manylinux-x64.tar dockcross/manylinux-x64:latest $tagged
       - run:
          name: manylinux-x64 test
          command: |
@@ -285,7 +297,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make manylinux-x86
-           docker save -o ~/docker/manylinux-x86.tar dockcross/manylinux-x86:latest
+           tagged=$(docker images -q -f 'since=dockcross/manylinux-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux-x86)
+           docker save -o ~/docker/manylinux-x86.tar dockcross/manylinux-x86:latest $tagged
       - run:
          name: manylinux-x86 test
          command: |
@@ -304,7 +317,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make windows-x64
-           docker save -o ~/docker/windows-x64.tar dockcross/windows-x64:latest
+           tagged=$(docker images -q -f 'since=dockcross/windows-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-x64)
+           docker save -o ~/docker/windows-x64.tar dockcross/windows-x64:latest $tagged
       - run:
          name: windows-x64 test
          command: |
@@ -323,7 +337,8 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make windows-x64-posix
-           docker save -o ~/docker/windows-x64-posix.tar dockcross/windows-x64-posix:latest
+           tagged=$(docker images -q -f 'since=dockcross/windows-x64-posix:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-x64-posix)
+           docker save -o ~/docker/windows-x64-posix.tar dockcross/windows-x64-posix:latest $tagged
       - run:
          name: windows-x64-posix test
          command: |
@@ -342,6 +357,7 @@ jobs:
          command: |
            docker load -i ~/docker/base.tar
            make windows-x86
+           tagged=$(docker images -q -f 'since=dockcross/windows-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-x86)
            docker save -o ~/docker/windows-x86.tar dockcross/windows-x86:latest
       - run:
          name: windows-x86 test
@@ -361,10 +377,7 @@ jobs:
             docker load -i ~/docker/base.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/base:latest
-              docker tag dockcross/base:latest dockcross/base:${TAG}
-              docker push dockcross/base:${TAG}
             fi
       - restore_cache:
           key: android-arm-assets-{{ .Revision }}
@@ -374,10 +387,9 @@ jobs:
             docker load -i ~/docker/android-arm.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/android-arm:latest
-              docker tag dockcross/android-arm:latest dockcross/android-arm:${TAG}
-              docker push dockcross/android-arm:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/android-arm:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-arm)
+              docker push $tagged
             fi
       - restore_cache:
           key: android-arm64-assets-{{ .Revision }}
@@ -387,10 +399,9 @@ jobs:
             docker load -i ~/docker/android-arm64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/android-arm64:latest
-              docker tag dockcross/android-arm64:latest dockcross/android-arm64:${TAG}
-              docker push dockcross/android-arm64:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/android-arm64:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-arm64)
+              docker push $tagged
             fi
       - restore_cache:
           key: browser-asmjs-assets-{{ .Revision }}
@@ -412,10 +423,9 @@ jobs:
             docker load -i ~/docker/linux-arm64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-arm64:latest
-              docker tag dockcross/linux-arm64:latest dockcross/linux-arm64:${TAG}
-              docker push dockcross/linux-arm64:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/linux-arm64:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-arm64)
+              docker push $tagged
             fi
       - restore_cache:
           key: linux-armv5-assets-{{ .Revision }}
@@ -425,10 +435,9 @@ jobs:
             docker load -i ~/docker/linux-armv5.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-armv5:latest
-              docker tag dockcross/linux-armv5:latest dockcross/linux-armv5:${TAG}
-              docker push dockcross/linux-armv5:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/linux-armv5:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv5)
+              docker push $tagged
             fi
       - restore_cache:
           key: linux-armv6-assets-{{ .Revision }}
@@ -438,10 +447,9 @@ jobs:
             docker load -i ~/docker/linux-armv6.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-armv6:latest
-              docker tag dockcross/linux-armv6:latest dockcross/linux-armv6:${TAG}
-              docker push dockcross/linux-armv6:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/linux-armv6:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv6)
+              docker push $tagged
             fi
       - restore_cache:
           key: linux-armv7-assets-{{ .Revision }}
@@ -451,10 +459,9 @@ jobs:
             docker load -i ~/docker/linux-armv7.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-armv7:latest
-              docker tag dockcross/linux-armv7:latest dockcross/linux-armv7:${TAG}
-              docker push dockcross/linux-armv7:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/linux-armv7:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv7)
+              docker push $tagged
             fi
       # Image build currently broken. See #209
       #- restore_cache:
@@ -465,10 +472,9 @@ jobs:
             #docker load -i ~/docker/linux-mipsel.tar
             #if [ "${CIRCLE_BRANCH}" == "master" ]; then
               #docker login -u $DOCKER_USER -p $DOCKER_PASS
-              #TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               #docker push dockcross/linux-mipsel:latest
-              #docker tag dockcross/linux-mipsel:latest dockcross/linux-mipsel:${TAG}
-              #docker push dockcross/linux-mipsel:${TAG}
+              #tagged=$(docker images -q -f 'since=dockcross/linux-mipsel:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-mipsel)
+              #docker push $tagged
             #fi
       - restore_cache:
           key: linux-s390x-assets-{{ .Revision }}
@@ -478,10 +484,9 @@ jobs:
             docker load -i ~/docker/linux-s390x.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-s390x:latest
-              docker tag dockcross/linux-s390x:latest dockcross/linux-s390x:${TAG}
-              docker push dockcross/linux-s390x:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/linux-s390x:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-s390x)
+              docker push $tagged
             fi
       # Image build currently broken. See #209
       #- restore_cache:
@@ -492,10 +497,9 @@ jobs:
             #docker load -i ~/docker/linux-ppc64le.tar
             #if [ "${CIRCLE_BRANCH}" == "master" ]; then
               #docker login -u $DOCKER_USER -p $DOCKER_PASS
-              #TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               #docker push dockcross/linux-ppc64le:latest
-              #docker tag dockcross/linux-ppc64le:latest dockcross/linux-ppc64le:${TAG}
-              #docker push dockcross/linux-ppc64le:${TAG}
+              #tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
+              #docker push $tagged
             #fi
       - restore_cache:
           key: linux-x64-assets-{{ .Revision }}
@@ -505,10 +509,9 @@ jobs:
             docker load -i ~/docker/linux-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-x64:latest
-              docker tag dockcross/linux-x64:latest dockcross/linux-x64:${TAG}
-              docker push dockcross/linux-x64:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/linux-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-x64)
+              docker push $tagged
             fi
       - restore_cache:
           key: linux-x86-assets-{{ .Revision }}
@@ -518,10 +521,9 @@ jobs:
             docker load -i ~/docker/linux-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/linux-x86:latest
-              docker tag dockcross/linux-x86:latest dockcross/linux-x86:${TAG}
-              docker push dockcross/linux-x86:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/linux-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-x86)
+              docker push $tagged
             fi
       - restore_cache:
           key: manylinux-x64-assets-{{ .Revision }}
@@ -531,10 +533,9 @@ jobs:
             docker load -i ~/docker/manylinux-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/manylinux-x64:latest
-              docker tag dockcross/manylinux-x64:latest dockcross/manylinux-x64:${TAG}
-              docker push dockcross/manylinux-x64:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/manylinux-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux-x64)
+              docker push $tagged
             fi
       - restore_cache:
           key: manylinux-x86-assets-{{ .Revision }}
@@ -544,10 +545,9 @@ jobs:
             docker load -i ~/docker/manylinux-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/manylinux-x86:latest
-              docker tag dockcross/manylinux-x86:latest dockcross/manylinux-x86:${TAG}
-              docker push dockcross/manylinux-x86:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/manylinux-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux-x86)
+              docker push $tagged
             fi
       - restore_cache:
           key: windows-x64-assets-{{ .Revision }}
@@ -557,10 +557,9 @@ jobs:
             docker load -i ~/docker/windows-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/windows-x64:latest
-              docker tag dockcross/windows-x64:latest dockcross/windows-x64:${TAG}
-              docker push dockcross/windows-x64:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/windows-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-x64)
+              docker push $tagged
             fi
       - restore_cache:
           key: windows-x64-posix-assets-{{ .Revision }}
@@ -570,10 +569,9 @@ jobs:
             docker load -i ~/docker/windows-x64-posix.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/windows-x64-posix:latest
-              docker tag dockcross/windows-x64-posix:latest dockcross/windows-x64-posix:${TAG}
-              docker push dockcross/windows-x64-posix:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/windows-x64-posix:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-x64-posix)
+              docker push $tagged
             fi
       - restore_cache:
           key: windows-x86-assets-{{ .Revision }}
@@ -583,10 +581,9 @@ jobs:
             docker load -i ~/docker/windows-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              TAG=$(date '+%Y%m%d')-$(git rev-parse --short HEAD)
               docker push dockcross/windows-x86:latest
-              docker tag dockcross/windows-x86:latest dockcross/windows-x86:${TAG}
-              docker push dockcross/windows-x86:${TAG}
+              tagged=$(docker images -q -f 'since=dockcross/windows-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-x86)
+              docker push $tagged
             fi
 
 workflows:

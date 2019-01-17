@@ -40,18 +40,19 @@ RUN mkdir rpi_tools && cd rpi_tools && git init && git remote add -f origin http
 ENV QEMU_LD_PREFIX ${CROSS_ROOT}/libc
 ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${CROSS_ROOT}/libc/lib/${CROSS_TRIPLE}/"
 
-ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-armv6
-
 COPY Toolchain.cmake ${CROSS_ROOT}/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE
+ARG IMAGE=dockcross/linux-armv6
+ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name=$IMAGE \
+      org.label-schema.version=$VERSION \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url=$VCS_URL \
       org.label-schema.schema-version="1.0"
+ENV DEFAULT_DOCKCROSS_IMAGE ${IMAGE}:${VERSION}

@@ -33,9 +33,6 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gcc \
     CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++
 
-
-ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-x86
-
 # Note: Toolchain file support is currently in debian Experimental:
 # https://wiki.debian.org/CrossToolchains#In_jessie_.28Debian_8.29
 COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
@@ -46,11 +43,14 @@ ENTRYPOINT ["/dockcross/linux32-entrypoint.sh"]
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE
+ARG IMAGE=dockcross/linux-x86
+ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL
 LABEL org.label-schema.build-date=$BUILD_DATE \
       org.label-schema.name=$IMAGE \
+      org.label-schema.version=$VERSION \
       org.label-schema.vcs-ref=$VCS_REF \
       org.label-schema.vcs-url=$VCS_URL \
       org.label-schema.schema-version="1.0"
+ENV DEFAULT_DOCKCROSS_IMAGE ${IMAGE}:${VERSION}
