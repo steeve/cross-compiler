@@ -336,7 +336,7 @@ What is the difference between `dockcross` and `dockbuild` ?
 The key difference is that `dockbuild
 <https://github.com/dockbuild/dockbuild#readme>`_ images do **NOT** provide
 a `toolchain file
-<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html`_
+<https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html>`_
 but they use the same method
 to conveniently isolate the build environment as `dockcross
 <https://github.com/dockcross/dockcross#readme>`_.
