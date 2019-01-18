@@ -358,7 +358,7 @@ jobs:
            docker load -i ~/docker/base.tar
            make windows-x86
            tagged=$(docker images -q -f 'since=dockcross/windows-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-x86)
-           docker save -o ~/docker/windows-x86.tar dockcross/windows-x86:latest
+           docker save -o ~/docker/windows-x86.tar dockcross/windows-x86:latest $tagged
       - run:
          name: windows-x86 test
          command: |
@@ -580,11 +580,8 @@ jobs:
           command: |
             docker load -i ~/docker/windows-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              set -x
               docker login -u $DOCKER_USER -p $DOCKER_PASS
               docker push dockcross/windows-x86:latest
-              docker images
-              docker images -q -f 'since=dockcross/windows-x86:latest' --format '{{.Repository}}:{{.Tag}}'
               tagged=$(docker images -q -f 'since=dockcross/windows-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep windows-x86)
               docker push $tagged
             fi
