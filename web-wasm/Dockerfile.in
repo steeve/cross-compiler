@@ -21,7 +21,7 @@ ENV CMAKE_TOOLCHAIN_FILE /emsdk_portable/sdk/cmake/Modules/Platform/Emscripten.c
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE=dockcross/browser-asmjs
+ARG IMAGE=dockcross/web-wasm
 ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL

@@ -2,6 +2,6 @@ bin
 dockcross
 */test/
 Dockerfile
-browser-asmjs/Dockerfile
+web-wasm/Dockerfile
 */imagefiles/*
 !imagefiles/*

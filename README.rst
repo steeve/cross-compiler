@@ -103,11 +103,11 @@ dockcross/android-arm64
   |android-arm64-images| The Android NDK standalone toolchain for the arm64
   architecture.
 
-.. |browser-asmjs-images| image:: https://images.microbadger.com/badges/image/dockcross/browser-asmjs.svg
-  :target: https://microbadger.com/images/dockcross/browser-asmjs
+.. |web-wasm-images| image:: https://images.microbadger.com/badges/image/dockcross/web-wasm.svg
+  :target: https://microbadger.com/images/dockcross/web-wasm
 
-dockcross/browser-asmjs
-  |browser-asmjs-images| The Emscripten JavaScript cross compiler.
+dockcross/web-wasm
+  |web-wasm-images| The Emscripten WebAssembly/asm.js/JavaScript cross compiler.
 
 
 .. |linux-arm64-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-arm64.svg
