@@ -16,11 +16,11 @@ BIN = ./bin
 STANDARD_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-mips linux-mipsel linux-ppc64le windows-x86 windows-x64 windows-x64-posix
 
 # Generated Dockerfiles.
-GEN_IMAGES = linux-s390x linux-mips manylinux-x86 manylinux-x64 browser-asmjs linux-arm64 windows-x86 windows-x64 windows-x64-posix linux-armv7 linux-armv5
+GEN_IMAGES = linux-s390x linux-mips manylinux-x86 manylinux-x64 web-wasm linux-arm64 windows-x86 windows-x64 windows-x64-posix linux-armv7 linux-armv5
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
 # These images are expected to have explicit rules for *both* build and testing
-NON_STANDARD_IMAGES = browser-asmjs manylinux-x64 manylinux-x86
+NON_STANDARD_IMAGES = web-wasm manylinux-x64 manylinux-x86
 
 DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux common.crosstool common.windows
 
@@ -67,32 +67,32 @@ $(GEN_IMAGE_DOCKERFILES) Dockerfile: %Dockerfile: %Dockerfile.in $(DOCKER_COMPOS
 		$< > $@
 
 #
-# browser-asmjs
+# web-wasm
 #
-browser-asmjs: browser-asmjs/Dockerfile
+web-wasm: web-wasm/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
-	cp -r test browser-asmjs/
-	$(DOCKER) build -t $(ORG)/browser-asmjs:latest \
-		--build-arg IMAGE=$(ORG)/browser-asmjs \
+	cp -r test web-wasm/
+	$(DOCKER) build -t $(ORG)/web-wasm:latest \
+		--build-arg IMAGE=$(ORG)/web-wasm \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		browser-asmjs
-	$(DOCKER) build -t $(ORG)/browser-asmjs:$(TAG) \
-		--build-arg IMAGE=$(ORG)/browser-asmjs \
+		web-wasm
+	$(DOCKER) build -t $(ORG)/web-wasm:$(TAG) \
+		--build-arg IMAGE=$(ORG)/web-wasm \
 		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		browser-asmjs
-	rm -rf browser-asmjs/test
+		web-wasm
+	rm -rf web-wasm/test
 	rm -rf $@/imagefiles
 
-browser-asmjs.test: browser-asmjs
-	cp -r test browser-asmjs/
-	$(DOCKER) run $(RM) dockcross/browser-asmjs > $(BIN)/dockcross-browser-asmjs && chmod +x $(BIN)/dockcross-browser-asmjs
-	$(BIN)/dockcross-browser-asmjs python test/run.py --exe-suffix ".js"
-	rm -rf browser-asmjs/test
+web-wasm.test: web-wasm
+	cp -r test web-wasm/
+	$(DOCKER) run $(RM) dockcross/web-wasm > $(BIN)/dockcross-web-wasm && chmod +x $(BIN)/dockcross-web-wasm
+	$(BIN)/dockcross-web-wasm python test/run.py --exe-suffix ".js"
+	rm -rf web-wasm/test
 
 #
 # manylinux-x64

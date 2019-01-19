@@ -64,26 +64,26 @@ jobs:
       - save_cache:
           key: android-arm64-assets-{{ .Revision }}
           paths: ~/docker/android-arm64.tar
-  browser-asmjs:
+  web-wasm:
     <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
       - run:
-         name: browser-asmjs build
+         name: web-wasm build
          no_output_timeout: 1.5h
          command: |
            docker load -i ~/docker/base.tar
-           make browser-asmjs
-           tagged=$(docker images -q -f 'since=dockcross/browser-asmjs:latest' --format '{{.Repository}}:{{.Tag}}' | grep browser-asmjs)
-           docker save -o ~/docker/browser-asmjs.tar dockcross/browser-asmjs:latest $tagged
+           make web-wasm
+           tagged=$(docker images -q -f 'since=dockcross/web-wasm:latest' --format '{{.Repository}}:{{.Tag}}' | grep web-wasm)
+           docker save -o ~/docker/web-wasm.tar dockcross/web-wasm:latest $tagged
       - run:
-         name: browser-asmjs test
+         name: web-wasm test
          command: |
-           make browser-asmjs.test
+           make web-wasm.test
       - save_cache:
-          key: browser-asmjs-assets-{{ .Revision }}
-          paths: ~/docker/browser-asmjs.tar
+          key: web-wasm-assets-{{ .Revision }}
+          paths: ~/docker/web-wasm.tar
   linux-arm64:
     <<: *build-settings
     steps:
@@ -404,15 +404,15 @@ jobs:
               docker push $tagged
             fi
       - restore_cache:
-          key: browser-asmjs-assets-{{ .Revision }}
+          key: web-wasm-assets-{{ .Revision }}
       - deploy:
-          name: Deploy browser-asmjs
+          name: Deploy web-wasm
           command: |
-            docker load -i ~/docker/browser-asmjs.tar
+            docker load -i ~/docker/web-wasm.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/browser-asmjs:latest
-              tagged=$(docker images -q -f 'since=dockcross/browser-asmjs:latest' --format '{{.Repository}}:{{.Tag}}' | grep browser-asmjs)
+              docker push dockcross/web-wasm:latest
+              tagged=$(docker images -q -f 'since=dockcross/web-wasm:latest' --format '{{.Repository}}:{{.Tag}}' | grep web-wasm)
               docker push $tagged
             fi
       - restore_cache:
@@ -597,7 +597,7 @@ workflows:
         - android-arm64:
             requires:
               - base
-        - browser-asmjs:
+        - web-wasm:
             requires:
               - base
         - linux-arm64:
@@ -649,7 +649,7 @@ workflows:
               - base
               - android-arm
               - android-arm64
-              - browser-asmjs
+              - web-wasm
               - linux-arm64
               - linux-armv5
               - linux-armv6
