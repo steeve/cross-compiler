@@ -24,4 +24,5 @@ curl -# -LO https://bootstrap.pypa.io/get-pip.py
 ${PYTHON} get-pip.py --ignore-installed
 rm get-pip.py
 
+${PYTHON} -m pip install --upgrade --ignore-installed setuptools
 ${PYTHON} -m pip install --ignore-installed conan
