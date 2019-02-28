@@ -50,6 +50,7 @@ RUN \
     libssl-dev \
     libxml-parser-perl \
     libc6-dev-i386 \
+    lzip \
     make \
     openssl \
     p7zip-full \
