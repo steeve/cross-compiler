@@ -13,7 +13,7 @@ ORG = dockcross
 BIN = ./bin
 
 # These images are built using the "build implicit rule"
-STANDARD_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-mips linux-mipsel linux-ppc64le windows-x86 windows-x64 windows-x64-posix
+STANDARD_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-mips linux-mipsel linux-ppc64le windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix
 
 # Generated Dockerfiles.
 GEN_IMAGES = linux-s390x linux-mips manylinux-x86 manylinux-x64 web-wasm linux-arm64 windows-x86 windows-x64 windows-x64-posix linux-armv7 linux-armv5
