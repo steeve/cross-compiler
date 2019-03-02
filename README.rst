@@ -198,25 +198,45 @@ dockcross/web-wasm
   |web-wasm-images| The Emscripten WebAssembly/asm.js/JavaScript cross compiler.
 
 
-.. |windows-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-x64.svg
-  :target: https://microbadger.com/images/dockcross/windows-x64
+.. |windows-static-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-static-x64.svg
+  :target: https://microbadger.com/images/dockcross/windows-static-x64
 
-dockcross/windows-x64
-  |windows-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads.
-
-
-.. |windows-x64-posix-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-x64-posix.svg
-  :target: https://microbadger.com/images/dockcross/windows-x64-posix
-
-dockcross/windows-x64-posix
-  |windows-x64-posix-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with posix threads.
+dockcross/windows-static-x64
+  |windows-static-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads and static linking.
 
 
-.. |windows-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-x86.svg
-  :target: https://microbadger.com/images/dockcross/windows-x86
+.. |windows-static-x64-posix-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-static-x64-posix.svg
+  :target: https://microbadger.com/images/dockcross/windows-static-x64-posix
 
-dockcross/windows-x86
-  |windows-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads.
+dockcross/windows-static-x64-posix
+  |windows-static-x64-posix-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with posix threads and static linking.
+
+
+.. |windows-static-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-static-x86.svg
+  :target: https://microbadger.com/images/dockcross/windows-static-x86
+
+dockcross/windows-static-x86
+  |windows-static-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads and static linking.
+
+.. |windows-shared-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-shared-x64.svg
+  :target: https://microbadger.com/images/dockcross/windows-shared-x64
+
+dockcross/windows-shared-x64
+  |windows-shared-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads and dynamic linking.
+
+
+.. |windows-shared-x64-posix-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-shared-x64-posix.svg
+  :target: https://microbadger.com/images/dockcross/windows-shared-x64-posix
+
+dockcross/windows-shared-x64-posix
+  |windows-shared-x64-posix-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with posix threads and dynamic linking.
+
+
+.. |windows-shared-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-shared-x86.svg
+  :target: https://microbadger.com/images/dockcross/windows-shared-x86
+
+dockcross/windows-shared-x86
+  |windows-shared-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads and dynamic linking.
 
 
 Articles

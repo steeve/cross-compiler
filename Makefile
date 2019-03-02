@@ -13,10 +13,10 @@ ORG = dockcross
 BIN = ./bin
 
 # These images are built using the "build implicit rule"
-STANDARD_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-mips linux-mipsel linux-ppc64le windows-x86 windows-x64 windows-x64-posix
+STANDARD_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-arm64 linux-armv5 linux-armv6 linux-armv7 linux-mips linux-mipsel linux-ppc64le windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix
 
 # Generated Dockerfiles.
-GEN_IMAGES = linux-s390x linux-mips manylinux-x86 manylinux-x64 web-wasm linux-arm64 windows-x86 windows-x64 windows-x64-posix linux-armv7 linux-armv5
+GEN_IMAGES = linux-s390x linux-mips manylinux-x86 manylinux-x64 web-wasm linux-arm64 windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix linux-armv7 linux-armv5
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
 # These images are expected to have explicit rules for *both* build and testing
@@ -29,9 +29,12 @@ IMAGES = $(STANDARD_IMAGES) $(NON_STANDARD_IMAGES)
 
 # Optional arguments for test runner (test/run.py) associated with "testing implicit rule"
 linux-ppc64le.test_ARGS = --languages C
-windows-x86.test_ARGS = --exe-suffix ".exe"
-windows-x64.test_ARGS = --exe-suffix ".exe"
-windows-x64-posix.test_ARGS = --exe-suffix ".exe"
+windows-static-x86.test_ARGS = --exe-suffix ".exe"
+windows-static-x64.test_ARGS = --exe-suffix ".exe"
+windows-static-x64-posix.test_ARGS = --exe-suffix ".exe"
+windows-shared-x86.test_ARGS = --exe-suffix ".exe"
+windows-shared-x64.test_ARGS = --exe-suffix ".exe"
+windows-shared-x64-posix.test_ARGS = --exe-suffix ".exe"
 
 # On CircleCI, do not attempt to delete container
 # See https://circleci.com/docs/docker-btrfs-error/

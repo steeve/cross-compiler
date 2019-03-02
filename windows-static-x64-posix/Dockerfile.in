@@ -3,13 +3,14 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 ENV WINEARCH win64
 ARG MXE_TARGET_ARCH=x86_64
-ARG MXE_TARGET_THREAD=
+ARG MXE_TARGET_THREAD=.posix
+ARG MXE_TARGET_LINK=static
 
 #include "common.windows"
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE=dockcross/windows-x64
+ARG IMAGE=dockcross/windows-static-x64-posix
 ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL
