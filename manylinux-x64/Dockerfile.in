@@ -1,4 +1,4 @@
-FROM quay.io/pypa/manylinux1_x86_64:latest
+FROM scikitbuild/manylinux1_x86_64:91cb02fb8
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux-x64
