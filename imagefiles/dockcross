@@ -208,7 +208,7 @@ if [ -z "$SSH_DIR" ]; then
 fi
 
 HOST_VOLUMES=
-if [ -e "$SSH_DIR" ]; then
+if [ -e "$SSH_DIR" -a -z "$MSYS"]; then
     HOST_VOLUMES+="-v $SSH_DIR:/home/$(id -un)/.ssh"
 fi
 
