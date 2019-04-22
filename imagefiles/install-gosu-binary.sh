@@ -37,7 +37,7 @@ gpg --verify /usr/local/bin/gosu.asc
 # agent files in $GNUPGHOME.  Only need to do this on newer distros
 # with gpgconf installed
 GPGCONF_BIN="$(command -v gpgconf)" || true
-if [ -n "$GPGCONF" ] && [ -x $GPGCONF_BIN ]; then
+if [ -n "$GPGCONF_BIN" ] && [ -x $GPGCONF_BIN ]; then
 	gpgconf --kill gpg-agent 
 fi
 
