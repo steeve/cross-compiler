@@ -33,7 +33,9 @@ curl -o /usr/local/bin/gosu.asc -# -SL $url_key
 
 gpg --verify /usr/local/bin/gosu.asc
 
-# cleanup
+# cleanup -- need to kill agent so that there is no race condition for
+# agent files in $GNUPGHOME
+gpgconf --kill gpg-agent 
 rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc
 
 chmod +x /usr/local/bin/gosu
