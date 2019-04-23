@@ -1,4 +1,4 @@
-FROM debian:jessie-20181112
+FROM debian:stretch-20190326-slim
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 #include "common.debian"
