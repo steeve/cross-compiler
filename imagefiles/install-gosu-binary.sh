@@ -35,10 +35,10 @@ gpg --verify /usr/local/bin/gosu.asc
 
 # cleanup -- need to kill agent so that there is no race condition for
 # agent files in $GNUPGHOME.  Only need to do this on newer distros
-# with gpgconf installed
+# with gpgconf installed supporting the option.
 GPGCONF_BIN="$(command -v gpgconf)" || true
-if [ -n "$GPGCONF_BIN" ] && [ -x $GPGCONF_BIN ]; then
-	gpgconf --kill gpg-agent 
+if [ -n "$GPGCONF_BIN" ] && [ -x $GPGCONF_BIN ] && [[ $($GPGCONF_BIN --help | grep -- "--kill" || true) != "" ]]; then
+	gpgconf --kill gpg-agent
 fi
 
 rm -r "$GNUPGHOME" /usr/local/bin/gosu.asc
