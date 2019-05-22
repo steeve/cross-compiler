@@ -286,46 +286,46 @@ jobs:
       - save_cache:
           key: linux-x86-assets-{{ .Revision }}
           paths: ~/docker/linux-x86.tar
-  manylinux-x64:
+  manylinux1-x64:
     <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
       - run:
-         name: manylinux-x64 build
+         name: manylinux1-x64 build
          no_output_timeout: 1.5h
          command: |
            docker load -i ~/docker/base.tar
-           make manylinux-x64
-           tagged=$(docker images -q -f 'since=dockcross/manylinux-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux-x64)
-           docker save -o ~/docker/manylinux-x64.tar dockcross/manylinux-x64:latest $tagged
+           make manylinux1-x64
+           tagged=$(docker images -q -f 'since=dockcross/manylinux1-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x64)
+           docker save -o ~/docker/manylinux1-x64.tar dockcross/manylinux1-x64:latest $tagged
       - run:
-         name: manylinux-x64 test
+         name: manylinux1-x64 test
          command: |
-           make manylinux-x64.test
+           make manylinux1-x64.test
       - save_cache:
-          key: manylinux-x64-assets-{{ .Revision }}
-          paths: ~/docker/manylinux-x64.tar
-  manylinux-x86:
+          key: manylinux1-x64-assets-{{ .Revision }}
+          paths: ~/docker/manylinux1-x64.tar
+  manylinux1-x86:
     <<: *build-settings
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
       - run:
-         name: manylinux-x86 build
+         name: manylinux1-x86 build
          no_output_timeout: 1.5h
          command: |
            docker load -i ~/docker/base.tar
-           make manylinux-x86
-           tagged=$(docker images -q -f 'since=dockcross/manylinux-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux-x86)
-           docker save -o ~/docker/manylinux-x86.tar dockcross/manylinux-x86:latest $tagged
+           make manylinux1-x86
+           tagged=$(docker images -q -f 'since=dockcross/manylinux1-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x86)
+           docker save -o ~/docker/manylinux1-x86.tar dockcross/manylinux1-x86:latest $tagged
       - run:
-         name: manylinux-x86 test
+         name: manylinux1-x86 test
          command: |
-           make manylinux-x86.test
+           make manylinux1-x86.test
       - save_cache:
-          key: manylinux-x86-assets-{{ .Revision }}
-          paths: ~/docker/manylinux-x86.tar
+          key: manylinux1-x86-assets-{{ .Revision }}
+          paths: ~/docker/manylinux1-x86.tar
   windows-static-x64:
     <<: *build-settings
     steps:
@@ -618,27 +618,27 @@ jobs:
               docker push $tagged
             fi
       - restore_cache:
-          key: manylinux-x64-assets-{{ .Revision }}
+          key: manylinux1-x64-assets-{{ .Revision }}
       - deploy:
-          name: Deploy manylinux-x64
+          name: Deploy manylinux1-x64
           command: |
-            docker load -i ~/docker/manylinux-x64.tar
+            docker load -i ~/docker/manylinux1-x64.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/manylinux-x64:latest
-              tagged=$(docker images -q -f 'since=dockcross/manylinux-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux-x64)
+              docker push dockcross/manylinux1-x64:latest
+              tagged=$(docker images -q -f 'since=dockcross/manylinux1-x64:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x64)
               docker push $tagged
             fi
       - restore_cache:
-          key: manylinux-x86-assets-{{ .Revision }}
+          key: manylinux1-x86-assets-{{ .Revision }}
       - deploy:
-          name: Deploy manylinux-x86
+          name: Deploy manylinux1-x86
           command: |
-            docker load -i ~/docker/manylinux-x86.tar
+            docker load -i ~/docker/manylinux1-x86.tar
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/manylinux-x86:latest
-              tagged=$(docker images -q -f 'since=dockcross/manylinux-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux-x86)
+              docker push dockcross/manylinux1-x86:latest
+              tagged=$(docker images -q -f 'since=dockcross/manylinux1-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux1-x86)
               docker push $tagged
             fi
       - restore_cache:
@@ -760,10 +760,10 @@ workflows:
         - linux-x86:
             requires:
               - base
-        - manylinux-x64:
+        - manylinux1-x64:
             requires:
               - base
-        - manylinux-x86:
+        - manylinux1-x86:
             requires:
               - base
         - windows-static-x64:
@@ -801,8 +801,8 @@ workflows:
               #- linux-ppc64le
               - linux-x64
               - linux-x86
-              - manylinux-x64
-              - manylinux-x86
+              - manylinux1-x64
+              - manylinux1-x86
               - windows-static-x64
               - windows-static-x64-posix
               - windows-static-x86
