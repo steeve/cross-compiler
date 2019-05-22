@@ -1,7 +1,7 @@
 FROM scikitbuild/manylinux1_x86_64:91cb02fb8
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux-x64
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux1-x64
 
 #include "common.manylinux"
 
@@ -19,12 +19,12 @@ ENV AS=${CROSS_ROOT}/as \
 
 COPY linux-x64/${CROSS_TRIPLE}-noop.sh /usr/bin/${CROSS_TRIPLE}-noop
 
-COPY manylinux-x64/Toolchain.cmake ${CROSS_ROOT}/../lib/
+COPY manylinux1-x64/Toolchain.cmake ${CROSS_ROOT}/../lib/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/../lib/Toolchain.cmake
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE=dockcross/manylinux-x64
+ARG IMAGE=dockcross/manylinux1-x64
 ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL
