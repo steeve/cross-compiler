@@ -182,6 +182,14 @@ dockcross/linux-x86
   |linux-x86-images| Linux i686 cross compiler.
 
 
+.. |manylinux2010-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/manylinux2010-x64.svg
+  :target: https://microbadger.com/images/dockcross/manylinux2010-x64
+
+dockcross/manylinux2010-x64
+  |manylinux2010-x64-images| Docker `manylinux2010 <https://github.com/pypa/manylinux>`_ image for building Linux x86_64 / amd64 `Python wheel packages <http://pythonwheels.com/>`_. It includes Python 2.7, 3.4, 3.5, 3.6, 3.7 and 3.8.
+  Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
+
+
 .. |manylinux1-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/manylinux1-x64.svg
   :target: https://microbadger.com/images/dockcross/manylinux1-x64
 
