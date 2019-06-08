@@ -1,5 +1,8 @@
 # Image build scripts
-COPY imagefiles/install-gosu-binary.sh /buildscripts/
+COPY \
+  imagefiles/install-gosu-binary.sh \
+  imagefiles/install-gosu-binary-wrapper.sh \
+  /buildscripts/
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG REPO=http://cdn-fastly.deb.debian.org
@@ -45,4 +48,5 @@ RUN \
   && \
   apt-get clean --yes && \
   /buildscripts/install-gosu-binary.sh && \
+  /buildscripts/install-gosu-binary-wrapper.sh && \
   rm -rf /buildscripts

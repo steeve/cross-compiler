@@ -5,7 +5,7 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 # See https://github.com/asRIA/emscripten-docker/blob/master/Dockerfile.in#L4
 RUN rm /bin/sh && ln -s /bin/dash /bin/sh
 
-COPY install-gosu-sudo.sh /buildscripts/
+COPY imagefiles/install-gosu-binary-wrapper.sh /buildscripts/
 
 ARG DEBIAN_FRONTEND=noninteractive
 ARG REPO=http://cdn-fastly.deb.debian.org
@@ -51,7 +51,7 @@ RUN \
     zlib1g-dev \
   && \
   apt-get clean --yes && \
-  /buildscripts/install-gosu-sudo.sh && \
+  /buildscripts/install-gosu-binary-wrapper.sh && \
   rm -rf /buildscripts
 
 #include "common.docker"
