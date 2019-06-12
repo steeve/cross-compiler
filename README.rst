@@ -187,7 +187,7 @@ dockcross/linux-x86
 
 dockcross/manylinux2010-x64
   |manylinux2010-x64-images| Docker `manylinux2010 <https://github.com/pypa/manylinux>`_ image for building Linux x86_64 / amd64 `Python wheel packages <http://pythonwheels.com/>`_. It includes Python 2.7, 3.4, 3.5, 3.6, 3.7 and 3.8.
-  Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
+  Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_. For CMake, it sets `MANYLINUX2010` to "TRUE" in the toolchain.
 
 
 .. |manylinux1-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/manylinux1-x64.svg
@@ -195,7 +195,7 @@ dockcross/manylinux2010-x64
 
 dockcross/manylinux1-x64
   |manylinux1-x64-images| Docker `manylinux1 <https://github.com/pypa/manylinux/tree/manylinux1>`_ image for building Linux x86_64 / amd64 `Python wheel packages <http://pythonwheels.com/>`_. It includes Python 2.7, 3.4, 3.5, 3.6, 3.7 and 3.8.
-  Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
+  Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_. For CMake, it sets `MANYLINUX1` to "TRUE" in the toolchain.
 
 
 .. |manylinux1-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/manylinux1-x86.svg
@@ -203,7 +203,7 @@ dockcross/manylinux1-x64
 
 dockcross/manylinux1-x86
   |manylinux1-x86-images| Docker `manylinux1 <https://github.com/pypa/manylinux/tree/manylinux1>`_ image for building Linux i686 `Python wheel packages <http://pythonwheels.com/>`_. It includes Python 2.7, 3.4, 3.5, 3.6, 3.7 and 3.8.
-  Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_
+  Also has support for the dockcross script, and it has installations of CMake, Ninja, and `scikit-build <http://scikit-build.org>`_. For CMake, it sets `MANYLINUX1` to "TRUE" in the toolchain.
 
 
 .. |web-wasm-images| image:: https://images.microbadger.com/badges/image/dockcross/web-wasm.svg
