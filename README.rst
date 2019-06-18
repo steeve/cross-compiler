@@ -120,6 +120,13 @@ dockcross/linux-armv5
   like the Parrot AR Drone.
 
 
+.. |linux-armv5-musl-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-armv5-musl.svg
+  :target: https://microbadger.com/images/dockcross/linux-armv5-musl
+
+dockcross/linux-armv5-musl
+  |linux-armv5-musl-images| Linux armv5 cross compiler toolchain using `musl <https://www.musl-libc.org/>`_ as base "libc".
+
+
 .. |linux-armv6-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-armv6.svg
   :target: https://microbadger.com/images/dockcross/linux-armv6
 
