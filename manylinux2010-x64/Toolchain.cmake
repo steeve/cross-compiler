@@ -2,6 +2,8 @@ set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_VERSION 1)
 set(CMAKE_SYSTEM_PROCESSOR x86_64)
 
+set(MANYLINUX2010 TRUE)
+
 set(cross_triple "x86_64-linux-gnu")
 
 set(CMAKE_C_COMPILER /opt/rh/devtoolset-8/root/usr/bin/gcc)
