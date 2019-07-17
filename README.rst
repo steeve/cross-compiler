@@ -224,41 +224,41 @@ dockcross/web-wasm
   :target: https://microbadger.com/images/dockcross/windows-static-x64
 
 dockcross/windows-static-x64
-  |windows-static-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads and static linking.
+  |windows-static-x64-images| 64-bit Windows cross-compiler based on `MXE/MinGW-w64`_ with win32 threads and static linking.
 
 
 .. |windows-static-x64-posix-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-static-x64-posix.svg
   :target: https://microbadger.com/images/dockcross/windows-static-x64-posix
 
 dockcross/windows-static-x64-posix
-  |windows-static-x64-posix-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with posix threads and static linking.
+  |windows-static-x64-posix-images| 64-bit Windows cross-compiler based on `MXE/MinGW-w64`_ with posix threads and static linking.
 
 
 .. |windows-static-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-static-x86.svg
   :target: https://microbadger.com/images/dockcross/windows-static-x86
 
 dockcross/windows-static-x86
-  |windows-static-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads and static linking.
+  |windows-static-x86-images| 32-bit Windows cross-compiler based on `MXE/MinGW-w64`_ with win32 threads and static linking.
 
 .. |windows-shared-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-shared-x64.svg
   :target: https://microbadger.com/images/dockcross/windows-shared-x64
 
 dockcross/windows-shared-x64
-  |windows-shared-x64-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads and dynamic linking.
+  |windows-shared-x64-images| 64-bit Windows cross-compiler based on `MXE/MinGW-w64`_ with win32 threads and dynamic linking.
 
 
 .. |windows-shared-x64-posix-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-shared-x64-posix.svg
   :target: https://microbadger.com/images/dockcross/windows-shared-x64-posix
 
 dockcross/windows-shared-x64-posix
-  |windows-shared-x64-posix-images| 64-bit Windows cross-compiler based on MXE/MinGW-w64 with posix threads and dynamic linking.
+  |windows-shared-x64-posix-images| 64-bit Windows cross-compiler based on `MXE/MinGW-w64`_ with posix threads and dynamic linking.
 
 
 .. |windows-shared-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/windows-shared-x86.svg
   :target: https://microbadger.com/images/dockcross/windows-shared-x86
 
 dockcross/windows-shared-x86
-  |windows-shared-x86-images| 32-bit Windows cross-compiler based on MXE/MinGW-w64 with win32 threads and dynamic linking.
+  |windows-shared-x86-images| 32-bit Windows cross-compiler based on `MXE/MinGW-w64`_ with win32 threads and dynamic linking.
 
 
 Articles
@@ -400,3 +400,5 @@ system varies.
 ---
 
 Credits go to `sdt/docker-raspberry-pi-cross-compiler <https://github.com/sdt/docker-raspberry-pi-cross-compiler>`_, who invented the base of the **dockcross** script.
+
+.. _MXE/MinGW-w64: https://mxe.cc/
