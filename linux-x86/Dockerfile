@@ -36,6 +36,10 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
 COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
 ENV CMAKE_TOOLCHAIN_FILE /usr/lib/${CROSS_TRIPLE}/Toolchain.cmake
 
+# Linux kernel cross compilation variables
+ENV CROSS_COMPILE ${CROSS_TRIPLE}-
+ENV ARCH x86
+
 COPY linux32-entrypoint.sh /dockcross/
 ENTRYPOINT ["/dockcross/linux32-entrypoint.sh"]
 
