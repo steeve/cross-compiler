@@ -40,6 +40,11 @@ WORKDIR /work
 COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
 ENV CMAKE_TOOLCHAIN_FILE /usr/lib/${CROSS_TRIPLE}/Toolchain.cmake
 
+# Linux kernel cross compilation variables
+ENV PATH ${PATH}:${CROSS_ROOT}/bin
+ENV CROSS_COMPILE ${CROSS_TRIPLE}-
+ENV ARCH powerpc
+
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG IMAGE=dockcross/linux-ppc64le

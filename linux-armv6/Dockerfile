@@ -43,6 +43,11 @@ ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${CROSS_ROOT}/libc/lib/${CRO
 COPY Toolchain.cmake ${CROSS_ROOT}/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
 
+# Linux kernel cross compilation variables
+ENV PATH ${PATH}:${CROSS_ROOT}/bin
+ENV CROSS_COMPILE ${CROSS_TRIPLE}-
+ENV ARCH arm
+
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
 ARG IMAGE=dockcross/linux-armv6
