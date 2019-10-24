@@ -1,4 +1,4 @@
-FROM scikitbuild/manylinux1_i686:91cb02fb8
+FROM quay.io/pypa/manylinux1_i686:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux1-x86
