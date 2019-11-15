@@ -1,4 +1,4 @@
-FROM trzeci/emscripten-slim:sdk-tag-1.38.24-64bit
+FROM trzeci/emscripten-slim:sdk-tag-1.38.48-64bit
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Revert back to "/bin/sh" as default shell
@@ -56,15 +56,15 @@ RUN \
 
 #include "common.docker"
 
-ENV EMSCRIPTEN_VERSION 1.38.24
+ENV EMSCRIPTEN_VERSION 1.38.48
 
-ENV PATH /emsdk_portable:/emsdk_portable/llvm/clang/bin/:/emsdk_portable/sdk/:${PATH}
-ENV CC=/emsdk_portable/sdk/emcc \
-  CXX=/emsdk_portable/sdk/em++ \
-  AR=/emsdk_portable/sdk/emar
+ENV PATH /emsdk_portable:/emsdk_portable/llvm/clang/bin/:/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}:${PATH}
+ENV CC=/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/emcc \
+  CXX=/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/em++ \
+  AR=/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/emar
 
 
-ENV CMAKE_TOOLCHAIN_FILE /emsdk_portable/sdk/cmake/Modules/Platform/Emscripten.cmake
+ENV CMAKE_TOOLCHAIN_FILE /emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/cmake/Modules/Platform/Emscripten.cmake
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
