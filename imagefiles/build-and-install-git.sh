@@ -23,7 +23,7 @@ ldconfig
 
 cd /usr/src
 
-url="https://www.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.gz"
+url="https://mirrors.edge.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.gz"
 echo "Downloading $url"
 curl -# -LO $url
 
