@@ -250,19 +250,18 @@ jobs:
     steps:
       - restore_cache:
           key: base-assets-{{ .Revision }}
-      # Image build currently broken. See #209
-      #- run:
-         #name: linux-ppc64le build
-         #no_output_timeout: 1.5h
-         #command: |
-           #docker load -i ~/docker/base.tar
-           #make linux-ppc64le
-           #tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
-           #docker save -o ~/docker/linux-ppc64le.tar dockcross/linux-ppc64le:latest $tagged
-      #- run:
-         #name: linux-ppc64le test
-         #command: |
-           #make linux-ppc64le.test
+      - run:
+         name: linux-ppc64le build
+         no_output_timeout: 1.5h
+         command: |
+           docker load -i ~/docker/base.tar
+           make linux-ppc64le
+           tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
+           docker save -o ~/docker/linux-ppc64le.tar dockcross/linux-ppc64le:latest $tagged
+      - run:
+         name: linux-ppc64le test
+         command: |
+           make linux-ppc64le.test
       - save_cache:
           key: linux-ppc64le-assets-{{ .Revision }}
           paths: ~/docker/linux-ppc64le.tar
@@ -620,19 +619,18 @@ jobs:
               tagged=$(docker images -q -f 'since=dockcross/linux-s390x:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-s390x)
               docker push $tagged
             fi
-      # Image build currently broken. See #209
-      #- restore_cache:
-          #key: linux-ppc64le-assets-{{ .Revision }}
-      #- deploy:
-          #name: Deploy linux-ppc64le
-          #command: |
-            #docker load -i ~/docker/linux-ppc64le.tar
-            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              #docker login -u $DOCKER_USER -p $DOCKER_PASS
-              #docker push dockcross/linux-ppc64le:latest
-              #tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
-              #docker push $tagged
-            #fi
+      - restore_cache:
+          key: linux-ppc64le-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy linux-ppc64le
+          command: |
+            docker load -i ~/docker/linux-ppc64le.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push dockcross/linux-ppc64le:latest
+              tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
+              docker push $tagged
+            fi
       - restore_cache:
           key: linux-x64-assets-{{ .Revision }}
       - deploy:
@@ -802,10 +800,9 @@ workflows:
         - linux-s390x:
             requires:
               - base
-        # Image build currently broken. See #209
-        #- linux-ppc64le:
-            #requires:
-              #- base
+        - linux-ppc64le:
+            requires:
+              - base
         - linux-x64:
             requires:
               - base
@@ -852,8 +849,7 @@ workflows:
               - linux-armv7a
               #- linux-mipsel
               - linux-s390x
-              # Image build currently broken. See #209
-              #- linux-ppc64le
+              - linux-ppc64le
               - linux-x64
               - linux-x86
               - manylinux1-x64
