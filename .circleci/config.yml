@@ -365,6 +365,26 @@ jobs:
       - save_cache:
           key: manylinux2010-x64-assets-{{ .Revision }}
           paths: ~/docker/manylinux2010-x64.tar
+  manylinux2010-x86:
+    <<: *build-settings
+    steps:
+      - restore_cache:
+          key: base-assets-{{ .Revision }}
+      - run:
+         name: manylinux2010-x86 build
+         no_output_timeout: 1.5h
+         command: |
+           docker load -i ~/docker/base.tar
+           make manylinux2010-x86
+           tagged=$(docker images -q -f 'since=dockcross/manylinux2010-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2010-x86)
+           docker save -o ~/docker/manylinux2010-x86.tar dockcross/manylinux2010-x86:latest $tagged
+      - run:
+         name: manylinux2010-x86 test
+         command: |
+           make manylinux2010-x86.test
+      - save_cache:
+          key: manylinux2010-x86-assets-{{ .Revision }}
+          paths: ~/docker/manylinux2010-x86.tar
   windows-static-x64:
     <<: *build-settings
     steps:
