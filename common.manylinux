@@ -23,6 +23,7 @@ RUN \
   # Remove sudo provided by "devtoolset-2" and "devtoolset-8" since it doesn't work with
   # our sudo wrapper calling gosu.
   rm -f /opt/rh/devtoolset-2/root/usr/bin/sudo && \
+  rm -f /opt/rh/devtoolset-7/root/usr/bin/sudo && \
   rm -f /opt/rh/devtoolset-8/root/usr/bin/sudo && \
   /buildscripts/install-python-packages.sh && \
   rm -rf /buildscripts

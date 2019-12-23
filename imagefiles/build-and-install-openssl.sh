@@ -54,7 +54,7 @@ OPENSSL_HASH=cabd5c9492825ce5bd23f3c3aeed6a97f8142f606d893df216411f07d1abab96
 # XXX: the official https server at www.openssl.org cannot be reached
 # with the old versions of openssl and curl in Centos 5.11 hence the fallback
 # to the ftp mirror:
-OPENSSL_DOWNLOAD_URL=ftp://ftp.openssl.org/source
+OPENSSL_DOWNLOAD_URL=http://www.openssl.org/source/
 
 function do_openssl_build {
     ${WRAPPER} ./config no-ssl2 no-shared -fPIC $CONFIG_FLAG --prefix=/usr/local/ssl > /dev/null
