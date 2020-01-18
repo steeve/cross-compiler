@@ -1,4 +1,4 @@
-FROM quay.io/pypa/manylinux2014_x86_64@sha256:4a5b19c57f38f59a85da695948f55bd690198a88c0df9273383f4e3fbeb457ba
+FROM quay.io/pypa/manylinux2014_x86_64:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux2014-x64
