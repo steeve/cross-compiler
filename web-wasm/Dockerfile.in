@@ -1,4 +1,4 @@
-FROM trzeci/emscripten-slim:sdk-tag-1.38.48-64bit
+FROM trzeci/emscripten-slim:sdk-tag-1.39.4-64bit
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Revert back to "/bin/sh" as default shell
@@ -56,7 +56,7 @@ RUN \
 
 #include "common.docker"
 
-ENV EMSCRIPTEN_VERSION 1.38.48
+ENV EMSCRIPTEN_VERSION 1.39.4
 
 ENV PATH /emsdk_portable:/emsdk_portable/llvm/clang/bin/:/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}:${PATH}
 ENV CC=/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/emcc \
