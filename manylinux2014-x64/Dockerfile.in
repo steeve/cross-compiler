@@ -1,3 +1,4 @@
+# Recent versions address yum functionality
 FROM quay.io/pypa/manylinux2014_x86_64:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
