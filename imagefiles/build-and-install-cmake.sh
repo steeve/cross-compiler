@@ -29,7 +29,7 @@ fi
 
 cd /usr/src
 
-git clone git://cmake.org/cmake.git CMake -b v$CMAKE_VERSION --depth 1
+git clone https://gitlab.kitware.com/cmake/cmake.git CMake -b v$CMAKE_VERSION --depth 1
 
 mkdir /usr/src/CMake-build
 cd /usr/src/CMake-build
