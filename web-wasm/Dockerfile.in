@@ -1,4 +1,4 @@
-FROM trzeci/emscripten-slim:sdk-tag-1.39.4-64bit
+FROM trzeci/emscripten-fastcomp:sdk-tag-1.39.10-64bit
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Revert back to "/bin/sh" as default shell
@@ -11,10 +11,10 @@ ARG DEBIAN_FRONTEND=noninteractive
 ARG REPO=http://cdn-fastly.deb.debian.org
 
 RUN \
-  bash -c "echo \"deb $REPO/debian stretch main contrib non-free\" > /etc/apt/sources.list"  && \
-  bash -c "echo \"deb $REPO/debian stretch-updates main contrib non-free\" >> /etc/apt/sources.list"  && \
-  bash -c "echo \"deb $REPO/debian-security stretch/updates main\" >> /etc/apt/sources.list" && \
-  bash -c "echo \"deb http://ftp.debian.org/debian stretch-backports main\" >> /etc/apt/sources.list" && \
+  bash -c "echo \"deb $REPO/debian buster main contrib non-free\" > /etc/apt/sources.list"  && \
+  bash -c "echo \"deb $REPO/debian buster-updates main contrib non-free\" >> /etc/apt/sources.list"  && \
+  bash -c "echo \"deb $REPO/debian-security buster/updates main\" >> /etc/apt/sources.list" && \
+  bash -c "echo \"deb http://ftp.debian.org/debian buster-backports main\" >> /etc/apt/sources.list" && \
   apt-get update --yes && \
   apt-get install --no-install-recommends --yes \
     automake \
@@ -56,15 +56,15 @@ RUN \
 
 #include "common.docker"
 
-ENV EMSCRIPTEN_VERSION 1.39.4
+ENV EMSCRIPTEN_VERSION 1.39.10
 
-ENV PATH /emsdk_portable:/emsdk_portable/llvm/clang/bin/:/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}:${PATH}
-ENV CC=/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/emcc \
-  CXX=/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/em++ \
-  AR=/emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/emar
+ENV PATH /emsdk_portable:/emsdk_portable/llvm/clang/bin/:/emsdk_portable/emscripten/sdk:${PATH}
+ENV CC=/emsdk_portable/emscripten/sdk/emcc \
+  CXX=/emsdk_portable/emscripten/sdk/em++ \
+  AR=/emsdk_portable/emscripten/sdk/emar
 
 
-ENV CMAKE_TOOLCHAIN_FILE /emsdk_portable/emscripten/tag-${EMSCRIPTEN_VERSION}/cmake/Modules/Platform/Emscripten.cmake
+ENV CMAKE_TOOLCHAIN_FILE /emsdk_portable/emscripten/sdk/cmake/Modules/Platform/Emscripten.cmake
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
