@@ -1,7 +1,7 @@
 WORKDIR /usr/src
 
 ARG GIT_VERSION=2.22.0
-ARG CMAKE_VERSION=3.17.0
+ARG CMAKE_VERSION=3.17.1
 
 # Image build scripts
 COPY \
