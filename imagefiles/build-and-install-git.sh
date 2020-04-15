@@ -27,7 +27,7 @@ url="https://mirrors.edge.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar
 echo "Downloading $url"
 curl -# -LO $url
 
-tar xvzf git-${GIT_VERSION}.tar.gz
+tar xvzf git-${GIT_VERSION}.tar.gz  --no-same-owner
 rm -f git-${GIT_VERSION}.tar.gz
 
 pushd git-${GIT_VERSION}
