@@ -41,7 +41,7 @@ ENV ARCH arm
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE=dockcross/linux-armv7a
+ARG IMAGE
 ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL

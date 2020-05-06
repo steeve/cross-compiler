@@ -39,7 +39,7 @@ ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE=dockcross/android-arm
+ARG IMAGE
 ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL

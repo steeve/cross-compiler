@@ -29,7 +29,7 @@ ENTRYPOINT ["/dockcross/linux32-entrypoint.sh"]
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE=dockcross/manylinux1-x86
+ARG IMAGE
 ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL

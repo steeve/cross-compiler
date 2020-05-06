@@ -39,7 +39,7 @@ ENV ARCH mips
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE=dockcross/linux-mipsel
+ARG IMAGE
 ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL

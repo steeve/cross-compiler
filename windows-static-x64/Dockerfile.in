@@ -10,7 +10,7 @@ ARG MXE_TARGET_LINK=static
 
 # Build-time metadata as defined at http://label-schema.org
 ARG BUILD_DATE
-ARG IMAGE=dockcross/windows-static-x64
+ARG IMAGE
 ARG VERSION=latest
 ARG VCS_REF
 ARG VCS_URL
