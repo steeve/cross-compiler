@@ -30,6 +30,7 @@ RUN \
     gzip \
     gnupg \
     initramfs-tools \
+    libncurses5 \
     libtool \
     make \
     ncurses-dev \

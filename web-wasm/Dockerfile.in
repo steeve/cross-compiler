@@ -33,6 +33,7 @@ RUN \
     gzip \
     zip \
     make \
+    libncurses5 \
     ncurses-dev \
     pkg-config \
     libtool \
