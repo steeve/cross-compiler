@@ -200,6 +200,7 @@ elif [ -n "$MSYS" ]; then
     HOST_PWD=${HOST_PWD/\//:\/}
 else
     HOST_PWD=$PWD
+    [ -L $HOST_PWD ] && HOST_PWD=$(readlink $HOST_PWD)
 fi
 
 # Mount Additional Volumes
