@@ -764,9 +764,9 @@ jobs:
               docker push $tagged
             fi
       - restore_cache:
-          keys: 
-            - manylinux2014-x64-assets-{{ .Revision }}
-            - manylinux2014-aarch64-assets-{{ .Revision }}
+          key: manylinux2014-x64-assets-{{ .Revision }}
+      - restore_cache:
+          key: manylinux2014-aarch64-assets-{{ .Revision }}
       - deploy:
           name: Deploy manylinux2014-aarch64
           command: |
