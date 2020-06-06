@@ -1,5 +1,8 @@
-# For manylinux2014-aarch64, cross-compilation will be hosted at x86_64 using manylinux2014 x86_64 image to generate target for aarch64. Toolchain available at  https://github.com/pypa/manylinux/blob/manylinux2014/docker/Dockerfile-aarch64, is for host aarch64.
-FROM dockcross/manylinux2014-x64 
+# manylinux2014-aarch64 is based on manylinux2014-x64 and the aarch64 toolchain installed. This allows to
+# run the container on a x86_64 host.
+# This image is not based on "pypa/manylinux2014_aarch64" because it would require the host to be aarch64.
+# For more details, read https://github.com/dockcross/dockcross/issues/367
+FROM dockcross/manylinux2014-x64
 
 # This is for 64-bit ARM Manylinux machine
 
