@@ -752,6 +752,18 @@ jobs:
               docker push $tagged
             fi
       - restore_cache:
+          key: manylinux2010-x86-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy manylinux2010-x86
+          command: |
+            docker load -i ~/docker/manylinux2010-x86.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push dockcross/manylinux2010-x86:latest
+              tagged=$(docker images -q -f 'since=dockcross/manylinux2010-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep manylinux2010-x86)
+              docker push $tagged
+            fi
+      - restore_cache:
           key: manylinux2014-x64-assets-{{ .Revision }}
       - deploy:
           name: Deploy manylinux2014-x64
