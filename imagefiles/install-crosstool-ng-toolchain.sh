@@ -90,5 +90,10 @@ cd "${BUILD}"
 
 cp "${CONFIG_PATH}" "${BUILD}/.config"
 
+
+# As mentioned in ct-ng config, need to unset LD_LIBRARY_PATH.
+unset LD_LIBRARY_PATH
+
 # Build and install the toolchain!
 "${BOOTSTRAP_PREFIX}/bin/ct-ng" build
+
