@@ -57,7 +57,10 @@ RUN \
   /dockcross/install-crosstool-ng-toolchain.sh \
   -p "${XCC_PREFIX}" \
   -c /dockcross/crosstool-ng.config && \
-  rm -rf /dockcross/crosstool /dockcross/install-crosstool-ng-toolchain.sh
+  rm -rf /dockcross/crosstool /dockcross/install-crosstool-ng-toolchain.sh && \
+  # Remove sudo provided by devtoolset since it doesn't work with
+  # our sudo wrapper calling gosu.
+  rm -f /opt/rh/devtoolset-9/root/usr/bin/sudo
 
 # Restore our default workdir (from "dockcross/base").
 WORKDIR /work
