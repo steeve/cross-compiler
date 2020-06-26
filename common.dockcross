@@ -19,9 +19,8 @@ RUN \
   /buildscripts/install-gosu-binary-wrapper.sh && \
   rm -rf /buildscripts
 
-RUN echo "root:root" | chpasswd
-WORKDIR /work
-ENTRYPOINT ["/dockcross/entrypoint.sh"]
-
 # Runtime scripts
 COPY imagefiles/entrypoint.sh imagefiles/dockcross /dockcross/
+
+WORKDIR /work
+ENTRYPOINT ["/dockcross/entrypoint.sh"]
