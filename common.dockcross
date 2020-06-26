@@ -9,6 +9,7 @@ COPY \
 RUN \
   apt-get update --yes && \
   apt-get install --no-install-recommends --yes \
+    ca-certificates \
     curl \
     dirmngr \
     gpg \
