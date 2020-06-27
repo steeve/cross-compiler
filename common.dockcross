@@ -7,20 +7,10 @@ COPY \
   /buildscripts/
 
 RUN \
-  apt-get update --yes && \
-  apt-get install --no-install-recommends --yes \
-    ca-certificates \
-    curl \
-    dirmngr \
-    gpg \
-  && \
-  apt-get clean --yes && \
+  set -x && \
   /buildscripts/install-gosu-binary.sh && \
   /buildscripts/install-gosu-binary-wrapper.sh && \
   rm -rf /buildscripts
 
 # Runtime scripts
 COPY imagefiles/entrypoint.sh imagefiles/dockcross /dockcross/
-
-WORKDIR /work
-ENTRYPOINT ["/dockcross/entrypoint.sh"]
