@@ -5,6 +5,8 @@ ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux1-x86
 
 #include "common.manylinux"
 
+#include "common.dockcross"
+
 #include "common.docker"
 
 ENV CROSS_TRIPLE i686-linux-gnu
