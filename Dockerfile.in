@@ -3,6 +3,8 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 #include "common.debian"
 
+#include "common.dockcross"
+
 #include "common.docker"
 
 # Build-time metadata as defined at http://label-schema.org
