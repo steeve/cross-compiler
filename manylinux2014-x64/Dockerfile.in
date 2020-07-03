@@ -6,6 +6,8 @@ ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux2014-x64
 
 #include "common.manylinux"
 
+#include "common.dockcross"
+
 #include "common.docker"
 
 # Override yum to work around the problem with newly built libcurl.so.4

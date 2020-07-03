@@ -1,0 +1,16 @@
+WORKDIR /usr/src
+
+# Image build scripts
+COPY \
+  imagefiles/install-gosu-binary.sh \
+  imagefiles/install-gosu-binary-wrapper.sh \
+  /buildscripts/
+
+RUN \
+  set -x && \
+  /buildscripts/install-gosu-binary.sh && \
+  /buildscripts/install-gosu-binary-wrapper.sh && \
+  rm -rf /buildscripts
+
+# Runtime scripts
+COPY imagefiles/entrypoint.sh imagefiles/dockcross /dockcross/

@@ -1,7 +1,5 @@
 # Image build scripts
 COPY \
-  imagefiles/install-gosu-binary.sh \
-  imagefiles/install-gosu-binary-wrapper.sh \
   manylinux-common/install-python-packages.sh \
   /buildscripts/
 
@@ -18,8 +16,6 @@ RUN \
     zip \
   && \
   yum clean all && \
-  /buildscripts/install-gosu-binary.sh && \
-  /buildscripts/install-gosu-binary-wrapper.sh && \
   # Remove sudo provided by devtoolset since it doesn't work with
   # our sudo wrapper calling gosu.
   rm -f /opt/rh/devtoolset-2/root/usr/bin/sudo && \

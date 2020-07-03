@@ -37,4 +37,3 @@ ENTRYPOINT ["/dockcross/entrypoint.sh"]
 # Runtime scripts
 COPY imagefiles/cmake.sh /usr/local/bin/cmake
 COPY imagefiles/ccmake.sh /usr/local/bin/ccmake
-COPY imagefiles/entrypoint.sh imagefiles/dockcross /dockcross/
