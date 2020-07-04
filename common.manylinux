@@ -8,7 +8,7 @@ COPY \
 RUN \
   set -x && \
   yum -y install \
-    epel-release \
+    $([ "$DEFAULT_DOCKCROSS_IMAGE" = "dockcross/manylinux2014-x86" ] && echo "" || echo "epel-release") \
     gpg \
     zlib-devel \
     gettext \
@@ -25,6 +25,7 @@ RUN \
   rm -f /opt/rh/devtoolset-2/root/usr/bin/sudo && \
   rm -f /opt/rh/devtoolset-7/root/usr/bin/sudo && \
   rm -f /opt/rh/devtoolset-8/root/usr/bin/sudo && \
+  rm -f /opt/rh/devtoolset-9/root/usr/bin/sudo && \
   /buildscripts/install-python-packages.sh && \
   rm -rf /buildscripts
 
