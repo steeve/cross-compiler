@@ -1,4 +1,4 @@
-FROM trzeci/emscripten-fastcomp:sdk-tag-1.39.10-64bit
+FROM trzeci/emscripten-upstream:sdk-tag-1.39.18-64bit
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Revert back to "/bin/sh" as default shell
@@ -55,7 +55,7 @@ RUN \
 
 #include "common.docker"
 
-ENV EMSCRIPTEN_VERSION 1.39.10
+ENV EMSCRIPTEN_VERSION 1.39.18
 
 ENV PATH /emsdk_portable:/emsdk_portable/llvm/clang/bin/:/emsdk_portable/emscripten/sdk:${PATH}
 ENV CC=/emsdk_portable/emscripten/sdk/emcc \
