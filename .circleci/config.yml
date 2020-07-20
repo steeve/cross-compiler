@@ -929,9 +929,10 @@ workflows:
         - linux-s390x:
             requires:
               - base
-        - linux-ppc64le:
-            requires:
-              - base
+        # Disabled per Issue #430
+        #- linux-ppc64le:
+            #requires:
+              #- base
         - linux-x64:
             requires:
               - base
@@ -991,7 +992,7 @@ workflows:
               - linux-armv7a
               #- linux-mipsel
               - linux-s390x
-              - linux-ppc64le
+              #- linux-ppc64le
               - linux-x64
               - linux-x86
               - manylinux1-x64
