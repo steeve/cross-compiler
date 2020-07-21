@@ -699,18 +699,19 @@ jobs:
               tagged=$(docker images -q -f 'since=dockcross/linux-s390x:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-s390x)
               docker push $tagged
             fi
-      - restore_cache:
-          key: linux-ppc64le-assets-{{ .Revision }}
-      - deploy:
-          name: Deploy linux-ppc64le
-          command: |
-            docker load -i ~/docker/linux-ppc64le.tar
-            if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u $DOCKER_USER -p $DOCKER_PASS
-              docker push dockcross/linux-ppc64le:latest
-              tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
-              docker push $tagged
-            fi
+      # Disabled per Issue #430
+      #- restore_cache:
+          #key: linux-ppc64le-assets-{{ .Revision }}
+      #- deploy:
+          #name: Deploy linux-ppc64le
+          #command: |
+            #docker load -i ~/docker/linux-ppc64le.tar
+            #if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              #docker login -u $DOCKER_USER -p $DOCKER_PASS
+              #docker push dockcross/linux-ppc64le:latest
+              #tagged=$(docker images -q -f 'since=dockcross/linux-ppc64le:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-ppc64le)
+              #docker push $tagged
+            #fi
       - restore_cache:
           key: linux-x64-assets-{{ .Revision }}
       - deploy:
