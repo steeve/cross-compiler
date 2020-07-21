@@ -171,7 +171,7 @@ dockcross/linux-s390x
 
 dockcross/linux-ppc64le
   |linux-ppc64le-images| Linux PowerPC 64 little endian cross compiler
-  toolchain for the POWER8, etc.
+  toolchain for the POWER8, etc. Important: Due to Issue #430, automatic build of newer images has been disabled.
 
 
 .. |linux-x64-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-x64.svg
