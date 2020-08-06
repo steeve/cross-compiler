@@ -21,7 +21,7 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld \
     FC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gfortran
 
-ENV ANDROID_NDK_REVISION 16b
+ENV ANDROID_NDK_REVISION 21d
 ENV ANDROID_NDK_API 21
 RUN mkdir -p /build && \
     cd /build && \
