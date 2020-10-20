@@ -44,7 +44,7 @@ ifeq ("$(CIRCLECI)", "true")
 endif
 
 # Tag images with date and Git short hash in addition to revision
-TAG = $(shell date '+%Y%m%d')-$(shell git rev-parse --short HEAD)
+TAG := $(shell date '+%Y%m%d')-$(shell git rev-parse --short HEAD)
 
 #
 # images: This target builds all IMAGES (because it is the first one, it is built by default)
