@@ -10,7 +10,7 @@ FROM dockcross/manylinux2014-x64
 
 # The cross-compiling emulator
 RUN \
-  yum update && \
+  yum -y update && \
   yum -y install \
     qemu-user \
     qemu-system-arm && \
