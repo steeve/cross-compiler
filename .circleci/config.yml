@@ -104,6 +104,26 @@ jobs:
       - save_cache:
           key: linux-arm64-assets-{{ .Revision }}
           paths: ~/docker/linux-arm64.tar
+  linux-arm64-musl:
+    <<: *build-settings
+    steps:
+      - restore_cache:
+          key: base-assets-{{ .Revision }}
+      - run:
+         name: linux-arm64-musl build
+         no_output_timeout: 1.5h
+         command: |
+           docker load -i ~/docker/base.tar
+           make linux-arm64-musl
+           tagged=$(docker images -q -f 'since=dockcross/linux-arm64-musl:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-arm64-musl)
+           docker save -o ~/docker/linux-arm64-musl.tar dockcross/linux-arm64-musl:latest $tagged
+      - run:
+         name: linux-arm64-musl test
+         command: |
+           make linux-arm64-musl.test
+      - save_cache:
+          key: linux-arm64-musl-assets-{{ .Revision }}
+          paths: ~/docker/linux-arm64-musl.tar
   linux-armv5:
     <<: *build-settings
     steps:
@@ -627,6 +647,18 @@ jobs:
               docker push $tagged
             fi
       - restore_cache:
+          key: linux-arm64-musl-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy linux-arm64-musl
+          command: |
+            docker load -i ~/docker/linux-arm64-musl.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push dockcross/linux-arm64-musl:latest
+              tagged=$(docker images -q -f 'since=dockcross/linux-arm64-musl:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-arm64-musl)
+              docker push $tagged
+            fi
+      - restore_cache:
           key: linux-armv5-assets-{{ .Revision }}
       - deploy:
           name: Deploy linux-armv5
@@ -911,6 +943,9 @@ workflows:
         - linux-arm64:
             requires:
               - base
+        - linux-arm64-musl:
+            requires:
+              - base
         - linux-armv5:
             requires:
               - base
@@ -987,6 +1022,7 @@ workflows:
               - android-arm64
               - web-wasm
               - linux-arm64
+              - linux-arm64-musl
               - linux-armv5
               - linux-armv6
               - linux-armv7
