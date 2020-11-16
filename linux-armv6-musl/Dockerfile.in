@@ -1,0 +1,39 @@
+FROM dockcross/base:latest
+
+ENV XCC_PREFIX /usr/xcc
+ENV CROSS_TRIPLE armv6-linux-musleabihf
+ENV CROSS_ROOT ${XCC_PREFIX}/${CROSS_TRIPLE}-cross
+
+RUN mkdir -p ${XCC_PREFIX}
+RUN curl -LO http://musl.cc/${CROSS_TRIPLE}-cross.tgz
+RUN tar -C ${XCC_PREFIX} -xvf ${CROSS_TRIPLE}-cross.tgz
+
+ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
+    AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
+    CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gcc \
+    CPP=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-cpp \
+    CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++ \
+    LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld \
+    FC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gfortran
+
+COPY Toolchain.cmake ${CROSS_ROOT}/
+ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
+
+# Linux kernel cross compilation variables
+ENV PATH ${PATH}:${CROSS_ROOT}/bin
+ENV CROSS_COMPILE ${CROSS_TRIPLE}-
+ENV ARCH arm
+
+# Build-time metadata as defined at http://label-schema.org
+ARG BUILD_DATE
+ARG IMAGE=dockcross/linux-armv6-musl
+ARG VERSION=latest
+ARG VCS_REF
+ARG VCS_URL
+LABEL org.label-schema.build-date=$BUILD_DATE \
+      org.label-schema.name=$IMAGE \
+      org.label-schema.version=$VERSION \
+      org.label-schema.vcs-ref=$VCS_REF \
+      org.label-schema.vcs-url=$VCS_URL \
+      org.label-schema.schema-version="1.0"
+ENV DEFAULT_DOCKCROSS_IMAGE ${IMAGE}:${VERSION}

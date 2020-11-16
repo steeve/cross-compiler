@@ -184,6 +184,26 @@ jobs:
       - save_cache:
           key: linux-armv6-assets-{{ .Revision }}
           paths: ~/docker/linux-armv6.tar
+  linux-armv6-musl:
+    <<: *build-settings
+    steps:
+      - restore_cache:
+          key: base-assets-{{ .Revision }}
+      - run:
+         name: linux-armv6-musl build
+         no_output_timeout: 1.5h
+         command: |
+           docker load -i ~/docker/base.tar
+           make linux-armv6-musl
+           tagged=$(docker images -q -f 'since=dockcross/linux-armv6-musl:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv6-musl)
+           docker save -o ~/docker/linux-armv6-musl.tar dockcross/linux-armv6-musl:latest $tagged
+      - run:
+         name: linux-armv6-musl test
+         command: |
+           make linux-armv6-musl.test
+      - save_cache:
+          key: linux-armv6-musl-assets-{{ .Revision }}
+          paths: ~/docker/linux-armv6-musl.tar
   linux-armv7:
     <<: *build-settings
     steps:
@@ -703,6 +723,18 @@ jobs:
               docker push $tagged
             fi
       - restore_cache:
+          key: linux-armv6-musl-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy linux-armv6-musl
+          command: |
+            docker load -i ~/docker/linux-armv6-musl.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push dockcross/linux-armv6-musl:latest
+              tagged=$(docker images -q -f 'since=dockcross/linux-armv6-musl:latest' --format '{{.Repository}}:{{.Tag}}' | grep linux-armv6-musl)
+              docker push $tagged
+            fi
+      - restore_cache:
           key: linux-armv7-assets-{{ .Revision }}
       - deploy:
           name: Deploy linux-armv7
@@ -982,6 +1014,9 @@ workflows:
             requires:
               - base
         - linux-armv6:
+            requires:
+              - base
+        - linux-armv6-musl:
             requires:
               - base
         - linux-armv7:
