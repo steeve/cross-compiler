@@ -153,7 +153,13 @@ dockcross/linux-armv7
   :target: https://microbadger.com/images/dockcross/linux-armv7a
 
 dockcross/linux-armv7a
-  |linux-armv7a-images| Toolchain configured for ARMv7-A used in Beaglebone Black single board PC with TI SoC AM3358 on board, Cortex-A8.
+  |linux-armv7a-images| Toolchain configured for ARMv7-L, using `musl <https://www.musl-libc.org/>`_ as base "libc".
+
+.. |linux-armv7l-musl-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-armv7l-musl.svg
+  :target: https://microbadger.com/images/dockcross/linux-armv7l-musl
+
+dockcross/linux-armv7l-musl
+  |linux-armv7l-musl-images| Toolchain configured for ARMv7-A used in Beaglebone Black single board PC with TI SoC AM3358 on board, Cortex-A8.
 
 .. |linux-mipsel-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-mipsel.svg
   :target: https://microbadger.com/images/dockcross/linux-mipsel
