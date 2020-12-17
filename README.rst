@@ -142,6 +142,13 @@ dockcross/linux-armv6
   Pi, etc.
 
 
+.. |linux-armv6-musl-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-armv6-musl.svg
+  :target: https://microbadger.com/images/dockcross/linux-armv6-musl
+
+dockcross/linux-armv6-musl
+  |linux-armv6-musl-images| Linux ARMv6 cross compiler toolchain for the Raspberry Pi, etc, using `musl <https://www.musl-libc.org/>`_ as base "libc".
+
+
 .. |linux-armv7-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-armv7.svg
   :target: https://microbadger.com/images/dockcross/linux-armv7
 
