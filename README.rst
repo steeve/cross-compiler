@@ -160,13 +160,15 @@ dockcross/linux-armv7
   :target: https://microbadger.com/images/dockcross/linux-armv7a
 
 dockcross/linux-armv7a
-  |linux-armv7a-images| Toolchain configured for ARMv7-L, using `musl <https://www.musl-libc.org/>`_ as base "libc".
+  |linux-armv7a-images| Toolchain configured for ARMv7-A used in Beaglebone Black single board PC with TI SoC AM3358 on board, Cortex-A8.
+
 
 .. |linux-armv7l-musl-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-armv7l-musl.svg
   :target: https://microbadger.com/images/dockcross/linux-armv7l-musl
 
 dockcross/linux-armv7l-musl
-  |linux-armv7l-musl-images| Toolchain configured for ARMv7-A used in Beaglebone Black single board PC with TI SoC AM3358 on board, Cortex-A8.
+  |linux-armv7l-musl-images| Toolchain configured for ARMv7-L, using `musl <https://www.musl-libc.org/>`_ as base "libc".
+
 
 .. |linux-mipsel-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-mipsel.svg
   :target: https://microbadger.com/images/dockcross/linux-mipsel
@@ -174,17 +176,20 @@ dockcross/linux-armv7l-musl
 dockcross/linux-mipsel
   |linux-mipsel-images| Linux mipsel cross compiler toolchain for little endian MIPS GNU systems.
 
+
 .. |linux-mips-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-mips.svg
   :target: https://microbadger.com/images/dockcross/linux-mips
 
 dockcross/linux-mips
   |linux-mips-images| Linux mips cross compiler toolchain for big endian 32-bit hard float MIPS GNU systems.
 
+
 .. |linux-s390x-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-s390x.svg
   :target: https://microbadger.com/images/dockcross/linux-s390x
 
 dockcross/linux-s390x
   |linux-s390x-images| Linux s390x cross compiler toolchain for S390X GNU systems.
+
 
 .. |linux-ppc64le-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-ppc64le.svg
   :target: https://microbadger.com/images/dockcross/linux-ppc64le
