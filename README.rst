@@ -112,6 +112,14 @@ dockcross/android-x86
   architecture.
 
 
+.. |android-x86_64-images| image:: https://images.microbadger.com/badges/image/dockcross/android-x86_64.svg
+  :target: https://microbadger.com/images/dockcross/android-x86_64
+
+dockcross/android-x86_64
+  |android-x86_64-images| The Android NDK standalone toolchain for the x86_64
+  architecture.
+
+
 .. |linux-arm64-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-arm64.svg
   :target: https://microbadger.com/images/dockcross/linux-arm64
 
