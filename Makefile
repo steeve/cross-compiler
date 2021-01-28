@@ -121,7 +121,7 @@ manylinux2014-aarch64: manylinux2014-aarch64/Dockerfile
 
 manylinux2014-aarch64.test: manylinux2014-aarch64
 	$(DOCKER) run $(RM) dockcross/manylinux2014-aarch64 > $(BIN)/dockcross-manylinux2014-aarch64 && chmod +x $(BIN)/dockcross-manylinux2014-aarch64
-	$(BIN)/dockcross-manylinux2014-aarch64 /opt/python/cp35-cp35m/bin/python test/run.py
+	$(BIN)/dockcross-manylinux2014-aarch64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
 # manylinux2014-x64
@@ -145,7 +145,7 @@ manylinux2014-x64: manylinux2014-x64/Dockerfile
 
 manylinux2014-x64.test: manylinux2014-x64
 	$(DOCKER) run $(RM) dockcross/manylinux2014-x64 > $(BIN)/dockcross-manylinux2014-x64 && chmod +x $(BIN)/dockcross-manylinux2014-x64
-	$(BIN)/dockcross-manylinux2014-x64 /opt/python/cp35-cp35m/bin/python test/run.py
+	$(BIN)/dockcross-manylinux2014-x64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
 # manylinux2014-x86
@@ -169,7 +169,7 @@ manylinux2014-x86: manylinux2014-x86/Dockerfile
 
 manylinux2014-x86.test: manylinux2014-x86
 	$(DOCKER) run $(RM) dockcross/manylinux2014-x86 > $(BIN)/dockcross-manylinux2014-x86 && chmod +x $(BIN)/dockcross-manylinux2014-x86
-	$(BIN)/dockcross-manylinux2014-x86 /opt/python/cp35-cp35m/bin/python test/run.py
+	$(BIN)/dockcross-manylinux2014-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
 # manylinux2010-x64
@@ -194,7 +194,7 @@ manylinux2010-x64: manylinux2010-x64/Dockerfile
 
 manylinux2010-x64.test: manylinux2010-x64
 	$(DOCKER) run $(RM) dockcross/manylinux2010-x64 > $(BIN)/dockcross-manylinux2010-x64 && chmod +x $(BIN)/dockcross-manylinux2010-x64
-	$(BIN)/dockcross-manylinux2010-x64 /opt/python/cp35-cp35m/bin/python test/run.py
+	$(BIN)/dockcross-manylinux2010-x64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
 # manylinux2010-x86
@@ -219,7 +219,7 @@ manylinux2010-x86: manylinux2010-x86/Dockerfile
 
 manylinux2010-x86.test: manylinux2010-x86
 	$(DOCKER) run $(RM) dockcross/manylinux2010-x86 > $(BIN)/dockcross-manylinux2010-x86 && chmod +x $(BIN)/dockcross-manylinux2010-x86
-	$(BIN)/dockcross-manylinux2010-x86 /opt/python/cp35-cp35m/bin/python test/run.py
+	$(BIN)/dockcross-manylinux2010-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
 # manylinux1-x64
@@ -244,7 +244,7 @@ manylinux1-x64: manylinux1-x64/Dockerfile
 
 manylinux1-x64.test: manylinux1-x64
 	$(DOCKER) run $(RM) dockcross/manylinux1-x64 > $(BIN)/dockcross-manylinux1-x64 && chmod +x $(BIN)/dockcross-manylinux1-x64
-	$(BIN)/dockcross-manylinux1-x64 /opt/python/cp35-cp35m/bin/python test/run.py
+	$(BIN)/dockcross-manylinux1-x64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
 # manylinux1-x86
@@ -269,7 +269,7 @@ manylinux1-x86: manylinux1-x86/Dockerfile
 
 manylinux1-x86.test: manylinux1-x86
 	$(DOCKER) run $(RM) dockcross/manylinux1-x86 > $(BIN)/dockcross-manylinux1-x86 && chmod +x $(BIN)/dockcross-manylinux1-x86
-	$(BIN)/dockcross-manylinux1-x86 /opt/python/cp35-cp35m/bin/python test/run.py
+	$(BIN)/dockcross-manylinux1-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
 # base
