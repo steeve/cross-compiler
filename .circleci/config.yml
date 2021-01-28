@@ -64,6 +64,46 @@ jobs:
       - save_cache:
           key: android-arm64-assets-{{ .Revision }}
           paths: ~/docker/android-arm64.tar
+  android-x86:
+    <<: *build-settings
+    steps:
+      - restore_cache:
+          key: base-assets-{{ .Revision }}
+      - run:
+         name: android-x86 build
+         no_output_timeout: 1.5h
+         command: |
+           docker load -i ~/docker/base.tar
+           make android-x86
+           tagged=$(docker images -q -f 'since=dockcross/android-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-x86)
+           docker save -o ~/docker/android-x86.tar dockcross/android-x86:latest $tagged
+      - run:
+         name: android-x86 test
+         command: |
+           make android-x86.test
+      - save_cache:
+          key: android-x86-assets-{{ .Revision }}
+          paths: ~/docker/android-x86.tar
+  android-x86_64:
+    <<: *build-settings
+    steps:
+      - restore_cache:
+          key: base-assets-{{ .Revision }}
+      - run:
+         name: android-x86_64 build
+         no_output_timeout: 1.5h
+         command: |
+           docker load -i ~/docker/base.tar
+           make android-x86_64
+           tagged=$(docker images -q -f 'since=dockcross/android-x86_64:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-x86_64)
+           docker save -o ~/docker/android-x86_64.tar dockcross/android-x86_64:latest $tagged
+      - run:
+         name: android-x86_64 test
+         command: |
+           make android-x86_64.test
+      - save_cache:
+          key: android-x86_64-assets-{{ .Revision }}
+          paths: ~/docker/android-x86_64.tar
   web-wasm:
     <<: *build-settings
     steps:
@@ -663,6 +703,30 @@ jobs:
               docker push $tagged
             fi
       - restore_cache:
+          key: android-x86-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy android-x86
+          command: |
+            docker load -i ~/docker/android-x86.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push dockcross/android-x86:latest
+              tagged=$(docker images -q -f 'since=dockcross/android-x86:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-x86)
+              docker push $tagged
+            fi
+      - restore_cache:
+          key: android-x86_64-assets-{{ .Revision }}
+      - deploy:
+          name: Deploy android-x86_64
+          command: |
+            docker load -i ~/docker/android-x86_64.tar
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              docker login -u $DOCKER_USER -p $DOCKER_PASS
+              docker push dockcross/android-x86_64:latest
+              tagged=$(docker images -q -f 'since=dockcross/android-x86_64:latest' --format '{{.Repository}}:{{.Tag}}' | grep android-x86_64)
+              docker push $tagged
+            fi
+      - restore_cache:
           key: web-wasm-assets-{{ .Revision }}
       - deploy:
           name: Deploy web-wasm
@@ -1001,6 +1065,12 @@ workflows:
         - android-arm64:
             requires:
               - base
+        - android-x86:
+            requires:
+              - base
+        - android-x86_64:
+            requires:
+              - base
         - web-wasm:
             requires:
               - base
@@ -1090,6 +1160,8 @@ workflows:
               - base
               - android-arm
               - android-arm64
+              - android-x86
+              - android-x86_64
               - web-wasm
               - linux-arm64
               - linux-arm64-musl
