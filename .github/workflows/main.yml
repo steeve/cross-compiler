@@ -50,7 +50,7 @@ jobs:
       - name: test
         run: make ${{ matrix.arch_name }}.test
       - name: deploy
-        if: github.ref == 'master'
+        if: github.ref == 'refs/heads/master'
         run: |
             docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
             docker image push dockcross/${{ matrix.arch_name }}
