@@ -28,6 +28,11 @@ jobs:
           name: cache
           path: ./cache
           retention-days: 1
+      - name: deploy
+        if: github.ref == 'refs/heads/master'
+        run: |
+            docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+            docker image push dockcross/base
 
   image:
     name: ${{ matrix.arch_name }}
