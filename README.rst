@@ -3,8 +3,8 @@ dockcross
 
 Cross compiling toolchains in Docker images.
 
-.. image:: https://circleci.com/gh/dockcross/dockcross/tree/master.svg?style=svg
-  :target: https://circleci.com/gh/dockcross/dockcross/tree/master
+.. image:: https://github.com/dockcross/dockcross/workflows/Dockcross%20CI/badge.svg
+  :target: https://github.com/dockcross/dockcross/actions?query=branch%3Amaster
 
 
 Features
