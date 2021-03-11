@@ -278,7 +278,16 @@ manylinux1-x86.test: manylinux1-x86
 base: Dockerfile imagefiles/
 	$(DOCKER) build -t $(ORG)/base:latest \
 		--build-arg IMAGE=$(ORG)/base \
+		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
+		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+		.
+	$(DOCKER) build -t $(ORG)/base:$(TAG) \
+		--build-arg IMAGE=$(ORG)/base \
+		--build-arg VERSION=$(TAG) \
+		--build-arg VCS_REF=`git rev-parse --short HEAD` \
+		--build-arg VCS_URL=`git config --get remote.origin.url` \
+		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
 		.
 
 base.test: base
