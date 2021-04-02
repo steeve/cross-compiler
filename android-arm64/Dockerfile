@@ -21,8 +21,8 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld \
     FC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gfortran
 
-ENV ANDROID_NDK_REVISION 21d
-ENV ANDROID_NDK_API 21
+ENV ANDROID_NDK_REVISION 22b
+ENV ANDROID_NDK_API 22
 RUN mkdir -p /build && \
     cd /build && \
     curl -O https://dl.google.com/android/repository/android-ndk-r${ANDROID_NDK_REVISION}-linux-x86_64.zip && \
