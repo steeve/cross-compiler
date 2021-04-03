@@ -1,5 +1,6 @@
 set(CMAKE_SYSTEM_NAME Android)
 set(CMAKE_SYSTEM_VERSION 1)
+set(CMAKE_SYSTEM_PROCESSOR i686)
 set(CMAKE_ANDROID_ARCH_ABI x86)
 
 set(cross_triple i686-linux-android)
