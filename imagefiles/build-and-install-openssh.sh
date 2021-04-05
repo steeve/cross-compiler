@@ -14,7 +14,7 @@ cd ${OPENSSH_SRC_DIR}
 
 autoreconf
 
-./configure --with-ssl-dir=/usr/local/ssl --prefix=/usr/local
+./configure --with-ssl-dir=/usr/local/ssl --prefix=/usr/local --with-libs=-lpthread
 
 make -j1 install
 
