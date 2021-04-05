@@ -61,6 +61,7 @@ REV=1.23.0
 curl -# -LO \
   "https://github.com/crosstool-ng/crosstool-ng/archive/crosstool-ng-${REV}.tar.gz"
 tar -xf "crosstool-ng-${REV}.tar.gz"
+patch crosstool-ng-crosstool-ng-1.23.0/scripts/build/companion_libs/210-expat.sh -i /dockcross/crosstool-ng-expat.patch
 cd "crosstool-ng-crosstool-ng-${REV}"
 
 # Bootstrap and install the tool.
