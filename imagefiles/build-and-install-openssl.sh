@@ -47,17 +47,37 @@ source $MY_DIR/utils.sh
 # copied from https://github.com/pypa/manylinux/tree/master/docker/build_scripts
 #
 
-OPENSSL_ROOT=openssl-1.0.2s
-# Hash from https://www.openssl.org/source/openssl-1.0.2s.tar.gz.sha256
-OPENSSL_HASH=cabd5c9492825ce5bd23f3c3aeed6a97f8142f606d893df216411f07d1abab96
+OPENSSL_ROOT=openssl-1.1.1k
+# Hash from https://www.openssl.org/source/openssl-1.1.1k.tar.gz.sha256
+OPENSSL_HASH=892a0875b9872acd04a9fde79b1f943075d5ea162415de3047c327df33fbaee5
+OPENSSL_DOWNLOAD_URL=http://www.openssl.org/source/
 
-# XXX: the official https server at www.openssl.org cannot be reached
-# with the old versions of openssl and curl in Centos 5.11 hence the fallback
-# to the ftp mirror:
-OPENSSL_DOWNLOAD_URL=http://www.openssl.org/source/old/1.0.2/
+# a recent enough perl is needed to build openssl
+PERL_ROOT=perl-5.32.1
+PERL_HASH=03b693901cd8ae807231b1787798cf1f2e0b8a56218d07b7da44f784a7caeb2c
+PERL_DOWNLOAD_URL=https://www.cpan.org/src/5.0
+
+function do_perl_build {
+    ${WRAPPER} sh Configure -des -Dprefix=/opt/perl > /dev/null
+    ${WRAPPER} make > /dev/null
+    ${WRAPPER} make install > /dev/null
+}
+
+function build_perl {
+    local perl_fname=$1
+    check_var ${perl_fname}
+    local perl_sha256=$2
+    check_var ${perl_sha256}
+    check_var ${PERL_DOWNLOAD_URL}
+    curl -fsSLO ${PERL_DOWNLOAD_URL}/${perl_fname}.tar.gz
+    check_sha256sum ${perl_fname}.tar.gz ${perl_sha256}
+    tar -xzf ${perl_fname}.tar.gz
+    (cd ${perl_fname} && do_perl_build)
+    rm -rf ${perl_fname} ${perl_fname}.tar.gz
+}
 
 function do_openssl_build {
-    ${WRAPPER} ./config no-ssl2 no-shared -fPIC $CONFIG_FLAG --prefix=/usr/local/ssl > /dev/null
+    ${WRAPPER} ./config no-shared -fPIC $CONFIG_FLAG --prefix=/usr/local/ssl --openssldir=/usr/local/ssl > /dev/null
     ${WRAPPER} make > /dev/null
     ${WRAPPER} make install_sw > /dev/null
 }
@@ -68,15 +88,18 @@ function build_openssl {
     local openssl_sha256=$2
     check_var ${openssl_sha256}
     check_var ${OPENSSL_DOWNLOAD_URL}
-    # Can't use curl here because we don't have it yet
-    wget -q ${OPENSSL_DOWNLOAD_URL}/${openssl_fname}.tar.gz
+    curl -fsSLO ${OPENSSL_DOWNLOAD_URL}/${openssl_fname}.tar.gz
     check_sha256sum ${openssl_fname}.tar.gz ${openssl_sha256}
     tar -xzf ${openssl_fname}.tar.gz
-    (cd ${openssl_fname} && do_openssl_build)
+    (cd ${openssl_fname} && PATH=/opt/perl/bin:${PATH} do_openssl_build)
     rm -rf ${openssl_fname} ${openssl_fname}.tar.gz
     # Cleanup install tree
     rm -rf /usr/ssl/man
 }
 
 cd /usr/src
+build_perl $PERL_ROOT $PERL_HASH
 build_openssl $OPENSSL_ROOT $OPENSSL_HASH
+
+# Delete PERL
+rm -rf /opt/perl
