@@ -10,12 +10,9 @@ source $MY_DIR/utils.sh
 # copied from https://github.com/pypa/manylinux/tree/master/docker/build_scripts
 #
 
-CURL_ROOT=curl_7.52.1
-CURL_HASH=a8984e8b20880b621f61a62d95ff3c0763a3152093a9f9ce4287cfd614add6ae
-
-# We had to switch to a debian mirror because we can't use TLS until we
-# bootstrap it with this curl + openssl
-CURL_DOWNLOAD_URL=http://deb.debian.org/debian/pool/main/c/curl
+CURL_ROOT=curl-7.76.0
+CURL_HASH=3b4378156ba09e224008e81dcce854b7ce4d182b1f9cfb97fe5ed9e9c18c6bd3
+CURL_DOWNLOAD_URL=https://curl.haxx.se/download
 
 function do_curl_build {
     # We do this shared to avoid obnoxious linker issues where git couldn't
@@ -32,12 +29,11 @@ function build_curl {
     local curl_sha256=$2
     check_var ${curl_sha256}
     check_var ${CURL_DOWNLOAD_URL}
-    # Can't use curl here because we don't have it yet...we are building it.
-    wget -q ${CURL_DOWNLOAD_URL}/${curl_fname}.orig.tar.gz
-    check_sha256sum ${curl_fname}.orig.tar.gz ${curl_sha256}
-    tar -zxf ${curl_fname}.orig.tar.gz
-    (cd curl-* && do_curl_build)
-    rm -rf curl_*
+    curl -fsSLO ${CURL_DOWNLOAD_URL}/${curl_fname}.tar.gz
+    check_sha256sum ${curl_fname}.tar.gz ${curl_sha256}
+    tar -zxf ${curl_fname}.tar.gz
+    (cd curl-*/ && do_curl_build)
+    rm -rf curl-*
 }
 
 cd /usr/src
