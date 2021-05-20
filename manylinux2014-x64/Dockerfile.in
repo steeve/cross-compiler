@@ -1,5 +1,5 @@
 # Recent versions address yum functionality
-FROM quay.io/pypa/manylinux2014_x86_64:2021-04-09-c61dabe
+FROM quay.io/pypa/manylinux2014_x86_64:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux2014-x64
