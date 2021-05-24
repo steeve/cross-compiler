@@ -3,7 +3,6 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 #include "common.crosstool"
 
-# ENV CROSS_TRIPLE powerpc64le-unknown-linux-gnu
 ENV CROSS_TRIPLE powerpc64le-linux-gnu
 
 WORKDIR /usr/src
@@ -41,4 +40,3 @@ ENV CROSS_COMPILE ${CROSS_TRIPLE}-
 ENV ARCH powerpc
 
 #include "common.label-and-env"
-
