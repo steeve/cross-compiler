@@ -1,4 +1,4 @@
-FROM emscripten/emsdk:2.0.4
+FROM emscripten/emsdk:2.0.15
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Revert back to "/bin/sh" as default shell
@@ -55,7 +55,7 @@ RUN \
 
 #include "common.docker"
 
-ENV EMSCRIPTEN_VERSION 2.0.4
+ENV EMSCRIPTEN_VERSION 2.0.15
 
 ENV PATH /emsdk:/emsdk/upstream/bin/:/emsdk/upstream/emscripten:${PATH}
 ENV CC=/emsdk/upstream/emscripten/emcc \
