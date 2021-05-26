@@ -4,88 +4,15 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 ENV DEFAULT_DOCKCROSS_IMAGE dockcross/manylinux2010-x64
 
 #include "common.manylinux"
-# Image build scripts
-COPY \
-  imagefiles/install-gosu-binary.sh \
-  imagefiles/install-gosu-binary-wrapper.sh \
-  manylinux-common/install-python-packages.sh \
-  /buildscripts/
-
-RUN \
-  set -x && \
-  yum -y install \
-    epel-release \
-    gpg \
-    zlib-devel \
-    python3-devel \
-    gettext \
-    openssh-clients \
-    pax \
-    wget \
-    zip \
-  && \
-  yum clean all && \
-  /buildscripts/install-gosu-binary.sh && \
-  /buildscripts/install-gosu-binary-wrapper.sh && \
-  # Remove sudo provided by "devtoolset-2" and "devtoolset-8" since it doesn't work with
-  # our sudo wrapper calling gosu.
-  rm -f /opt/rh/devtoolset-2/root/usr/bin/sudo && \
-  rm -f /opt/rh/devtoolset-7/root/usr/bin/sudo && \
-  rm -f /opt/rh/devtoolset-8/root/usr/bin/sudo && \
-  /buildscripts/install-python-packages.sh && \
-  rm -rf /buildscripts
-
-# Runtime scripts
-COPY manylinux-common/pre_exec.sh /dockcross/
 
 #include "common.dockcross"
 
 #include "common.docker"
-WORKDIR /usr/src
-
-ARG GIT_VERSION=2.22.0
-ARG CMAKE_VERSION=3.17.1
-
-# Image build scripts
-COPY \
-  imagefiles/build-and-install-cmake.sh \
-  imagefiles/build-and-install-curl.sh \
-  imagefiles/build-and-install-git.sh \
-  imagefiles/build-and-install-ninja.sh \
-  imagefiles/build-and-install-openssl.sh \
-  imagefiles/build-and-install-openssh.sh \
-  imagefiles/install-cmake-binary.sh \
-  imagefiles/install-liquidprompt-binary.sh \
-  imagefiles/install-python-packages.sh \
-  imagefiles/utils.sh \
-  /buildscripts/
-
-RUN \
-  X86_FLAG=$([ "$DEFAULT_DOCKCROSS_IMAGE" = "dockcross/manylinux1-x86" -o "$DEFAULT_DOCKCROSS_IMAGE" = "dockcross/manylinux2010-x86" ] && echo "-32" || echo "") && \
-  /buildscripts/build-and-install-openssl.sh $X86_FLAG && \
-  /buildscripts/build-and-install-openssh.sh && \
-  /buildscripts/build-and-install-curl.sh && \
-  /buildscripts/build-and-install-git.sh && \
-  /buildscripts/install-cmake-binary.sh $X86_FLAG && \
-  /buildscripts/install-liquidprompt-binary.sh && \
-  PYTHON=$([ -e /opt/python/cp35-cp35m/bin/python ] && echo "/opt/python/cp35-cp35m/bin/python" || echo "python3") && \
-  /buildscripts/install-python-packages.sh -python ${PYTHON} && \
-  /buildscripts/build-and-install-ninja.sh -python ${PYTHON} && \
-  rm -rf /buildscripts
-
-RUN echo "root:root" | chpasswd
-WORKDIR /work
-ENTRYPOINT ["/dockcross/entrypoint.sh"]
-
-# Runtime scripts
-COPY imagefiles/cmake.sh /usr/local/bin/cmake
-COPY imagefiles/ccmake.sh /usr/local/bin/ccmake
-COPY imagefiles/entrypoint.sh imagefiles/dockcross /dockcross/
 
 # Override yum to work around the problem with newly built libcurl.so.4
 # https://access.redhat.com/solutions/641093
 RUN echo $'#!/bin/bash\n\
-LD_PRELOAD=/usr/lib64/libcurl.so.4 /usr/bin/yum "$@"' > /usr/local/bin/yum && chmod a+x /usr/local/bin/yum
+LD_PRELOAD=/usr/lib/libcurl.so.4 /usr/bin/yum "$@"' > /usr/local/bin/yum && chmod a+x /usr/local/bin/yum
 
 ENV CROSS_TRIPLE x86_64-linux-gnu
 ENV CROSS_ROOT /opt/rh/devtoolset-8/root/usr/bin
