@@ -17,6 +17,7 @@ RUN \
     epel-release \
     gpg \
     zlib-devel \
+    python3-devel \
     gettext \
     openssh-clients \
     pax \
@@ -67,7 +68,7 @@ RUN \
   /buildscripts/build-and-install-git.sh && \
   /buildscripts/install-cmake-binary.sh $X86_FLAG && \
   /buildscripts/install-liquidprompt-binary.sh && \
-  PYTHON=$([ -e /opt/python/cp35-cp35m/bin/python ] && echo "/opt/python/cp35-cp35m/bin/python" || echo "python") && \
+  PYTHON=$([ -e /opt/python/cp35-cp35m/bin/python ] && echo "/opt/python/cp35-cp35m/bin/python" || echo "python3") && \
   /buildscripts/install-python-packages.sh -python ${PYTHON} && \
   /buildscripts/build-and-install-ninja.sh -python ${PYTHON} && \
   rm -rf /buildscripts
