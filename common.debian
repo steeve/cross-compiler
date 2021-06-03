@@ -30,8 +30,8 @@ RUN \
     ncurses-dev \
     pkg-config \
     pax \
-    python \
-    python-pip \
+#    python3 \
+#    python3-pip \
     rsync \
     sed \
     ssh \
@@ -41,5 +41,23 @@ RUN \
     xz-utils \
     zip \
     zlib1g-dev \
+# python build
+    libncurses5-dev \
+    libgdbm-dev \
+    libnss3-dev \
+    libssl-dev \
+    libsqlite3-dev \
+    libreadline-dev \
+    libffi-dev \
+    libbz2-dev\
   && \
   apt-get clean --yes
+
+# build and install python
+COPY \
+  imagefiles/build-and-install-python.sh \
+  /buildscripts/
+RUN \
+  set -x && \
+  /buildscripts/build-and-install-python.sh && \
+  rm -rf /buildscripts
