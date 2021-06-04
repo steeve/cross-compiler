@@ -96,7 +96,7 @@ web-wasm: web-wasm/Dockerfile
 
 web-wasm.test: web-wasm
 	cp -r test web-wasm/
-	$(DOCKER) run $(RM) dockcross/web-wasm > $(BIN)/dockcross-web-wasm && chmod +x $(BIN)/dockcross-web-wasm
+	$(DOCKER) run $(RM) $(ORG)/web-wasm > $(BIN)/dockcross-web-wasm && chmod +x $(BIN)/dockcross-web-wasm
 	$(BIN)/dockcross-web-wasm python test/run.py --exe-suffix ".js"
 	rm -rf web-wasm/test
 
@@ -121,7 +121,7 @@ manylinux2014-aarch64: manylinux2014-aarch64/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux2014-aarch64.test: manylinux2014-aarch64
-	$(DOCKER) run $(RM) dockcross/manylinux2014-aarch64 > $(BIN)/dockcross-manylinux2014-aarch64 && chmod +x $(BIN)/dockcross-manylinux2014-aarch64
+	$(DOCKER) run $(RM) $(ORG)/manylinux2014-aarch64 > $(BIN)/dockcross-manylinux2014-aarch64 && chmod +x $(BIN)/dockcross-manylinux2014-aarch64
 	$(BIN)/dockcross-manylinux2014-aarch64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -145,7 +145,7 @@ manylinux2014-x64: manylinux2014-x64/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux2014-x64.test: manylinux2014-x64
-	$(DOCKER) run $(RM) dockcross/manylinux2014-x64 > $(BIN)/dockcross-manylinux2014-x64 && chmod +x $(BIN)/dockcross-manylinux2014-x64
+	$(DOCKER) run $(RM) $(ORG)/manylinux2014-x64 > $(BIN)/dockcross-manylinux2014-x64 && chmod +x $(BIN)/dockcross-manylinux2014-x64
 	$(BIN)/dockcross-manylinux2014-x64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -169,7 +169,7 @@ manylinux2014-x86: manylinux2014-x86/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux2014-x86.test: manylinux2014-x86
-	$(DOCKER) run $(RM) dockcross/manylinux2014-x86 > $(BIN)/dockcross-manylinux2014-x86 && chmod +x $(BIN)/dockcross-manylinux2014-x86
+	$(DOCKER) run $(RM) $(ORG)/manylinux2014-x86 > $(BIN)/dockcross-manylinux2014-x86 && chmod +x $(BIN)/dockcross-manylinux2014-x86
 	$(BIN)/dockcross-manylinux2014-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -219,7 +219,7 @@ manylinux2010-x86: manylinux2010-x86/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux2010-x86.test: manylinux2010-x86
-	$(DOCKER) run $(RM) dockcross/manylinux2010-x86 > $(BIN)/dockcross-manylinux2010-x86 && chmod +x $(BIN)/dockcross-manylinux2010-x86
+	$(DOCKER) run $(RM) $(ORG)/manylinux2010-x86 > $(BIN)/dockcross-manylinux2010-x86 && chmod +x $(BIN)/dockcross-manylinux2010-x86
 	$(BIN)/dockcross-manylinux2010-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -244,7 +244,7 @@ manylinux1-x64: manylinux1-x64/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux1-x64.test: manylinux1-x64
-	$(DOCKER) run $(RM) dockcross/manylinux1-x64 > $(BIN)/dockcross-manylinux1-x64 && chmod +x $(BIN)/dockcross-manylinux1-x64
+	$(DOCKER) run $(RM) $(ORG)/manylinux1-x64 > $(BIN)/dockcross-manylinux1-x64 && chmod +x $(BIN)/dockcross-manylinux1-x64
 	$(BIN)/dockcross-manylinux1-x64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -269,7 +269,7 @@ manylinux1-x86: manylinux1-x86/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux1-x86.test: manylinux1-x86
-	$(DOCKER) run $(RM) dockcross/manylinux1-x86 > $(BIN)/dockcross-manylinux1-x86 && chmod +x $(BIN)/dockcross-manylinux1-x86
+	$(DOCKER) run $(RM) $(ORG)/manylinux1-x86 > $(BIN)/dockcross-manylinux1-x86 && chmod +x $(BIN)/dockcross-manylinux1-x86
 	$(BIN)/dockcross-manylinux1-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -288,7 +288,7 @@ base: Dockerfile imagefiles/
 		.
 
 base.test: base
-	$(DOCKER) run $(RM) dockcross/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
+	$(DOCKER) run $(RM) $(ORG)/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
 
 #
 # display
@@ -319,12 +319,17 @@ $(STANDARD_IMAGES): %: %/Dockerfile base
 		$@
 	rm -rf $@/imagefiles
 
+clean:
+	for d in $(STANDARD_IMAGES) ; do rm -rf $$d/imagefiles ; done
+	for d in $(GEN_IMAGE_DOCKERFILES) ; do rm -f $$d/Dockerfile ; done
+	rm -f Dockerfile
+
 #
 # testing implicit rule
 #
 .SECONDEXPANSION:
 $(addsuffix .test,$(STANDARD_IMAGES)): $$(basename $$@)
-	$(DOCKER) run $(RM) dockcross/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
+	$(DOCKER) run $(RM) $(ORG)/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
 	$(BIN)/dockcross-$(basename $@) python test/run.py $($@_ARGS)
 
 #
@@ -335,4 +340,4 @@ test.prerequisites:
 
 $(addsuffix .test,base $(IMAGES)): test.prerequisites
 
-.PHONY: base images $(IMAGES) test %.test
+.PHONY: base images $(IMAGES) test %.test clean

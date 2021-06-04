@@ -1,4 +1,4 @@
-FROM emscripten/emsdk:2.0.4
+FROM emscripten/emsdk:2.0.22
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Revert back to "/bin/sh" as default shell
@@ -6,13 +6,8 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 RUN rm /bin/sh && ln -s /bin/dash /bin/sh
 
 ARG DEBIAN_FRONTEND=noninteractive
-ARG REPO=http://cdn-fastly.deb.debian.org
 
 RUN \
-  bash -c "echo \"deb $REPO/debian buster main contrib non-free\" > /etc/apt/sources.list"  && \
-  bash -c "echo \"deb $REPO/debian buster-updates main contrib non-free\" >> /etc/apt/sources.list"  && \
-  bash -c "echo \"deb $REPO/debian-security buster/updates main\" >> /etc/apt/sources.list" && \
-  bash -c "echo \"deb http://ftp.debian.org/debian buster-backports main\" >> /etc/apt/sources.list" && \
   apt-get update --yes && \
   apt-get install --no-install-recommends --yes \
     automake \
@@ -57,7 +52,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 #include "common.docker"
 
-ENV EMSCRIPTEN_VERSION 2.0.4
+ENV EMSCRIPTEN_VERSION 2.0.22
 
 ENV PATH /emsdk:/emsdk/upstream/bin/:/emsdk/upstream/emscripten:${PATH}
 ENV CC=/emsdk/upstream/emscripten/emcc \
