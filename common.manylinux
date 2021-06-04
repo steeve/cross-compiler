@@ -8,6 +8,7 @@ RUN \
   yum -y install \
     $([ "$DEFAULT_DOCKCROSS_IMAGE" = "dockcross/manylinux2014-x86" ] && echo "" || echo "epel-release") \
     gpg \
+    python3-devel \
     zlib-devel \
     gettext \
     openssh-clients \
