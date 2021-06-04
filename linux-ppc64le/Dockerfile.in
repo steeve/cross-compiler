@@ -1,31 +1,19 @@
 FROM dockcross/base:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-COPY sources.list /etc/apt/sources.list
-RUN dpkg --add-architecture ppc64el ; apt-get update ; apt-get -y upgrade ; apt-get update ;
-
-ENV CROSS_TRIPLE powerpc64le-linux-gnu
-
-RUN apt-get install -y \
-  libbz2-dev:ppc64el \
-  libexpat1-dev:ppc64el \
-  ncurses-dev:ppc64el \
-  libssl-dev:ppc64el \
-  python-dev
-
 #include "common.crosstool"
 
-# ENV CROSS_TRIPLE powerpc64le-unknown-linux-gnu
+ENV CROSS_TRIPLE powerpc64le-linux-gnu
 
 WORKDIR /usr/src
 
 RUN apt-get install -y libglib2.0-dev zlib1g-dev libpixman-1-dev && \
-  curl -L http://wiki.qemu-project.org/download/qemu-2.6.0.tar.bz2 | tar xj && \
-  cd qemu-2.6.0 && \
+  curl -L http://wiki.qemu-project.org/download/qemu-3.1.0.tar.bz2 | tar xj && \
+  cd qemu-3.1.0 && \
   ./configure --target-list=ppc64le-linux-user --prefix=/usr && \
   make -j$(nproc) && \
   make install && \
-  cd .. && rm -rf qemu-2.6.0
+  cd .. && rm -rf qemu-3.1.0
 
 ENV CROSS_ROOT ${XCC_PREFIX}/${CROSS_TRIPLE}
 ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
@@ -52,4 +40,3 @@ ENV CROSS_COMPILE ${CROSS_TRIPLE}-
 ENV ARCH powerpc
 
 #include "common.label-and-env"
-
