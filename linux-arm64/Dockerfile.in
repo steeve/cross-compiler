@@ -2,6 +2,9 @@ FROM dockcross/base:latest
 
 # This is for 64-bit ARM Linux machine
 
+# Crosstool-ng version
+ENV CT_VERSION crosstool-ng-1.23.0
+
 #include "common.crosstool"
 
 # The cross-compiling emulator

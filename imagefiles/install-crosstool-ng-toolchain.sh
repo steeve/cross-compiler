@@ -16,7 +16,7 @@ set -o pipefail
 # be generated underneath of here.
 ROOT=${PWD}
 
-usage() { echo "Usage: $0 -p <prefix> -c <config-path>" 1>&2; exit 1; }
+usage() { echo "Usage: $0 -p <prefix> -c <config-path> -v <version>" 1>&2; exit 1; }
 
 # Resolve our input parameters.
 #
@@ -24,13 +24,17 @@ usage() { echo "Usage: $0 -p <prefix> -c <config-path>" 1>&2; exit 1; }
 # change directories during installation.
 CT_PREFIX=
 CONFIG_PATH=
-while getopts "p:c:" o; do
+REV=
+while getopts "p:c:v:" o; do
   case "${o}" in
   p)
     CT_PREFIX=$(readlink -f ${OPTARG})
     ;;
   c)
     CONFIG_PATH=$(readlink -f ${OPTARG})
+    ;;
+  v)
+    REV=${OPTARG}
     ;;
   *)
     usage
@@ -48,6 +52,12 @@ if [ -z ${CONFIG_PATH} ] || [ ! -f ${CONFIG_PATH} ]; then
   usage
 fi
 
+if [ -z ${REV} ]; then
+  echo "WARNING: No version selected, use default version: crosstool-ng-1.23.0 (-v)."
+  REV=crosstool-ng-1.23.0
+fi
+
+
 ##
 # Build "crosstool-ng".
 ##
@@ -57,12 +67,17 @@ mkdir -p "${CTNG}"
 cd "${CTNG}"
 
 # Download and install the "crosstool-ng" source.
-REV=1.23.0
-curl -# -LO \
-  "https://github.com/crosstool-ng/crosstool-ng/archive/crosstool-ng-${REV}.tar.gz"
-tar -xf "crosstool-ng-${REV}.tar.gz"
-patch crosstool-ng-crosstool-ng-1.23.0/scripts/build/companion_libs/210-expat.sh -i /dockcross/crosstool-ng-expat.patch
-cd "crosstool-ng-crosstool-ng-${REV}"
+
+git clone https://github.com/crosstool-ng/crosstool-ng.git
+cd crosstool-ng
+git fetch --tags
+
+# checkout 
+git checkout ${REV}
+
+if [ ${REV} = "crosstool-ng-1.23.0" ]; then
+  patch scripts/build/companion_libs/210-expat.sh -i /dockcross/crosstool-ng-expat.patch
+fi
 
 # Bootstrap and install the tool.
 BOOTSTRAP_PREFIX="${CTNG}/prefix"
@@ -96,5 +111,6 @@ cp "${CONFIG_PATH}" "${BUILD}/.config"
 unset LD_LIBRARY_PATH
 
 # Build and install the toolchain!
-"${BOOTSTRAP_PREFIX}/bin/ct-ng" build
+# Print last 250 lines if build fail
+"${BOOTSTRAP_PREFIX}/bin/ct-ng" build || tail -250 build.log
 
