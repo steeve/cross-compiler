@@ -1,6 +1,9 @@
 FROM dockcross/base:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
+# Crosstool-ng version
+ENV CT_VERSION crosstool-ng-1.23.0
+
 #include "common.crosstool"
 
 ENV CROSS_TRIPLE powerpc64le-linux-gnu
