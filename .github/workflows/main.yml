@@ -58,4 +58,6 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
             docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-            docker image push dockcross/${{ matrix.arch_name }}
+            docker image push dockcross/${{ matrix.arch_name }}:latest
+            tagged_image=$(docker images --filter 'reference=dockcross/${{ matrix.arch_name }}:20*' --format "{{.Repository}}:{{.Tag}}" | head -n1)
+            docker image push ${tagged_image}
