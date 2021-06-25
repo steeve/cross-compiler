@@ -79,14 +79,8 @@ web-wasm: web-wasm/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	cp -r test web-wasm/
 	$(DOCKER) build -t $(ORG)/web-wasm:latest \
+		-t $(ORG)/web-wasm:$(TAG) \
 		--build-arg IMAGE=$(ORG)/web-wasm \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		web-wasm
-	$(DOCKER) build -t $(ORG)/web-wasm:$(TAG) \
-		--build-arg IMAGE=$(ORG)/web-wasm \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
@@ -106,14 +100,8 @@ web-wasm.test: web-wasm
 manylinux2014-aarch64: manylinux2014-aarch64/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	$(DOCKER) build -t $(ORG)/manylinux2014-aarch64:latest \
+		-t $(ORG)/manylinux2014-aarch64:$(TAG) \
 		--build-arg IMAGE=$(ORG)/manylinux2014-aarch64 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux2014-aarch64/Dockerfile .
-	$(DOCKER) build -t $(ORG)/manylinux2014-aarch64:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux2014-aarch64 \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
@@ -130,14 +118,8 @@ manylinux2014-aarch64.test: manylinux2014-aarch64
 manylinux2014-x64: manylinux2014-x64/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	$(DOCKER) build -t $(ORG)/manylinux2014-x64:latest \
+		-t $(ORG)/manylinux2014-x64:$(TAG) \
 		--build-arg IMAGE=$(ORG)/manylinux2014-x64 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux2014-x64/Dockerfile .
-	$(DOCKER) build -t $(ORG)/manylinux2014-x64:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux2014-x64 \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
@@ -154,14 +136,8 @@ manylinux2014-x64.test: manylinux2014-x64
 manylinux2014-x86: manylinux2014-x86/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	$(DOCKER) build -t $(ORG)/manylinux2014-x86:latest \
+		-t $(ORG)/manylinux2014-x86:$(TAG) \
 		--build-arg IMAGE=$(ORG)/manylinux2014-x86 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux2014-x86/Dockerfile .
-	$(DOCKER) build -t $(ORG)/manylinux2014-x86:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux2014-x86 \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
@@ -179,14 +155,8 @@ manylinux2014-x86.test: manylinux2014-x86
 manylinux2010-x64: manylinux2010-x64/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	$(DOCKER) build -t $(ORG)/manylinux2010-x64:latest \
+		-t $(ORG)/manylinux2010-x64:$(TAG) \
 		--build-arg IMAGE=$(ORG)/manylinux2010-x64 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux2010-x64/Dockerfile .
-	$(DOCKER) build -t $(ORG)/manylinux2010-x64:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux2010-x64 \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
@@ -204,14 +174,8 @@ manylinux2010-x64.test: manylinux2010-x64
 manylinux2010-x86: manylinux2010-x86/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	$(DOCKER) build -t $(ORG)/manylinux2010-x86:latest \
+		-t $(ORG)/manylinux2010-x86:$(TAG) \
 		--build-arg IMAGE=$(ORG)/manylinux2010-x86 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux2010-x86/Dockerfile .
-	$(DOCKER) build -t $(ORG)/manylinux2010-x86:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux2010-x86 \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
@@ -229,14 +193,8 @@ manylinux2010-x86.test: manylinux2010-x86
 manylinux1-x64: manylinux1-x64/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	$(DOCKER) build -t $(ORG)/manylinux1-x64:latest \
+		-t $(ORG)/manylinux1-x64:$(TAG) \
 		--build-arg IMAGE=$(ORG)/manylinux1-x64 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux1-x64/Dockerfile .
-	$(DOCKER) build -t $(ORG)/manylinux1-x64:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux1-x64 \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
@@ -254,14 +212,8 @@ manylinux1-x64.test: manylinux1-x64
 manylinux1-x86: manylinux1-x86/Dockerfile
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	$(DOCKER) build -t $(ORG)/manylinux1-x86:latest \
+		-t $(ORG)/manylinux1-x86:$(TAG) \
 		--build-arg IMAGE=$(ORG)/manylinux1-x86 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux1-x86/Dockerfile .
-	$(DOCKER) build -t $(ORG)/manylinux1-x86:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux1-x86 \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
@@ -278,12 +230,8 @@ manylinux1-x86.test: manylinux1-x86
 
 base: Dockerfile imagefiles/
 	$(DOCKER) build -t $(ORG)/base:latest \
+		-t $(ORG)/base:$(TAG) \
 		--build-arg IMAGE=$(ORG)/base \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		.
-	$(DOCKER) build -t $(ORG)/base:$(TAG) \
-		--build-arg IMAGE=$(ORG)/base \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		.
 
@@ -305,14 +253,8 @@ $(VERBOSE).SILENT: display_images
 $(STANDARD_IMAGES): %: %/Dockerfile base
 	mkdir -p $@/imagefiles && cp -r imagefiles $@/
 	$(DOCKER) build -t $(ORG)/$@:latest \
+		-t $(ORG)/$@:$(TAG) \
 		--build-arg IMAGE=$(ORG)/$@ \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		$@
-	$(DOCKER) build -t $(ORG)/$@:$(TAG) \
-		--build-arg IMAGE=$(ORG)/$@ \
-		--build-arg VERSION=$(TAG) \
 		--build-arg VCS_REF=`git rev-parse --short HEAD` \
 		--build-arg VCS_URL=`git config --get remote.origin.url` \
 		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
@@ -323,6 +265,12 @@ clean:
 	for d in $(STANDARD_IMAGES) ; do rm -rf $$d/imagefiles ; done
 	for d in $(GEN_IMAGE_DOCKERFILES) ; do rm -f $$d/Dockerfile ; done
 	rm -f Dockerfile
+
+purge: clean
+# Remove all untagged images
+	$(DOCKER) container ls -aq | xargs --no-run-if-empty $(DOCKER) container rm -f
+# Remove all images with organization (ex dockcross/*)
+	$(DOCKER) images --filter=reference='$(ORG)/*' --format='{{.Repository}}:{{.Tag}}' | xargs -r $(DOCKER) rmi -f
 
 #
 # testing implicit rule

@@ -32,7 +32,7 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
             docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-            docker image push dockcross/base
+            docker image push dockcross/base --all-tags
 
   image:
     name: ${{ matrix.arch_name }}
@@ -58,4 +58,4 @@ jobs:
         if: github.ref == 'refs/heads/master'
         run: |
             docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-            docker image push dockcross/${{ matrix.arch_name }}
+            docker image push dockcross/${{ matrix.arch_name }} --all-tags
