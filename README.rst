@@ -223,6 +223,12 @@ dockcross/linux-x64
   |linux-x64-images| Linux x86_64 / amd64 compiler. Since the Docker image is
   natively x86_64, this is not actually a cross compiler.
 
+.. |linux-x64-clang-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-x64-clang.svg
+  :target: https://microbadger.com/images/dockcross/linux-x64-clang
+
+dockcross/linux-x64-clang
+  |linux-x64-clang-images| Linux clang x86_64 / amd64 compiler. Since the Docker image is
+  natively x86_64, this is not actually a cross compiler.
 
 .. |linux-x86-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-x86.svg
   :target: https://microbadger.com/images/dockcross/linux-x86
