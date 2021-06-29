@@ -187,13 +187,6 @@ dockcross/linux-armv7l-musl
   |linux-armv7l-musl-images| Toolchain configured for ARMv7-L, using `musl <https://www.musl-libc.org/>`_ as base "libc".
 
 
-.. |linux-mipsel-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-mipsel.svg
-  :target: https://microbadger.com/images/dockcross/linux-mipsel
-
-dockcross/linux-mipsel
-  |linux-mipsel-images| Linux mipsel cross compiler toolchain for little endian MIPS GNU systems.
-
-
 .. |linux-mips-images| image:: https://images.microbadger.com/badges/image/dockcross/linux-mips.svg
   :target: https://microbadger.com/images/dockcross/linux-mips
 
