@@ -1,12 +1,12 @@
----
-title: dockcross
----
+
+# dockcross
+
 
 Cross compiling toolchains in Docker images.
 
 [![image](https://github.com/dockcross/dockcross/workflows/Dockcross%20CI/badge.svg)](https://github.com/dockcross/dockcross/actions?query=branch%3Amaster)
 
-# Features
+## Features
 
 -   Pre-built and configured toolchains for cross compiling.
 -   Most images also contain an emulator for the target system.
@@ -27,7 +27,7 @@ Cross compiling toolchains in Docker images.
     for [docker]{.title-ref} and
     \[[podman]{.title-ref}\](<https://podman.io/>) executable.
 
-# Examples
+## Examples
 
 1.  `dockcross make`: Build the *Makefile* in the current directory.
 2.  `dockcross cmake -Bbuild -H. -GNinja`: Run CMake with a build
@@ -43,7 +43,7 @@ Note that commands are executed verbatim. If any shell processing for
 environment variable expansion or redirection is required, please use
 [bash -c \'command args\...\']{.title-ref}.
 
-# Installation
+## Installation
 
 This image does not need to be run manually. Instead, there is a helper
 script to execute build commands on source code existing on the local
@@ -63,7 +63,7 @@ cross-compiler toolchain Docker instance, e.g.
 Only 64-bit x86_64 images are provided; a 64-bit x86_64 host system is
 required.
 
-# Usage
+## Usage
 
 For the impatient, here\'s how to compile a hello world for armv7:
 
@@ -84,261 +84,284 @@ that evaluate environmental variables in the image, like
 The present working directory is mounted within the image, which can be
 used to make source code available in the Docker container.
 
-# Cross compilers
+## Cross compilers
 
 ### dockcross/base
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/base/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/base/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/base) ![Docker Stars](https://img.shields.io/docker/stars/dockcross/base)
+
 Base image for other toolchain images. From Debian Jessie with GCC,
 make, autotools, CMake, Ninja, Git, and Python.
 
 ### dockcross/android-arm
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/android-arm/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/android-arm/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/android-arm)
-    The Android NDK standalone toolchain for the arm architecture.
+
+The Android NDK standalone toolchain for the arm architecture.
 
 ### dockcross/android-arm64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/android-arm64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/android-arm64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/android-arm64)
-    The Android NDK standalone toolchain for the arm64 architecture.
+
+The Android NDK standalone toolchain for the arm64 architecture.
 
 ### dockcross/android-x86
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/android-x86/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/android-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/android-x86)
-    The Android NDK standalone toolchain for the x86 architecture.
+
+The Android NDK standalone toolchain for the x86 architecture.
 
 ### dockcross/android-x86_64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/android-x86_64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/android-x86_64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/android-x86_64)
-    The Android NDK standalone toolchain for the x86_64 architecture.
+
+The Android NDK standalone toolchain for the x86_64 architecture.
 
 ### dockcross/linux-arm64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-arm64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-arm64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-arm64)
-    Cross compiler for the 64-bit ARM platform on Linux, also known as
-    AArch64.
+
+Cross compiler for the 64-bit ARM platform on Linux, also known as
+AArch64.
 
 ### dockcross/linux-arm64-musl
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-arm64-musl/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-arm64-musl/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-arm64-musl)
-    Cross compiler for the 64-bit ARM platform on Linux (also known as
-    AArch64), using [musl](https://www.musl-libc.org/) as base \"libc\".
+
+Cross compiler for the 64-bit ARM platform on Linux (also known as
+AArch64), using [musl](https://www.musl-libc.org/) as base \"libc\".
 
 ### dockcross/linux-armv5
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv5/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv5/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv5)
-    Linux armv5 cross compiler toolchain for legacy devices like the
-    Parrot AR Drone.
+
+Linux armv5 cross compiler toolchain for legacy devices like the
+Parrot AR Drone.
 
 ### dockcross/linux-armv5-musl
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv5-musl/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv5-musl/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv5-musl)
-    Linux armv5 cross compiler toolchain using
-    [musl](https://www.musl-libc.org/) as base \"libc\".
+
+Linux armv5 cross compiler toolchain using
+[musl](https://www.musl-libc.org/) as base \"libc\".
 
 ### dockcross/linux-armv6
 
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv6/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv6/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv6) 
-    Linux ARMv6 cross compiler toolchain for the Raspberry Pi, etc.
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv6/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv6/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv6)
+
+Linux ARMv6 cross compiler toolchain for the Raspberry Pi, etc.
 
 ### dockcross/linux-armv6-musl
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv6-musl/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv6-musl/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv6-musl)
-    Linux ARMv6 cross compiler toolchain for the Raspberry Pi, etc,
-    using [musl](https://www.musl-libc.org/) as base \"libc\".
+
+Linux ARMv6 cross compiler toolchain for the Raspberry Pi, etc,
+using [musl](https://www.musl-libc.org/) as base \"libc\".
 
 ### dockcross/linux-armv7
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv7/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv7/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv7)
-    Generic Linux armv7 cross compiler toolchain.
+
+Generic Linux armv7 cross compiler toolchain.
 
 ### dockcross/linux-armv7a
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv7a/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv7a/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv7a)
-    Toolchain configured for ARMv7-A used in Beaglebone Black single
-    board PC with TI SoC AM3358 on board, Cortex-A8.
+
+Toolchain configured for ARMv7-A used in Beaglebone Black single
+board PC with TI SoC AM3358 on board, Cortex-A8.
 
 ### dockcross/linux-armv7l-musl
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv7l-musl/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv7l-musl/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv7l-musl)
-    Toolchain configured for ARMv7-L, using
-    [musl](https://www.musl-libc.org/) as base \"libc\".
+
+Toolchain configured for ARMv7-L, using
+[musl](https://www.musl-libc.org/) as base \"libc\".
 
 ### dockcross/linux-mipsel
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-mipsel/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-mipsel/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-mipsel)
-    Linux mipsel cross compiler toolchain for little endian MIPS GNU
-    systems.
+
+Linux mipsel cross compiler toolchain for little endian MIPS GNU
+systems.
 
 ### dockcross/linux-mips
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-mips/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-mips/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-mips)
-    Linux mips cross compiler toolchain for big endian 32-bit hard float
-    MIPS GNU systems.
+
+Linux mips cross compiler toolchain for big endian 32-bit hard float
+MIPS GNU systems.
 
 ### dockcross/linux-s390x
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-s390x/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-s390x/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-s390x)
-    Linux s390x cross compiler toolchain for S390X GNU systems.
+
+Linux s390x cross compiler toolchain for S390X GNU systems.
 
 ### dockcross/linux-ppc64le
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-ppc64le/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-ppc64le/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-ppc64le)
-    Linux PowerPC 64 little endian cross compiler toolchain for the
-    POWER8, etc. Important: Due to Issue #430, automatic build of newer
-    images has been disabled.
+
+Linux PowerPC 64 little endian cross compiler toolchain for the
+POWER8, etc. Important: Due to Issue #430, automatic build of newer
+images has been disabled.
 
 ### dockcross/linux-x64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-x64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-x64)
-    Linux x86_64 / amd64 compiler. Since the Docker image is natively
-    x86_64, this is not actually a cross compiler.
+
+Linux x86_64 / amd64 compiler. Since the Docker image is natively
+x86_64, this is not actually a cross compiler.
 
 ### dockcross/linux-x64-clang
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-x64-clang/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-x64-clang/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-x64-clang)
-    Linux clang x86_64 / amd64 compiler. Since the Docker image is
-    natively x86_64, this is not actually a cross compiler.
+
+Linux clang x86_64 / amd64 compiler. Since the Docker image is
+natively x86_64, this is not actually a cross compiler.
 
 ### dockcross/linux-x86
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-x86/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-x86)
-    Linux i686 cross compiler.
+
+Linux i686 cross compiler.
 
 ### dockcross/manylinux2014-x64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2014-x64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux2014-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2014-x64)
-    Docker [manylinux2014](https://github.com/pypa/manylinux) image for
-    building Linux x86_64 / amd64 [Python wheel
-    packages](http://pythonwheels.com/). It includes Python 3.5, 3.6,
-    3.7, 3.8, and 3.9. Also has support for the dockcross script, and it
-    has installations of CMake, Ninja, and
-    [scikit-build](http://scikit-build.org). For CMake, it sets
-    [MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
+
+Docker [manylinux2014](https://github.com/pypa/manylinux) image for
+building Linux x86_64 / amd64 [Python wheel
+packages](http://pythonwheels.com/). It includes Python 3.5, 3.6,
+3.7, 3.8, and 3.9. Also has support for the dockcross script, and it
+has installations of CMake, Ninja, and
+[scikit-build](http://scikit-build.org). For CMake, it sets
+[MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
 
 ### dockcross/manylinux2014-x86
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2014-x86/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux2014-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2014-x86)
-    Docker [manylinux2014](https://github.com/pypa/manylinux) image for
-    building Linux i686 [Python wheel
-    packages](http://pythonwheels.com/). It includes Python 3.5, 3.6,
-    3.7, 3.8, and 3.9. Also has support for the dockcross script, and it
-    has installations of CMake, Ninja, and
-    [scikit-build](http://scikit-build.org). For CMake, it sets
-    [MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
+
+Docker [manylinux2014](https://github.com/pypa/manylinux) image for
+building Linux i686 [Python wheel
+packages](http://pythonwheels.com/). It includes Python 3.5, 3.6,
+3.7, 3.8, and 3.9. Also has support for the dockcross script, and it
+has installations of CMake, Ninja, and
+[scikit-build](http://scikit-build.org). For CMake, it sets
+[MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
 
 ### dockcross/manylinux2014-aarch64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2014-aarch64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux2014-aarch64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2014-aarch64)
-    Docker [manylinux2014](https://github.com/pypa/manylinux) image for
-    building Linux aarch64 / arm64 [Python wheel
-    packages](http://pythonwheels.com/). It includes Python 3.5, 3.6,
-    3.7, 3.8, and 3.9. Also has support for the dockcross script, and it
-    has installations of CMake, Ninja, and
-    [scikit-build](http://scikit-build.org). For CMake, it sets
-    [MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
+
+Docker [manylinux2014](https://github.com/pypa/manylinux) image for
+building Linux aarch64 / arm64 [Python wheel
+packages](http://pythonwheels.com/). It includes Python 3.5, 3.6,
+3.7, 3.8, and 3.9. Also has support for the dockcross script, and it
+has installations of CMake, Ninja, and
+[scikit-build](http://scikit-build.org). For CMake, it sets
+[MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
 
 ### dockcross/manylinux2010-x64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2010-x64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux2010-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2010-x64)
-    Docker [manylinux2010](https://github.com/pypa/manylinux) image for
-    building Linux x86_64 / amd64 [Python wheel
-    packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
-    3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
-    and it has installations of CMake, Ninja, and
-    [scikit-build](http://scikit-build.org). For CMake, it sets
-    [MANYLINUX2010]{.title-ref} to \"TRUE\" in the toolchain.
+
+Docker [manylinux2010](https://github.com/pypa/manylinux)
+image for building Linux x86_64 / amd64 [Python wheel
+packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
+3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
+and it has installations of CMake, Ninja, and
+[scikit-build](http://scikit-build.org). For CMake, it sets
+[MANYLINUX2010]{.title-ref} to \"TRUE\" in the toolchain.
 
 ### dockcross/manylinux2010-x86
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2010-x86/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux2010-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2010-x86)
-    Docker [manylinux2010](https://github.com/pypa/manylinux) image for
-    building Linux i686 [Python wheel
-    packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
-    3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
-    and it has installations of CMake, Ninja, and
-    [scikit-build](http://scikit-build.org). For CMake, it sets
-    [MANYLINUX2010]{.title-ref} to \"TRUE\" in the toolchain.
+
+Docker [manylinux2010](https://github.com/pypa/manylinux) image for
+building Linux i686 [Python wheel
+packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
+3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
+and it has installations of CMake, Ninja, and
+[scikit-build](http://scikit-build.org). For CMake, it sets
+[MANYLINUX2010]{.title-ref} to \"TRUE\" in the toolchain.
 
 ### dockcross/manylinux1-x64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux1-x64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux1-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux1-x64)
-    Docker
-    [manylinux1](https://github.com/pypa/manylinux/tree/manylinux1)
-    image for building Linux x86_64 / amd64 [Python wheel
-    packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
-    3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
-    and it has installations of CMake, Ninja, and
-    [scikit-build](http://scikit-build.org). For CMake, it sets
-    [MANYLINUX1]{.title-ref} to \"TRUE\" in the toolchain.
+
+Docker [manylinux1](https://github.com/pypa/manylinux/tree/manylinux1)
+image for building Linux x86_64 / amd64 [Python wheel
+packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
+3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
+and it has installations of CMake, Ninja, and
+[scikit-build](http://scikit-build.org). For CMake, it sets
+[MANYLINUX1]{.title-ref} to \"TRUE\" in the toolchain.
 
 ### dockcross/manylinux1-x86
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux1-x86/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux1-x86/latest)  ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux1-x86)
-    Docker
-    [manylinux1](https://github.com/pypa/manylinux/tree/manylinux1)
-    image for building Linux i686 [Python wheel
-    packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
-    3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
-    and it has installations of CMake, Ninja, and
-    [scikit-build](http://scikit-build.org). For CMake, it sets
-    [MANYLINUX1]{.title-ref} to \"TRUE\" in the toolchain.
+
+Docker [manylinux1](https://github.com/pypa/manylinux/tree/manylinux1)
+image for building Linux i686 [Python wheel
+packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
+3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
+and it has installations of CMake, Ninja, and
+[scikit-build](http://scikit-build.org). For CMake, it sets
+[MANYLINUX1]{.title-ref} to \"TRUE\" in the toolchain.
 
 ### dockcross/web-wasm
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/web-wasm/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/web-wasm/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/web-wasm)
-    The Emscripten WebAssembly/asm.js/JavaScript cross compiler.
+
+The Emscripten WebAssembly/asm.js/JavaScript cross compiler.
 
 ### dockcross/windows-static-x64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-static-x64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/windows-static-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-static-x64)
-    64-bit Windows cross-compiler based on
-    [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and static
-    linking.
+
+64-bit Windows cross-compiler based on [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and static
+linking.
 
 ### dockcross/windows-static-x64-posix
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-static-x64-posix/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/windows-static-x64-posix/latest)  ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-static-x64-posix)
-    64-bit Windows cross-compiler based on
-    [MXE/MinGW-w64](https://mxe.cc/) with posix threads and static
-    linking.
+
+64-bit Windows cross-compiler based on [MXE/MinGW-w64](https://mxe.cc/) with posix threads and static
+linking.
 
 ### dockcross/windows-static-x86
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-static-x86/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/windows-static-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-static-x86)
-    32-bit Windows cross-compiler based on
-    [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and static
-    linking.
+
+32-bit Windows cross-compiler based on [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and static linking.
 
 ### dockcross/windows-shared-x64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-shared-x64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/windows-shared-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-shared-x64)
-    64-bit Windows cross-compiler based on
-    [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and dynamic
-    linking.
+
+64-bit Windows cross-compiler based on [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and dynamic linking.
 
 ### dockcross/windows-shared-x64-posix
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-shared-x64-posix/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/windows-shared-x64-posix/latest)  ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-shared-x64-posix)
-    64-bit Windows cross-compiler based on
-    [MXE/MinGW-w64](https://mxe.cc/) with posix threads and dynamic
-    linking.
+
+64-bit Windows cross-compiler based on [MXE/MinGW-w64](https://mxe.cc/) with posix threads and dynamic linking.
 
 ### dockcross/windows-shared-x86
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-shared-x86/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/windows-shared-x86/latest)   ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-shared-x86)
-    32-bit Windows cross-compiler based on
-    [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and dynamic
-    linking.
 
-# Articles
+32-bit Windows cross-compiler based on [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and dynamic linking.
+
+## Articles
 
 -   [dockcross: C++ Write Once, Run
     Anywhere](https://nbviewer.jupyter.org/format/slides/github/dockcross/cxx-write-once-run-anywhere/blob/master/dockcross_CXX_Write_Once_Run_Anywhere.ipynb#/)
 -   [Cross-compiling binaries for multiple architectures with
     Docker](https://web.archive.org/web/20170912153531/http://blogs.nopcode.org/brainstorm/2016/07/26/cross-compiling-with-docker)
 
-# Built-in update commands
+## Built-in update commands
 
 A special update command can be executed that will update the source
 cross-compiler Docker image or the dockcross script itself.
@@ -353,7 +376,7 @@ cross-compiler Docker image or the dockcross script itself.
 -   `dockcross update`: Update both the docker image, and the dockcross
     script.
 
-# Download all images
+## Download all images
 
 To easily download all images, the convenience target `display_images`
 could be used:
@@ -364,7 +387,7 @@ could be used:
       docker pull dockcross/$image
     done
 
-# Install all dockcross scripts
+## Install all dockcross scripts
 
 To automatically install in `~/bin` the dockcross scripts for each
 images already downloaded, the convenience target `display_images` could
@@ -381,31 +404,31 @@ be used:
       chmod u+x  ~/bin/dockcross-$image
     done
 
-# Dockcross configuration
+## Dockcross configuration
 
 The following environmental variables and command-line options are used.
 In all cases, the command-line option overrides the environment
 variable.
 
-## DOCKCROSS_CONFIG / \--config\|-c \<path-to-config-file>
+### DOCKCROSS_CONFIG / \--config\|-c \<path-to-config-file>
 
 This file is sourced, if it exists, before executing the rest of the
 dockcross script.
 
 Default: `~/.dockcross`
 
-## DOCKCROSS_IMAGE / \--image\|-i \<docker-image-name>
+### DOCKCROSS_IMAGE / \--image\|-i \<docker-image-name>
 
 The Docker cross-compiler image to run.
 
 Default: Image with which the script was created.
 
-## DOCKCROSS_ARGS / \--args\|-a \<docker-run-args>
+### DOCKCROSS_ARGS / \--args\|-a \<docker-run-args>
 
 Extra arguments to pass to the `docker run` command. Quote the entire
 set of args if they contain spaces.
 
-# Per-project dockcross configuration
+## Per-project dockcross configuration
 
 If a shell script named `.dockcross` is found in the current directory
 where the dockcross script is started, it is executed before the
@@ -416,7 +439,7 @@ For example, commands like
 `git config --global advice.detachedHead false` can be added to this
 script.
 
-# How to extend Dockcross images
+## How to extend Dockcross images
 
 In order to extend Dockcross images with your own commands, one must:
 
@@ -435,12 +458,12 @@ An example Dockerfile would be:
 
 And then in the shell:
 
-    docker build -t my_cool_image .                   # Builds the dockcross image.
-    docker run my_cool_image > linux-armv7                # Creates a helper script named linux-armv7.
-    chmod +x linux-armv7                          # Gives the script execution permission.
-    ./linux-armv7 bash                            # Runs the helper script with the argument "bash", which starts an interactive container using your extended image.
+    docker build -t my_cool_image .                   ## Builds the dockcross image.
+    docker run my_cool_image > linux-armv7                ## Creates a helper script named linux-armv7.
+    chmod +x linux-armv7                          ## Gives the script execution permission.
+    ./linux-armv7 bash                            ## Runs the helper script with the argument "bash", which starts an interactive container using your extended image.
 
-# What is the difference between [dockcross]{.title-ref} and [dockbuild]{.title-ref} ?
+## What is the difference between [dockcross]{.title-ref} and [dockbuild]{.title-ref} ?
 
 The key difference is that
 [dockbuild](https://github.com/dockbuild/dockbuild#readme) images do
