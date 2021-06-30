@@ -35,8 +35,10 @@ mkdir /usr/src/CMake-build
 cd /usr/src/CMake-build
 
 ${WRAPPER} /usr/src/CMake/bootstrap \
-  --parallel=$(grep -c processor /proc/cpuinfo)
-${WRAPPER} make -j$(grep -c processor /proc/cpuinfo)
+  --parallel=$(nproc) \
+  -- -DCMAKE_USE_OPENSSL=OFF
+${WRAPPER} make -j$(nproc)
+
 
 mkdir /usr/src/CMake-ssl-build
 cd /usr/src/CMake-ssl-build
@@ -48,7 +50,7 @@ ${WRAPPER} /usr/src/CMake-build/bin/cmake \
   -DCMAKE_USE_OPENSSL:BOOL=ON \
   -DOPENSSL_ROOT_DIR:PATH=/usr/local/ssl \
   ../CMake
-${WRAPPER} make -j$(grep -c processor /proc/cpuinfo) install
+${WRAPPER} make -j$(nproc) install
 
 # Cleanup install tree
 cd /usr/src/cmake-$CMAKE_VERSION
