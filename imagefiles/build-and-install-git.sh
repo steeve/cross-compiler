@@ -32,7 +32,7 @@ rm -f git-${GIT_VERSION}.tar.gz
 
 pushd git-${GIT_VERSION}
 ./configure --prefix=/usr/local --with-curl
-make
+make -j$(nproc)
 make install
 popd
 
