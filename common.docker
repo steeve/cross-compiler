@@ -23,7 +23,7 @@ RUN \
   /buildscripts/build-and-install-openssh.sh && \
   /buildscripts/build-and-install-curl.sh && \
   /buildscripts/build-and-install-git.sh && \
-  /buildscripts/build-and-install-cmake.sh $X86_FLAG && \
+  if [ "$CMAKE_BIN" = "true" ]; then CMAKE_VERSION=3.17.1 && /buildscripts/install-cmake-binary.sh $X86_FLAG;else /buildscripts/build-and-install-cmake.sh  $X86_FLAG;fi && \
   /buildscripts/install-liquidprompt-binary.sh && \
   PYTHON=$([ -e /opt/python/cp38-cp38/bin/python ] && echo "/opt/python/cp38-cp38/bin/python" || echo "python3") && \
   /buildscripts/install-python-packages.sh -python ${PYTHON} && \
