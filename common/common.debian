@@ -36,10 +36,7 @@ RUN \
     xz-utils \
     zip \
     zlib1g-dev \
-#    python-is-python3 \
+    python-is-python3 \
     && apt-get clean autoclean --yes \
     && apt-get autoremove --yes \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/
-
-RUN ln -s /usr/bin/python3 /usr/bin/python \
-    && ln -s /usr/bin/pip3 /usr/bin/pip
