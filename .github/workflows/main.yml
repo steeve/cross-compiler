@@ -26,7 +26,7 @@ jobs:
       - name: archive base
         run: |
             mkdir -p cache
-            docker save -o ./cache/base.tar dockcross/base:latest
+            docker save dockcross/base:latest | xz -e9 -T0 > base.tar.xz
       - name: save base
         uses: actions/upload-artifact@v2
         with:
@@ -54,7 +54,7 @@ jobs:
           name: cache
           path: ./cache
       - name: load base
-        run: docker load -i ./cache/base.tar
+        run: xz -d -k < base.tar.xz | docker load
       - name: build
         run: make ${{ matrix.arch_name }}
       - name: test
