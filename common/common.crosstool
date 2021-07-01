@@ -38,8 +38,8 @@ ENV XCC_PREFIX=/usr/xcc
 # for users.
 COPY \
   imagefiles/install-crosstool-ng-toolchain.sh \
-  imagefiles/crosstool-ng-expat.patch \
-  imagefiles/Fix-error-with-bash-5-and-up.patch \
+  imagefiles/patch/crosstool-ng/crosstool-ng-expat.patch \
+  imagefiles/patch/crosstool-ng/Fix-error-with-bash-5-and-up.patch \
   crosstool-ng.config \
   /dockcross/
 
