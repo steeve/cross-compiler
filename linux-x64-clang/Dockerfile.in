@@ -1,0 +1,35 @@
+FROM dockcross/base:latest
+MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
+ # flang
+RUN echo "deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main" >> /etc/apt/sources.list \
+    && echo "deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main" >> /etc/apt/sources.list \
+    && wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
+    && apt-get update \
+    && apt-get purge --autoremove -y gcc g++ software-properties-common \
+    && apt-get -y install clang libc++-dev libc++abi-dev clang-format clang-tidy lldb \
+    && apt-get clean --yes \
+    && rm -rf /var/lib/apt/lists/* \
+    && update-alternatives --install /usr/bin/cc cc /usr/bin/clang 90 \
+    && update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++ 90 \
+    && update-alternatives --install /usr/bin/cpp cpp /usr/bin/clang++ 90 \
+    && cc --version \
+    && c++ --version \
+    && cpp --version
+
+ENV CROSS_TRIPLE x86_64-linux-gnu
+ENV CROSS_ROOT /usr/bin
+ENV CC=/usr/bin/clang \
+    CPP=/usr/bin/cpp \
+    CXX=/usr/bin/clang++ \
+    LD=/usr/bin/lld \
+    FC=/usr/bin/flang
+
+#    AS=/usr/bin/${CROSS_TRIPLE}-as
+#    AR=/usr/bin/${CROSS_TRIPLE}-ar
+
+COPY ${CROSS_TRIPLE}-noop.sh /usr/bin/${CROSS_TRIPLE}-noop
+
+COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
+ENV CMAKE_TOOLCHAIN_FILE /usr/lib/${CROSS_TRIPLE}/Toolchain.cmake
+
+#include "common.label-and-env"

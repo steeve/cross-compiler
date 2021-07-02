@@ -13,16 +13,20 @@ ORG = dockcross
 BIN = ./bin
 
 # These images are built using the "build implicit rule"
-STANDARD_IMAGES = linux-s390x android-arm android-arm64 android-x86 android-x86_64 linux-x86 linux-x64 linux-arm64 linux-arm64-musl linux-armv5 linux-armv5-musl linux-armv6 linux-armv6-musl linux-armv7 linux-armv7a linux-armv7l-musl linux-mips linux-mipsel linux-ppc64le windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix
+STANDARD_IMAGES = linux-s390x android-arm android-arm64 android-x86 android-x86_64 linux-x86 linux-x64 linux-arm64 linux-x64-clang linux-arm64-musl linux-armv5 linux-armv5-musl linux-armv6 linux-armv6-musl linux-armv7 linux-armv7a linux-armv7l-musl linux-mips linux-ppc64le windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix
 
 # Generated Dockerfiles.
-GEN_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-mips linux-mipsel manylinux1-x64 manylinux1-x86 manylinux2010-x64 manylinux2010-x86 manylinux2014-x64 manylinux2014-x86 manylinux2014-aarch64 web-wasm linux-arm64 linux-arm64-musl windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix linux-armv7 linux-armv7a linux-armv7l-musl linux-armv6 linux-armv6-musl linux-armv5 linux-armv5-musl linux-ppc64le
+GEN_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-mips linux-x64-clang manylinux1-x64 manylinux1-x86 manylinux2010-x64 manylinux2010-x86 manylinux2014-x64 manylinux2014-x86 manylinux2014-aarch64 web-wasm linux-arm64 linux-arm64-musl windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix linux-armv7 linux-armv7a linux-armv7l-musl linux-armv6 linux-armv6-musl linux-armv5 linux-armv5-musl linux-ppc64le
+
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
 # These images are expected to have explicit rules for *both* build and testing
 NON_STANDARD_IMAGES = web-wasm manylinux1-x64 manylinux1-x86 manylinux2010-x64 manylinux2010-x86 manylinux2014-x64 manylinux2014-x86 manylinux2014-aarch64
 
+# Docker composite files
 DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux common.crosstool common.windows common-manylinux.crosstool common.dockcross common.label-and-env
+DOCKER_COMPOSITE_FOLDER_PATH = common/
+DOCKER_COMPOSITE_PATH = $(addprefix $(DOCKER_COMPOSITE_FOLDER_PATH),$(DOCKER_COMPOSITE_SOURCES))
 
 # This list all available images
 IMAGES = $(STANDARD_IMAGES) $(NON_STANDARD_IMAGES)
@@ -60,16 +64,16 @@ test: base.test $(addsuffix .test,$(IMAGES))
 # Generic Targets (can specialize later).
 #
 
-$(GEN_IMAGE_DOCKERFILES) Dockerfile: %Dockerfile: %Dockerfile.in $(DOCKER_COMPOSITE_SOURCES)
+$(GEN_IMAGE_DOCKERFILES) Dockerfile: %Dockerfile: %Dockerfile.in $(DOCKER_COMPOSITE_PATH)
 	sed \
-		-e '/common.docker/ r common.docker' \
-		-e '/common.debian/ r common.debian' \
-		-e '/common.manylinux/ r common.manylinux' \
-		-e '/common.crosstool/ r common.crosstool' \
-		-e '/common-manylinux.crosstool/ r common-manylinux.crosstool' \
-		-e '/common.windows/ r common.windows' \
-		-e '/common.dockcross/ r common.dockcross' \
-		-e '/common.label-and-env/ r common.label-and-env' \
+		-e '/common.docker/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.docker' \
+		-e '/common.debian/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.debian' \
+		-e '/common.manylinux/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.manylinux' \
+		-e '/common.crosstool/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.crosstool' \
+		-e '/common-manylinux.crosstool/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common-manylinux.crosstool' \
+		-e '/common.windows/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.windows' \
+		-e '/common.dockcross/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.dockcross' \
+		-e '/common.label-and-env/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.label-and-env' \
 		$< > $@
 
 #
@@ -238,7 +242,6 @@ base: Dockerfile imagefiles/
 base.test: base
 	$(DOCKER) run $(RM) $(ORG)/base > $(BIN)/dockcross-base && chmod +x $(BIN)/dockcross-base
 
-#
 # display
 #
 display_images:
@@ -263,7 +266,7 @@ $(STANDARD_IMAGES): %: %/Dockerfile base
 
 clean:
 	for d in $(STANDARD_IMAGES) ; do rm -rf $$d/imagefiles ; done
-	for d in $(GEN_IMAGE_DOCKERFILES) ; do rm -f $$d/Dockerfile ; done
+	for d in $(GEN_IMAGE_DOCKERFILES) ; do rm -f $$d ; done
 	rm -f Dockerfile
 
 purge: clean
@@ -288,4 +291,4 @@ test.prerequisites:
 
 $(addsuffix .test,base $(IMAGES)): test.prerequisites
 
-.PHONY: base images $(IMAGES) test %.test clean
+.PHONY: base images $(IMAGES) test %.test clean purge

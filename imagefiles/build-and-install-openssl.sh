@@ -59,7 +59,7 @@ PERL_DOWNLOAD_URL=https://www.cpan.org/src/5.0
 
 function do_perl_build {
     ${WRAPPER} sh Configure -des -Dprefix=/opt/perl > /dev/null
-    ${WRAPPER} make > /dev/null
+    ${WRAPPER} make -j$(nproc) > /dev/null
     ${WRAPPER} make install > /dev/null
 }
 
@@ -78,7 +78,7 @@ function build_perl {
 
 function do_openssl_build {
     ${WRAPPER} ./config no-shared -fPIC $CONFIG_FLAG --prefix=/usr/local/ssl --openssldir=/usr/local/ssl > /dev/null
-    ${WRAPPER} make > /dev/null
+    ${WRAPPER} make -j$(nproc) > /dev/null
     ${WRAPPER} make install_sw > /dev/null
 }
 
