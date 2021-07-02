@@ -198,6 +198,12 @@ MIPS GNU systems.
 
 Linux s390x cross compiler toolchain for S390X GNU systems.
 
+### dockcross/linux-m68k-uclibc
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-m68k-uclibc/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-m68k-uclibc/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-m68k-uclibc)
+
+Linux m68k cross compiler toolchain for m68k GNU systems (http://www.mac.linux-m68k.org/ and http://www.linux-m68k.org/).
+
 ### dockcross/linux-ppc64le
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-ppc64le/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-ppc64le/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-ppc64le)
