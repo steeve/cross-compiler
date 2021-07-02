@@ -16,7 +16,7 @@ WORKDIR /usr/src
 RUN apt-get install -y libglib2.0-dev zlib1g-dev libpixman-1-dev && \
   curl -L http://wiki.qemu-project.org/download/qemu-${QEMU_VERSION}.tar.bz2 | tar xj && \
   cd qemu-${QEMU_VERSION} && \
-  ./configure --target-list=mk68-linux-user --prefix=/usr && \
+  ./configure --target-list=m68k-softmmu --prefix=/usr && \
   make -j$(nproc) && \
   make install && \
   cd .. && rm -rf qemu-${QEMU_VERSION}
