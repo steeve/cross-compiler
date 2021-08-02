@@ -1,0 +1,26 @@
+name: Shellcheck CI
+
+on:
+  push:
+    branches:
+    - '*'
+    paths-ignore:
+      - '**/README.md'
+  pull_request:
+    branches:
+    - '*'
+    paths-ignore:
+      - '**/README.md'
+  workflow_dispatch:
+
+jobs:
+  shellcheck:
+    name: Shellcheck
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run ShellCheck
+      uses: ludeeus/action-shellcheck@master
+      with:
+        severity: warning
+        format: gcc
