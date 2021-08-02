@@ -25,4 +25,4 @@ jobs:
         severity: error
         format: gcc
       env:
-        SHELLCHECK_OPTS: bash
+        SHELLCHECK_OPTS: -s bash
