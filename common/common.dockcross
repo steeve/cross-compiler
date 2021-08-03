@@ -13,4 +13,4 @@ RUN \
   rm -rf /buildscripts
 
 # Runtime scripts
-COPY imagefiles/entrypoint.sh imagefiles/dockcross /dockcross/
+COPY imagefiles/entrypoint.sh imagefiles/dockcross.sh /dockcross/
