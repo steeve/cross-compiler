@@ -15,7 +15,8 @@ BIN = ./bin
 # These images are built using the "build implicit rule"
 STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
 	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl \
-	linux-armv5 linux-armv5-musl linux-armv6 linux-armv6-musl linux-armv7 linux-armv7a linux-armv7l-musl \
+	linux-armv5 linux-armv6 linux-armv7 linux-armv7a \
+	linux-armv5-musl linux-armv6-musl linux-armv7l-musl \
 	linux-mips linux-ppc64le linux-riscv64 linux-riscv32 \
 	windows-static-x86 windows-static-x64 windows-static-x64-posix \
 	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix \
@@ -47,7 +48,6 @@ DOCKER_COMPOSITE_PATH = $(addprefix $(DOCKER_COMPOSITE_FOLDER_PATH),$(DOCKER_COM
 IMAGES = $(STANDARD_IMAGES) $(NON_STANDARD_IMAGES)
 
 # Optional arguments for test runner (test/run.py) associated with "testing implicit rule"
-linux-ppc64le.test_ARGS = --languages C
 linux-x64-tinycc.test_ARGS = --languages C
 windows-static-x86.test_ARGS = --exe-suffix ".exe"
 windows-static-x64.test_ARGS = --exe-suffix ".exe"
@@ -135,7 +135,8 @@ manylinux2014-aarch64: manylinux2014-aarch64/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux2014-aarch64.test: manylinux2014-aarch64
-	$(DOCKER) run $(RM) $(ORG)/manylinux2014-aarch64 > $(BIN)/dockcross-manylinux2014-aarch64 && chmod +x $(BIN)/dockcross-manylinux2014-aarch64
+	$(DOCKER) run $(RM) $(ORG)/manylinux2014-aarch64 > $(BIN)/dockcross-manylinux2014-aarch64 \
+		&& chmod +x $(BIN)/dockcross-manylinux2014-aarch64
 	$(BIN)/dockcross-manylinux2014-aarch64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -153,7 +154,8 @@ manylinux2014-x64: manylinux2014-x64/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux2014-x64.test: manylinux2014-x64
-	$(DOCKER) run $(RM) $(ORG)/manylinux2014-x64 > $(BIN)/dockcross-manylinux2014-x64 && chmod +x $(BIN)/dockcross-manylinux2014-x64
+	$(DOCKER) run $(RM) $(ORG)/manylinux2014-x64 > $(BIN)/dockcross-manylinux2014-x64 \
+		&& chmod +x $(BIN)/dockcross-manylinux2014-x64
 	$(BIN)/dockcross-manylinux2014-x64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -171,7 +173,8 @@ manylinux2014-x86: manylinux2014-x86/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux2014-x86.test: manylinux2014-x86
-	$(DOCKER) run $(RM) $(ORG)/manylinux2014-x86 > $(BIN)/dockcross-manylinux2014-x86 && chmod +x $(BIN)/dockcross-manylinux2014-x86
+	$(DOCKER) run $(RM) $(ORG)/manylinux2014-x86 > $(BIN)/dockcross-manylinux2014-x86 \
+		&& chmod +x $(BIN)/dockcross-manylinux2014-x86
 	$(BIN)/dockcross-manylinux2014-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -190,7 +193,8 @@ manylinux2010-x64: manylinux2010-x64/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux2010-x64.test: manylinux2010-x64
-	$(DOCKER) run $(RM) dockcross/manylinux2010-x64 > $(BIN)/dockcross-manylinux2010-x64 && chmod +x $(BIN)/dockcross-manylinux2010-x64
+	$(DOCKER) run $(RM) dockcross/manylinux2010-x64 > $(BIN)/dockcross-manylinux2010-x64 \
+		&& chmod +x $(BIN)/dockcross-manylinux2010-x64
 	$(BIN)/dockcross-manylinux2010-x64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -209,7 +213,8 @@ manylinux2010-x86: manylinux2010-x86/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux2010-x86.test: manylinux2010-x86
-	$(DOCKER) run $(RM) $(ORG)/manylinux2010-x86 > $(BIN)/dockcross-manylinux2010-x86 && chmod +x $(BIN)/dockcross-manylinux2010-x86
+	$(DOCKER) run $(RM) $(ORG)/manylinux2010-x86 > $(BIN)/dockcross-manylinux2010-x86 \
+		&& chmod +x $(BIN)/dockcross-manylinux2010-x86
 	$(BIN)/dockcross-manylinux2010-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -228,7 +233,8 @@ manylinux1-x64: manylinux1-x64/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux1-x64.test: manylinux1-x64
-	$(DOCKER) run $(RM) $(ORG)/manylinux1-x64 > $(BIN)/dockcross-manylinux1-x64 && chmod +x $(BIN)/dockcross-manylinux1-x64
+	$(DOCKER) run $(RM) $(ORG)/manylinux1-x64 > $(BIN)/dockcross-manylinux1-x64 \
+		&& chmod +x $(BIN)/dockcross-manylinux1-x64
 	$(BIN)/dockcross-manylinux1-x64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -247,7 +253,8 @@ manylinux1-x86: manylinux1-x86/Dockerfile
 	rm -rf $@/imagefiles
 
 manylinux1-x86.test: manylinux1-x86
-	$(DOCKER) run $(RM) $(ORG)/manylinux1-x86 > $(BIN)/dockcross-manylinux1-x86 && chmod +x $(BIN)/dockcross-manylinux1-x86
+	$(DOCKER) run $(RM) $(ORG)/manylinux1-x86 > $(BIN)/dockcross-manylinux1-x86 \
+		&& chmod +x $(BIN)/dockcross-manylinux1-x86
 	$(BIN)/dockcross-manylinux1-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
@@ -307,7 +314,8 @@ bash-check:
 #
 .SECONDEXPANSION:
 $(addsuffix .test,$(STANDARD_IMAGES)): $$(basename $$@)
-	$(DOCKER) run $(RM) $(ORG)/$(basename $@) > $(BIN)/dockcross-$(basename $@) && chmod +x $(BIN)/dockcross-$(basename $@)
+	$(DOCKER) run $(RM) $(ORG)/$(basename $@) > $(BIN)/dockcross-$(basename $@) \
+		&& chmod +x $(BIN)/dockcross-$(basename $@)
 	$(BIN)/dockcross-$(basename $@) python3 test/run.py $($@_ARGS)
 
 #
