@@ -37,10 +37,13 @@ GEN_IMAGES = android-arm android-arm64 \
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
 # These images are expected to have explicit rules for *both* build and testing
-NON_STANDARD_IMAGES = web-wasm manylinux1-x64 manylinux1-x86 manylinux2010-x64 manylinux2010-x86 manylinux2014-x64 manylinux2014-x86 manylinux2014-aarch64
+NON_STANDARD_IMAGES = manylinux1-x64 manylinux1-x86 manylinux2010-x64 \
+	manylinux2010-x86 manylinux2014-aarch64 \
+	manylinux2014-x64 manylinux2014-x86 web-wasm
 
 # Docker composite files
-DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux common.crosstool common.windows common-manylinux.crosstool common.dockcross common.label-and-env
+DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux \
+	common.crosstool common.windows common-manylinux.crosstool common.dockcross common.label-and-env
 DOCKER_COMPOSITE_FOLDER_PATH = common/
 DOCKER_COMPOSITE_PATH = $(addprefix $(DOCKER_COMPOSITE_FOLDER_PATH),$(DOCKER_COMPOSITE_SOURCES))
 
@@ -294,13 +297,13 @@ $(STANDARD_IMAGES): %: %/Dockerfile base
 	rm -rf $@/imagefiles
 
 clean:
-	for d in $(STANDARD_IMAGES) ; do rm -rf $$d/imagefiles ; done
+	for d in $(GEN_IMAGES) ; do rm -rf $$d/imagefiles ; done
 	for d in $(GEN_IMAGE_DOCKERFILES) ; do rm -f $$d ; done
 	rm -f Dockerfile
 
 purge: clean
 # Remove all untagged images
-	$(DOCKER) container ls -aq | xargs --no-run-if-empty $(DOCKER) container rm -f
+	$(DOCKER) container ls -aq | xargs -r $(DOCKER) container rm -f
 # Remove all images with organization (ex dockcross/*)
 	$(DOCKER) images --filter=reference='$(ORG)/*' --format='{{.Repository}}:{{.Tag}}' | xargs -r $(DOCKER) rmi -f
 
@@ -326,4 +329,4 @@ test.prerequisites:
 
 $(addsuffix .test,base $(IMAGES)): test.prerequisites
 
-.PHONY: base images $(IMAGES) test %.test clean purge
+.PHONY: base images $(IMAGES) test %.test clean purge bash-check display_images
