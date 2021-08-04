@@ -3,7 +3,7 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 RUN git clone --recurse-submodules https://repo.or.cz/tinycc.git \
     && cd tinycc \
-    && ./configure --cpu=x86_64 --with-libgcc \
+    && ./configure --cpu=x86_64 \
     && make -j$(nproc) \
     && make test \
     && make install
