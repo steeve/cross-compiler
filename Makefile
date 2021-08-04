@@ -297,7 +297,8 @@ $(STANDARD_IMAGES): %: %/Dockerfile base
 	rm -rf $@/imagefiles
 
 clean:
-	for d in $(GEN_IMAGES) ; do rm -rf $$d/imagefiles ; done
+	for d in $(IMAGES) ; do rm -rf $$d/imagefiles ; done
+	for d in $(IMAGES) ; do rm -rf $(BIN)/dockcross-$$d ; done
 	for d in $(GEN_IMAGE_DOCKERFILES) ; do rm -f $$d ; done
 	rm -f Dockerfile
 
