@@ -50,6 +50,12 @@ endif
 # Tag images with date and Git short hash in addition to revision
 TAG := $(shell date '+%Y%m%d')-$(shell git rev-parse --short HEAD)
 
+# shellcheck executable
+SHELLCHECK := shellcheck
+
+# Defines the level of verification (error, warning, info...)
+SHELLCHECK_SEVERITY_LEVEL := error
+
 #
 # images: This target builds all IMAGES (because it is the first one, it is built by default)
 #
@@ -274,6 +280,11 @@ purge: clean
 	$(DOCKER) container ls -aq | xargs --no-run-if-empty $(DOCKER) container rm -f
 # Remove all images with organization (ex dockcross/*)
 	$(DOCKER) images --filter=reference='$(ORG)/*' --format='{{.Repository}}:{{.Tag}}' | xargs -r $(DOCKER) rmi -f
+
+# Check bash syntax
+bash-check:
+	find . -type f \( -name "*.sh" -o -name "*.bash" \) -print0 | xargs -0 -P"$(shell nproc)" -I{} \
+		$(SHELLCHECK) --check-sourced --color=auto --format=gcc --severity=error --shell=bash --enable=all "{}"
 
 #
 # testing implicit rule

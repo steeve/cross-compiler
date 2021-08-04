@@ -6,11 +6,11 @@ DEFAULT_DOCKCROSS_IMAGE=dockcross/base  # DO NOT MOVE THIS LINE (see entrypoint.
 # Helpers
 #
 err() {
-    echo -e >&2 ERROR: $@\\n
+    echo -e >&2 "ERROR: $*\n"
 }
 
 die() {
-    err $@
+    err "$*"
     exit 1
 }
 
