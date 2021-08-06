@@ -25,7 +25,12 @@ cd /usr/src
 
 url="https://mirrors.edge.kernel.org/pub/software/scm/git/git-${GIT_VERSION}.tar.gz"
 echo "Downloading $url"
-curl -# -LO $url
+curl --connect-timeout 20 \
+    --max-time 10 \
+    --retry 5 \
+    --retry-delay 10 \
+    --retry-max-time 40 \
+    -# -LO $url
 
 tar xvzf git-${GIT_VERSION}.tar.gz  --no-same-owner
 rm -f git-${GIT_VERSION}.tar.gz
