@@ -4,6 +4,9 @@ set -ex
 
 WRAPPER=""
 
+CMAKE_URL="https://gitlab.kitware.com/cmake/cmake.git"
+CMAKE_MIRROR_URL="https://github.com/Kitware/CMake.git"
+
 while [ $# -gt 0 ]; do
   case "$1" in
     -32)
@@ -29,7 +32,9 @@ fi
 
 cd /usr/src
 
-git clone https://gitlab.kitware.com/cmake/cmake.git CMake -b v$CMAKE_VERSION --depth 1
+# If the first link doesn't work, it will use the mirror on github
+git clone "$CMAKE_URL" CMake -b v$CMAKE_VERSION --depth 1 \
+  || git clone "$CMAKE_MIRROR_URL" CMake -b v$CMAKE_VERSION --depth 1
 
 mkdir /usr/src/CMake-build
 cd /usr/src/CMake-build
