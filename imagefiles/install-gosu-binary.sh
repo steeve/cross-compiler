@@ -26,10 +26,20 @@ gpg --keyserver hkp://pgp.key-server.io:80 --recv-keys B42F6819007F00F88E364FD40
 gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys B42F6819007F00F88E364FD4036A9C25BF357DD4
 
 echo "Downloading $url"
-curl -o /usr/local/bin/gosu -# -SL $url
+curl --connect-timeout 30 \
+    --max-time 10 \
+    --retry 5 \
+    --retry-delay 10 \
+    --retry-max-time 30 \
+    -o /usr/local/bin/gosu -# -SL $url
 
 echo "Downloading $url_key"
-curl -o /usr/local/bin/gosu.asc -# -SL $url_key
+curl --connect-timeout 30 \
+    --max-time 10 \
+    --retry 5 \
+    --retry-delay 10 \
+    --retry-max-time 30 \
+    -o /usr/local/bin/gosu.asc -# -SL $url_key
 
 gpg --verify /usr/local/bin/gosu.asc
 

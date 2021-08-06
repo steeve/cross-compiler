@@ -15,12 +15,12 @@ BIN = ./bin
 # These images are built using the "build implicit rule"
 STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
 	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl \
-	linux-armv5 linux-armv6 linux-armv7 linux-armv7a \
-	linux-armv5-musl linux-armv6-musl linux-armv7l-musl \
+	linux-armv5 linux-armv5-musl linux-m68k-uclibc linux-s390x \
+	linux-armv6 linux-armv6-lts linux-armv6-musl \
+	linux-armv7l-musl linux-armv7 linux-armv7a \
 	linux-mips linux-ppc64le linux-riscv64 linux-riscv32 \
 	windows-static-x86 windows-static-x64 windows-static-x64-posix \
-	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix \
-	linux-m68k-uclibc linux-s390x
+	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix
 
 # Generated Dockerfiles.
 GEN_IMAGES = android-arm android-arm64 \
@@ -30,7 +30,8 @@ GEN_IMAGES = android-arm android-arm64 \
 	manylinux2014-aarch64 web-wasm linux-mips \
 	windows-static-x86 windows-static-x64 windows-static-x64-posix \
 	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix \
-	linux-armv7 linux-armv7a linux-armv7l-musl linux-armv6 linux-armv6-musl \
+	linux-armv7 linux-armv7a linux-armv7l-musl \
+	linux-armv6 linux-armv6-lts linux-armv6-musl \
 	linux-armv5 linux-armv5-musl linux-ppc64le linux-s390x \
 	linux-riscv64 linux-riscv32 linux-m68k-uclibc
 
