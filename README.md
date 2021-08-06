@@ -149,7 +149,13 @@ Linux armv5 cross compiler toolchain using
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv6/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv6/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv6)
 
-Linux ARMv6 cross compiler toolchain for the Raspberry Pi, etc.
+Linux ARMv6 cross compiler toolchain for the Raspberry Pi
+
+### dockcross/linux-armv6-lts
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv6-lts/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-armv6-lts/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv6-lts)
+
+Linux ARMv6 cross compiler toolchain for the Raspberry Pi (Debian buster...)
 
 ### dockcross/linux-armv6-musl
 
