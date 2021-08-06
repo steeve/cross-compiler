@@ -27,7 +27,13 @@ done
 
 # Download
 REV=v1.10.2
-curl -# -o ninja.tar.gz -LO https://github.com/ninja-build/ninja/archive/$REV.tar.gz
+curl --connect-timeout 30 \
+    --max-time 10 \
+    --retry 5 \
+    --retry-delay 10 \
+    --retry-max-time 30 \
+    -# -o ninja.tar.gz -LO https://github.com/ninja-build/ninja/archive/$REV.tar.gz
+
 mkdir ninja
 tar -xzvf ./ninja.tar.gz --strip-components=1 -C ./ninja
 
