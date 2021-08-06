@@ -280,54 +280,6 @@ has installations of CMake, Ninja, and
 [scikit-build](http://scikit-build.org). For CMake, it sets
 [MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
 
-### dockcross/manylinux2010-x64
-
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2010-x64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux2010-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2010-x64)
-
-Docker [manylinux2010](https://github.com/pypa/manylinux)
-image for building Linux x86_64 / amd64 [Python wheel
-packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
-3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
-and it has installations of CMake, Ninja, and
-[scikit-build](http://scikit-build.org). For CMake, it sets
-[MANYLINUX2010]{.title-ref} to \"TRUE\" in the toolchain.
-
-### dockcross/manylinux2010-x86
-
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2010-x86/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux2010-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2010-x86)
-
-Docker [manylinux2010](https://github.com/pypa/manylinux) image for
-building Linux i686 [Python wheel
-packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
-3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
-and it has installations of CMake, Ninja, and
-[scikit-build](http://scikit-build.org). For CMake, it sets
-[MANYLINUX2010]{.title-ref} to \"TRUE\" in the toolchain.
-
-### dockcross/manylinux1-x64
-
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux1-x64/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux1-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux1-x64)
-
-Docker [manylinux1](https://github.com/pypa/manylinux/tree/manylinux1)
-image for building Linux x86_64 / amd64 [Python wheel
-packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
-3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
-and it has installations of CMake, Ninja, and
-[scikit-build](http://scikit-build.org). For CMake, it sets
-[MANYLINUX1]{.title-ref} to \"TRUE\" in the toolchain.
-
-### dockcross/manylinux1-x86
-
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux1-x86/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/manylinux1-x86/latest)  ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux1-x86)
-
-Docker [manylinux1](https://github.com/pypa/manylinux/tree/manylinux1)
-image for building Linux i686 [Python wheel
-packages](http://pythonwheels.com/). It includes Python 2.7, 3.4,
-3.5, 3.6, 3.7 and 3.8. Also has support for the dockcross script,
-and it has installations of CMake, Ninja, and
-[scikit-build](http://scikit-build.org). For CMake, it sets
-[MANYLINUX1]{.title-ref} to \"TRUE\" in the toolchain.
-
 ### dockcross/web-wasm
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/web-wasm/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/web-wasm/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/web-wasm)

@@ -9,19 +9,19 @@ DOCKER = docker
 # Docker organization to pull the images from
 ORG = dockcross
 
-# Directory where to generate the dockcross script for each images (e.g bin/dockcross-manylinux1-x64)
+# Directory where to generate the dockcross script for each images (e.g bin/dockcross-manylinux2014-x64)
 BIN = ./bin
 
 # These images are built using the "build implicit rule"
 STANDARD_IMAGES = linux-s390x android-arm android-arm64 android-x86 android-x86_64 linux-x86 linux-x64 linux-arm64 linux-x64-clang linux-arm64-musl linux-armv5 linux-armv5-musl linux-armv6 linux-armv6-musl linux-armv7 linux-armv7a linux-armv7l-musl linux-mips linux-ppc64le windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-armv6-lts
 
 # Generated Dockerfiles.
-GEN_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-mips linux-x64-clang manylinux1-x64 manylinux1-x86 manylinux2010-x64 manylinux2010-x86 manylinux2014-x64 manylinux2014-x86 manylinux2014-aarch64 web-wasm linux-arm64 linux-arm64-musl windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix linux-armv7 linux-armv7a linux-armv7l-musl linux-armv6 linux-armv6-musl linux-armv5 linux-armv5-musl linux-ppc64le linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-armv6-lts
+GEN_IMAGES = linux-s390x android-arm android-arm64 linux-x86 linux-x64 linux-mips linux-x64-clang manylinux2014-x64 manylinux2014-x86 manylinux2014-aarch64 web-wasm linux-arm64 linux-arm64-musl windows-static-x86 windows-static-x64 windows-static-x64-posix windows-shared-x86 windows-shared-x64 windows-shared-x64-posix linux-armv7 linux-armv7a linux-armv7l-musl linux-armv6 linux-armv6-musl linux-armv5 linux-armv5-musl linux-ppc64le linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-armv6-lts
 
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
 # These images are expected to have explicit rules for *both* build and testing
-NON_STANDARD_IMAGES = web-wasm manylinux1-x64 manylinux1-x86 manylinux2010-x64 manylinux2010-x86 manylinux2014-x64 manylinux2014-x86 manylinux2014-aarch64
+NON_STANDARD_IMAGES = web-wasm manylinux2014-x64 manylinux2014-x86 manylinux2014-aarch64
 
 # Docker composite files
 DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux common.crosstool common.windows common-manylinux.crosstool common.dockcross common.label-and-env
@@ -158,85 +158,6 @@ manylinux2014-x86.test: manylinux2014-x86
 	$(DOCKER) run $(RM) $(ORG)/manylinux2014-x86 > $(BIN)/dockcross-manylinux2014-x86 && chmod +x $(BIN)/dockcross-manylinux2014-x86
 	$(BIN)/dockcross-manylinux2014-x86 /opt/python/cp38-cp38/bin/python test/run.py
 
-#
-# manylinux2010-x64
-#
-
-manylinux2010-x64: manylinux2010-x64/Dockerfile
-	mkdir -p $@/imagefiles && cp -r imagefiles $@/
-	$(DOCKER) build -t $(ORG)/manylinux2010-x64:latest \
-		-t $(ORG)/manylinux2010-x64:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux2010-x64 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux2010-x64/Dockerfile .
-	rm -rf $@/imagefiles
-
-manylinux2010-x64.test: manylinux2010-x64
-	$(DOCKER) run $(RM) dockcross/manylinux2010-x64 > $(BIN)/dockcross-manylinux2010-x64 && chmod +x $(BIN)/dockcross-manylinux2010-x64
-	$(BIN)/dockcross-manylinux2010-x64 /opt/python/cp38-cp38/bin/python test/run.py
-
-#
-# manylinux2010-x86
-#
-
-manylinux2010-x86: manylinux2010-x86/Dockerfile
-	mkdir -p $@/imagefiles && cp -r imagefiles $@/
-	$(DOCKER) build -t $(ORG)/manylinux2010-x86:latest \
-		-t $(ORG)/manylinux2010-x86:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux2010-x86 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux2010-x86/Dockerfile .
-	rm -rf $@/imagefiles
-
-manylinux2010-x86.test: manylinux2010-x86
-	$(DOCKER) run $(RM) $(ORG)/manylinux2010-x86 > $(BIN)/dockcross-manylinux2010-x86 && chmod +x $(BIN)/dockcross-manylinux2010-x86
-	$(BIN)/dockcross-manylinux2010-x86 /opt/python/cp38-cp38/bin/python test/run.py
-
-#
-# manylinux1-x64
-#
-
-manylinux1-x64: manylinux1-x64/Dockerfile
-	mkdir -p $@/imagefiles && cp -r imagefiles $@/
-	$(DOCKER) build -t $(ORG)/manylinux1-x64:latest \
-		-t $(ORG)/manylinux1-x64:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux1-x64 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux1-x64/Dockerfile .
-	rm -rf $@/imagefiles
-
-manylinux1-x64.test: manylinux1-x64
-	$(DOCKER) run $(RM) $(ORG)/manylinux1-x64 > $(BIN)/dockcross-manylinux1-x64 && chmod +x $(BIN)/dockcross-manylinux1-x64
-	$(BIN)/dockcross-manylinux1-x64 /opt/python/cp38-cp38/bin/python test/run.py
-
-#
-# manylinux1-x86
-#
-
-manylinux1-x86: manylinux1-x86/Dockerfile
-	mkdir -p $@/imagefiles && cp -r imagefiles $@/
-	$(DOCKER) build -t $(ORG)/manylinux1-x86:latest \
-		-t $(ORG)/manylinux1-x86:$(TAG) \
-		--build-arg IMAGE=$(ORG)/manylinux1-x86 \
-		--build-arg VCS_REF=`git rev-parse --short HEAD` \
-		--build-arg VCS_URL=`git config --get remote.origin.url` \
-		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
-		-f manylinux1-x86/Dockerfile .
-	rm -rf $@/imagefiles
-
-manylinux1-x86.test: manylinux1-x86
-	$(DOCKER) run $(RM) $(ORG)/manylinux1-x86 > $(BIN)/dockcross-manylinux1-x86 && chmod +x $(BIN)/dockcross-manylinux1-x86
-	$(BIN)/dockcross-manylinux1-x86 /opt/python/cp38-cp38/bin/python test/run.py
-
-#
-# base
-#
 
 base: Dockerfile imagefiles/
 	$(DOCKER) build -t $(ORG)/base:latest \
