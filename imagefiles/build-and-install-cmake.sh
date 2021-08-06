@@ -4,8 +4,8 @@ set -ex
 
 WRAPPER=""
 
-CMAKE_URL = "https://gitlab.kitware.com/cmake/cmake.git"
-CMAKE_MIRROR_URL = "https://github.com/Kitware/CMake.git"
+CMAKE_URL="https://gitlab.kitware.com/cmake/cmake.git"
+CMAKE_MIRROR_URL="https://github.com/Kitware/CMake.git"
 
 while [ $# -gt 0 ]; do
   case "$1" in
