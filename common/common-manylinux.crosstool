@@ -18,7 +18,7 @@ ENV MANYLINUX_DEPS="glibc-devel glibc-devel.i686 libstdc++-devel glib2-devel lib
 
 ENV PYTHON_COMPILE_DEPS="python-devel zlib-devel bzip2-devel expat-devel ncurses-devel readline-devel tk-devel gdbm-devel libdb-devel libpcap-devel xz-devel openssl-devel keyutils-libs-devel krb5-devel libcom_err-devel libidn-devel curl-devel perl-devel"
 
-ENV TOOLCHAIN_DEPS="devtoolset-9-binutils devtoolset-9-gcc devtoolset-9-gcc-c++ devtoolset-9-gcc-gfortran"
+ENV TOOLCHAIN_DEPS="devtoolset-10-binutils devtoolset-10-gcc devtoolset-10-gcc-c++ devtoolset-10-gcc-gfortran"
 
 # Install dependent packages required for `ct-ng`.
 RUN \
@@ -62,7 +62,7 @@ RUN \
   rm -rf /dockcross/crosstool /dockcross/install-crosstool-ng-toolchain.sh && \
   # Remove sudo provided by devtoolset since it doesn't work with
   # our sudo wrapper calling gosu.
-  rm -f /opt/rh/devtoolset-9/root/usr/bin/sudo
+  rm -f /opt/rh/devtoolset-10/root/usr/bin/sudo
 
 # Restore our default workdir (from "dockcross/base").
 WORKDIR /work
