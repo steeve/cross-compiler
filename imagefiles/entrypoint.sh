@@ -7,13 +7,13 @@ if [[ $# == 0 ]]; then
     # Presumably the image has been run directly, so help the user get
     # started by outputting the dockcross script
     if [[ -n $DEFAULT_DOCKCROSS_IMAGE ]]; then
-        head -n 2 /dockcross/dockcross
+        head -n 2 /dockcross/dockcross.sh
         echo "DEFAULT_DOCKCROSS_IMAGE=$DEFAULT_DOCKCROSS_IMAGE"
-        tail -n +4 /dockcross/dockcross |
+        tail -n +4 /dockcross/dockcross.sh |
           sed -e "s@dockcross\/linux\-armv7@${DEFAULT_DOCKCROSS_IMAGE}@g" |
           sed -e "s@dockcross\-linux\-armv7@${DEFAULT_DOCKCROSS_IMAGE//[\/:]/-}@g"
     else
-        cat /dockcross/dockcross
+        cat /dockcross/dockcross.sh
     fi
     exit 0
 fi

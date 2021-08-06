@@ -5,7 +5,13 @@ set -ex
 OPENSSH_ROOT=V_8_5_P1
 
 cd /usr/src
-curl -LO https://github.com/openssh/openssh-portable/archive/${OPENSSH_ROOT}.tar.gz
+curl --connect-timeout 20 \
+    --max-time 10 \
+    --retry 5 \
+    --retry-delay 10 \
+    --retry-max-time 40 \
+    -LO https://github.com/openssh/openssh-portable/archive/${OPENSSH_ROOT}.tar.gz
+
 tar -xvf ${OPENSSH_ROOT}.tar.gz
 rm -f ${OPENSSH_ROOT}.tar.gz
 
