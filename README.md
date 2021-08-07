@@ -84,6 +84,45 @@ that evaluate environmental variables in the image, like
 The present working directory is mounted within the image, which can be
 used to make source code available in the Docker container.
 
+## Summary cross compilers
+
+| Image name | Arch | Compiler | Target OS |
+|:-------:|:--------:|:------:|:-----:|
+| dockcross/base | - | - | - |
+| dockcross/android-arm | ARMv7 | Clang | Android 32 bit |
+| dockcross/android-arm64 | ARMv8 | Clang | Android |
+| dockcross/android-x86 | x86 | Clang | Android x86 |
+| dockcross/android-x86_64 | x86_64 | Clang | Android x86_64 |
+| dockcross/linux-arm64 | ARMv8 | GCC | Linux ARMv8 |
+| dockcross/linux-arm64-musl | ARMv8 | GCC + musl | Linux ARMv8 |
+| dockcross/linux-armv5 | ARMv5 | GCC | Linux ARMv5 |
+| dockcross/linux-armv5-musl | ARMv5 | GCC + musl | Linux ARMv5 |
+| dockcross/linux-armv6 | ARMv6 | GCC | Linux ARMv6 |
+| dockcross/linux-armv6-lts | ARMv6 | GCC + Glibc 2.28 | Linux ARMv6 |
+| dockcross/linux-armv6-musl | ARMv6 | GCC + musl | Linux ARMv6 |
+| dockcross/linux-armv7 | ARMv7 | GCC | Linux ARMv7 |
+| dockcross/linux-armv7a | ARMv7a | GCC | Linux ARMv7a |
+| dockcross/linux-armv7l-musl | ARMv7l | GCC + musl | Linux ARMv7l |
+| dockcross/linux-mips | mips | GCC | Linux mips |
+| dockcross/linux-s390x | s390x | GCC | Linux s390x |
+| dockcross/linux-ppc64le | ppc64le | GCC | Linux ppc64le |
+| dockcross/linux-riscv32 | riscv32 | GCC | Linux riscv32 |
+| dockcross/linux-riscv64 | riscv64 | GCC | Linux riscv64 |
+| dockcross/linux-m68k-uclibc | m68k | GCC + uclibc | Linux m68k |
+| dockcross/linux-xtensa-uclibc | xtensa | GCC + uclibc | Linux xtensa |
+| dockcross/manylinux2014-x86 | x86 | GCC | Linux x86 |
+| dockcross/manylinux2014-x64 | x86_64 | GCC | Linux x86_64 |
+| dockcross/linux-x86 | x86 | GCC | Linux x86 |
+| dockcross/linux-x64 | x86_64 | GCC | Linux x86_64 |
+| dockcross/linux-x64-clang | x86_64 | Clang | Linux x86_64 |
+| dockcross/web-wasm | JS | LLVM | Web (JS) |
+| dockcross/windows-shared-x86 | x86 | GCC | Windows x86 |
+| dockcross/windows-shared-x64 | x86_64 | GCC | Windows x86_64 |
+| dockcross/windows-shared-x64-posix | x86_64 | GCC | Windows x86_64 |
+| dockcross/windows-static-x86 | x86 | GCC | Windows x86 |
+| dockcross/windows-static-x64 | x86_64 | GCC | Windows x86_64 |
+| dockcross/windows-static-x64-posix | x86_64 | GCC | Windows x86_64 |
+
 ## Cross compilers
 
 ### dockcross/base
@@ -183,13 +222,6 @@ board PC with TI SoC AM3358 on board, Cortex-A8.
 
 Toolchain configured for ARMv7-L, using
 [musl](https://www.musl-libc.org/) as base \"libc\".
-
-### dockcross/linux-mipsel
-
-![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-mipsel/latest) ![MicroBadger Layers (tag)](https://img.shields.io/microbadger/layers/dockcross/linux-mipsel/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-mipsel)
-
-Linux mipsel cross compiler toolchain for little endian MIPS GNU
-systems.
 
 ### dockcross/linux-mips
 
