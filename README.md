@@ -4,6 +4,7 @@
 Cross compiling toolchains in Docker images.
 
 [![image](https://github.com/dockcross/dockcross/workflows/Dockcross%20CI/badge.svg)](https://github.com/dockcross/dockcross/actions?query=branch%3Amaster) [![Shellcheck CI](https://github.com/dockcross/dockcross/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/dockcross/dockcross/actions/workflows/shellcheck.yml)
+![GitHub](https://img.shields.io/github/license/dockcross/dockcross) ![GitHub commit activity](https://img.shields.io/github/commit-activity/y/dockcross/dockcross)
 
 ## Features
 
@@ -147,8 +148,7 @@ The Android NDK standalone toolchain for the x86_64 architecture.
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-arm64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-arm64)
 
-Cross compiler for the 64-bit ARM platform on Linux, also known as
-AArch64.
+Cross compiler for the 64-bit ARM platform on Linux, also known as AArch64.
 
 ### dockcross/linux-arm64-musl
 
@@ -245,23 +245,19 @@ Linux m68k cross compiler toolchain for m68k GNU systems (http://www.mac.linux-m
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-ppc64le/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-ppc64le)
 
-Linux PowerPC 64 little endian cross compiler toolchain for the
-POWER8, etc. Important: Due to Issue #430, automatic build of newer
-images has been disabled.
+Linux PowerPC 64 little endian cross compiler toolchain for the POWER8, etc. Important: Due to Issue #430, automatic build of newer images has been disabled.
 
 ### dockcross/linux-x64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-x64)
 
-Linux x86_64 / amd64 compiler. Since the Docker image is natively
-x86_64, this is not actually a cross compiler.
+Linux x86_64/amd64 compiler. Since the Docker image is natively x86_64, this is not actually a cross compiler.
 
 ### dockcross/linux-x64-clang
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-x64-clang/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-x64-clang)
 
-Linux clang x86_64 / amd64 compiler. Since the Docker image is
-natively x86_64, this is not actually a cross compiler.
+Linux clang x86_64/amd64 compiler. Since the Docker image is natively x86_64, this is not actually a cross compiler.
 
 ### dockcross/linux-x86
 
@@ -273,37 +269,19 @@ Linux i686 cross compiler.
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2014-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2014-x64)
 
-Docker [manylinux2014](https://github.com/pypa/manylinux) image for
-building Linux x86_64 / amd64 [Python wheel
-packages](http://pythonwheels.com/). It includes Python 3.5, 3.6,
-3.7, 3.8, and 3.9. Also has support for the dockcross script, and it
-has installations of CMake, Ninja, and
-[scikit-build](http://scikit-build.org). For CMake, it sets
-[MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
+Docker [manylinux2014](https://github.com/pypa/manylinux) image for building Linux x86_64 / amd64 [Python wheel packages](http://pythonwheels.com/). It includes Python 3.5, 3.6, 3.7, 3.8, and 3.9. Also has support for the dockcross script, and it has installations of CMake, Ninja, and [scikit-build](http://scikit-build.org). For CMake, it sets **MANYLINUX2014** to \"TRUE\" in the toolchain.
 
 ### dockcross/manylinux2014-x86
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2014-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2014-x86)
 
-Docker [manylinux2014](https://github.com/pypa/manylinux) image for
-building Linux i686 [Python wheel
-packages](http://pythonwheels.com/). It includes Python 3.5, 3.6,
-3.7, 3.8, and 3.9. Also has support for the dockcross script, and it
-has installations of CMake, Ninja, and
-[scikit-build](http://scikit-build.org). For CMake, it sets
-[MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
+Docker [manylinux2014](https://github.com/pypa/manylinux) image for building Linux i686 [Python wheel packages](http://pythonwheels.com/). It includes Python 3.5, 3.6, 3.7, 3.8, and 3.9. Also has support for the dockcross script, and it has installations of CMake, Ninja, and [scikit-build](http://scikit-build.org). For CMake, it sets **MANYLINUX2014** to \"TRUE\" in the toolchain.
 
 ### dockcross/manylinux2014-aarch64
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2014-aarch64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2014-aarch64)
 
-Docker [manylinux2014](https://github.com/pypa/manylinux) image for
-building Linux aarch64 / arm64 [Python wheel
-packages](http://pythonwheels.com/). It includes Python 3.5, 3.6,
-3.7, 3.8, and 3.9. Also has support for the dockcross script, and it
-has installations of CMake, Ninja, and
-[scikit-build](http://scikit-build.org). For CMake, it sets
-[MANYLINUX2014]{.title-ref} to \"TRUE\" in the toolchain.
+Docker [manylinux2014](https://github.com/pypa/manylinux) image for building Linux aarch64 / arm64 [Python wheel packages](http://pythonwheels.com/). It includes Python 3.5, 3.6, 3.7, 3.8, and 3.9. Also has support for the dockcross script, and it has installations of CMake, Ninja, and [scikit-build](http://scikit-build.org). For CMake, it sets **MANYLINUX2014** to \"TRUE\" in the toolchain.
 
 ### dockcross/web-wasm
 
