@@ -433,15 +433,11 @@ Default: Image with which the script was created.
 
 ### DOCKCROSS_ARGS / \--args\|-a \<docker-run-args>
 
-Extra arguments to pass to the `docker run` command. Quote the entire
-set of args if they contain spaces.
+Extra arguments to pass to the `docker run` command. Quote the entire set of args if they contain spaces.
 
 ## Per-project dockcross configuration
 
-If a shell script named `.dockcross` is found in the current directory
-where the dockcross script is started, it is executed before the
-dockcross script `command` argument. The shell script is expected to
-have a shebang like `#!/usr/bin/env bash`.
+If a shell script named `.dockcross` is found in the current directory where the dockcross script is started, it is executed before the dockcross script `command` argument. The shell script is expected to have a shebang like `#!/usr/bin/env bash`.
 
 For example, commands like
 `git config --global advice.detachedHead false` can be added to this
@@ -471,31 +467,17 @@ And then in the shell:
     chmod +x linux-armv7                          ## Gives the script execution permission.
     ./linux-armv7 bash                            ## Runs the helper script with the argument "bash", which starts an interactive container using your extended image.
 
-## What is the difference between [dockcross]{.title-ref} and [dockbuild]{.title-ref} ?
+## What is the difference between **dockcross** and **dockbuild** ?
 
-The key difference is that
-[dockbuild](https://github.com/dockbuild/dockbuild#readme) images do
-**NOT** provide a [toolchain
-file](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html)
-but they use the same method to conveniently isolate the build
-environment as
-[dockcross](https://github.com/dockcross/dockcross#readme).
+The key difference is that [dockbuild](https://github.com/dockbuild/dockbuild#readme) images do **NOT** provide a [toolchain file](https://cmake.org/cmake/help/latest/manual/cmake-toolchains.7.html) but they use the same method to conveniently isolate the build environment as [dockcross](https://github.com/dockcross/dockcross#readme).
 
-[dockbuild]{.title-ref} is used to build binaries for Linux x86_64 /
-amd64 that will work across most Linux distributions.
-[dockbuild]{.title-ref} performs a native Linux build where the host
-build system is a Linux x86_64 / amd64 Docker image (so that it can be
-used for building binaries on any system which can run Docker images)
-and the target runtime system is Linux x86_x64 / amd64.
+**dockbuild** is used to build binaries for Linux x86_64/amd64 that will work across most Linux distributions.
+**dockbuild** performs a native Linux build where the host build system is a Linux x86_64 / amd64 Docker image (so that it can be used for building binaries on any system which can run Docker images) and the target runtime system is Linux x86_x64/ amd64.
 
-[dockcross]{.title-ref} is used to build binaries for many different
-platforms. [dockcross]{.title-ref} performs a cross compilation where
-the host build system is a Linux x86_64 / amd64 Docker image (so that it
-can be used for building binaries on any system which can run Docker
-images) and the target runtime system varies.
+**dockcross** is used to build binaries for many different platforms. **dockcross** performs a cross compilation where the host build system is a Linux x86_64 / amd64 Docker image (so that it can be used for building binaries on any system which can run Docker images) and the target runtime system varies.
 
 \-\--
 
-Credits go to
-[sdt/docker-raspberry-pi-cross-compiler](https://github.com/sdt/docker-raspberry-pi-cross-compiler),
-who invented the base of the **dockcross** script.
+Credits:
+- [sdt/docker-raspberry-pi-cross-compiler](https://github.com/sdt/docker-raspberry-pi-cross-compiler), who invented the base of the **dockcross** script.
+- [https://github.com/steeve/cross-compiler](https://github.com/steeve/cross-compiler), 
