@@ -1,23 +1,26 @@
 FROM dockcross/base:latest
-
-# This is for 64-bit ARM Linux machine
+MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Crosstool-ng version
 # We use a git commit while waiting for 1.25 to release (1.24 is several years old)
-# crosstool-ng master 2021-08-04
-ENV CT_VERSION d47b234152980a09196355b77a12cb425f3f1d2e
+# crosstool-ng master 2021-07-07
+ENV CT_VERSION 62e9db247be34f8a4fa3bc116e60a1b15db62a97
+
+ENV QEMU_VERSION 6.0.0
 
 #include "common.crosstool"
 
-# The cross-compiling emulator
-RUN apt-get update \
-&& apt-get install -y \
-  qemu-user \
-  qemu-user-static \
-&& apt-get clean --yes
+ENV CROSS_TRIPLE xtensa-fsf-linux-uclibc
 
-# The CROSS_TRIPLE is a configured alias of the "aarch64-unknown-linux-gnu" target.
-ENV CROSS_TRIPLE aarch64-unknown-linux-gnu
+WORKDIR /usr/src
+
+RUN apt-get install -y libglib2.0-dev zlib1g-dev libpixman-1-dev && \
+  curl -L http://wiki.qemu-project.org/download/qemu-${QEMU_VERSION}.tar.bz2 | tar xj && \
+  cd qemu-${QEMU_VERSION} && \
+  ./configure --target-list=xtensa-linux-user --prefix=/usr && \
+  make -j$(nproc) && \
+  make install && \
+  cd .. && rm -rf qemu-${QEMU_VERSION}
 
 ENV CROSS_ROOT ${XCC_PREFIX}/${CROSS_TRIPLE}
 ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
@@ -31,14 +34,16 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
 ENV QEMU_LD_PREFIX "${CROSS_ROOT}/${CROSS_TRIPLE}/sysroot"
 ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${QEMU_LD_PREFIX}"
 
-COPY Toolchain.cmake ${CROSS_ROOT}/
-ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
+WORKDIR /work
 
-ENV PKG_CONFIG_PATH /usr/lib/aarch64-linux-gnu/pkgconfig
+COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
+ENV CMAKE_TOOLCHAIN_FILE /usr/lib/${CROSS_TRIPLE}/Toolchain.cmake
+
+ENV PKG_CONFIG_PATH /usr/lib/xtensa-fsf-linux-uclibc/pkgconfig
 
 # Linux kernel cross compilation variables
 ENV PATH ${PATH}:${CROSS_ROOT}/bin
 ENV CROSS_COMPILE ${CROSS_TRIPLE}-
-ENV ARCH arm64
+ENV ARCH xtensa
 
 #include "common.label-and-env"

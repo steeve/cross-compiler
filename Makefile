@@ -18,7 +18,7 @@ STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
 	linux-armv5 linux-armv5-musl linux-m68k-uclibc linux-s390x \
 	linux-armv6 linux-armv6-lts linux-armv6-musl \
 	linux-armv7l-musl linux-armv7 linux-armv7a \
-	linux-mips linux-ppc64le linux-riscv64 linux-riscv32 \
+	linux-mips linux-ppc64le linux-riscv64 linux-riscv32 linux-xtensa-uclibc \
 	windows-static-x86 windows-static-x64 windows-static-x64-posix \
 	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix
 
@@ -32,7 +32,7 @@ GEN_IMAGES = android-arm android-arm64 \
 	linux-armv7 linux-armv7a linux-armv7l-musl \
 	linux-armv6 linux-armv6-lts linux-armv6-musl \
 	linux-armv5 linux-armv5-musl linux-ppc64le linux-s390x \
-	linux-riscv64 linux-riscv32 linux-m68k-uclibc
+	linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-xtensa-uclibc
 
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
