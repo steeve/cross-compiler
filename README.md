@@ -1,10 +1,9 @@
 
 # dockcross
 
-
 Cross compiling toolchains in Docker images.
 
-[![image](https://github.com/dockcross/dockcross/workflows/Dockcross%20CI/badge.svg)](https://github.com/dockcross/dockcross/actions?query=branch%3Amaster)
+[![image](https://github.com/dockcross/dockcross/workflows/Dockcross%20CI/badge.svg)](https://github.com/dockcross/dockcross/actions?query=branch%3Amaster) [![Shellcheck CI](https://github.com/dockcross/dockcross/actions/workflows/shellcheck.yml/badge.svg)](https://github.com/dockcross/dockcross/actions/workflows/shellcheck.yml)
 
 ## Features
 
@@ -46,22 +45,17 @@ bash -c "<command args>"
 
 ## Installation
 
-This image does not need to be run manually. Instead, there is a helper
-script to execute build commands on source code existing on the local
-host filesystem. This script is bundled with the image.
+This image does not need to be run manually. Instead, there is a helper script to execute build commands on source code existing on the local host filesystem. This script is bundled with the image.
 
-To install the helper script, run one of the images with no arguments,
-and redirect the output to a file:
+To install the helper script, run one of the images with no arguments, and redirect the output to a file:
 
     docker run --rm CROSS_COMPILER_IMAGE_NAME > ./dockcross
     chmod +x ./dockcross
     mv ./dockcross ~/bin/
 
-Where **CROSS_COMPILER_IMAGE_NAME** is the name of the
-cross-compiler toolchain Docker instance, e.g: **dockcross/linux-armv7**.
+Where **CROSS_COMPILER_IMAGE_NAME** is the name of the cross-compiler toolchain Docker instance, e.g: **dockcross/linux-armv7**.
 
-Only 64-bit x86_64 images are provided; a 64-bit x86_64 host system is
-required.
+Only 64-bit x86_64 images are provided; a 64-bit x86_64 host system is required.
 
 ## Usage
 
@@ -72,17 +66,11 @@ For the impatient, here\'s how to compile a hello world for armv7:
     chmod +x ./dockcross-linux-armv7
     ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
 
-Note how invoking any toolchain command (make, gcc, etc.) is just a
-matter of prepending the **dockcross** script on the commandline:
+Note how invoking any toolchain command (make, gcc, etc.) is just a matter of prepending the **dockcross** script on the commandline:
 
     ./dockcross-linux-armv7 [command] [args...]
 
-The dockcross script will execute the given command-line inside the
-container, along with all arguments passed after the command. Commands
-that evaluate environmental variables in the image, like
-**$CC** or **$CXX** above, should be executed in [bash -c].
-The present working directory is mounted within the image, which can be
-used to make source code available in the Docker container.
+The dockcross script will execute the given command-line inside the container, along with all arguments passed after the command. Commands that evaluate environmental variables in the image, like **$CC** or **$CXX** above, should be executed in [bash -c]. The present working directory is mounted within the image, which can be used to make source code available in the Docker container.
 
 ## Summary cross compilers
 
@@ -129,8 +117,7 @@ used to make source code available in the Docker container.
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/base/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/base) ![Docker Stars](https://img.shields.io/docker/stars/dockcross/base)
 
-Base image for other toolchain images. From Debian Jessie with GCC,
-make, autotools, CMake, Ninja, Git, and Python.
+Base image for other toolchain images. From Debian Jessie with GCC, make, autotools, CMake, Ninja, Git, and Python.
 
 ### dockcross/android-arm
 
