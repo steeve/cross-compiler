@@ -76,7 +76,7 @@ The dockcross script will execute the given command-line inside the container, a
 
 ## Summary cross compilers
 
-| Image name | Arch | Compiler | Target OS |
+| Image name | Target arch | Compiler | Target OS |
 |:-------:|:--------:|:------:|:-----:|
 | dockcross/base | - | - | - |
 | dockcross/android-arm | ARMv7 | Clang | Android 32 bit |
