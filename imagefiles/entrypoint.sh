@@ -24,8 +24,8 @@ fi
 # The dockcross script sets the BUILDER_UID and BUILDER_GID vars.
 if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
 
-    groupadd -o -g $BUILDER_GID $BUILDER_GROUP 2> /dev/null
-    useradd -o -m -g $BUILDER_GID -u $BUILDER_UID $BUILDER_USER 2> /dev/null
+    groupadd -o -g "$BUILDER_GID" "$BUILDER_GROUP" 2> /dev/null
+    useradd -o -m -g "$BUILDER_GID" -u "$BUILDER_UID" "$BUILDER_USER" 2> /dev/null
     export HOME=/home/${BUILDER_USER}
     shopt -s dotglob
     cp -r /root/* $HOME/
@@ -37,8 +37,8 @@ if [[ -n $BUILDER_UID ]] && [[ -n $BUILDER_GID ]]; then
     fi
 
     # Enable passwordless sudo capabilities for the user
-    chown root:$BUILDER_GID $(which gosu)
-    chmod +s $(which gosu); sync
+    chown root:$BUILDER_GID "$(which gosu)"
+    chmod +s "$(which gosu)"; sync
 
     # Execute project specific pre execution hook
     if [[ -e /work/.dockcross ]]; then

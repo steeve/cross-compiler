@@ -12,7 +12,7 @@ if ! command -v tar &> /dev/null; then
 	exit 1
 fi
 
-if [[ "${GIT_VERSION}" == "" ]]; then
+if [[ -z "${GIT_VERSION}" ]]; then
   echo >&2 'error: GIT_VERSION env. variable must be set to a non-empty value'
   exit 1
 fi
@@ -32,18 +32,18 @@ curl --connect-timeout 20 \
     --retry-max-time 40 \
     -# -LO $url
 
-tar xvzf git-${GIT_VERSION}.tar.gz  --no-same-owner
-rm -f git-${GIT_VERSION}.tar.gz
+tar xvzf "git-${GIT_VERSION}.tar.gz" --no-same-owner
+rm -f "git-${GIT_VERSION}.tar.gz"
 
-pushd git-${GIT_VERSION}
+pushd "git-${GIT_VERSION}"
 ./configure --prefix=/usr/local --with-curl
-make -j$(nproc)
+make -j"$(nproc)"
 make install
 popd
 
 ldconfig
 
-rm -rf git-${GIT_VERSION}
+rm -rf "git-${GIT_VERSION}"
 
 # turn the detached message off
 git config --global advice.detachedHead false

@@ -226,7 +226,7 @@ purge: clean
 # Check bash syntax
 bash-check:
 	find . -type f \( -name "*.sh" -o -name "*.bash" \) -print0 | xargs -0 -P"$(shell nproc)" -I{} \
-		$(SHELLCHECK) --check-sourced --color=auto --format=gcc --severity=error --shell=bash --enable=all "{}"
+		$(SHELLCHECK) --check-sourced --color=auto --format=gcc --severity=warning --shell=bash --enable=all "{}"
 
 #
 # testing implicit rule

@@ -89,7 +89,7 @@ BOOTSTRAP_PREFIX="${CTNG}/prefix"
 ./bootstrap
 ./configure \
   --prefix "${BOOTSTRAP_PREFIX}"
-make -j$(nproc)
+make -j"$(nproc)"
 make install
 
 ##
