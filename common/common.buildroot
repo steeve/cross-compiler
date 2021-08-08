@@ -22,6 +22,8 @@ COPY \
 RUN mkdir /dockcross/buildroot \
     && cd /dockcross/buildroot \
     && /dockcross/install-buildroot-toolchain.sh \
+    -c /dockcross/buildroot.config \
+    -v "${BR_VERSION}" \
     && rm -rf /dockcross/buildroot /dockcross/install-buildroot-toolchain.sh
 
 # Restore our default workdir (from "dockcross/base").

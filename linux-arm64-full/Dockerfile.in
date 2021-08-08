@@ -3,7 +3,7 @@ FROM dockcross/base:latest
 # This is for 64-bit ARM Linux machine
 
 # Buildroot version
-#ENV BR_VERSION d47b234152980a09196355b77a12cb425f3f1d2e
+ENV BR_VERSION 2021.08-rc1
 
 #include "common.buildroot"
 
