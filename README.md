@@ -12,17 +12,14 @@ Cross compiling toolchains in Docker images.
 -   Pre-built and configured toolchains for cross compiling.
 -   Most images also contain an emulator for the target system.
 -   Clean separation of build tools, source code, and build artifacts.
--   Commands in the container are run as the calling user, so that any
-    created files have the expected ownership, (i.e. not root).
--   Make variables **CC**, **CXX**, **LD** etc) are set to
-    point to the appropriate tools in the container.
+-   Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
+-   Make variables **CC**, **CXX**, **LD** etc) are set to point to the appropriate tools in the container.
 -   Recent [CMake](https://cmake.org) and ninja are precompiled.
 -   [Conan.io](https://www.conan.io) can be used as a package manager.
 -   Toolchain files configured for CMake.
 -   Current directory is mounted as the container\'s workdir, `/work`.
 -   Works with the [Docker for Mac](https://docs.docker.com/docker-for-mac/) and [Docker for Windows](https://docs.docker.com/docker-for-windows/).
--   Support using alternative container executor by setting **OCI_EXE** environment variable. By default, it searches
-    for [docker]{.title-ref} and [podman](https://podman.io) executable.
+-   Support using alternative container executor by setting **OCI_EXE** environment variable. By default, it searches for [docker](https://www.docker.com) and [podman](https://podman.io) executable.
 
 ## Examples
 
@@ -71,39 +68,39 @@ The dockcross script will execute the given command-line inside the container, a
 | Image name | Target arch | Compiler | Target OS |
 |:-------:|:--------:|:------:|:-----:|
 | dockcross/base | - | - | - |
-| dockcross/android-arm | ARMv7 | Clang | Android 32 bit |
+| dockcross/android-arm | ARMv7 | Clang | Android |
 | dockcross/android-arm64 | ARMv8 | Clang | Android |
-| dockcross/android-x86 | x86 | Clang | Android x86 |
-| dockcross/android-x86_64 | x86_64 | Clang | Android x86_64 |
-| dockcross/linux-arm64 | ARMv8 | GCC | Linux ARMv8 |
-| dockcross/linux-arm64-musl | ARMv8 | GCC + musl | Linux ARMv8 |
-| dockcross/linux-armv5 | ARMv5 | GCC | Linux ARMv5 |
-| dockcross/linux-armv5-musl | ARMv5 | GCC + musl | Linux ARMv5 |
-| dockcross/linux-armv6 | ARMv6 | GCC | Linux ARMv6 |
-| dockcross/linux-armv6-lts | ARMv6 | GCC + Glibc 2.28 | Linux ARMv6 |
-| dockcross/linux-armv6-musl | ARMv6 | GCC + musl | Linux ARMv6 |
-| dockcross/linux-armv7 | ARMv7 | GCC | Linux ARMv7 |
-| dockcross/linux-armv7a | ARMv7a | GCC | Linux ARMv7a |
-| dockcross/linux-armv7l-musl | ARMv7l | GCC + musl | Linux ARMv7l |
-| dockcross/linux-mips | mips | GCC | Linux mips |
-| dockcross/linux-s390x | s390x | GCC | Linux s390x |
-| dockcross/linux-ppc64le | ppc64le | GCC | Linux ppc64le |
-| dockcross/linux-riscv32 | riscv32 | GCC | Linux riscv32 |
-| dockcross/linux-riscv64 | riscv64 | GCC | Linux riscv64 |
-| dockcross/linux-m68k-uclibc | m68k | GCC + uclibc | Linux m68k |
-| dockcross/linux-xtensa-uclibc | xtensa | GCC + uclibc | Linux xtensa |
-| dockcross/manylinux2014-x86 | x86 | GCC | Linux x86 |
-| dockcross/manylinux2014-x64 | x86_64 | GCC | Linux x86_64 |
-| dockcross/linux-x86 | x86 | GCC | Linux x86 |
-| dockcross/linux-x64 | x86_64 | GCC | Linux x86_64 |
-| dockcross/linux-x64-clang | x86_64 | Clang | Linux x86_64 |
+| dockcross/android-x86 | x86 | Clang | Android |
+| dockcross/android-x86_64 | x86_64 | Clang | Android |
+| dockcross/linux-arm64 | ARMv8 | GCC | Linux |
+| dockcross/linux-arm64-musl | ARMv8 | GCC + musl | Linux |
+| dockcross/linux-armv5 | ARMv5 | GCC | Linux |
+| dockcross/linux-armv5-musl | ARMv5 | GCC + musl | Linux |
+| dockcross/linux-armv6 | ARMv6 | GCC | Linux |
+| dockcross/linux-armv6-lts | ARMv6 | GCC + Glibc 2.28 | Linux |
+| dockcross/linux-armv6-musl | ARMv6 | GCC + musl | Linux |
+| dockcross/linux-armv7 | ARMv7 | GCC | Linux |
+| dockcross/linux-armv7a | ARMv7a | GCC | Linux |
+| dockcross/linux-armv7l-musl | ARMv7l | GCC + musl | Linux |
+| dockcross/linux-mips | mips | GCC | Linux |
+| dockcross/linux-s390x | s390x | GCC | Linux |
+| dockcross/linux-ppc64le | ppc64le | GCC | Linux |
+| dockcross/linux-riscv32 | riscv32 | GCC | Linux |
+| dockcross/linux-riscv64 | riscv64 | GCC | Linux |
+| dockcross/linux-m68k-uclibc | m68k | GCC + uclibc | Linux |
+| dockcross/linux-xtensa-uclibc | xtensa | GCC + uclibc | Linux |
+| dockcross/manylinux2014-x86 | x86 | GCC | Linux |
+| dockcross/manylinux2014-x64 | x86_64 | GCC | Linux |
+| dockcross/linux-x86 | x86 | GCC | Linux |
+| dockcross/linux-x64 | x86_64 | GCC | Linux |
+| dockcross/linux-x64-clang | x86_64 | Clang | Linux |
 | dockcross/web-wasm | JS | LLVM | Web (JS) |
-| dockcross/windows-shared-x86 | x86 | GCC | Windows x86 |
-| dockcross/windows-shared-x64 | x86_64 | GCC | Windows x86_64 |
-| dockcross/windows-shared-x64-posix | x86_64 | GCC | Windows x86_64 |
-| dockcross/windows-static-x86 | x86 | GCC | Windows x86 |
-| dockcross/windows-static-x64 | x86_64 | GCC | Windows x86_64 |
-| dockcross/windows-static-x64-posix | x86_64 | GCC | Windows x86_64 |
+| dockcross/windows-shared-x86 | x86 | GCC | Windows |
+| dockcross/windows-shared-x64 | x86_64 | GCC | Windows |
+| dockcross/windows-shared-x64-posix | x86_64 | GCC | Windows |
+| dockcross/windows-static-x86 | x86 | GCC | Windows |
+| dockcross/windows-static-x64 | x86_64 | GCC | Windows |
+| dockcross/windows-static-x64-posix | x86_64 | GCC | Windows |
 
 ## Cross compilers
 
@@ -319,6 +316,18 @@ linking.
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-shared-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-shared-x86)
 
 32-bit Windows cross-compiler based on [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and dynamic linking.
+
+## Summary legacy cross compilers
+
+The list of docker images that are no longer supported or broken
+
+| Image name | Target arch | Compiler | Target OS |
+|:-------:|:--------:|:------:|:-----:|
+| dockcross/manylinux2014-aarch64 | ARMv8 | GCC 4.8 | manylinux |
+| dockcross/manylinux1-x86 | x86 | GCC | manylinux |
+| dockcross/manylinux1-x64 | x86_64 | GCC| manylinux |
+| dockcross/manylinux2010-x86 | x86 | GCC | manylinux |
+| dockcross/manylinux2010-x64 | x86_64 | GCC | manylinux |
 
 ## Articles
 
