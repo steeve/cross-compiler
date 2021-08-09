@@ -25,7 +25,7 @@ if ! command -v git &> /dev/null; then
 	exit 1
 fi
 
-if [[ "${CMAKE_VERSION}" == "" ]]; then
+if [[ -z "${CMAKE_VERSION}" ]]; then
   echo >&2 'error: CMAKE_VERSION env. variable must be set to a non-empty value'
   exit 1
 fi
@@ -33,16 +33,16 @@ fi
 cd /usr/src
 
 # If the first link doesn't work, it will use the mirror on github
-git clone "$CMAKE_URL" CMake -b v$CMAKE_VERSION --depth 1 \
-  || git clone "$CMAKE_MIRROR_URL" CMake -b v$CMAKE_VERSION --depth 1
+git clone "$CMAKE_URL" CMake -b "v$CMAKE_VERSION" --depth 1 \
+  || git clone "$CMAKE_MIRROR_URL" CMake -b "v$CMAKE_VERSION" --depth 1
 
 mkdir /usr/src/CMake-build
 cd /usr/src/CMake-build
 
 ${WRAPPER} /usr/src/CMake/bootstrap \
-  --parallel=$(nproc) \
+  --parallel="$(nproc)" \
   -- -DCMAKE_USE_OPENSSL=OFF
-${WRAPPER} make -j$(nproc)
+${WRAPPER} make -j"$(nproc)"
 
 
 mkdir /usr/src/CMake-ssl-build
@@ -55,7 +55,7 @@ ${WRAPPER} /usr/src/CMake-build/bin/cmake \
   -DCMAKE_USE_OPENSSL:BOOL=ON \
   -DOPENSSL_ROOT_DIR:PATH=/usr/local/ssl \
   ../CMake
-${WRAPPER} make -j$(nproc) install
+${WRAPPER} make -j"$(nproc)" install
 
 # Cleanup install tree
 cd /usr/src/cmake-$CMAKE_VERSION

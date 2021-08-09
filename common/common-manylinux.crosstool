@@ -49,7 +49,6 @@ COPY \
   imagefiles/install-crosstool-ng-toolchain.sh \
   imagefiles/patch/crosstool-ng/crosstool-ng-expat.patch \
   imagefiles/patch/crosstool-ng/Fix-error-with-bash-5-and-up.patch \
-  manylinux2014-aarch64/crosstool-ng.config \
   /dockcross/
 
 # Build and install the toolchain, cleaning up artifacts afterwards.

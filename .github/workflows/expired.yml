@@ -9,8 +9,8 @@ jobs:
       - uses: actions/stale@v4
         with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          exempt-issue-milestones: 'future,alpha,beta,release'
-          exempt-pr-milestones: 'bugfix,improvement'
+          exempt-issue-milestones: 'future,alpha,beta,release,bugfix,improvement,enhancement,help wanted'
+          exempt-pr-milestones: 'bugfix,improvement,enhancement,help wanted'
           exempt-all-pr-assignees: true
           stale-issue-message: 'This issue is stale because it has been open 120 days with no activity. Remove stale label or comment or this will be closed in 30 days.'
           stale-pr-message: 'This PR is stale because it has been open 120 days with no activity. Remove stale label or comment or this will be closed in 30 days.'
