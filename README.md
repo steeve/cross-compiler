@@ -13,13 +13,14 @@ Cross compiling toolchains in Docker images.
 -   Most images also contain an emulator for the target system.
 -   Clean separation of build tools, source code, and build artifacts.
 -   Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
--   Make variables **CC**, **CXX**, **LD** etc) are set to point to the appropriate tools in the container.
+-   Make variables **CC**, **CXX**, **LD**, **AS** etc) are set to point to the appropriate tools in the container.
 -   Recent [CMake](https://cmake.org) and ninja are precompiled.
 -   [Conan.io](https://www.conan.io) can be used as a package manager.
 -   Toolchain files configured for CMake.
 -   Current directory is mounted as the container\'s workdir, `/work`.
 -   Works with the [Docker for Mac](https://docs.docker.com/docker-for-mac/) and [Docker for Windows](https://docs.docker.com/docker-for-windows/).
 -   Support using alternative container executor by setting **OCI_EXE** environment variable. By default, it searches for [docker](https://www.docker.com) and [podman](https://podman.io) executable.
+-   [crosstool-ng](https://github.com/crosstool-ng/crosstool-ng) and [buildroot](https://github.com/buildroot/buildroot) configuration files.
 
 ## Examples
 
@@ -46,7 +47,7 @@ To install the helper script, run one of the images with no arguments, and redir
 
 Where **CROSS_COMPILER_IMAGE_NAME** is the name of the cross-compiler toolchain Docker instance, e.g: **dockcross/linux-armv7**.
 
-Only 64-bit x86_64 images are provided; a 64-bit x86_64 host system is required.
+Only 64-bit x86_64 images are provided, a 64-bit x86_64 host system is required.
 
 ## Usage
 
@@ -73,6 +74,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/android-x86 | x86 | Clang | Android |
 | dockcross/android-x86_64 | x86_64 | Clang | Android |
 | dockcross/linux-arm64 | ARMv8 | GCC | Linux |
+| dockcross/linux-arm64-full | ARMv8 | GCC | Linux |
 | dockcross/linux-arm64-musl | ARMv8 | GCC + musl | Linux |
 | dockcross/linux-armv5 | ARMv5 | GCC | Linux |
 | dockcross/linux-armv5-musl | ARMv5 | GCC + musl | Linux |
@@ -139,6 +141,12 @@ The Android NDK standalone toolchain for the x86_64 architecture.
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-arm64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-arm64)
 
 Cross compiler for the 64-bit ARM platform on Linux, also known as AArch64.
+
+### dockcross/linux-arm64-full
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-arm64-full/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-arm64-full)
+
+Cross compiler for the 64-bit ARM platform on Linux, with cross-libs: SDL2, OpenSSL, Boost, OpenCV and Qt5 (minimal).
 
 ### dockcross/linux-arm64-musl
 
