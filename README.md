@@ -41,9 +41,11 @@ This image does not need to be run manually. Instead, there is a helper script t
 
 To install the helper script, run one of the images with no arguments, and redirect the output to a file:
 
-    docker run --rm CROSS_COMPILER_IMAGE_NAME > ./dockcross
-    chmod +x ./dockcross
-    mv ./dockcross ~/bin/
+```bash
+docker run --rm CROSS_COMPILER_IMAGE_NAME > ./dockcross
+chmod +x ./dockcross
+mv ./dockcross ~/bin/
+```
 
 Where **CROSS_COMPILER_IMAGE_NAME** is the name of the cross-compiler toolchain Docker instance, e.g: **dockcross/linux-armv7**.
 
@@ -53,14 +55,18 @@ Only 64-bit x86_64 images are provided, a 64-bit x86_64 host system is required.
 
 For the impatient, here\'s how to compile a hello world for armv7:
 
-    cd ~/src/dockcross
-    docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7
-    chmod +x ./dockcross-linux-armv7
-    ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
+```bash
+cd ~/src/dockcross
+docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7
+chmod +x ./dockcross-linux-armv7
+./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
+```
 
 Note how invoking any toolchain command (make, gcc, etc.) is just a matter of prepending the **dockcross** script on the commandline:
 
-    ./dockcross-linux-armv7 [command] [args...]
+```bash
+./dockcross-linux-armv7 [command] [args...]
+```
 
 The dockcross script will execute the given command-line inside the container, along with all arguments passed after the command. Commands that evaluate environmental variables in the image, like **$CC** or **$CXX** above, should be executed in [bash -c]. The present working directory is mounted within the image, which can be used to make source code available in the Docker container.
 
@@ -357,12 +363,13 @@ cross-compiler Docker image or the dockcross script itself.
 
 To easily download all images, the convenience target `display_images`
 could be used:
-
-    curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
-    for image in $(make -f dockcross-Makefile display_images); do
-      echo "Pulling dockcross/$image"
-      docker pull dockcross/$image
-    done
+```bash
+curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
+for image in $(make -f dockcross-Makefile display_images); do
+  echo "Pulling dockcross/$image"
+  docker pull dockcross/$image
+done
+```
 
 ## Install all dockcross scripts
 
@@ -370,16 +377,18 @@ To automatically install in `~/bin` the dockcross scripts for each
 images already downloaded, the convenience target `display_images` could
 be used:
 
-    curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
-    for image in $(make -f dockcross-Makefile display_images); do
-      if [[ $(docker images -q dockcross/$image) == "" ]]; then
-        echo "~/bin/dockcross-$image skipping: image not found locally"
-        continue
-      fi
-      echo "~/bin/dockcross-$image ok"
-      docker run dockcross/$image > ~/bin/dockcross-$image && \
-      chmod u+x  ~/bin/dockcross-$image
-    done
+```bash
+curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
+for image in $(make -f dockcross-Makefile display_images); do
+  if [[ $(docker images -q dockcross/$image) == "" ]]; then
+    echo "~/bin/dockcross-$image skipping: image not found locally"
+    continue
+  fi
+  echo "~/bin/dockcross-$image ok"
+  docker run dockcross/$image > ~/bin/dockcross-$image && \
+  chmod u+x  ~/bin/dockcross-$image
+done
+```
 
 ## Dockcross configuration
 
@@ -424,17 +433,21 @@ In order to extend Dockcross images with your own commands, one must:
 
 An example Dockerfile would be:
 
-    FROM dockcross/linux-armv7
+```
+FROM dockcross/linux-armv7
 
-    ENV DEFAULT_DOCKCROSS_IMAGE my_cool_image
-    RUN apt-get install nano
+ENV DEFAULT_DOCKCROSS_IMAGE my_cool_image
+RUN apt-get install nano
+```
 
 And then in the shell:
 
-    docker build -t my_cool_image .                   ## Builds the dockcross image.
-    docker run my_cool_image > linux-armv7                ## Creates a helper script named linux-armv7.
-    chmod +x linux-armv7                          ## Gives the script execution permission.
-    ./linux-armv7 bash                            ## Runs the helper script with the argument "bash", which starts an interactive container using your extended image.
+```
+docker build -t my_cool_image .                   ## Builds the dockcross image.
+docker run my_cool_image > linux-armv7                ## Creates a helper script named linux-armv7.
+chmod +x linux-armv7                          ## Gives the script execution permission.
+./linux-armv7 bash                            ## Runs the helper script with the argument "bash", which starts an interactive container using your extended image.
+```
 
 ## What is the difference between **dockcross** and **dockbuild** ?
 
