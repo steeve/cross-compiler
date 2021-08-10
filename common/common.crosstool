@@ -48,7 +48,7 @@ RUN mkdir /dockcross/crosstool \
 && cd /dockcross/crosstool \
 && /dockcross/install-crosstool-ng-toolchain.sh \
   -p "${XCC_PREFIX}" \
-  -c /dockcross/crosstool-ng.config \
+  -c "/dockcross/crosstool-ng.config" \
   -v "${CT_VERSION}" \
 && rm -rf /dockcross/crosstool /dockcross/install-crosstool-ng-toolchain.sh
 
