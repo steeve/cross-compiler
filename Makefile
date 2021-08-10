@@ -14,7 +14,7 @@ BIN = ./bin
 
 # These images are built using the "build implicit rule"
 STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
-	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl \
+	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
 	linux-armv5 linux-armv5-musl linux-m68k-uclibc linux-s390x linux-x64-tinycc \
 	linux-armv6 linux-armv6-lts linux-armv6-musl \
 	linux-armv7l-musl linux-armv7 linux-armv7a \
@@ -24,7 +24,7 @@ STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
 
 # Generated Dockerfiles.
 GEN_IMAGES = android-arm android-arm64 \
-	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl \
+	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
 	manylinux2014-x64 manylinux2014-x86 \
 	web-wasm linux-mips \
 	windows-static-x86 windows-static-x64 windows-static-x64-posix \
@@ -40,7 +40,7 @@ GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 NON_STANDARD_IMAGES = manylinux2014-x64 manylinux2014-x86 web-wasm
 
 # Docker composite files
-DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux \
+DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux common.buildroot \
 	common.crosstool common.windows common-manylinux.crosstool common.dockcross common.label-and-env
 DOCKER_COMPOSITE_FOLDER_PATH = common/
 DOCKER_COMPOSITE_PATH = $(addprefix $(DOCKER_COMPOSITE_FOLDER_PATH),$(DOCKER_COMPOSITE_SOURCES))
@@ -93,6 +93,7 @@ $(GEN_IMAGE_DOCKERFILES) Dockerfile: %Dockerfile: %Dockerfile.in $(DOCKER_COMPOS
 		-e '/common.debian/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.debian' \
 		-e '/common.manylinux/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.manylinux' \
 		-e '/common.crosstool/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.crosstool' \
+		-e '/common.buildroot/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.buildroot' \
 		-e '/common-manylinux.crosstool/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common-manylinux.crosstool' \
 		-e '/common.windows/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.windows' \
 		-e '/common.dockcross/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.dockcross' \
