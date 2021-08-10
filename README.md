@@ -101,6 +101,8 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/windows-static-x86 | x86 | GCC | Windows |
 | dockcross/windows-static-x64 | x86_64 | GCC | Windows |
 | dockcross/windows-static-x64-posix | x86_64 | GCC | Windows |
+| dockcross/windows-armv7 | ARMv7 | Clang | Windows |
+| dockcross/windows-arm64 | ARMv8 | Clang | Windows |
 
 ## Cross compilers
 
@@ -310,6 +312,18 @@ linking.
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-shared-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-shared-x86)
 
 32-bit Windows cross-compiler based on [MXE/MinGW-w64](https://mxe.cc/) with win32 threads and dynamic linking.
+
+### dockcross/windows-armv7
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-armv7/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-armv7)
+
+ARMv7 32-bit Windows cross-compiler based on [LLVM/MinGW-w64](https://github.com/mstorsjo/llvm-mingw)
+
+### dockcross/windows-arm64
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-arm64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-arm64)
+
+ARMv8 64-bit Windows cross-compiler based on [llvm-mingw](https://github.com/mstorsjo/llvm-mingw)
 
 ## Summary legacy cross compilers
 
