@@ -1,0 +1,30 @@
+
+# Install Debian packages required for `buildroot`.
+RUN apt-get update --yes && apt-get install --no-install-recommends --yes \
+    gawk \
+    gperf \
+    help2man \
+    python3-dev \
+    texinfo \
+    unzip \
+    libtool \
+    libtool-bin \
+    && apt-get clean autoclean --yes \
+    && apt-get autoremove --yes \
+    && rm -rf /var/lib/{apt,dpkg,cache,log}/
+
+COPY \
+  imagefiles/install-buildroot-toolchain.sh \
+  buildroot.config \
+  /dockcross/
+
+# Build and install the toolchain, cleaning up artifacts afterwards.
+RUN mkdir /dockcross/buildroot \
+    && cd /dockcross/buildroot \
+    && /dockcross/install-buildroot-toolchain.sh \
+    -c "/dockcross/buildroot.config" \
+    -v "${BR_VERSION}" \
+    && rm -rf /dockcross/buildroot /dockcross/install-buildroot-toolchain.sh
+
+# Restore our default workdir (from "dockcross/base").
+WORKDIR /work
