@@ -20,13 +20,13 @@ STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
 	linux-armv7l-musl linux-armv7 linux-armv7a \
 	linux-mips linux-ppc64le linux-riscv64 linux-riscv32 linux-xtensa-uclibc \
 	windows-static-x86 windows-static-x64 windows-static-x64-posix \
-	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix
+	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix windows-arm64
 
 # Generated Dockerfiles.
 GEN_IMAGES = android-arm android-arm64 \
 	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
 	manylinux2014-x64 manylinux2014-x86 \
-	web-wasm linux-mips \
+	web-wasm linux-mips windows-arm64 \
 	windows-static-x86 windows-static-x64 windows-static-x64-posix \
 	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix \
 	linux-armv7 linux-armv7a linux-armv7l-musl \
