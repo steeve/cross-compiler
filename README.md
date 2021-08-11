@@ -13,13 +13,14 @@ Cross compiling toolchains in Docker images.
 -   Most images also contain an emulator for the target system.
 -   Clean separation of build tools, source code, and build artifacts.
 -   Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
--   Make variables **CC**, **CXX**, **LD** etc) are set to point to the appropriate tools in the container.
+-   Make variables **CC**, **CXX**, **LD**, **AS** etc) are set to point to the appropriate tools in the container.
 -   Recent [CMake](https://cmake.org) and ninja are precompiled.
 -   [Conan.io](https://www.conan.io) can be used as a package manager.
 -   Toolchain files configured for CMake.
 -   Current directory is mounted as the container\'s workdir, `/work`.
 -   Works with the [Docker for Mac](https://docs.docker.com/docker-for-mac/) and [Docker for Windows](https://docs.docker.com/docker-for-windows/).
 -   Support using alternative container executor by setting **OCI_EXE** environment variable. By default, it searches for [docker](https://www.docker.com) and [podman](https://podman.io) executable.
+-   [crosstool-ng](https://github.com/crosstool-ng/crosstool-ng) and [buildroot](https://github.com/buildroot/buildroot) configuration files.
 
 ## Examples
 
@@ -40,26 +41,32 @@ This image does not need to be run manually. Instead, there is a helper script t
 
 To install the helper script, run one of the images with no arguments, and redirect the output to a file:
 
-    docker run --rm CROSS_COMPILER_IMAGE_NAME > ./dockcross
-    chmod +x ./dockcross
-    mv ./dockcross ~/bin/
+```bash
+docker run --rm CROSS_COMPILER_IMAGE_NAME > ./dockcross
+chmod +x ./dockcross
+mv ./dockcross ~/bin/
+```
 
 Where **CROSS_COMPILER_IMAGE_NAME** is the name of the cross-compiler toolchain Docker instance, e.g: **dockcross/linux-armv7**.
 
-Only 64-bit x86_64 images are provided; a 64-bit x86_64 host system is required.
+Only 64-bit x86_64 images are provided, a 64-bit x86_64 host system is required.
 
 ## Usage
 
 For the impatient, here\'s how to compile a hello world for armv7:
 
-    cd ~/src/dockcross
-    docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7
-    chmod +x ./dockcross-linux-armv7
-    ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
+```bash
+cd ~/src/dockcross
+docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7
+chmod +x ./dockcross-linux-armv7
+./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
+```
 
 Note how invoking any toolchain command (make, gcc, etc.) is just a matter of prepending the **dockcross** script on the commandline:
 
-    ./dockcross-linux-armv7 [command] [args...]
+```bash
+./dockcross-linux-armv7 [command] [args...]
+```
 
 The dockcross script will execute the given command-line inside the container, along with all arguments passed after the command. Commands that evaluate environmental variables in the image, like **$CC** or **$CXX** above, should be executed in [bash -c]. The present working directory is mounted within the image, which can be used to make source code available in the Docker container.
 
@@ -73,6 +80,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/android-x86 | x86 | Clang | Android |
 | dockcross/android-x86_64 | x86_64 | Clang | Android |
 | dockcross/linux-arm64 | ARMv8 | GCC | Linux |
+| dockcross/linux-arm64-full | ARMv8 | GCC | Linux |
 | dockcross/linux-arm64-musl | ARMv8 | GCC + musl | Linux |
 | dockcross/linux-armv5 | ARMv5 | GCC | Linux |
 | dockcross/linux-armv5-musl | ARMv5 | GCC + musl | Linux |
@@ -139,6 +147,12 @@ The Android NDK standalone toolchain for the x86_64 architecture.
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-arm64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-arm64)
 
 Cross compiler for the 64-bit ARM platform on Linux, also known as AArch64.
+
+### dockcross/linux-arm64-full
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-arm64-full/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-arm64-full)
+
+Cross compiler for the 64-bit ARM platform on Linux, with cross-libs: SDL2, OpenSSL, Boost, OpenCV and Qt5 (minimal).
 
 ### dockcross/linux-arm64-musl
 
@@ -349,12 +363,13 @@ cross-compiler Docker image or the dockcross script itself.
 
 To easily download all images, the convenience target `display_images`
 could be used:
-
-    curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
-    for image in $(make -f dockcross-Makefile display_images); do
-      echo "Pulling dockcross/$image"
-      docker pull dockcross/$image
-    done
+```bash
+curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
+for image in $(make -f dockcross-Makefile display_images); do
+  echo "Pulling dockcross/$image"
+  docker pull dockcross/$image
+done
+```
 
 ## Install all dockcross scripts
 
@@ -362,16 +377,18 @@ To automatically install in `~/bin` the dockcross scripts for each
 images already downloaded, the convenience target `display_images` could
 be used:
 
-    curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
-    for image in $(make -f dockcross-Makefile display_images); do
-      if [[ $(docker images -q dockcross/$image) == "" ]]; then
-        echo "~/bin/dockcross-$image skipping: image not found locally"
-        continue
-      fi
-      echo "~/bin/dockcross-$image ok"
-      docker run dockcross/$image > ~/bin/dockcross-$image && \
-      chmod u+x  ~/bin/dockcross-$image
-    done
+```bash
+curl https://raw.githubusercontent.com/dockcross/dockcross/master/Makefile -o dockcross-Makefile
+for image in $(make -f dockcross-Makefile display_images); do
+  if [[ $(docker images -q dockcross/$image) == "" ]]; then
+    echo "~/bin/dockcross-$image skipping: image not found locally"
+    continue
+  fi
+  echo "~/bin/dockcross-$image ok"
+  docker run dockcross/$image > ~/bin/dockcross-$image && \
+  chmod u+x  ~/bin/dockcross-$image
+done
+```
 
 ## Dockcross configuration
 
@@ -416,17 +433,21 @@ In order to extend Dockcross images with your own commands, one must:
 
 An example Dockerfile would be:
 
-    FROM dockcross/linux-armv7
+```
+FROM dockcross/linux-armv7
 
-    ENV DEFAULT_DOCKCROSS_IMAGE my_cool_image
-    RUN apt-get install nano
+ENV DEFAULT_DOCKCROSS_IMAGE my_cool_image
+RUN apt-get install nano
+```
 
 And then in the shell:
 
-    docker build -t my_cool_image .                   ## Builds the dockcross image.
-    docker run my_cool_image > linux-armv7                ## Creates a helper script named linux-armv7.
-    chmod +x linux-armv7                          ## Gives the script execution permission.
-    ./linux-armv7 bash                            ## Runs the helper script with the argument "bash", which starts an interactive container using your extended image.
+```
+docker build -t my_cool_image .                   ## Builds the dockcross image.
+docker run my_cool_image > linux-armv7                ## Creates a helper script named linux-armv7.
+chmod +x linux-armv7                          ## Gives the script execution permission.
+./linux-armv7 bash                            ## Runs the helper script with the argument "bash", which starts an interactive container using your extended image.
+```
 
 ## What is the difference between **dockcross** and **dockbuild** ?
 
