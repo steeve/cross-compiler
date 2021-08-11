@@ -56,8 +56,6 @@ windows-static-x64-posix.test_ARGS = --exe-suffix ".exe"
 windows-shared-x86.test_ARGS = --exe-suffix ".exe"
 windows-shared-x64.test_ARGS = --exe-suffix ".exe"
 windows-shared-x64-posix.test_ARGS = --exe-suffix ".exe"
-windows-armv7.test_ARGS = --exe-suffix ".exe"
-windows-arm64.test_ARGS = --exe-suffix ".exe"
 
 # On CircleCI, do not attempt to delete container
 # See https://circleci.com/docs/docker-btrfs-error/
