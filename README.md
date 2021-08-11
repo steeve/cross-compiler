@@ -102,6 +102,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/linux-x86 | x86 | GCC | Linux |
 | dockcross/linux-x64 | x86_64 | GCC | Linux |
 | dockcross/linux-x64-clang | x86_64 | Clang | Linux |
+| dockcross/linux-x64-tinycc | x86_64 | tcc + GCC | Linux |
 | dockcross/web-wasm | JS | LLVM | Web (JS) |
 | dockcross/windows-shared-x86 | x86 | GCC | Windows |
 | dockcross/windows-shared-x64 | x86_64 | GCC | Windows |
@@ -270,6 +271,12 @@ Linux clang x86_64/amd64 compiler. Since the Docker image is natively x86_64, th
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-x86/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-x86)
 
 Linux i686 cross compiler.
+
+### dockcross/linux-x64-tinycc
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-x64-tinycc/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-x64-tinycc)
+
+Linux tcc compiler for C compiler, and GCC for C++ compiler, for linux x86_64/amd64 arch.
 
 ### dockcross/manylinux2014-x64
 
