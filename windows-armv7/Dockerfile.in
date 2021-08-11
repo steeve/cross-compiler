@@ -12,9 +12,8 @@ RUN mkdir -p ${CROSS_ROOT} && wget -qO- "${DOWNLOAD_URL}" | tar xJvf - --strip 1
 
 ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
-    CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-clang \
-    CPP=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-cpp \
-    CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-clang++ \
+    CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gcc \
+    CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++ \
     LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld \
     FC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gfortran
 
