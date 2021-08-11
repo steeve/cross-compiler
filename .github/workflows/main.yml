@@ -53,9 +53,9 @@ jobs:
           linux-x64-clang, linux-s390x, linux-x64, linux-x86, 
           linux-mips, linux-ppc64le, web-wasm,
           manylinux2014-x64, manylinux2014-x86,
-          windows-static-x64, windows-static-x64-posix, windows-static-x86, 
-          windows-shared-x64, windows-shared-x64-posix, windows-shared-x86, 
-          linux-riscv64, linux-riscv32, linux-m68k-uclibc, linux-x64-tinycc, linux-xtensa-uclibc]
+          windows-static-x64, windows-static-x64-posix, windows-static-x86, windows-armv7,
+          windows-shared-x64, windows-shared-x64-posix, windows-shared-x86, windows-arm64, 
+          linux-riscv64, linux-riscv32, linux-m68k-uclibc, linux-xtensa-uclibc, linux-x64-tinycc]
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2

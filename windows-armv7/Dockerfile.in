@@ -1,0 +1,29 @@
+FROM dockcross/base:latest
+MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
+
+ENV XCC_PREFIX /usr/xcc
+ENV CROSS_TRIPLE armv7-w64-mingw32
+ENV CROSS_ROOT ${XCC_PREFIX}/${CROSS_TRIPLE}-cross
+
+ARG DOWNLOAD_URL=https://github.com/mstorsjo/llvm-mingw/releases/download/20210423/llvm-mingw-20210423-msvcrt-ubuntu-18.04-x86_64.tar.xz
+ENV DOWNLOAD_URL=${DOWNLOAD_URL}
+
+RUN mkdir -p ${CROSS_ROOT} && wget -qO- "${DOWNLOAD_URL}" | tar xJvf - --strip 1 -C ${CROSS_ROOT}/ > /dev/null
+
+ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
+    AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
+    CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-clang \
+    CPP=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-cpp \
+    CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-clang++ \
+    LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld \
+    FC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gfortran
+
+COPY Toolchain.cmake ${CROSS_ROOT}/
+ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
+
+# Linux kernel cross compilation variables
+ENV PATH ${PATH}:${CROSS_ROOT}/bin
+ENV CROSS_COMPILE ${CROSS_TRIPLE}-
+ENV ARCH arm
+
+#include "common.label-and-env"
