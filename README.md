@@ -102,7 +102,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/linux-x86 | x86 | GCC | Linux |
 | dockcross/linux-x64 | x86_64 | GCC | Linux |
 | dockcross/linux-x64-clang | x86_64 | Clang | Linux |
-| dockcross/linux-x64-tinycc | x86_64 | tcc + GCC | Linux |
+| dockcross/linux-x64-tinycc | x86_64 | tinycc + GCC | Linux |
 | dockcross/web-wasm | JS | LLVM | Web (JS) |
 | dockcross/windows-shared-x86 | x86 | GCC | Windows |
 | dockcross/windows-shared-x64 | x86_64 | GCC | Windows |
