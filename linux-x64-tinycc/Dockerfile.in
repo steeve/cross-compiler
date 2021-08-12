@@ -1,7 +1,13 @@
 FROM dockcross/base:latest
 MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-RUN git clone --recurse-submodules https://repo.or.cz/tinycc.git \
+# This image use Tinycc as C compiler and GCC as C++ compiler
+
+ARG REPO_URL=https://repo.or.cz/tinycc.git
+ENV REPO_URL=${REPO_URL}
+
+# Disable options: --with-libgcc --disable-static
+RUN git clone --recurse-submodules --remote-submodules ${REPO_URL} \
     && cd tinycc \
     && ./configure --cpu=x86_64 \
     && make -j$(nproc) \
@@ -9,6 +15,7 @@ RUN git clone --recurse-submodules https://repo.or.cz/tinycc.git \
     && make install
 
 ENV PATH="/usr/local/bin:${PATH}"
+
 # Test if compiler work
 RUN tcc -v
 
@@ -21,7 +28,6 @@ ENV AS=/usr/bin/${CROSS_TRIPLE}-as \
     CXX=/usr/bin/${CROSS_TRIPLE}-g++ \
     LD=/usr/bin/${CROSS_TRIPLE}-ld \
     FC=/usr/bin/${CROSS_TRIPLE}-gfortran
-
 
 COPY ${CROSS_TRIPLE}-noop.sh /usr/bin/${CROSS_TRIPLE}-noop
 

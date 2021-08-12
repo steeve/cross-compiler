@@ -2,8 +2,8 @@ set(CMAKE_SYSTEM_NAME Linux)
 set(CMAKE_SYSTEM_VERSION 1)
 set(CMAKE_SYSTEM_PROCESSOR riscv32)
 
-set(cross_triple "riscv32-unknown-linux-gnu")
-set(cross_root /usr/xcc/${cross_triple})
+set(cross_triple $ENV{CROSS_TRIPLE})
+set(cross_root $ENV{CROSS_ROOT})
 
 set(CMAKE_C_COMPILER $ENV{CC})
 set(CMAKE_CXX_COMPILER $ENV{CXX})
