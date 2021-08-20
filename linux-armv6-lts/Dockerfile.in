@@ -3,8 +3,8 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
 # Crosstool-ng version
 # We use a git commit while waiting for 1.25 to release (1.24 is several years old)
-# crosstool-ng master 2021-08-04
-ENV CT_VERSION d47b234152980a09196355b77a12cb425f3f1d2e
+# crosstool-ng master 2021-08-18
+ENV CT_VERSION 358945ff2219e37d280532522d2c62309614d162
 
 # This is for 32-bit ARMv6 Linux
 # Raspberry Pi is ARMv6+VFP2

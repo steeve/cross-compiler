@@ -3,7 +3,8 @@ FROM dockcross/base:latest
 # This is for 64-bit ARM Linux machine
 
 # Buildroot version
-ENV BR_VERSION 2021.08-rc1
+# crosstool-ng master 2021-08-20
+ENV BR_VERSION dbe3af5532bfc2ecceca5ea2a4604a82021a8748
 
 #include "common.buildroot"
 
