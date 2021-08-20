@@ -26,6 +26,7 @@ STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
 GEN_IMAGES = android-arm android-arm64 \
 	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
 	manylinux2014-x64 manylinux2014-x86 \
+	manylinux2014-aarch64 \
 	web-wasm linux-mips windows-arm64 windows-armv7 \
 	windows-static-x86 windows-static-x64 windows-static-x64-posix \
 	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix \
@@ -37,7 +38,8 @@ GEN_IMAGES = android-arm android-arm64 \
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
 # These images are expected to have explicit rules for *both* build and testing
-NON_STANDARD_IMAGES = manylinux2014-x64 manylinux2014-x86 web-wasm
+NON_STANDARD_IMAGES = manylinux2014-x64 manylinux2014-x86 \
+		      manylinux2014-aarch64 web-wasm
 
 # Docker composite files
 DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux common.buildroot \
@@ -121,6 +123,31 @@ web-wasm.test: web-wasm
 	$(DOCKER) run $(RM) $(ORG)/web-wasm > $(BIN)/dockcross-web-wasm && chmod +x $(BIN)/dockcross-web-wasm
 	$(BIN)/dockcross-web-wasm python test/run.py --exe-suffix ".js"
 	rm -rf web-wasm/test
+
+#
+# manylinux2014-aarch64
+#
+manylinux2014-aarch64: manylinux2014-aarch64/Dockerfile
+	@# Register qemu
+	docker run --rm --privileged hypriot/qemu-register
+	@# Get libstdc++ from quay.io/pypa/manylinux2014_aarch64 container
+	docker run -v `pwd`:/host --rm -e LIB_PATH=/host/$@/xc_script/ quay.io/pypa/manylinux2014_aarch64 bash -c "PASS=1 /host/$@/xc_script/docker_setup_scrpits/copy_libstd.sh"
+	mkdir -p $@/imagefiles && cp -r imagefiles $@/
+	$(DOCKER) build -t $(ORG)/manylinux2014-aarch64:latest \
+		-t $(ORG)/manylinux2014-aarch64:$(TAG) \
+		--build-arg IMAGE=$(ORG)/manylinux2014-aarch64 \
+		--build-arg VCS_REF=`git rev-parse --short HEAD` \
+		--build-arg VCS_URL=`git config --get remote.origin.url` \
+		--build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+		-f manylinux2014-aarch64/Dockerfile .
+	rm -rf $@/imagefiles
+	@# libstdc++ is coppied into image, now remove it
+	docker run -v `pwd`:/host --rm quay.io/pypa/manylinux2014_aarch64 bash -c "rm -rf /host/$@/xc_script/usr"
+
+manylinux2014-aarch64.test: manylinux2014-aarch64
+	$(DOCKER) run $(RM) $(ORG)/manylinux2014-aarch64 > $(BIN)/dockcross-manylinux2014-aarch64 \
+		&& chmod +x $(BIN)/dockcross-manylinux2014-aarch64
+	$(BIN)/dockcross-manylinux2014-aarch64 /opt/python/cp38-cp38/bin/python test/run.py
 
 #
 # manylinux2014-x64
