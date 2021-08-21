@@ -25,8 +25,8 @@ ENV ANDROID_NDK_REVISION 22b
 ENV ANDROID_NDK_API 22
 RUN mkdir -p /build && \
     cd /build && \
-    curl -O https://dl.google.com/android/repository/android-ndk-r${ANDROID_NDK_REVISION}-linux.zip && \
-    unzip ./android-ndk-r${ANDROID_NDK_REVISION}-linux.zip && \
+    curl -O https://dl.google.com/android/repository/android-ndk-r${ANDROID_NDK_REVISION}-linux-x86_64.zip && \
+    unzip ./android-ndk-r${ANDROID_NDK_REVISION}-linux-x86_64.zip && \
     cd android-ndk-r${ANDROID_NDK_REVISION} && \
     ./build/tools/make_standalone_toolchain.py \
       --arch arm64 \
