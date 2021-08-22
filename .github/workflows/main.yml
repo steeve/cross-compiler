@@ -50,7 +50,7 @@ jobs:
           linux-arm64, linux-arm64-musl, linux-armv5, linux-armv5-musl, 
           linux-armv6, linux-armv6-lts, linux-armv6-musl, linux-arm64-full, 
           linux-armv7, linux-armv7a, linux-armv7l-musl, 
-          linux-x64-clang, linux-s390x, linux-x64, linux-x86, 
+          linux-x64-clang, linux-s390x, linux-x64, linux-x86, linux-x86_64-full,
           linux-mips, linux-ppc64le, web-wasm,
           manylinux2014-x64, manylinux2014-x86,
           windows-static-x64, windows-static-x64-posix, windows-static-x86, windows-armv7,
