@@ -365,7 +365,6 @@ The list of docker images that are no longer supported or broken
 
 | Image name | Target arch | Compiler | Target OS |
 |:-------:|:--------:|:------:|:-----:|
-| dockcross/manylinux2014-aarch64 | ARMv8 | GCC 4.8 | manylinux |
 | dockcross/manylinux1-x86 | x86 | GCC | manylinux |
 | dockcross/manylinux1-x64 | x86_64 | GCC| manylinux |
 | dockcross/manylinux2010-x86 | x86 | GCC | manylinux |
