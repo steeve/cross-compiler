@@ -297,6 +297,12 @@ Docker [manylinux2014](https://github.com/pypa/manylinux) image for building Lin
 
 Docker [manylinux2014](https://github.com/pypa/manylinux) image for building Linux i686 [Python wheel packages](http://pythonwheels.com/). It includes Python 3.5, 3.6, 3.7, 3.8, and 3.9. Also has support for the dockcross script, and it has installations of CMake, Ninja, and [scikit-build](http://scikit-build.org). For CMake, it sets **MANYLINUX2014** to \"TRUE\" in the toolchain.
 
+### dockcross/manylinux2014-aarch64
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux2014-aarch64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2014-aarch64)
+
+Docker [manylinux2014](https://github.com/pypa/manylinux) image for building Linux aarch64 / arm64 [Python wheel packages](http://pythonwheels.com/). It includes Python 3.5, 3.6, 3.7, 3.8, and 3.9. Also has support for the dockcross script, and it has installations of CMake, Ninja, and [scikit-build](http://scikit-build.org). For CMake, it sets **MANYLINUX2014** to \"TRUE\" in the toolchain.
+
 ### dockcross/web-wasm
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/web-wasm/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/web-wasm)
