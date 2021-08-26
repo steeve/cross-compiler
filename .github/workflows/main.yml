@@ -373,7 +373,7 @@ jobs:
               image: "windows-arm64",
               stockfish: "no",
               stockfish_arg: "ARCH=armv8 COMP=clang",
-              ninja: "yes",
+              ninja: "no",
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "mingw64 no-asm",
