@@ -55,7 +55,7 @@ jobs:
               ninja: "no",
               ninja_arg: "",
               openssl: "yes",
-              openssl_arg: "android-arm",
+              openssl_arg: "android-arm no-shared",
             }
           - {
               image: "android-arm64",
@@ -64,7 +64,7 @@ jobs:
               ninja: "no",
               ninja_arg: "",
               openssl: "yes",
-              openssl_arg: "android-arm64",
+              openssl_arg: "android-arm64 no-shared",
             }
           - {
               image: "android-x86",
@@ -73,7 +73,7 @@ jobs:
               ninja: "no",
               ninja_arg: "",
               openssl: "yes",
-              openssl_arg: "android-x86",
+              openssl_arg: "android-x86 no-shared",
             }
           - {
               image: "android-x86_64",
@@ -82,7 +82,7 @@ jobs:
               ninja: "no",
               ninja_arg: "",
               openssl: "yes",
-              openssl_arg: "android-x86_64",
+              openssl_arg: "android-x86_64 no-shared",
             }
           # Linux arm64/armv8 images
           - {
