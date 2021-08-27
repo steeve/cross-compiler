@@ -54,7 +54,7 @@ jobs:
               stockfish_arg: "ARCH=armv7 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "no",
+              openssl: "yes",
               openssl_arg: "android-arm no-shared",
             }
           - {
@@ -63,7 +63,7 @@ jobs:
               stockfish_arg: "ARCH=armv8 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "no",
+              openssl: "yes",
               openssl_arg: "android-arm64 no-shared",
             }
           - {
@@ -72,7 +72,7 @@ jobs:
               stockfish_arg: "ARCH=x86-32 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "no",
+              openssl: "yes",
               openssl_arg: "android-x86 no-shared",
             }
           - {
@@ -81,7 +81,7 @@ jobs:
               stockfish_arg: "ARCH=x86-64 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "no",
+              openssl: "yes",
               openssl_arg: "android-x86_64 no-shared",
             }
           # Linux arm64/armv8 images
@@ -453,7 +453,7 @@ jobs:
           git clone --depth 1 --branch OpenSSL_1_1_1k https://github.com/openssl/openssl.git
           cd openssl
           wget https://github.com/mavlink/MAVSDK/blob/main/third_party/openssl/dockcross-android.patch
-          patch -p 0 < dockcross-android.patch
+          patch Configurations/15-android.conf -i dockcross-android.patch
           ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} ./Configure ${{ matrix.arch_name.openssl_arg }}
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
@@ -467,7 +467,7 @@ jobs:
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.C-Plus-Plus_arg }}
           cd ..
           rm -rf C-Plus-Plus
-      - name: C-Plus-Plus build test
+      - name: fmt build test
         if: ${{ matrix.arch_name.fmt == 'yes' }}
         run: |
           git clone --depth 1 --branch 8.0.1 https://github.com/fmtlib/fmt.git
