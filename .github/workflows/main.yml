@@ -54,7 +54,7 @@ jobs:
               stockfish_arg: "ARCH=armv7 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "yes",
+              openssl: "no",
               openssl_arg: "android-arm no-shared",
             }
           - {
@@ -63,7 +63,7 @@ jobs:
               stockfish_arg: "ARCH=armv8 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "yes",
+              openssl: "no",
               openssl_arg: "android-arm64 no-shared",
             }
           - {
@@ -72,7 +72,7 @@ jobs:
               stockfish_arg: "ARCH=x86-32 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "yes",
+              openssl: "no",
               openssl_arg: "android-x86 no-shared",
             }
           - {
@@ -81,7 +81,7 @@ jobs:
               stockfish_arg: "ARCH=x86-64 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "yes",
+              openssl: "no",
               openssl_arg: "android-x86_64 no-shared",
             }
           # Linux arm64/armv8 images
@@ -206,6 +206,10 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-x86_64",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: "",
             }
           - {
               image: "linux-x64-tinycc",
@@ -448,10 +452,29 @@ jobs:
         run: |
           git clone --depth 1 --branch OpenSSL_1_1_1k https://github.com/openssl/openssl.git
           cd openssl
+          wget https://github.com/mavlink/MAVSDK/blob/main/third_party/openssl/dockcross-android.patch
+          patch -p 0 < dockcross-android.patch
           ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} ./Configure ${{ matrix.arch_name.openssl_arg }}
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
           rm -rf openssl
+      - name: C-Plus-Plus build test
+        if: ${{ matrix.arch_name.C-Plus-Plus == 'yes' }}
+        run: |
+          git clone https://github.com/TheAlgorithms/C-Plus-Plus.git
+          cd C-Plus-Plus
+          git checkout c3b07aed2240e5364e1a49d091a00b61f520e653
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.C-Plus-Plus_arg }}
+          cd ..
+          rm -rf C-Plus-Plus
+      - name: C-Plus-Plus build test
+        if: ${{ matrix.arch_name.fmt == 'yes' }}
+        run: |
+          git clone --depth 1 --branch 8.0.1 https://github.com/fmtlib/fmt.git
+          cd fmt
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.fmt_arg }} -DFMT_DOC=OFF
+          cd ..
+          rm -rf fmt
       - name: deploy
         if: github.ref == 'refs/heads/master'
         run: |
