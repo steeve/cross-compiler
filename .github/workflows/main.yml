@@ -54,7 +54,7 @@ jobs:
               stockfish_arg: "ARCH=armv7 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "no",
+              openssl: "yes",
               openssl_arg: "android-arm",
             }
           - {
@@ -63,7 +63,7 @@ jobs:
               stockfish_arg: "ARCH=armv8 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "no",
+              openssl: "yes",
               openssl_arg: "android-arm64",
             }
           - {
@@ -72,7 +72,7 @@ jobs:
               stockfish_arg: "ARCH=x86-32 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "no",
+              openssl: "yes",
               openssl_arg: "android-x86",
             }
           - {
@@ -81,7 +81,7 @@ jobs:
               stockfish_arg: "ARCH=x86-64 COMP=ndk",
               ninja: "no",
               ninja_arg: "",
-              openssl: "no",
+              openssl: "yes",
               openssl_arg: "android-x86_64",
             }
           # Linux arm64/armv8 images
