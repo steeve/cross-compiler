@@ -206,6 +206,8 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-x86_64",
+              C: "yes",
+              C_arg: "",
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
@@ -235,6 +237,10 @@ jobs:
               stockfish_arg: "ARCH=x86-64-modern",
               ninja: "yes",
               ninja_arg: "",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
               openssl: "yes",
               openssl_arg: "linux-x86_64",
             }
@@ -458,6 +464,15 @@ jobs:
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
           rm -rf openssl
+      - name: C build test
+        if: ${{ matrix.arch_name.C == 'yes' }}
+        run: |
+          git clone https://github.com/TheAlgorithms/C.git
+          cd C
+          git checkout cc241f58c253c533ac94e07151ef91a5ef7e5719
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.C_arg }}
+          cd ..
+          rm -rf C
       - name: C-Plus-Plus build test
         if: ${{ matrix.arch_name.C-Plus-Plus == 'yes' }}
         run: |
