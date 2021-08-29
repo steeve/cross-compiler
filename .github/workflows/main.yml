@@ -56,6 +56,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "android-arm no-shared",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "android-arm64",
@@ -65,6 +71,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "android-arm64 no-shared",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "android-x86",
@@ -74,6 +86,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "android-x86 no-shared",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "android-x86_64",
@@ -83,6 +101,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "android-x86_64 no-shared",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux arm64/armv8 images
           - {
@@ -93,6 +117,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-aarch64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-arm64-musl",
@@ -102,6 +132,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-aarch64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-arm64-full",
@@ -111,6 +147,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-aarch64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux armv5 images
           - {
@@ -121,6 +163,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-armv4",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-armv5-musl",
@@ -130,6 +178,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-armv4",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux armv6 images
           - {
@@ -140,6 +194,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-armv4",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-armv6-lts",
@@ -149,6 +209,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-armv4",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-armv6-musl",
@@ -158,6 +224,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-armv4",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux armv7 images
           - {
@@ -168,6 +240,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-armv4",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-armv7a",
@@ -177,6 +255,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-armv4",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-armv7l-musl",
@@ -186,6 +270,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-armv4",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux x86 images
           - {
@@ -196,6 +286,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-x86",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux x86_64 images
           - {
@@ -211,7 +307,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: "",
+              fmt_arg: ""
             }
           - {
               image: "linux-x64-tinycc",
@@ -221,6 +317,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "linux-generic64 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-x64-clang",
@@ -230,6 +332,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "linux-x86_64-clang",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-x86_64-full",
@@ -237,12 +345,14 @@ jobs:
               stockfish_arg: "ARCH=x86-64-modern",
               ninja: "yes",
               ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-x86_64",
               C: "yes",
               C_arg: "",
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
-              openssl: "yes",
-              openssl_arg: "linux-x86_64",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux riscv images
           - {
@@ -253,6 +363,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-generic32",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "linux-riscv64",
@@ -262,6 +378,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-generic64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux s390x images
           - {
@@ -272,6 +394,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux64-s390x",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux mips images
           - {
@@ -282,6 +410,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-generic32",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux ppc64le images
           - {
@@ -292,6 +426,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-ppc64le",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux m68k images
           - {
@@ -302,6 +442,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "linux-generic32 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Linux xtensa images
           - {
@@ -312,6 +458,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-generic64 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Windows x86_x64 images
           - {
@@ -322,6 +474,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "mingw64 no-asm",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "windows-static-x64-posix",
@@ -331,6 +489,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "mingw64 no-asm",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "windows-shared-x64",
@@ -340,6 +504,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "mingw64 no-asm",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "windows-shared-x64-posix",
@@ -349,6 +519,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "mingw64 no-asm",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Windows x86 images
           - {
@@ -359,6 +535,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "mingw no-asm",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "windows-shared-x86",
@@ -368,6 +550,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "mingw no-asm",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # Windows arm images
           - {
@@ -378,6 +566,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "mingw no-asm",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "windows-arm64",
@@ -387,6 +581,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "mingw64 no-asm",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # manylinux2014 images
           - {
@@ -397,6 +597,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-x86",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "manylinux2014-x64",
@@ -406,6 +612,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-x86_64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           - {
               image: "manylinux2014-aarch64",
@@ -415,6 +627,12 @@ jobs:
               ninja_arg: "",
               openssl: "yes",
               openssl_arg: "linux-aarch64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
           # web-wasm images
           - {
@@ -425,6 +643,12 @@ jobs:
               ninja_arg: "",
               openssl: "no",
               openssl_arg: "linux-generic64 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
             }
     steps:
       - uses: actions/checkout@v2
