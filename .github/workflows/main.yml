@@ -60,7 +60,7 @@ jobs:
               C_arg: "",
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
-              fmt: "yes",
+              fmt: "no",
               fmt_arg: ""
             }
           - {
@@ -75,7 +75,7 @@ jobs:
               C_arg: "",
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
-              fmt: "yes",
+              fmt: "no",
               fmt_arg: ""
             }
           - {
@@ -90,7 +90,7 @@ jobs:
               C_arg: "",
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
-              fmt: "yes",
+              fmt: "no",
               fmt_arg: ""
             }
           - {
@@ -105,7 +105,7 @@ jobs:
               C_arg: "",
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
-              fmt: "yes",
+              fmt: "no",
               fmt_arg: ""
             }
           # Linux arm64/armv8 images
@@ -446,7 +446,7 @@ jobs:
               C_arg: "",
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
-              fmt: "yes",
+              fmt: "no",
               fmt_arg: ""
             }
           # Linux xtensa images
@@ -462,7 +462,7 @@ jobs:
               C_arg: "",
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
-              fmt: "yes",
+              fmt: "no",
               fmt_arg: ""
             }
           # Windows x86_x64 images
@@ -476,7 +476,7 @@ jobs:
               openssl_arg: "mingw64 no-asm",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: ""
@@ -491,7 +491,7 @@ jobs:
               openssl_arg: "mingw64 no-asm",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: ""
@@ -506,7 +506,7 @@ jobs:
               openssl_arg: "mingw64 no-asm",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: ""
@@ -521,7 +521,7 @@ jobs:
               openssl_arg: "mingw64 no-asm",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: ""
@@ -537,7 +537,7 @@ jobs:
               openssl_arg: "mingw no-asm",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: ""
@@ -599,7 +599,7 @@ jobs:
               openssl_arg: "linux-x86",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: ""
@@ -614,7 +614,7 @@ jobs:
               openssl_arg: "linux-x86_64",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: ""
@@ -645,7 +645,7 @@ jobs:
               openssl_arg: "linux-generic64 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: ""
