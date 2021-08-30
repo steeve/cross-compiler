@@ -552,9 +552,9 @@ jobs:
               openssl_arg: "mingw no-asm",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
-              fmt: "yes",
+              fmt: "no",
               fmt_arg: ""
             }
           # Windows arm images
@@ -629,9 +629,9 @@ jobs:
               openssl_arg: "linux-aarch64",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
-              fmt: "yes",
+              fmt: "no",
               fmt_arg: ""
             }
           # web-wasm images
@@ -647,7 +647,7 @@ jobs:
               C_arg: "",
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
-              fmt: "yes",
+              fmt: "no",
               fmt_arg: ""
             }
     steps:
