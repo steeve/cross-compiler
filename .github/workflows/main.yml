@@ -3,14 +3,14 @@ name: Dockcross CI
 on:
   push:
     branches:
-    - '*'
+      - "*"
     paths-ignore:
-      - '**.md'
+      - "**.md"
   pull_request:
     branches:
-    - '*'
+      - "*"
     paths-ignore:
-      - '**.md'
+      - "**.md"
   workflow_dispatch:
 
 jobs:
@@ -25,8 +25,8 @@ jobs:
         run: make base.test
       - name: archive base
         run: |
-            mkdir -p cache
-            docker save dockcross/base:latest | xz -e9 -T0 > ./cache/base.tar.xz
+          mkdir -p cache
+          docker save dockcross/base:latest | xz -e9 -T0 > ./cache/base.tar.xz
       - name: save base
         uses: actions/upload-artifact@v2
         with:
@@ -36,8 +36,8 @@ jobs:
       - name: deploy
         if: github.ref == 'refs/heads/master'
         run: |
-            docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-            docker image push dockcross/base --all-tags
+          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+          docker image push dockcross/base --all-tags
 
   image:
     name: ${{ matrix.arch_name.image }}
@@ -47,64 +47,609 @@ jobs:
       fail-fast: false
       matrix:
         arch_name:
-        # Android images
-          - { image: "android-arm", arch: "arm" }
-          - { image: "android-arm64", arch: "arm64" }
-          - { image: "android-x86", arch: "x86" }
-          - { image: "android-x86_64", arch: "x86_64" }
-        # Linux arm64/armv8 images
-          - { image: "linux-arm64", arch: "arm64" }
-          - { image: "linux-arm64-musl", arch: "arm64" }
-          - { image: "linux-arm64-full", arch: "arm64" }
-        # Linux armv5 images
-          - { image: "linux-armv5", arch: "armv5" }
-          - { image: "linux-armv5-musl", arch: "armv5" }
-        # Linux armv6 images
-          - { image: "linux-armv6", arch: "armv6" }
-          - { image: "linux-armv6-lts", arch: "armv6" }
-          - { image: "linux-armv6-musl", arch: "armv6" }
-        # Linux armv7 images
-          - { image: "linux-armv7", arch: "armv7" }
-          - { image: "linux-armv7a", arch: "armv7" }
-          - { image: "linux-armv7l-musl", arch: "armv7" }
-        # Linux x86 images
-          - { image: "linux-x86", arch: "x86" }
-        # Linux x86_64 images
-          - { image: "linux-x64", arch: "x86_64" }
-          - { image: "linux-x64-tinycc", arch: "x86_64" }
-          - { image: "linux-x64-clang", arch: "x86_64" }
-          - { image: "linux-x86_64-full", arch: "x86_64" }
-        # Linux riscv images
-          - { image: "linux-riscv32", arch: "riscv32" }
-          - { image: "linux-riscv64", arch: "riscv64" }
-        # Linux s390x images
-          - { image: "linux-s390x", arch: "s390x" }
-        # Linux mips images
-          - { image: "linux-mips", arch: "mips" }
-        # Linux ppc64le images
-          - { image: "linux-ppc64le", arch: "ppc64le" }
-        # Linux m68k images
-          - { image: "linux-m68k-uclibc", arch: "m68k" }
-        # Linux xtensa images
-          - { image: "linux-xtensa-uclibc", arch: "xtensa" }
-        # Windows x86_x64 images
-          - { image: "windows-static-x64", arch: "x86_x64" }
-          - { image: "windows-static-x64-posix", arch: "x86_x64" }
-          - { image: "windows-static-x64", arch: "x86_x64" }
-          - { image: "windows-shared-x64", arch: "x86_x64" }
-          - { image: "windows-shared-x64-posix", arch: "x64" }
-        # Windows x86 images
-          - { image: "windows-static-x86", arch: "x86" }
-          - { image: "windows-shared-x86", arch: "x86" }
-        # Windows arm images
-          - { image: "windows-armv7", arch: "armv7" }
-          - { image: "windows-arm64", arch: "arm64" }
-        # manylinux2014 images
-          - { image: "manylinux2014-x86", arch: "x86" }
-          - { image: "manylinux2014-x64", arch: "x86_64" }
-          - { image: "manylinux2014-aarch64", arch: "arm64" }
-        # web-wasm images
-          - { image: "web-wasm", arch: "JS" }
+          # Android images
+          - {
+              image: "android-arm",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv7 COMP=ndk",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "android-arm no-shared",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: ""
+            }
+          - {
+              image: "android-arm64",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv8 COMP=ndk",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "android-arm64 no-shared",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: ""
+            }
+          - {
+              image: "android-x86",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-32 COMP=ndk",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "android-x86 no-shared",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: ""
+            }
+          - {
+              image: "android-x86_64",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-64 COMP=ndk",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "android-x86_64 no-shared",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: ""
+            }
+          # Linux arm64/armv8 images
+          - {
+              image: "linux-arm64",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv8",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-aarch64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-arm64-musl",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv8",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-aarch64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-arm64-full",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv8",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-aarch64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux armv5 images
+          - {
+              image: "linux-armv5",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-armv5-musl",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux armv6 images
+          - {
+              image: "linux-armv6",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-armv6-lts",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-armv6-musl",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux armv7 images
+          - {
+              image: "linux-armv7",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv7",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-armv7a",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv7-neon",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-armv7l-musl",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv7",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux x86 images
+          - {
+              image: "linux-x86",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-32-sse41-popcnt",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-x86",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux x86_64 images
+          - {
+              image: "linux-x64",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-64-modern",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-x86_64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-x64-tinycc",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-64-modern",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "linux-generic64 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-x64-clang",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-64-modern COMP=clang",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "linux-x86_64-clang",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-x86_64-full",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-64-modern",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-x86_64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux riscv images
+          - {
+              image: "linux-riscv32",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-generic32",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "linux-riscv64",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-generic64",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux s390x images
+          - {
+              image: "linux-s390x",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux64-s390x",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux mips images
+          - {
+              image: "linux-mips",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-generic32",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux ppc64le images
+          - {
+              image: "linux-ppc64le",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=ppc-64",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-ppc64le",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Linux m68k images
+          - {
+              image: "linux-m68k-uclibc",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "linux-generic32 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: ""
+            }
+          # Linux xtensa images
+          - {
+              image: "linux-xtensa-uclibc",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-generic64 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: ""
+            }
+          # Windows x86_x64 images
+          - {
+              image: "windows-static-x64",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-64-modern COMP=mingw",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "mingw64 no-asm",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "windows-static-x64-posix",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-64-modern COMP=mingw",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "mingw64 no-asm",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "windows-shared-x64",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "mingw64 no-asm",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "windows-shared-x64-posix",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "mingw64 no-asm",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # Windows x86 images
+          - {
+              image: "windows-static-x86",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-32-sse41-popcnt COMP=mingw",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "mingw no-asm",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "windows-shared-x86",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "mingw no-asm",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: ""
+            }
+          # Windows arm images
+          - {
+              image: "windows-armv7",
+              stockfish: "no",
+              stockfish_arg: "ARCH=armv7-neon COMP=clang",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "mingw no-asm",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "windows-arm64",
+              stockfish: "no",
+              stockfish_arg: "ARCH=armv8 COMP=clang",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "mingw64 no-asm",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          # manylinux2014 images
+          - {
+              image: "manylinux2014-x86",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-32-sse41-popcnt",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-x86",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "manylinux2014-x64",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-64-modern",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-x86_64",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: ""
+            }
+          - {
+              image: "manylinux2014-aarch64",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-aarch64",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: ""
+            }
+          # web-wasm images
+          - {
+              image: "web-wasm",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "linux-generic64 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: ""
+            }
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
@@ -117,8 +662,60 @@ jobs:
         run: make ${{ matrix.arch_name.image }}
       - name: basic test
         run: make ${{ matrix.arch_name.image }}.test
+      - name: stockfish build test
+        if: ${{ matrix.arch_name.stockfish == 'yes' }}
+        run: |
+          git clone --depth 1 --branch sf_14 https://github.com/official-stockfish/Stockfish.git
+          cd Stockfish/src
+          ./../../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} net
+          ./../../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} build ${{ matrix.arch_name.stockfish_arg }} -j2
+          cd ../..
+          rm -rf Stockfish
+      - name: ninja build test
+        if: ${{ matrix.arch_name.ninja == 'yes' }}
+        run: |
+          git clone --depth 1 --branch v1.10.2 https://github.com/ninja-build/ninja.git
+          cd ninja
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.ninja_arg }}
+      - name: openssl build test
+        if: ${{ matrix.arch_name.openssl == 'yes' }}
+        run: |
+          git clone --depth 1 --branch OpenSSL_1_1_1k https://github.com/openssl/openssl.git
+          cd openssl
+          wget https://raw.githubusercontent.com/mavlink/MAVSDK/main/third_party/openssl/dockcross-android.patch
+          patch -p 0 < dockcross-android.patch
+          ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} ./Configure ${{ matrix.arch_name.openssl_arg }}
+          ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
+          cd ..
+          rm -rf openssl
+      - name: C build test
+        if: ${{ matrix.arch_name.C == 'yes' }}
+        run: |
+          git clone https://github.com/TheAlgorithms/C.git
+          cd C
+          git checkout cc241f58c253c533ac94e07151ef91a5ef7e5719
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.C_arg }}
+          cd ..
+          rm -rf C
+      - name: C-Plus-Plus build test
+        if: ${{ matrix.arch_name.C-Plus-Plus == 'yes' }}
+        run: |
+          git clone https://github.com/TheAlgorithms/C-Plus-Plus.git
+          cd C-Plus-Plus
+          git checkout c3b07aed2240e5364e1a49d091a00b61f520e653
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.C-Plus-Plus_arg }}
+          cd ..
+          rm -rf C-Plus-Plus
+      - name: fmt build test
+        if: ${{ matrix.arch_name.fmt == 'yes' }}
+        run: |
+          git clone --depth 1 --branch 8.0.1 https://github.com/fmtlib/fmt.git
+          cd fmt
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.fmt_arg }} -DFMT_DOC=OFF
+          cd ..
+          rm -rf fmt
       - name: deploy
         if: github.ref == 'refs/heads/master'
         run: |
-            docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-            docker image push dockcross/${{ matrix.arch_name.image }} --all-tags
+          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+          docker image push dockcross/${{ matrix.arch_name.image }} --all-tags
