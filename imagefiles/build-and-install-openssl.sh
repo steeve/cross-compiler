@@ -47,9 +47,9 @@ source $MY_DIR/utils.sh
 # copied from https://github.com/pypa/manylinux/tree/master/docker/build_scripts
 #
 
-OPENSSL_ROOT=openssl-1.1.1i
-# Hash from https://www.openssl.org/source/openssl-1.1.1i.tar.gz.sha256
-OPENSSL_HASH=e8be6a35fe41d10603c3cc635e93289ed00bf34b79671a3a4de64fcee00d5242
+OPENSSL_ROOT=openssl-1.1.1l
+# Hash from https://www.openssl.org/source/openssl-1.1.1l.tar.gz.sha256
+OPENSSL_HASH=0b7a3e5e59c34827fe0c3a74b7ec8baef302b98fa80088d7f9153aa16fa76bd1
 OPENSSL_DOWNLOAD_URL=http://www.openssl.org/source/
 
 # a recent enough perl is needed to build openssl
