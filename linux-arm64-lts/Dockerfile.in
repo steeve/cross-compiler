@@ -1,10 +1,8 @@
 FROM dockcross/base:latest
-MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 
-# This is for ARMv5 "legacy" (armel) devices which do NOT support hard float
-# VFP instructions (armhf).
-# musleabi as default glibc
+# This is for 64-bit ARM Linux machine (Ubuntu 18.04 or Debian 9 mini)
 
+# Crosstool-ng version
 # We use a git commit while waiting for 1.25 to release (1.24 is several years old)
 # crosstool-ng master 2021-09-20
 ENV CT_VERSION 5f5a22f7a7307790ec571d0c5acf8790416964e6
@@ -18,8 +16,9 @@ RUN apt-get update \
   qemu-user-static \
 && apt-get clean --yes
 
-# The CROSS_TRIPLE is a configured alias of the "armv5-unknown-linux-musleabi" target.
-ENV CROSS_TRIPLE armv5-unknown-linux-musleabi
+# The CROSS_TRIPLE is a configured alias of the "aarch64-unknown-linux-gnu" target.
+ENV CROSS_TRIPLE aarch64-unknown-linux-gnu
+
 ENV CROSS_ROOT ${XCC_PREFIX}/${CROSS_TRIPLE}
 ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
     AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
@@ -35,11 +34,11 @@ ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${QEMU_LD_PREFIX}"
 COPY Toolchain.cmake ${CROSS_ROOT}/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
 
-ENV PKG_CONFIG_PATH /usr/lib/arm-linux-musleabihf/
+ENV PKG_CONFIG_PATH /usr/lib/aarch64-linux-gnu/pkgconfig
 
 # Linux kernel cross compilation variables
 ENV PATH ${PATH}:${CROSS_ROOT}/bin
 ENV CROSS_COMPILE ${CROSS_TRIPLE}-
-ENV ARCH arm
+ENV ARCH arm64
 
 #include "common.label-and-env"
