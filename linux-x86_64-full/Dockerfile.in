@@ -3,8 +3,8 @@ FROM dockcross/base:latest
 # This is for 64-bit x86 Linux machine
 
 # Buildroot version
-# buildroot master 2021-08-30
-ENV BR_VERSION 2990d7dcb163a5618100a6985726b6820457a6d1
+# buildroot master 2021-09-21
+ENV BR_VERSION 279167ee8dc37b1c41ff9076d6769c950d5a33f1
 
 #include "common.buildroot"
 
