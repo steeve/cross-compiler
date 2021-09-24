@@ -61,7 +61,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "no",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "android-arm64",
@@ -76,7 +76,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "no",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "android-x86",
@@ -91,7 +91,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "no",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "android-x86_64",
@@ -106,7 +106,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "no",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux arm64/armv8 images
           - {
@@ -122,7 +122,22 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
+            }
+          - {
+              image: "linux-arm64-lts",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv8",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-aarch64",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: "",
             }
           - {
               image: "linux-arm64-musl",
@@ -137,7 +152,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-arm64-full",
@@ -152,7 +167,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux armv5 images
           - {
@@ -168,7 +183,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-armv5-musl",
@@ -183,7 +198,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux armv6 images
           - {
@@ -199,7 +214,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-armv6-lts",
@@ -214,7 +229,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-armv6-musl",
@@ -229,7 +244,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux armv7 images
           - {
@@ -245,7 +260,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-armv7a",
@@ -260,7 +275,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-armv7l-musl",
@@ -275,7 +290,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux x86 images
           - {
@@ -291,7 +306,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux x86_64 images
           - {
@@ -307,7 +322,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-x64-tinycc",
@@ -322,7 +337,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-x64-clang",
@@ -337,7 +352,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-x86_64-full",
@@ -352,7 +367,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux riscv images
           - {
@@ -368,7 +383,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "linux-riscv64",
@@ -383,7 +398,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux s390x images
           - {
@@ -399,7 +414,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux mips images
           - {
@@ -415,7 +430,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux ppc64le images
           - {
@@ -431,7 +446,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux m68k images
           - {
@@ -447,7 +462,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "no",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Linux xtensa images
           - {
@@ -463,7 +478,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "no",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Windows x86_x64 images
           - {
@@ -479,7 +494,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "windows-static-x64-posix",
@@ -494,7 +509,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "windows-shared-x64",
@@ -509,7 +524,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "windows-shared-x64-posix",
@@ -524,7 +539,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Windows x86 images
           - {
@@ -540,7 +555,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "windows-shared-x86",
@@ -555,7 +570,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "no",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # Windows arm images
           - {
@@ -571,7 +586,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "windows-arm64",
@@ -586,7 +601,7 @@ jobs:
               C-Plus-Plus: "yes",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # manylinux2014 images
           - {
@@ -602,7 +617,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "manylinux2014-x64",
@@ -617,7 +632,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "yes",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           - {
               image: "manylinux2014-aarch64",
@@ -632,7 +647,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "no",
-              fmt_arg: ""
+              fmt_arg: "",
             }
           # web-wasm images
           - {
@@ -648,7 +663,7 @@ jobs:
               C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "no",
-              fmt_arg: ""
+              fmt_arg: "",
             }
     steps:
       - uses: actions/checkout@v2
