@@ -6,8 +6,8 @@ MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
 # musleabi as default glibc
 
 # We use a git commit while waiting for 1.25 to release (1.24 is several years old)
-# crosstool-ng master 2021-08-04
-ENV CT_VERSION d47b234152980a09196355b77a12cb425f3f1d2e
+# crosstool-ng master 2021-09-20
+ENV CT_VERSION 5f5a22f7a7307790ec571d0c5acf8790416964e6
 
 #include "common.crosstool"
 
