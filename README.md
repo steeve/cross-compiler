@@ -80,12 +80,13 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/android-x86 | x86 | Clang | Android |
 | dockcross/android-x86_64 | x86_64 | Clang | Android |
 | dockcross/linux-arm64 | ARMv8 | GCC | Linux |
+| dockcross/linux-arm64-lts | ARMv8 | GCC 8.5.0 + Glibc 2.27 | Linux |
 | dockcross/linux-arm64-full | ARMv8 | GCC + libs | Linux |
 | dockcross/linux-arm64-musl | ARMv8 | GCC + musl | Linux |
 | dockcross/linux-armv5 | ARMv5 | GCC | Linux |
 | dockcross/linux-armv5-musl | ARMv5 | GCC + musl | Linux |
 | dockcross/linux-armv6 | ARMv6 | GCC | Linux |
-| dockcross/linux-armv6-lts | ARMv6 | GCC + Glibc 2.28 | Linux |
+| dockcross/linux-armv6-lts | ARMv6 | GCC 8.5.0 + Glibc 2.28 | Linux |
 | dockcross/linux-armv6-musl | ARMv6 | GCC + musl | Linux |
 | dockcross/linux-armv7 | ARMv7 | GCC | Linux |
 | dockcross/linux-armv7a | ARMv7a | GCC | Linux |
@@ -101,7 +102,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/manylinux2014-x64 | x86_64 | GCC | Linux |
 | dockcross/linux-x86 | x86 | GCC | Linux |
 | dockcross/linux-x64 | x86_64 | GCC | Linux |
-| dockcross/linux-x64-full | x86_64 | GCC + libs | Linux |
+| dockcross/linux-x86_64-full | x86_64 | GCC + libs | Linux |
 | dockcross/linux-x64-clang | x86_64 | Clang | Linux |
 | dockcross/linux-x64-tinycc | x86_64 | tinycc + GCC | Linux |
 | dockcross/web-wasm | JS | LLVM | Web (JS) |
@@ -151,6 +152,13 @@ The Android NDK standalone toolchain for the x86_64 architecture.
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-arm64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-arm64)
 
 Cross compiler for the 64-bit ARM platform on Linux, also known as AArch64.
+
+### dockcross/linux-arm64-lts
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-arm64-lts/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-arm64-lts)
+
+Cross compiler for the 64-bit ARM platform on Linux, also known as AArch64, with Long-term support (For Ubuntu 18.04 or Debian Buster).
+With GCC 8.5.0 and GLibc 2.27.
 
 ### dockcross/linux-arm64-full
 
