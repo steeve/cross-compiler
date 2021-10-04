@@ -1,5 +1,6 @@
 FROM dockcross/base:latest
-MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
+
+LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
 
 ENV WINEARCH win64
 ARG MXE_TARGET_ARCH=x86_64

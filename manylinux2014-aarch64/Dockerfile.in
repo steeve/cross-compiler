@@ -4,6 +4,8 @@
 # For more details, read https://github.com/dockcross/dockcross/issues/367
 FROM dockcross/manylinux2014-x64:20210708-94745ff
 
+LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
+
 # This is for 64-bit ARM Manylinux machine
 
 # Crosstool-ng version
