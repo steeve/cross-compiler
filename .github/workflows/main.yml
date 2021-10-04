@@ -62,6 +62,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "android-arm64",
@@ -77,6 +79,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "android-x86",
@@ -92,6 +96,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "android-x86_64",
@@ -107,6 +113,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux arm64/armv8 images
           - {
@@ -123,6 +131,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-arm64-lts",
@@ -138,6 +148,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-arm64-musl",
@@ -153,6 +165,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-arm64-full",
@@ -168,6 +182,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux armv5 images
           - {
@@ -184,6 +200,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-armv5-musl",
@@ -199,6 +217,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux armv6 images
           - {
@@ -215,6 +235,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-armv6-lts",
@@ -230,6 +252,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-armv6-musl",
@@ -245,6 +269,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux armv7 images
           - {
@@ -261,6 +287,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-armv7a",
@@ -276,6 +304,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-armv7l-musl",
@@ -291,6 +321,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux x86 images
           - {
@@ -307,6 +339,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux x86_64 images
           - {
@@ -323,6 +357,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-x64-tinycc",
@@ -338,6 +374,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-x64-clang",
@@ -353,6 +391,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-x86_64-full",
@@ -368,6 +408,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux riscv images
           - {
@@ -384,6 +426,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "linux-riscv64",
@@ -399,6 +443,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux s390x images
           - {
@@ -415,6 +461,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux mips images
           - {
@@ -431,6 +479,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux ppc64le images
           - {
@@ -447,6 +497,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux m68k images
           - {
@@ -463,6 +515,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Linux xtensa images
           - {
@@ -479,6 +533,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Windows x86_x64 images
           - {
@@ -495,6 +551,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "windows-static-x64-posix",
@@ -510,6 +568,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "windows-shared-x64",
@@ -525,6 +585,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "windows-shared-x64-posix",
@@ -540,6 +602,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Windows x86 images
           - {
@@ -556,6 +620,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "windows-shared-x86",
@@ -571,6 +637,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # Windows arm images
           - {
@@ -587,6 +655,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "windows-arm64",
@@ -602,6 +672,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # manylinux2014 images
           - {
@@ -618,6 +690,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "manylinux2014-x64",
@@ -633,6 +707,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           - {
               image: "manylinux2014-aarch64",
@@ -648,6 +724,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
           # web-wasm images
           - {
@@ -664,6 +742,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
+              darknet: "yes",
+              darknet_arg: "",
             }
     steps:
       - uses: actions/checkout@v2
@@ -677,6 +757,7 @@ jobs:
         run: make ${{ matrix.arch_name.image }}
       - name: basic test
         run: make ${{ matrix.arch_name.image }}.test
+      # Updated on 28/08/2021
       - name: stockfish build test
         if: ${{ matrix.arch_name.stockfish == 'yes' }}
         run: |
@@ -686,12 +767,14 @@ jobs:
           ./../../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} build ${{ matrix.arch_name.stockfish_arg }} -j2
           cd ../..
           rm -rf Stockfish
+      # Updated on 28/08/2021
       - name: ninja build test
         if: ${{ matrix.arch_name.ninja == 'yes' }}
         run: |
           git clone --depth 1 --branch v1.10.2 https://github.com/ninja-build/ninja.git
           cd ninja
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.ninja_arg }}
+      # Updated on 28/08/2021
       - name: openssl build test
         if: ${{ matrix.arch_name.openssl == 'yes' }}
         run: |
@@ -703,6 +786,7 @@ jobs:
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
           rm -rf openssl
+      # Updated on 28/08/2021
       - name: C build test
         if: ${{ matrix.arch_name.C == 'yes' }}
         run: |
@@ -712,6 +796,7 @@ jobs:
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.C_arg }}
           cd ..
           rm -rf C
+      # Updated on 28/08/2021
       - name: C-Plus-Plus build test
         if: ${{ matrix.arch_name.C-Plus-Plus == 'yes' }}
         run: |
@@ -721,6 +806,7 @@ jobs:
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.C-Plus-Plus_arg }}
           cd ..
           rm -rf C-Plus-Plus
+      # Updated on 28/08/2021
       - name: fmt build test
         if: ${{ matrix.arch_name.fmt == 'yes' }}
         run: |
@@ -729,6 +815,16 @@ jobs:
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.fmt_arg }} -DFMT_DOC=OFF
           cd ..
           rm -rf fmt
+      # Updated on 04/10/2021
+      - name: Darknet build test
+        if: ${{ matrix.arch_name.darknet == 'yes' }}
+        run: |
+          git clone https://github.com/AlexeyAB/darknet.git
+          cd darknet
+          git checkout 568d8c18ab7323b68b16e5844040cd8d779dc7df
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.darknet_arg }}
+          cd ..
+          rm -rf darknet
       - name: deploy
         if: github.ref == 'refs/heads/master'
         run: |
