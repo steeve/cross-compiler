@@ -62,8 +62,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "android-arm64",
@@ -79,8 +79,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "android-x86",
@@ -96,8 +96,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "android-x86_64",
@@ -113,8 +113,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux arm64/armv8 images
           - {
@@ -131,8 +131,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-arm64-lts",
@@ -148,8 +148,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-arm64-musl",
@@ -165,8 +165,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-arm64-full",
@@ -182,8 +182,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux armv5 images
           - {
@@ -200,8 +200,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-armv5-musl",
@@ -217,8 +217,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux armv6 images
           - {
@@ -235,8 +235,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-armv6-lts",
@@ -252,8 +252,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-armv6-musl",
@@ -269,8 +269,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux armv7 images
           - {
@@ -287,8 +287,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-armv7a",
@@ -304,8 +304,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-armv7l-musl",
@@ -321,8 +321,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux x86 images
           - {
@@ -339,8 +339,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux x86_64 images
           - {
@@ -357,8 +357,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-x64-tinycc",
@@ -374,8 +374,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-x64-clang",
@@ -391,8 +391,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-x86_64-full",
@@ -408,8 +408,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux riscv images
           - {
@@ -426,8 +426,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "linux-riscv64",
@@ -443,8 +443,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux s390x images
           - {
@@ -461,8 +461,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux mips images
           - {
@@ -479,8 +479,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux ppc64le images
           - {
@@ -497,8 +497,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux m68k images
           - {
@@ -515,8 +515,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Linux xtensa images
           - {
@@ -533,8 +533,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Windows x86_x64 images
           - {
@@ -551,8 +551,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "windows-static-x64-posix",
@@ -568,8 +568,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "windows-shared-x64",
@@ -585,8 +585,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "windows-shared-x64-posix",
@@ -602,8 +602,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Windows x86 images
           - {
@@ -620,8 +620,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "windows-shared-x86",
@@ -637,8 +637,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # Windows arm images
           - {
@@ -655,8 +655,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "windows-arm64",
@@ -672,8 +672,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # manylinux2014 images
           - {
@@ -690,8 +690,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "manylinux2014-x64",
@@ -707,8 +707,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           - {
               image: "manylinux2014-aarch64",
@@ -724,8 +724,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
           # web-wasm images
           - {
@@ -742,8 +742,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              darknet: "yes",
-              darknet_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
             }
     steps:
       - uses: actions/checkout@v2
@@ -815,16 +815,16 @@ jobs:
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.fmt_arg }} -DFMT_DOC=OFF
           cd ..
           rm -rf fmt
-      # Updated on 04/10/2021
-      - name: Darknet build test
-        if: ${{ matrix.arch_name.darknet == 'yes' }}
+      # Updated on 05/10/2021
+      - name: cpython build test
+        if: ${{ matrix.arch_name.cpython == 'yes' }}
         run: |
-          git clone https://github.com/AlexeyAB/darknet.git
-          cd darknet
-          git checkout 568d8c18ab7323b68b16e5844040cd8d779dc7df
-          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.darknet_arg }}
+          git clone --depth 1 --branch v3.10.0 https://github.com/python/cpython.git
+          cd cpython
+          ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} ./configure ${{ matrix.arch_name.cpython_arg }}
+          ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
-          rm -rf darknet
+          rm -rf cpython
       - name: deploy
         if: github.ref == 'refs/heads/master'
         run: |
