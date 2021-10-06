@@ -1,5 +1,6 @@
 FROM dockcross/base:latest
-MAINTAINER Matt McCormick "matt.mccormick@kitware.com"
+
+LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
 
 # Crosstool-ng version
 # We use a git commit while waiting for 1.25 to release (1.24 is several years old)

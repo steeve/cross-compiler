@@ -1,5 +1,7 @@
 FROM dockcross/base:latest
 
+LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
+
 # This is for 64-bit ARM Linux machine
 
 # Crosstool-ng version
