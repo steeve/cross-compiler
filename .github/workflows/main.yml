@@ -80,7 +80,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=arch64-linux-android",
+              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-linux-android",
             }
           - {
               image: "android-x86",
@@ -110,11 +110,11 @@ jobs:
               C: "no",
               C_arg: "",
               C-Plus-Plus: "yes",
-              C-Plus-Plus_arg: "--host=x86_64-linux-gnu --build=x86_64-linux-android",
+              C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=x86_64-linux-android",
             }
           # Linux arm64/armv8 images
           - {
@@ -201,7 +201,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=armv5-unknown-linux-musleabi",
+              cpython_arg: "--host=x86_64-linux-gnu --build=armv5-unknown-linux-gnueabi",
             }
           - {
               image: "linux-armv5-musl",
@@ -218,7 +218,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=armv5-unknown-linux-musleabi",
             }
           # Linux armv6 images
           - {
@@ -236,7 +236,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=armv6-unknown-linux-gnueabihf",
             }
           - {
               image: "linux-armv6-lts",
@@ -253,7 +253,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=armv6-unknown-linux-gnueabihf",
             }
           - {
               image: "linux-armv6-musl",
@@ -270,7 +270,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=armv6-linux-musleabihf",
             }
           # Linux armv7 images
           - {
@@ -516,7 +516,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=m68k-unknown-uclinux-uclibc",
             }
           # Linux xtensa images
           - {
@@ -534,7 +534,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=xtensa-fsf-linux-uclibc",
             }
           # Windows x86_x64 images
           - {
@@ -551,7 +551,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "",
             }
           - {
@@ -568,7 +568,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "",
             }
           - {
@@ -585,7 +585,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "",
             }
           - {
@@ -602,7 +602,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "",
             }
           # Windows x86 images
@@ -620,7 +620,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "",
             }
           - {
@@ -637,7 +637,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "",
             }
           # Windows arm images
@@ -656,7 +656,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=armv7-w64-mingw32",
             }
           - {
               image: "windows-arm64",
@@ -673,7 +673,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-w64-mingw32",
             }
           # manylinux2014 images
           - {
@@ -742,7 +742,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "",
             }
     steps:
