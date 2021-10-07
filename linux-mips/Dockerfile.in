@@ -1,5 +1,7 @@
 FROM dockcross/base:latest
 
+LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
+
 # This is for 32-bit Big-Endian MIPS devices with hard floating point enabled
 
 # Crosstool-ng version
