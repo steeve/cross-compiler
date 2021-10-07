@@ -374,7 +374,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "",
             }
           - {
@@ -391,7 +391,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "",
             }
           - {
@@ -515,7 +515,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "--host=x86_64-linux-gnu --build=m68k-unknown-uclinux-uclibc",
             }
           # Linux xtensa images
@@ -655,8 +655,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=armv7-w64-mingw32",
+              cpython: "no",
+              cpython_arg: "",
             }
           - {
               image: "windows-arm64",
@@ -672,8 +672,8 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-w64-mingw32",
+              cpython: "no",
+              cpython_arg: "",
             }
           # manylinux2014 images
           - {
