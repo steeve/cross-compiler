@@ -409,7 +409,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=x86_64-buildroot-linux-gnu",
             }
           # Linux riscv images
           - {
