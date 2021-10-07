@@ -63,7 +63,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=arm-linux-androideabi",
             }
           - {
               image: "android-arm64",
@@ -80,7 +80,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=arch64-linux-android",
             }
           - {
               image: "android-x86",
@@ -97,7 +97,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=i686-linux-android",
             }
           - {
               image: "android-x86_64",
@@ -110,7 +110,7 @@ jobs:
               C: "no",
               C_arg: "",
               C-Plus-Plus: "yes",
-              C-Plus-Plus_arg: "",
+              C-Plus-Plus_arg: "--host=x86_64-linux-gnu --build=x86_64-linux-android",
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
@@ -132,7 +132,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-unknown-linux-gnu",
             }
           - {
               image: "linux-arm64-lts",
@@ -149,7 +149,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-unknown-linux-gnu",
             }
           - {
               image: "linux-arm64-musl",
@@ -166,7 +166,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-linux-musl",
             }
           - {
               image: "linux-arm64-full",
@@ -183,7 +183,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-unknown-linux-gnu",
             }
           # Linux armv5 images
           - {
@@ -201,7 +201,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=armv5-unknown-linux-musleabi",
             }
           - {
               image: "linux-armv5-musl",
@@ -288,7 +288,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=armv7-unknown-linux-gnueabi",
             }
           - {
               image: "linux-armv7a",
@@ -305,7 +305,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=arm-cortexa8_neon-linux-gnueabihf",
             }
           - {
               image: "linux-armv7l-musl",
@@ -322,7 +322,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=armv7l-linux-musleabihf",
             }
           # Linux x86 images
           - {
@@ -427,7 +427,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=riscv32-unknown-linux-gnu",
             }
           - {
               image: "linux-riscv64",
@@ -444,7 +444,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=riscv64-unknown-linux-gnu",
             }
           # Linux s390x images
           - {
@@ -462,7 +462,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=s390x-ibm-linux-gnu",
             }
           # Linux mips images
           - {
@@ -480,7 +480,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=mips-unknown-linux-gnu",
             }
           # Linux ppc64le images
           - {
@@ -498,7 +498,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "",
+              cpython_arg: "--host=x86_64-linux-gnu --build=powerpc64le-unknown-linux-gnu",
             }
           # Linux m68k images
           - {
@@ -819,9 +819,9 @@ jobs:
       - name: cpython build test
         if: ${{ matrix.arch_name.cpython == 'yes' }}
         run: |
-          git clone --depth 1 --branch v3.10.0 https://github.com/python/cpython.git
+          git clone --depth 1 --branch v3.9.2 https://github.com/python/cpython.git
           cd cpython
-          ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} ./configure ${{ matrix.arch_name.cpython_arg }}
+          ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} ./configure ac_cv_file__dev_ptmx=no ac_cv_file__dev_ptc=no --disable-ipv6 ${{ matrix.arch_name.cpython_arg }}
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
           rm -rf cpython
