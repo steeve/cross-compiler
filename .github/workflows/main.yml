@@ -745,6 +745,23 @@ jobs:
               cpython: "no",
               cpython_arg: "",
             }
+          - {
+              image: "web-wasi",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "linux-generic64 no-asm no-threads no-engine no-hw no-weak-ssl-ciphers no-dtls no-shared no-dso",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: "",
+              cpython: "no",
+              cpython_arg: "",
+            }
     steps:
       - uses: actions/checkout@v2
       - uses: actions/download-artifact@v2
