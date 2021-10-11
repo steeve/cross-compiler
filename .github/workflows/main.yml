@@ -63,7 +63,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=arm-linux-androideabi",
+              cpython_arg: "--host=arm-linux-androideabi --target=arm-linux-androideabi --build=x86_64-linux-gnu",
             }
           - {
               image: "android-arm64",
@@ -80,7 +80,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-linux-android",
+              cpython_arg: "--host=aarch64-linux-android --target=aarch64-linux-android --build=x86_64-linux-gnu",
             }
           - {
               image: "android-x86",
@@ -97,7 +97,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=i686-linux-android",
+              cpython_arg: "--host=i686-linux-android --target=i686-linux-android --build=x86_64-linux-gnu",
             }
           - {
               image: "android-x86_64",
@@ -114,7 +114,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=x86_64-linux-android",
+              cpython_arg: "--host=x86_64-linux-android --target=x86_64-linux-android --build=x86_64-linux-gnu",
             }
           # Linux arm64/armv8 images
           - {
@@ -132,7 +132,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-unknown-linux-gnu",
+              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu --build=x86_64-linux-gnu",
             }
           - {
               image: "linux-arm64-lts",
@@ -149,7 +149,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-unknown-linux-gnu",
+              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu --build=x86_64-linux-gnu",
             }
           - {
               image: "linux-arm64-musl",
@@ -166,7 +166,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-linux-musl",
+              cpython_arg: "--host=aarch64-linux-musl --target=aarch64-linux-musl --build=x86_64-linux-gnu",
             }
           - {
               image: "linux-arm64-full",
@@ -183,7 +183,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=aarch64-unknown-linux-gnu",
+              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu --build=x86_64-linux-gnu",
             }
           # Linux armv5 images
           - {
@@ -201,7 +201,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=armv5-unknown-linux-gnueabi",
+              cpython_arg: "--host=armv5-unknown-linux-gnueabi --target=armv5-unknown-linux-gnueabi --build=x86_64-linux-gnu",
             }
           - {
               image: "linux-armv5-musl",
@@ -218,7 +218,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=armv5-unknown-linux-musleabi",
+              cpython_arg: "--host=armv5-unknown-linux-musleabi --target=armv5-unknown-linux-musleabi --build=x86_64-linux-gnu",
             }
           # Linux armv6 images
           - {
@@ -236,7 +236,6 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-#              cpython_arg: "--host=x86_64-linux-gnu --build=armv6-unknown-linux-gnueabihf",
               cpython_arg: "--host=armv6-unknown-linux-gnueabihf --target=armv6-unknown-linux-gnueabihf --build=x86_64-linux-gnu",
             }
           - {
@@ -254,7 +253,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=armv6-unknown-linux-gnueabihf",
+              cpython_arg: "--host=armv6-unknown-linux-gnueabihf --target=armv6-unknown-linux-gnueabihf --build=x86_64-linux-gnu",
             }
           - {
               image: "linux-armv6-musl",
@@ -271,7 +270,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=armv6-linux-musleabihf",
+              cpython_arg: "--host=armv6-linux-musleabihf --target=armv6-linux-musleabihf --build=x86_64-linux-gnu",
             }
           # Linux armv7 images
           - {
@@ -289,7 +288,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=armv7-unknown-linux-gnueabi",
+              cpython_arg: "--host=armv7-unknown-linux-gnueabi --target=armv7-unknown-linux-gnueabi --build=x86_64-linux-gnu",
             }
           - {
               image: "linux-armv7a",
@@ -306,7 +305,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=arm-cortexa8_neon-linux-gnueabihf",
+              cpython_arg: "--host=arm-cortexa8_neon-linux-gnueabihf --target=arm-cortexa8_neon-linux-gnueabihf --build=x86_64-linux-gnu",
             }
           - {
               image: "linux-armv7l-musl",
@@ -323,7 +322,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=armv7l-linux-musleabihf",
+              cpython_arg: "--host=armv7l-linux-musleabihf --target=armv7l-linux-musleabihf --build=x86_64-linux-gnu",
             }
           # Linux x86 images
           - {
