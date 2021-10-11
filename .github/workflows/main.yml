@@ -236,7 +236,8 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=armv6-unknown-linux-gnueabihf",
+#              cpython_arg: "--host=x86_64-linux-gnu --build=armv6-unknown-linux-gnueabihf",
+              cpython_arg: "--host=armv6-unknown-linux-gnueabihf --target=armv6-unknown-linux-gnueabihf --build=x86_64-linux-gnu",
             }
           - {
               image: "linux-armv6-lts",
