@@ -409,7 +409,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=x86_64-buildroot-linux-gnu",
+              cpython_arg: "--host=x86_64-buildroot-linux-gnu --target=x86_64-buildroot-linux-gnu --build=x86_64-linux-gnu",
             }
           # Linux riscv images
           - {
@@ -427,7 +427,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=riscv32-unknown-linux-gnu",
+              cpython_arg: "--host=riscv32-unknown-linux-gnu --target=riscv32-unknown-linux-gnu --build=x86_64-linux-gnu",
             }
           - {
               image: "linux-riscv64",
@@ -444,7 +444,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=riscv64-unknown-linux-gnu",
+              cpython_arg: "--host=riscv64-unknown-linux-gnu --target=riscv64-unknown-linux-gnu --build=x86_64-linux-gnu",
             }
           # Linux s390x images
           - {
@@ -462,7 +462,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=s390x-ibm-linux-gnu",
+              cpython_arg: "--host=s390x-ibm-linux-gnu --target=s390x-ibm-linux-gnu --build=x86_64-linux-gnu",
             }
           # Linux mips images
           - {
@@ -480,7 +480,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=mips-unknown-linux-gnu",
+              cpython_arg: "--host=mips-unknown-linux-gnu --target=mips-unknown-linux-gnu --build=x86_64-linux-gnu",
             }
           # Linux ppc64le images
           - {
@@ -498,7 +498,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=powerpc64le-unknown-linux-gnu",
+              cpython_arg: "--host=powerpc64le-unknown-linux-gnu --target=powerpc64le-unknown-linux-gnu --build=x86_64-linux-gnu",
             }
           # Linux m68k images
           - {
@@ -516,7 +516,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "no",
-              cpython_arg: "--host=x86_64-linux-gnu --build=m68k-unknown-uclinux-uclibc",
+              cpython_arg: "--host=m68k-unknown-uclinux-uclibc --target=m68k-unknown-uclinux-uclibc --build=x86_64-linux-gnu",
             }
           # Linux xtensa images
           - {
@@ -534,7 +534,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-gnu --build=xtensa-fsf-linux-uclibc",
+              cpython_arg: "--host=xtensa-fsf-linux-uclibc --target=xtensa-fsf-linux-uclibc --build=x86_64-linux-gnu",
             }
           # Windows x86_x64 images
           - {
