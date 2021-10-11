@@ -62,7 +62,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "--host=arm-linux-androideabi --target=arm-linux-androideabi",
             }
           - {
@@ -79,7 +79,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "--host=aarch64-linux-android --target=aarch64-linux-android",
             }
           - {
@@ -96,7 +96,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "--host=i686-linux-android --target=i686-linux-android",
             }
           - {
@@ -113,7 +113,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
-              cpython: "yes",
+              cpython: "no",
               cpython_arg: "--host=x86_64-linux-android --target=x86_64-linux-android",
             }
           # Linux arm64/armv8 images
