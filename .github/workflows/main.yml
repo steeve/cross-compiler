@@ -63,7 +63,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=arm-linux-androideabi --target=arm-linux-androideabi --build=x86_64-linux-gnu",
+              cpython_arg: "--host=arm-linux-androideabi --target=arm-linux-androideabi",
             }
           - {
               image: "android-arm64",
@@ -80,7 +80,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=aarch64-linux-android --target=aarch64-linux-android --build=x86_64-linux-gnu",
+              cpython_arg: "--host=aarch64-linux-android --target=aarch64-linux-android",
             }
           - {
               image: "android-x86",
@@ -97,7 +97,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=i686-linux-android --target=i686-linux-android --build=x86_64-linux-gnu",
+              cpython_arg: "--host=i686-linux-android --target=i686-linux-android",
             }
           - {
               image: "android-x86_64",
@@ -114,7 +114,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-linux-android --target=x86_64-linux-android --build=x86_64-linux-gnu",
+              cpython_arg: "--host=x86_64-linux-android --target=x86_64-linux-android",
             }
           # Linux arm64/armv8 images
           - {
@@ -132,7 +132,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu --build=x86_64-linux-gnu",
+              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu",
             }
           - {
               image: "linux-arm64-lts",
@@ -149,7 +149,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu --build=x86_64-linux-gnu",
+              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu",
             }
           - {
               image: "linux-arm64-musl",
@@ -166,7 +166,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=aarch64-linux-musl --target=aarch64-linux-musl --build=x86_64-linux-gnu",
+              cpython_arg: "--host=aarch64-linux-musl --target=aarch64-linux-musl",
             }
           - {
               image: "linux-arm64-full",
@@ -183,7 +183,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu --build=x86_64-linux-gnu",
+              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu",
             }
           # Linux armv5 images
           - {
@@ -201,7 +201,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=armv5-unknown-linux-gnueabi --target=armv5-unknown-linux-gnueabi --build=x86_64-linux-gnu",
+              cpython_arg: "--host=armv5-unknown-linux-gnueabi --target=armv5-unknown-linux-gnueabi",
             }
           - {
               image: "linux-armv5-musl",
@@ -218,7 +218,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=armv5-unknown-linux-musleabi --target=armv5-unknown-linux-musleabi --build=x86_64-linux-gnu",
+              cpython_arg: "--host=armv5-unknown-linux-musleabi --target=armv5-unknown-linux-musleabi",
             }
           # Linux armv6 images
           - {
@@ -236,7 +236,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=armv6-unknown-linux-gnueabihf --target=armv6-unknown-linux-gnueabihf --build=x86_64-linux-gnu",
+              cpython_arg: "--host=armv6-unknown-linux-gnueabihf --target=armv6-unknown-linux-gnueabihf",
             }
           - {
               image: "linux-armv6-lts",
@@ -253,7 +253,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=armv6-unknown-linux-gnueabihf --target=armv6-unknown-linux-gnueabihf --build=x86_64-linux-gnu",
+              cpython_arg: "--host=armv6-unknown-linux-gnueabihf --target=armv6-unknown-linux-gnueabihf",
             }
           - {
               image: "linux-armv6-musl",
@@ -270,7 +270,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=armv6-linux-musleabihf --target=armv6-linux-musleabihf --build=x86_64-linux-gnu",
+              cpython_arg: "--host=armv6-linux-musleabihf --target=armv6-linux-musleabihf",
             }
           # Linux armv7 images
           - {
@@ -288,7 +288,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=armv7-unknown-linux-gnueabi --target=armv7-unknown-linux-gnueabi --build=x86_64-linux-gnu",
+              cpython_arg: "--host=armv7-unknown-linux-gnueabi --target=armv7-unknown-linux-gnueabi",
             }
           - {
               image: "linux-armv7a",
@@ -305,7 +305,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=arm-cortexa8_neon-linux-gnueabihf --target=arm-cortexa8_neon-linux-gnueabihf --build=x86_64-linux-gnu",
+              cpython_arg: "--host=arm-cortexa8_neon-linux-gnueabihf --target=arm-cortexa8_neon-linux-gnueabihf",
             }
           - {
               image: "linux-armv7l-musl",
@@ -322,7 +322,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=armv7l-linux-musleabihf --target=armv7l-linux-musleabihf --build=x86_64-linux-gnu",
+              cpython_arg: "--host=armv7l-linux-musleabihf --target=armv7l-linux-musleabihf",
             }
           # Linux x86 images
           - {
@@ -409,7 +409,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=x86_64-buildroot-linux-gnu --target=x86_64-buildroot-linux-gnu --build=x86_64-linux-gnu",
+              cpython_arg: "--host=x86_64-buildroot-linux-gnu --target=x86_64-buildroot-linux-gnu",
             }
           # Linux riscv images
           - {
@@ -427,7 +427,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=riscv32-unknown-linux-gnu --target=riscv32-unknown-linux-gnu --build=x86_64-linux-gnu",
+              cpython_arg: "--host=riscv32-unknown-linux-gnu --target=riscv32-unknown-linux-gnu",
             }
           - {
               image: "linux-riscv64",
@@ -444,7 +444,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=riscv64-unknown-linux-gnu --target=riscv64-unknown-linux-gnu --build=x86_64-linux-gnu",
+              cpython_arg: "--host=riscv64-unknown-linux-gnu --target=riscv64-unknown-linux-gnu",
             }
           # Linux s390x images
           - {
@@ -462,7 +462,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=s390x-ibm-linux-gnu --target=s390x-ibm-linux-gnu --build=x86_64-linux-gnu",
+              cpython_arg: "--host=s390x-ibm-linux-gnu --target=s390x-ibm-linux-gnu",
             }
           # Linux mips images
           - {
@@ -480,7 +480,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=mips-unknown-linux-gnu --target=mips-unknown-linux-gnu --build=x86_64-linux-gnu",
+              cpython_arg: "--host=mips-unknown-linux-gnu --target=mips-unknown-linux-gnu",
             }
           # Linux ppc64le images
           - {
@@ -498,7 +498,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=powerpc64le-unknown-linux-gnu --target=powerpc64le-unknown-linux-gnu --build=x86_64-linux-gnu",
+              cpython_arg: "--host=powerpc64le-unknown-linux-gnu --target=powerpc64le-unknown-linux-gnu",
             }
           # Linux m68k images
           - {
@@ -516,7 +516,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "no",
-              cpython_arg: "--host=m68k-unknown-uclinux-uclibc --target=m68k-unknown-uclinux-uclibc --build=x86_64-linux-gnu",
+              cpython_arg: "--host=m68k-unknown-uclinux-uclibc --target=m68k-unknown-uclinux-uclibc",
             }
           # Linux xtensa images
           - {
@@ -534,7 +534,7 @@ jobs:
               fmt: "no",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=xtensa-fsf-linux-uclibc --target=xtensa-fsf-linux-uclibc --build=x86_64-linux-gnu",
+              cpython_arg: "--host=xtensa-fsf-linux-uclibc --target=xtensa-fsf-linux-uclibc",
             }
           # Windows x86_x64 images
           - {
@@ -838,7 +838,7 @@ jobs:
         run: |
           git clone --depth 1 --branch v3.9.2 https://github.com/python/cpython.git
           cd cpython
-          ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} ./configure ac_cv_file__dev_ptmx=no ac_cv_file__dev_ptc=no --disable-ipv6 ${{ matrix.arch_name.cpython_arg }}
+          ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} ./configure ac_cv_file__dev_ptmx=no ac_cv_file__dev_ptc=no --disable-ipv6 ${{ matrix.arch_name.cpython_arg }} --build=x86_64-linux-gnu --enable-shared
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
           rm -rf cpython
