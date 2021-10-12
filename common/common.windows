@@ -112,7 +112,11 @@ RUN \
   cd /usr/bin && \
   rm cmake cpack && \
   ln -s /usr/src/mxe/usr/bin/${MXE_TARGET_ARCH}-w64-mingw32.${MXE_TARGET_LINK}${MXE_TARGET_THREAD}-cmake cmake && \
-  ln -s /usr/src/mxe/usr/bin/${MXE_TARGET_ARCH}-w64-mingw32.${MXE_TARGET_LINK}${MXE_TARGET_THREAD}-cpack cpack
+  ln -s /usr/src/mxe/usr/bin/${MXE_TARGET_ARCH}-w64-mingw32.${MXE_TARGET_LINK}${MXE_TARGET_THREAD}-cpack cpack && \
+  #
+  # clean up temporary wine files
+  #
+  rm -rf /tmp/wine-*
 
 ENV PATH ${PATH}:/usr/src/mxe/usr/bin
 ENV CROSS_TRIPLE ${MXE_TARGET_ARCH}-w64-mingw32.${MXE_TARGET_LINK}${MXE_TARGET_THREAD}
