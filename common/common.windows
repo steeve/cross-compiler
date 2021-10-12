@@ -54,6 +54,7 @@ RUN \
     libc6-dev-i386 \
     lzip \
     make \
+    nsis \
     openssl \
     p7zip-full \
     patch \
@@ -106,6 +107,10 @@ RUN \
   # Update MXE toolchain file
   #
   echo 'set(CMAKE_CROSSCOMPILING_EMULATOR "/usr/bin/wine")' >> ${CMAKE_TOOLCHAIN_FILE} && \
+  #
+  # Add a sysmbolic link for makensis
+  #
+  ln -s /usr/bin/makensis /usr/bin/${MXE_TARGET_ARCH}-w64-mingw32.${MXE_TARGET_LINK}${MXE_TARGET_THREAD}-makensis && \
   #
   # Replace cmake and cpack binaries
   #
