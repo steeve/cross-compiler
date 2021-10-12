@@ -183,7 +183,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=aarch64-unknown-linux-gnu --target=aarch64-unknown-linux-gnu",
+              cpython_arg: "--host=aarch64-buildroot-linux-gnu --target=aarch64-buildroot-linux-gnu",
             }
           # Linux armv5 images
           - {
