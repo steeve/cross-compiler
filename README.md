@@ -105,7 +105,8 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/linux-x86_64-full | x86_64 | GCC + libs | Linux |
 | dockcross/linux-x64-clang | x86_64 | Clang | Linux |
 | dockcross/linux-x64-tinycc | x86_64 | tinycc + GCC | Linux |
-| dockcross/web-wasm | JS | LLVM | Web (JS) |
+| dockcross/web-wasm | Wasm | LLVM | Web (JS) |
+| dockcross/web-wasi | Wasm | LLVM | Web (Universal) |
 | dockcross/windows-shared-x86 | x86 | GCC | Windows |
 | dockcross/windows-shared-x64 | x86_64 | GCC | Windows |
 | dockcross/windows-shared-x64-posix | x86_64 | GCC | Windows |
@@ -315,7 +316,13 @@ Docker [manylinux2014](https://github.com/pypa/manylinux) image for building Lin
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/web-wasm/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/web-wasm)
 
-The Emscripten WebAssembly/asm.js/JavaScript cross compiler.
+The [Emscripten](https://emscripten.org/) [WebAssembly](https://webassembly.org/)/JavaScript cross compiler.
+
+### dockcross/web-wasi
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/web-wasi/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/web-wasi)
+
+The [WebAssembly System Interface (WASI)](https://wasi.dev/) SDK LLVM/Clang/WASI Sysroot cross compiler.
 
 ### dockcross/windows-static-x64
 
