@@ -1,5 +1,3 @@
-set(WASI 1)
-
 include($ENV{WASI_SDK_PATH}/share/cmake/wasi-sdk.cmake)
 
 set(CMAKE_FIND_ROOT_PATH $ENV{CROSS_ROOT})
