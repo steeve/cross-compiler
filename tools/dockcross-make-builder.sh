@@ -10,8 +10,8 @@ if (( $# >= 1 )); then
     make_arg=$*
     echo "make arg: $make_arg"
 
-    echo "Pulling dockcross/$image"
-    docker pull "dockcross/$image:$tag"
+#    echo "Pulling dockcross/$image"
+#    docker pull "dockcross/$image:$tag"
 
     echo "Make script dockcross-$image"
     docker run --rm dockcross/"$image" > ./dockcross-"$image"
