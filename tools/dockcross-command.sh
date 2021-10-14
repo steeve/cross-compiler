@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
 
 if (( $# >= 2 )); then
-    image=$1
+    image_complet=$1
+    image=${image_complet%:*}
+    tag=${image_complet#*:}
     shift 1
 
-    command=$@
+    command=$*
     echo "command: $command"
 
-    #echo "Pulling dockcross/$image"
-    #docker pull dockcross/"$image"
+#    echo "Pulling dockcross/$image"
+#    docker pull "dockcross/$image:$tag"
 
     echo "Make script dockcross-$image"
     docker run --rm dockcross/"$image" > ./dockcross-"$image"
