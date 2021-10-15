@@ -89,6 +89,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/linux-armv6-lts | ARMv6 | GCC 8.5.0 + Glibc 2.28 | Linux |
 | dockcross/linux-armv6-musl | ARMv6 | GCC + musl | Linux |
 | dockcross/linux-armv7 | ARMv7 | GCC | Linux |
+| dockcross/linux-armv7-lts | ARMv7 | GCC 8.5.0 + Glibc 2.28 | Linux |
 | dockcross/linux-armv7a | ARMv7a | GCC | Linux |
 | dockcross/linux-armv7l-musl | ARMv7l | GCC + musl | Linux |
 | dockcross/linux-mips | mips | GCC | Linux |
@@ -212,6 +213,12 @@ using [musl](https://www.musl-libc.org/) as base \"libc\".
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv7/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv7)
 
 Generic Linux armv7 cross compiler toolchain.
+
+### dockcross/linux-armv7-lts
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv7-lts/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv7-lts)
+
+Linux ARMv7 cross compiler toolchain for the Raspberry Pi (Debian buster...)
 
 ### dockcross/linux-armv7a
 
