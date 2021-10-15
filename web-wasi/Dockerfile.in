@@ -26,6 +26,8 @@ ENV AR=${CROSS_ROOT}/bin/llvm-ar \
     CXX=clang++-wasi-sysroot.sh \
     LD=${CROSS_ROOT}/bin/wasm-ld
 
+COPY WASI.cmake /usr/src/
+RUN mv /usr/src/WASI.cmake /usr/share/cmake-*/Modules/Platform/
 COPY Toolchain.cmake ${CROSS_ROOT}/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
 
