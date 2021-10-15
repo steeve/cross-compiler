@@ -310,7 +310,7 @@ jobs:
           - {
               image: "linux-armv7-lts",
               stockfish: "yes",
-              stockfish_arg: "ARCH=armv7-neon",
+              stockfish_arg: "ARCH=armv7",
               ninja: "yes",
               ninja_arg: "",
               openssl: "yes",
@@ -322,7 +322,7 @@ jobs:
               fmt: "yes",
               fmt_arg: "",
               cpython: "yes",
-              cpython_arg: "--host=arm-cortexa8_neon-linux-gnueabihf --target=arm-cortexa8_neon-linux-gnueabihf",
+              cpython_arg: "--host=armv7-unknown-linux-gnueabi --target=armv7-unknown-linux-gnueabi",
             }
           - {
               image: "linux-armv7l-musl",
