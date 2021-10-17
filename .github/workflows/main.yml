@@ -383,7 +383,7 @@ jobs:
               stockfish_arg: "ARCH=x86-64-modern COMP=clang",
               ninja: "yes",
               ninja_arg: "",
-              openssl: "no",
+              openssl: "yes",
               openssl_arg: "linux-x86_64-clang",
               C: "yes",
               C_arg: "",
@@ -391,7 +391,7 @@ jobs:
               C-Plus-Plus_arg: "",
               fmt: "yes",
               fmt_arg: "",
-              cpython: "no",
+              cpython: "yes",
               cpython_arg: "",
             }
           - {
