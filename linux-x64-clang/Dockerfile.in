@@ -11,7 +11,7 @@ RUN echo "deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main" >> /et
     && echo "deb-src http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye-${CLANG_VERSION}  main" >> /etc/apt/sources.list \
     && wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && apt-get update \
-    && apt-get -y install clang-${CLANG_VERSION} libc++-${CLANG_VERSION}-dev libc++abi-${CLANG_VERSION}-dev clang-format-${CLANG_VERSION} clang-tidy-${CLANG_VERSION} lldb-${CLANG_VERSION}  \
+    && apt-get -y install clang-${CLANG_VERSION} libc++-${CLANG_VERSION}-dev libc++abi-${CLANG_VERSION}-dev clang-format-${CLANG_VERSION} clang-tidy-${CLANG_VERSION} lldb-${CLANG_VERSION} liblld-${CLANG_VERSION}-dev \
     && apt-get -y install libomp-${CLANG_VERSION}-dev clang-tools-${CLANG_VERSION} clangd-${CLANG_VERSION} libclang-${CLANG_VERSION}-dev libclang-common-${CLANG_VERSION}-dev llvm-${CLANG_VERSION}-dev \
     && apt-get clean --yes \
     && rm -rf /var/lib/apt/lists/* \
@@ -20,20 +20,20 @@ RUN echo "deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main" >> /et
     && update-alternatives --install /usr/bin/cpp cpp /usr/bin/clang++-${CLANG_VERSION} 90 \
     && update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSION} 90 \
     && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION} 90 \
+    && update-alternatives --install /usr/bin/lld lld /usr/bin/lld-${CLANG_VERSION} 90 \
     && cc --version \
     && c++ --version \
     && cpp --version
 
 ENV CROSS_TRIPLE x86_64-linux-gnu
 ENV CROSS_ROOT /usr/bin
-ENV CC=/usr/bin/clang  \
-    CPP=/usr/bin/cpp \
-    CXX=/usr/bin/clang++  \
-    LD=/usr/bin/lld \
-    FC=/usr/bin/flang
-
-#    AS=/usr/bin/${CROSS_TRIPLE}-as
-#    AR=/usr/bin/${CROSS_TRIPLE}-ar
+ENV CC=/usr/bin/clang-${CLANG_VERSION}  \
+    CPP=/usr/bin/clang-cpp-${CLANG_VERSION} \
+    CXX=/usr/bin/clang++-${CLANG_VERSION} \
+    LD=/usr/bin/lld-${CLANG_VERSION} \
+    AS=/usr/bin/llvm-as-${CLANG_VERSION} \
+    AR=/usr/bin/llvm-ar-${CLANG_VERSION}
+#    FC=/usr/bin/flang
 
 COPY ${CROSS_TRIPLE}-noop.sh /usr/bin/${CROSS_TRIPLE}-noop
 
