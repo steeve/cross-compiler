@@ -72,7 +72,7 @@ The dockcross script will execute the given command-line inside the container, a
 
 ## Summary cross compilers
 
-The list of docker images that are **supported**.
+The list of docker images that are **maintained**.
 
 | Image name | Target arch | Compiler | Target OS |
 |:-------:|:--------:|:------:|:-----:|
@@ -119,7 +119,7 @@ The list of docker images that are **supported**.
 | dockcross/windows-armv7 | ARMv7 | Clang | Windows |
 | dockcross/windows-arm64 | ARMv8 | Clang | Windows |
 
-The list of docker images that are **no longer maintained**
+The list of docker images that are **no longer maintained**.
 
 | Image name | Target arch | Compiler | Target OS |
 |:-------:|:--------:|:------:|:-----:|
