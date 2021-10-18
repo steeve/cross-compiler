@@ -117,7 +117,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/windows-armv7 | ARMv7 | Clang | Windows |
 | dockcross/windows-arm64 | ARMv8 | Clang | Windows |
 
-The list of docker images that are no longer supported
+The list of docker images that are **no longer supported**
 
 | Image name | Target arch | Compiler | Target OS |
 |:-------:|:--------:|:------:|:-----:|
