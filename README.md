@@ -72,8 +72,6 @@ The dockcross script will execute the given command-line inside the container, a
 
 ## Summary cross compilers
 
-The list of docker images that are **maintained**.
-
 | Image name | Target arch | Compiler | Target OS |
 |:-------:|:--------:|:------:|:-----:|
 | dockcross/base | - | - | - |
