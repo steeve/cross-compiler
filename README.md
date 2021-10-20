@@ -117,6 +117,17 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/windows-armv7 | ARMv7 | Clang | Windows |
 | dockcross/windows-arm64 | ARMv8 | Clang | Windows |
 
+The list of docker images that are **no longer maintained**.
+
+| Image name | Target arch | Compiler | Target OS |
+|:-------:|:--------:|:------:|:-----:|
+| dockcross/manylinux1-x86 | x86 | GCC | manylinux |
+| dockcross/manylinux1-x64 | x86_64 | GCC| manylinux |
+| dockcross/manylinux2010-x86 | x86 | GCC | manylinux |
+| dockcross/manylinux2010-x64 | x86_64 | GCC | manylinux |
+| dockcross/linux-mipsel | mipsel | GCC 4.9 | Debian 8 |
+
+
 ## Cross compilers
 
 ### dockcross/base
@@ -380,17 +391,6 @@ ARMv7 32-bit Windows cross-compiler based on [LLVM/MinGW-w64](https://github.com
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/windows-arm64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/windows-arm64)
 
 ARMv8 64-bit Windows cross-compiler based on [llvm-mingw](https://github.com/mstorsjo/llvm-mingw)
-
-## Summary legacy cross compilers
-
-The list of docker images that are no longer supported or broken
-
-| Image name | Target arch | Compiler | Target OS |
-|:-------:|:--------:|:------:|:-----:|
-| dockcross/manylinux1-x86 | x86 | GCC | manylinux |
-| dockcross/manylinux1-x64 | x86_64 | GCC| manylinux |
-| dockcross/manylinux2010-x86 | x86 | GCC | manylinux |
-| dockcross/manylinux2010-x64 | x86_64 | GCC | manylinux |
 
 ## Articles
 
