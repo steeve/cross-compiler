@@ -9,8 +9,6 @@ ENV REPO_URL=${REPO_URL}
 
 RUN apt-get update && \
     apt-get -y install \
-    libelf-dev \
-    libssl-dev \
     libtbb-dev \
     && apt-get clean --yes
 
