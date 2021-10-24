@@ -7,6 +7,13 @@ LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
 ARG REPO_URL=https://repo.or.cz/tinycc.git
 ENV REPO_URL=${REPO_URL}
 
+RUN apt-get update && \
+    apt-get -y install \
+    libelf-dev \
+    libssl-dev \
+    libtbb-dev \
+    && apt-get clean --yes
+
 # Disable options: --with-libgcc --disable-static
 RUN git clone --recurse-submodules --remote-submodules ${REPO_URL} \
     && cd tinycc \
