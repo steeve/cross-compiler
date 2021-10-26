@@ -7,6 +7,7 @@ RUN dpkg --add-architecture i386 && \
     gcc-multilib \
     g++-multilib \
     libc6:i386 \
+    libtbb-dev:i386 \
     libstdc++6:i386 \
     libbz2-dev:i386 \
     libexpat1-dev:i386 \
