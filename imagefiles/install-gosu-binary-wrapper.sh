@@ -16,7 +16,7 @@ gosu nobody true
 # is created in /usr/local/bin
 
 cat << EOF >> /usr/local/bin/sudo
-#!/bin/sh
+#!/bin/bash
 # Emulate the sudo command
 SUDO_USER=root
 SUDO_GROUP=root
