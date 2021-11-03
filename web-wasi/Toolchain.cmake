@@ -7,4 +7,4 @@ set(CMAKE_SYSROOT $ENV{WASI_SYSROOT})
 set(CMAKE_C_COMPILER /usr/local/bin/clang-wasi-sysroot.sh)
 set(CMAKE_CXX_COMPILER /usr/local/bin/clang++-wasi-sysroot.sh)
 
-set(CMAKE_CROSSCOMPILING_EMULATOR /usr/local/bin/wasmer-pwd.sh)
+set(CMAKE_CROSSCOMPILING_EMULATOR /usr/local/bin/wasmtime-pwd.sh)
