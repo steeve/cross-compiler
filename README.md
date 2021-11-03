@@ -56,7 +56,8 @@ Only 64-bit x86_64 images are provided, a 64-bit x86_64 host system is required.
 For the impatient, here\'s how to compile a hello world for armv7:
 
 ```bash
-cd ~/src/dockcross
+git clone https://github.com/dockcross/dockcross.git
+cd dockcross
 docker run --rm dockcross/linux-armv7 > ./dockcross-linux-armv7
 chmod +x ./dockcross-linux-armv7
 ./dockcross-linux-armv7 bash -c '$CC test/C/hello.c -o hello_arm'
