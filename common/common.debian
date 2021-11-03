@@ -18,6 +18,7 @@ RUN \
     gettext \
     gzip \
     gnupg \
+    osslsigncode \
     initramfs-tools \
     libncurses5 \
     libtool \
