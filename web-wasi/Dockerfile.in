@@ -3,9 +3,10 @@ FROM dockcross/base:latest
 LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
 
 # The cross-compiling emulator
-ENV WASMER_DIR /usr/local/wasmer
-RUN curl https://get.wasmer.io -sSfL | sh
-ENV PATH /usr/local/wasmer/bin:${PATH}
+ENV WASMTIME_HOME /usr/local/wasmtime
+RUN mkdir ${WASMTIME_HOME} && curl https://wasmtime.dev/install.sh -sSf | bash
+COPY wasmtime-pwd.sh ${WASMTIME_HOME}/bin/
+ENV PATH "$WASMTIME_HOME/bin:$PATH"
 
 ENV WASI_VERSION 12
 ENV WASI_VERSION_FULL ${WASI_VERSION}.0
@@ -16,7 +17,7 @@ RUN cd /usr/ && \
 ENV WASI_SDK_PATH /usr/wasi-sdk-${WASI_VERSION_FULL}
 ENV WASI_SYSROOT ${WASI_SDK_PATH}/share/wasi-sysroot
 
-COPY clang-wasi-sysroot.sh clang++-wasi-sysroot.sh wasmer-pwd.sh /usr/local/bin/
+COPY clang-wasi-sysroot.sh clang++-wasi-sysroot.sh wasmtime-pwd.sh /usr/local/bin/
 
 ENV CROSS_TRIPLE=wasm32-wasi
 ENV CROSS_ROOT=${WASI_SDK_PATH}
