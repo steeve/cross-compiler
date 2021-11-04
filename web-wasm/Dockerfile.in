@@ -33,6 +33,7 @@ RUN \
     libtool \
     python3 \
     python3-pip \
+    osslsigncode \
     rsync \
     sed \
     ssh \
