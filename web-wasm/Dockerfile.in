@@ -54,7 +54,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 
 #include "common.docker"
 
-ENV EMSCRIPTEN_VERSION 2.0.31
+ENV EMSCRIPTEN_VERSION 2.0.34
 
 ENV PATH /emsdk:/emsdk/upstream/bin/:/emsdk/upstream/emscripten:${PATH}
 ENV CC=/emsdk/upstream/emscripten/emcc \
