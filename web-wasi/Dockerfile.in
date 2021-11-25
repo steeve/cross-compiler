@@ -8,7 +8,7 @@ RUN mkdir ${WASMTIME_HOME} && curl https://wasmtime.dev/install.sh -sSf | bash
 COPY wasmtime-pwd.sh ${WASMTIME_HOME}/bin/
 ENV PATH "$WASMTIME_HOME/bin:$PATH"
 
-ENV WASI_VERSION 12
+ENV WASI_VERSION 14
 ENV WASI_VERSION_FULL ${WASI_VERSION}.0
 RUN cd /usr/ && \
   curl -L -O https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-${WASI_VERSION}/wasi-sdk-${WASI_VERSION_FULL}-linux.tar.gz && \
