@@ -1,0 +1,68 @@
+# common.webassembly
+#
+# Common WebAssembly tools.
+
+# main 2021-12-31
+ENV BINARYEN_GIT_TAG 6137b338c7fb37ba98b63c31225ec9cfda8cfa59
+RUN git clone https://github.com/WebAssembly/binaryen.git && \
+  cd binaryen && \
+  git checkout ${BINARYEN_GIT_TAG} && \
+  cd ../ && \
+  mkdir binaryen-build && \
+  cd binaryen-build && \
+  /usr/bin/cmake \
+    -DCMAKE_C_COMPILER=/usr/bin/cc \
+    -DCMAKE_CXX_COMPILER=/usr/bin/c++ \
+    -G Ninja \
+    -DCMAKE_INSTALL_PREFIX:PATH=/usr \
+    -DCMAKE_TOOLCHAIN_FILE="" \
+    ../binaryen && \
+  ninja && \
+  ninja install && \
+  cd ../ && \
+  rm -rf binaryen*
+
+# main 2021-12-31
+ENV WABT_GIT_TAG a4366956e877c404d328358b2c00320b476763c0
+RUN git clone --recurse-submodules https://github.com/WebAssembly/wabt.git && \
+  cd wabt && \
+  git checkout ${WABT_GIT_TAG} && \
+  cd ../ && \
+  mkdir wabt-build && \
+  cd wabt-build && \
+  /usr/bin/cmake \
+    -DCMAKE_C_COMPILER=/usr/bin/cc \
+    -DCMAKE_CXX_COMPILER=/usr/bin/c++ \
+    -G Ninja \
+    -DCMAKE_INSTALL_PREFIX:PATH=/usr \
+    -DCMAKE_TOOLCHAIN_FILE="" \
+    ../wabt && \
+  ninja && \
+  ninja install && \
+  cd ../ && \
+  rm -rf wabt*
+
+RUN mkdir /wasi-runtimes
+
+ENV WASMTIME_HOME /wasi-runtimes/wasmtime
+RUN mkdir ${WASMTIME_HOME} && curl https://wasmtime.dev/install.sh -sSf | bash
+COPY imagefiles/wasmtime-pwd.sh ${WASMTIME_HOME}/bin/
+ENV PATH "$WASMTIME_HOME/bin:$PATH"
+
+ENV WASMER_DIR /wasi-runtimes/wasmer
+RUN curl https://get.wasmer.io -sSfL | sh
+COPY imagefiles/wasmer-pwd.sh ${WASMER_DIR}/bin/
+ENV PATH "$WASMER_DIR/bin:$PATH"
+
+ENV WASM3_VERSION 0.5.0
+RUN mkdir -p /wasi-runtimes/wasm3/bin && \
+  curl -LO https://github.com/wasm3/wasm3/releases/download/v${WASM3_VERSION}/wasm3-linux-x64.elf && \
+  mv wasm3-linux-x64.elf /wasi-runtimes/wasm3/bin/wasm3 && \
+  chmod +x /wasi-runtimes/wasm3/bin/wasm3
+ENV PATH "/wasi-runtimes/wasm3/bin:$PATH"
+
+ENV WAVM_VERSION 2021-12-15
+RUN mkdir -p /wasi-runtimes/wavm/ && \
+  curl -LO https://github.com/WAVM/WAVM/releases/download/nightly%2F${WAVM_VERSION}/wavm-0.0.0-prerelease-linux.tar.gz && \
+  tar -xv -C /wasi-runtimes/wavm/ -f wavm-0.0.0-prerelease-linux.tar.gz
+ENV PATH "/wasi-runtimes/wavm/bin:$PATH"
