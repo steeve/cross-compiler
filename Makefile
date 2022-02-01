@@ -15,7 +15,7 @@ BIN = ./bin
 # These images are built using the "build implicit rule"
 STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
 	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
-	linux-armv5 linux-armv5-musl linux-m68k-uclibc linux-s390x linux-x64-tinycc \
+	linux-armv5 linux-armv5-musl linux-armv5-uclibc linux-m68k-uclibc linux-s390x linux-x64-tinycc \
 	linux-armv6 linux-armv6-lts linux-armv6-musl linux-arm64-lts \
 	linux-armv7l-musl linux-armv7 linux-armv7a linux-armv7-lts linux-x86_64-full \
 	linux-mips linux-ppc64le linux-riscv64 linux-riscv32 linux-xtensa-uclibc \
@@ -33,8 +33,9 @@ GEN_IMAGES = android-arm android-arm64 \
 	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix \
 	linux-armv7 linux-armv7a linux-armv7l-musl linux-armv7-lts linux-x86_64-full \
 	linux-armv6 linux-armv6-lts linux-armv6-musl \
-	linux-armv5 linux-armv5-musl linux-ppc64le linux-s390x \
-	linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-x64-tinycc linux-xtensa-uclibc
+	linux-armv5 linux-armv5-musl linux-armv5-uclibc linux-ppc64le linux-s390x \
+	linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-x64-tinycc linux-xtensa-uclibc \
+	linux-arm-uclibc
 
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 

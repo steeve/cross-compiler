@@ -201,6 +201,14 @@ Parrot AR Drone.
 Linux armv5 cross compiler toolchain using
 [musl](https://www.musl-libc.org/) as base \"libc\".
 
+### dockcross/linux-armv5-uclibc
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv5-uclibc/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv5-uclibc)
+
+Linux armv5 cross compiler toolchain for legacy devices like wrt routers
+Linux kernel 2.6
+[uclibc](https://www.uclibc.org/) as base \"libc\".
+
 ### dockcross/linux-armv6
 
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv6/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv6)
