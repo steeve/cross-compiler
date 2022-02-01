@@ -86,6 +86,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/linux-arm64-musl | ARMv8 | GCC + musl | Linux |
 | dockcross/linux-armv5 | ARMv5 | GCC | Linux |
 | dockcross/linux-armv5-musl | ARMv5 | GCC + musl | Linux |
+| dockcross/linux-armv5-uclibc | ARMv5 | GCC + uclibc | Linux |
 | dockcross/linux-armv6 | ARMv6 | GCC | Linux |
 | dockcross/linux-armv6-lts | ARMv6 | GCC 8.5.0 + Glibc 2.28 | Linux |
 | dockcross/linux-armv6-musl | ARMv6 | GCC + musl | Linux |
