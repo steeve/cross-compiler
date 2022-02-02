@@ -86,6 +86,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/linux-arm64-musl | ARMv8 | GCC + musl | Linux |
 | dockcross/linux-armv5 | ARMv5 | GCC | Linux |
 | dockcross/linux-armv5-musl | ARMv5 | GCC + musl | Linux |
+| dockcross/linux-armv5-uclibc | ARMv5 | GCC + uclibc | Linux |
 | dockcross/linux-armv6 | ARMv6 | GCC | Linux |
 | dockcross/linux-armv6-lts | ARMv6 | GCC 8.5.0 + Glibc 2.28 | Linux |
 | dockcross/linux-armv6-musl | ARMv6 | GCC + musl | Linux |
@@ -200,6 +201,14 @@ Parrot AR Drone.
 
 Linux armv5 cross compiler toolchain using
 [musl](https://www.musl-libc.org/) as base \"libc\".
+
+### dockcross/linux-armv5-uclibc
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-armv5-uclibc/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-armv5-uclibc)
+
+Linux armv5 cross compiler toolchain for legacy devices like wrt routers
+Linux kernel 2.6
+[uclibc](https://www.uclibc.org/) as base \"libc\".
 
 ### dockcross/linux-armv6
 

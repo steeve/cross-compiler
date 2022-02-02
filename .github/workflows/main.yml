@@ -220,6 +220,23 @@ jobs:
               cpython: "yes",
               cpython_arg: "--host=armv5-unknown-linux-musleabi --target=armv5-unknown-linux-musleabi",
             }
+          - {
+              image: "linux-armv5-uclibc",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: "",
+              cpython: "yes",
+              cpython_arg: "--host=arm-unknown-linux-uclibcgnueabi --target=arm-unknown-linux-uclibcgnueabi",
+            }
           # Linux armv6 images
           - {
               image: "linux-armv6",
