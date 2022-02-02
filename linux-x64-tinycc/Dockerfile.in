@@ -4,7 +4,7 @@ LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
 
 # This image use Tinycc as C compiler and GCC as C++ compiler
 
-ARG REPO_URL=https://repo.or.cz/tinycc.git
+ARG REPO_URL=https://github.com/mirror/tinycc.git
 ENV REPO_URL=${REPO_URL}
 
 RUN apt-get update && \
