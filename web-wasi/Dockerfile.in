@@ -25,6 +25,10 @@ ENV AR=${CROSS_ROOT}/bin/llvm-ar \
 
 COPY WASI.cmake /usr/src/
 RUN mv /usr/src/WASI.cmake /usr/share/cmake-*/Modules/Platform/
+COPY *.cmake /usr/src/
+RUN mv /usr/src/*.cmake /usr/share/cmake-*/Modules/
+COPY CheckTypeSize.c.in /usr/src/
+RUN mv /usr/src/CheckTypeSize.c.in /usr/share/cmake-*/Modules/
 COPY Toolchain.cmake ${CROSS_ROOT}/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
 
