@@ -49,6 +49,12 @@ RUN mkdir ${WASMTIME_HOME} && curl https://wasmtime.dev/install.sh -sSf | bash
 COPY imagefiles/wasmtime-pwd.sh ${WASMTIME_HOME}/bin/
 ENV PATH "$WASMTIME_HOME/bin:$PATH"
 
+# For wasmer
+RUN \
+  apt-get update --yes && \
+  apt-get install --no-install-recommends --yes \
+    libxkbcommon0
+
 ENV WASMER_DIR /wasi-runtimes/wasmer
 RUN curl https://get.wasmer.io -sSfL | sh
 COPY imagefiles/wasmer-pwd.sh ${WASMER_DIR}/bin/
