@@ -2,11 +2,13 @@ WORKDIR /usr/src
 
 ARG GIT_VERSION=2.32.0
 ARG CMAKE_VERSION=3.21.1
+ARG FLATCC_VERSION=0.6.0
 
 # Image build scripts
 COPY \
   imagefiles/build-and-install-cmake.sh \
   imagefiles/build-and-install-curl.sh \
+  imagefiles/build-and-install-flatcc.sh \
   imagefiles/build-and-install-git.sh \
   imagefiles/build-and-install-ninja.sh \
   imagefiles/build-and-install-openssl.sh \
@@ -28,6 +30,7 @@ RUN \
   PYTHON=$([ -e /opt/python/cp38-cp38/bin/python ] && echo "/opt/python/cp38-cp38/bin/python" || echo "python3") && \
   /buildscripts/install-python-packages.sh -python ${PYTHON} && \
   /buildscripts/build-and-install-ninja.sh -python ${PYTHON} && \
+  /buildscripts/build-and-install-flatcc.sh && \
   rm -rf /buildscripts
 
 RUN echo "root:root" | chpasswd
