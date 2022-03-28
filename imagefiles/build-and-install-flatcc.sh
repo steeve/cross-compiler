@@ -14,9 +14,11 @@ fi
 
 cd /usr/src
 
-git clone https://github.com/dvidelabs/flatcc.git flatcc -b $FLATCC_VERSION --depth 1
+git clone https://github.com/dvidelabs/flatcc.git
 
 cd flatcc
+
+git reset --hard $FLATCC_COMMIT
 
 cmake -DFLATCC_INSTALL=on && make install > /dev/null
 
