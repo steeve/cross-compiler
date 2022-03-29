@@ -53,7 +53,7 @@ command:update-script() {
     fi
 }
 
-help:update-image() {
+help:update-script() {
     echo "Update $0 from $FINAL_IMAGE ."
 }
 
