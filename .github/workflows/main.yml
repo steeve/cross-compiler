@@ -858,6 +858,26 @@ jobs:
               cpython: "no",
               cpython_arg: "",
             }
+          # Bare metal images
+          - {
+              image: "bare-armv7emhf-nano_newlib",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: "",
+              cpython: "no",
+              cpython_arg: "",
+              mbedtls: "yes",
+              mbedtls_arg: "",
+            }
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -954,6 +974,17 @@ jobs:
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
           rm -rf cpython
+
+      # Updated on 31/3/2022
+      - name: mbedtls build test
+        if: ${{ matrix.arch_name.mbedtls == 'yes' }}
+        run: |
+          git clone --depth 1 --branch archive/baremetal https://github.com/Mbed-TLS/mbedtls.git
+          cd mbedtls
+          ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} scripts/config.pl baremetal
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.fmt_arg }} 
+          cd ..
+          rm -rf mbedtls
 
       - name: deploy
         if: github.ref == 'refs/heads/master'

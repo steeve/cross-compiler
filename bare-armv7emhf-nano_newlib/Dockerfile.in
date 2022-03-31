@@ -1,0 +1,34 @@
+FROM dockcross/base:latest
+
+LABEL maintainer="Chen Tao t.clydechen@gmail.com"
+
+# This is for armv7e-m+fp bare metal
+
+# Crosstool-ng version 1.25.0-rc1
+ENV CT_VERSION 1e47ca1e70497a38641b9025998a6333265fe84e
+
+#include "common.crosstool"
+
+ENV CROSS_TRIPLE arm-none-eabihf
+
+ENV CROSS_ROOT ${XCC_PREFIX}/${CROSS_TRIPLE}
+ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
+    AR=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ar \
+    CC=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-gcc \
+    CPP=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-cpp \
+    CXX=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-g++ \
+    LD=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-ld \
+    SZ=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-size \
+    OBJCOPY=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-objcopy
+
+COPY Toolchain.cmake ${CROSS_ROOT}/
+ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
+
+ENV PKG_CONFIG_PATH /usr/lib/arm-none-eabihf/pkgconfig
+
+# Linux kernel cross compilation variables
+ENV PATH ${PATH}:${CROSS_ROOT}/bin
+ENV CROSS_COMPILE ${CROSS_TRIPLE}-
+ENV ARCH arm
+
+#include "common.label-and-env"

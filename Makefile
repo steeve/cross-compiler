@@ -21,7 +21,8 @@ STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
 	linux-mips linux-mips-lts linux-ppc64le linux-riscv64 linux-riscv32 linux-xtensa-uclibc \
 	web-wasi \
 	windows-static-x86 windows-static-x64 windows-static-x64-posix windows-armv7 \
-	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix windows-arm64
+	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix windows-arm64 \
+	bare-armv7emhf-nano_newlib
 
 # Generated Dockerfiles.
 GEN_IMAGES = android-arm android-arm64 \
@@ -34,7 +35,8 @@ GEN_IMAGES = android-arm android-arm64 \
 	linux-armv7 linux-armv7a linux-armv7l-musl linux-armv7-lts linux-armv7a-lts linux-x86_64-full \
 	linux-armv6 linux-armv6-lts linux-armv6-musl linux-mipsel-lts \
 	linux-armv5 linux-armv5-musl linux-armv5-uclibc linux-ppc64le linux-s390x \
-	linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-x64-tinycc linux-xtensa-uclibc
+	linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-x64-tinycc linux-xtensa-uclibc \
+	bare-armv7emhf-nano_newlib
 
 GEN_IMAGE_DOCKERFILES = $(addsuffix /Dockerfile,$(GEN_IMAGES))
 
@@ -60,6 +62,7 @@ windows-static-x64-posix.test_ARGS = --exe-suffix ".exe"
 windows-shared-x86.test_ARGS = --exe-suffix ".exe"
 windows-shared-x64.test_ARGS = --exe-suffix ".exe"
 windows-shared-x64-posix.test_ARGS = --exe-suffix ".exe"
+bare-armv7emhf-nano_newlib.test_ARGS = --linker-flags="--specs=nosys.specs"
 
 # On CircleCI, do not attempt to delete container
 # See https://circleci.com/docs/docker-btrfs-error/
