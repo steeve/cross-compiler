@@ -95,7 +95,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/linux-armv7a | ARMv7a | GCC | Linux |
 | dockcross/linux-armv7l-musl | ARMv7l | GCC + musl | Linux |
 | dockcross/linux-mips | mips | GCC | Linux |
-| dockcross/linux-mipsel-lts | mipsel | GCC 6.5.0 + Glibc 2.24 | Linux |
+| dockcross/linux-mipsel-lts | mipsel | GCC 6.5.0 + Glibc 2.28 | Linux |
 | dockcross/linux-s390x | s390x | GCC | Linux |
 | dockcross/linux-ppc64le | ppc64le | GCC | Linux |
 | dockcross/linux-riscv32 | riscv32 | GCC | Linux |
