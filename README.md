@@ -95,6 +95,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/linux-armv7a | ARMv7a | GCC | Linux |
 | dockcross/linux-armv7l-musl | ARMv7l | GCC + musl | Linux |
 | dockcross/linux-mips | mips | GCC | Linux |
+| dockcross/linux-mips-lts | mips | GCC 8.5.0 + Glibc 2.28 | Linux |
 | dockcross/linux-s390x | s390x | GCC | Linux |
 | dockcross/linux-ppc64le | ppc64le | GCC | Linux |
 | dockcross/linux-riscv32 | riscv32 | GCC | Linux |
@@ -266,6 +267,13 @@ Toolchain configured for ARMv7-L, using
 
 Linux mips cross compiler toolchain for big endian 32-bit hard float
 MIPS GNU systems.
+
+### dockcross/linux-mips
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-mips-lts/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-mips-lts)
+
+Linux mips cross compiler toolchain for big endian 32-bit hard float MIPS GNU systems, With GCC 8.5.0, Glibc 2.28 ....
+
 
 ### dockcross/linux-s390x
 
