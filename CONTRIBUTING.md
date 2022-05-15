@@ -2,7 +2,7 @@
 
 ## Getting started
 
-## How to add new image ? (With crosstool-ng)
+## How to add a new image ? (With crosstool-ng)
 
 In this part, we will see how to add a new image, we will take example with `linux-arm64` for a raspberry pi 4, with [crosstool-ng](https://github.com/crosstool-ng/crosstool-ng).
 
@@ -109,7 +109,7 @@ set(CMAKE_SYSROOT ${cross_root}/${cross_triple}/sysroot)
 set(CMAKE_CROSSCOMPILING_EMULATOR /usr/bin/qemu-arm64)
 ```
 
-Then ou must change these lines ​​according to the targeted architecture, here **ARM64**:
+Then ou must change these lines according to the targeted architecture, here **ARM64**:
 
 ```cmake
 set(CMAKE_SYSTEM_PROCESSOR ARM64)
@@ -167,7 +167,7 @@ ENV ARCH arm64
 #include "common.label-and-env"
 ```
 
-Then ou must change these lines ​​according to the targeted architecture.
+Then ou must change these lines according to the targeted architecture.
 
 Here you have to change the value according to the name of the toolchain (./ct-ng show-tuple):
 
