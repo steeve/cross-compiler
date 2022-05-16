@@ -190,7 +190,7 @@ MSYS=$([ -e /proc/version ] && grep -l MINGW /proc/version || echo "")
 # CYGWIN
 CYGWIN=$([ -e /proc/version ] && grep -l CYGWIN /proc/version || echo "")
 
-if [ -z "$UBUNTU_ON_WINDOWS" -a -z "$MSYS" ]; then
+if [ -z "$UBUNTU_ON_WINDOWS" -a -z "$MSYS" -a "$OCI_EXE" != "podman" ]; then
     USER_IDS=(-e BUILDER_UID="$( id -u )" -e BUILDER_GID="$( id -g )" -e BUILDER_USER="$( id -un )" -e BUILDER_GROUP="$( id -gn )")
 fi
 
