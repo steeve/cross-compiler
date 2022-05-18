@@ -31,14 +31,14 @@ if [[ -z "${NINJA_VERSION}" ]]; then
 fi
 
 # Download
-url="https://github.com/ninja-build/ninja/archive/${NINJA_VERSION}.tar.gz"
+url="https://github.com/ninja-build/ninja/archive/v${NINJA_VERSION}.tar.gz"
 
 curl --connect-timeout 30 \
     --max-time 10 \
     --retry 5 \
     --retry-delay 10 \
     --retry-max-time 30 \
-    -# -o ninja.tar.gz -LO "v$url"
+    -# -o ninja.tar.gz -LO "$url"
 
 mkdir ninja
 tar -xzvf ./ninja.tar.gz --strip-components=1 -C ./ninja
