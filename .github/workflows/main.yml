@@ -18,21 +18,35 @@ jobs:
     name: base
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+          fetch-depth: 1
+
       - name: build
-        run: make base
+        uses: nick-fields/retry@v2
+        with:
+          timeout_seconds: 20
+          max_attempts: 5
+          retry_on: error
+          command: make base
+
       - name: test
         run: make base.test
+
       - name: archive base
         run: |
           mkdir -p cache
           docker save dockcross/base:latest | xz -e9 -T0 > ./cache/base.tar.xz
+
       - name: save base
         uses: actions/upload-artifact@v3
         with:
           name: cache
           path: ./cache
           retention-days: 1
+
       - name: deploy
         if: github.ref == 'refs/heads/master'
         run: |
@@ -833,17 +847,31 @@ jobs:
               cpython_arg: "",
             }
     steps:
-      - uses: actions/checkout@v3
+      - name: checkout code
+        uses: actions/checkout@v3
+        with:
+          submodules: "recursive"
+          fetch-depth: 1
+
       - uses: actions/download-artifact@v3
         with:
           name: cache
           path: ./cache
+
       - name: load base
         run: xz -d -k < ./cache/base.tar.xz | docker load
+
       - name: build
-        run: make ${{ matrix.arch_name.image }}
+        uses: nick-fields/retry@v2
+        with:
+          timeout_seconds: 20
+          max_attempts: 5
+          retry_on: error
+          command: make ${{ matrix.arch_name.image }}
+
       - name: basic test
         run: make ${{ matrix.arch_name.image }}.test
+
       # Updated on 28/08/2021
       - name: stockfish build test
         if: ${{ matrix.arch_name.stockfish == 'yes' }}
@@ -854,6 +882,7 @@ jobs:
           ./../../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} build ${{ matrix.arch_name.stockfish_arg }} -j2
           cd ../..
           rm -rf Stockfish
+
       # Updated on 28/08/2021
       - name: ninja build test
         if: ${{ matrix.arch_name.ninja == 'yes' }}
@@ -861,6 +890,7 @@ jobs:
           git clone --depth 1 --branch v1.10.2 https://github.com/ninja-build/ninja.git
           cd ninja
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.ninja_arg }}
+
       # Updated on 28/08/2021
       - name: openssl build test
         if: ${{ matrix.arch_name.openssl == 'yes' }}
@@ -873,6 +903,7 @@ jobs:
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
           rm -rf openssl
+
       # Updated on 28/08/2021
       - name: C build test
         if: ${{ matrix.arch_name.C == 'yes' }}
@@ -883,6 +914,7 @@ jobs:
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.C_arg }}
           cd ..
           rm -rf C
+
       # Updated on 28/08/2021
       - name: C-Plus-Plus build test
         if: ${{ matrix.arch_name.C-Plus-Plus == 'yes' }}
@@ -893,6 +925,7 @@ jobs:
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.C-Plus-Plus_arg }}
           cd ..
           rm -rf C-Plus-Plus
+
       # Updated on 28/08/2021
       - name: fmt build test
         if: ${{ matrix.arch_name.fmt == 'yes' }}
@@ -902,6 +935,7 @@ jobs:
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.fmt_arg }} -DFMT_DOC=OFF
           cd ..
           rm -rf fmt
+
       # Updated on 05/10/2021
       - name: cpython build test
         if: ${{ matrix.arch_name.cpython == 'yes' }}
@@ -912,6 +946,7 @@ jobs:
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
           rm -rf cpython
+
       - name: deploy
         if: github.ref == 'refs/heads/master'
         run: |
