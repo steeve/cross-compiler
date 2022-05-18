@@ -189,7 +189,7 @@ Once this part is finished, there must be 3 files in the **linux-arm64** folder:
 - **Dockerfile.in**, the docker file.
 - **Toolchain.cmake**, the CMake file for the toolchains.
 
-### Makefile and CI
+### Makefile
 
 For this last part, we will see how to add the image to the [Makefile](Makefile) and to a github action.
 
@@ -198,14 +198,14 @@ You need to add the image/folder name (**linux-arm64**) to the **STANDARD_IMAGES
 ```make
 # These images are built using the "build implicit rule"
 STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
-	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
-	linux-armv5 linux-armv5-musl linux-armv5-uclibc linux-m68k-uclibc linux-s390x linux-x64-tinycc \
-	linux-armv6 linux-armv6-lts linux-armv6-musl linux-arm64-lts \
-	linux-armv7l-musl linux-armv7 linux-armv7a linux-armv7-lts linux-x86_64-full \
-	linux-mips linux-ppc64le linux-riscv64 linux-riscv32 linux-xtensa-uclibc \
-	web-wasi \
-	windows-static-x86 windows-static-x64 windows-static-x64-posix windows-armv7 \
-	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix windows-arm64
+ linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
+ linux-armv5 linux-armv5-musl linux-armv5-uclibc linux-m68k-uclibc linux-s390x linux-x64-tinycc \
+ linux-armv6 linux-armv6-lts linux-armv6-musl linux-arm64-lts \
+ linux-armv7l-musl linux-armv7 linux-armv7a linux-armv7-lts linux-x86_64-full \
+ linux-mips linux-ppc64le linux-riscv64 linux-riscv32 linux-xtensa-uclibc \
+ web-wasi \
+ windows-static-x86 windows-static-x64 windows-static-x64-posix windows-armv7 \
+ windows-shared-x86 windows-shared-x64 windows-shared-x64-posix windows-arm64
 ```
 
 You need to add the image/folder name (**linux-arm64**) to the **GEN_IMAGES** variable in the [Makefile](Makefile):
@@ -213,17 +213,53 @@ You need to add the image/folder name (**linux-arm64**) to the **GEN_IMAGES** va
 ```make
 # Generated Dockerfiles.
 GEN_IMAGES = android-arm android-arm64 \
-	linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
-	manylinux2014-x64 manylinux2014-x86 \
-	manylinux2014-aarch64 linux-arm64-lts \
-	web-wasm web-wasi linux-mips windows-arm64 windows-armv7 \
-	windows-static-x86 windows-static-x64 windows-static-x64-posix \
-	windows-shared-x86 windows-shared-x64 windows-shared-x64-posix \
-	linux-armv7 linux-armv7a linux-armv7l-musl linux-armv7-lts linux-x86_64-full \
-	linux-armv6 linux-armv6-lts linux-armv6-musl \
-	linux-armv5 linux-armv5-musl linux-armv5-uclibc linux-ppc64le linux-s390x \
-	linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-x64-tinycc linux-xtensa-uclibc
+ linux-x86 linux-x64 linux-x64-clang linux-arm64 linux-arm64-musl linux-arm64-full \
+ manylinux2014-x64 manylinux2014-x86 \
+ manylinux2014-aarch64 linux-arm64-lts \
+ web-wasm web-wasi linux-mips windows-arm64 windows-armv7 \
+ windows-static-x86 windows-static-x64 windows-static-x64-posix \
+ windows-shared-x86 windows-shared-x64 windows-shared-x64-posix \
+ linux-armv7 linux-armv7a linux-armv7l-musl linux-armv7-lts linux-x86_64-full \
+ linux-armv6 linux-armv6-lts linux-armv6-musl \
+ linux-armv5 linux-armv5-musl linux-armv5-uclibc linux-ppc64le linux-s390x \
+ linux-riscv64 linux-riscv32 linux-m68k-uclibc linux-x64-tinycc linux-xtensa-uclibc
 ```
+
+### Image building and testing
+
+You can now start building the image:
+
+```bash
+make linux-arm64
+```
+
+When finished, you can test it:
+
+```bash
+make linux-arm64.test
+```
+
+If you want to go a little further in the tests:
+
+```bash
+docker run --rm linux-arm64 > ./linux-arm64
+chmod +x ./linux-arm64
+```
+
+And then run the commands to build a project (you must be in the directory of your project to build):
+
+```bash
+./linux-arm64 make
+```
+
+With CMake + Ninja:
+
+```bash
+./linux-arm64 cmake -Bbuild -S. -GNinja
+./linux-arm64 ninja -Cbuild
+```
+
+### CI (github action)
 
 To finish, you have to add to [Github Action](.github/workflows/main.yml) the image/folder name:
 
