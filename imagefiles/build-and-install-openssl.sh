@@ -47,9 +47,17 @@ source $MY_DIR/utils.sh
 # copied from https://github.com/pypa/manylinux/tree/master/docker/build_scripts
 #
 
-OPENSSL_ROOT=openssl-1.1.1l
+if [[ -z "${OPENSSL_VERSION}" ]]; then
+  echo >&2 'error: OPENSSL_VERSION env. variable must be set to a non-empty value'
+  exit 1
+fi
+
+if [[ -z "${OPENSSL_HASH}" ]]; then
+  echo >&2 'error: OPENSSL_HASH env. variable must be set to a non-empty value'
+  exit 1
+fi
+
 # Hash from https://www.openssl.org/source/openssl-1.1.1l.tar.gz.sha256
-OPENSSL_HASH=0b7a3e5e59c34827fe0c3a74b7ec8baef302b98fa80088d7f9153aa16fa76bd1
 OPENSSL_DOWNLOAD_URL=http://www.openssl.org/source/
 
 # a recent enough perl is needed to build openssl
@@ -111,7 +119,7 @@ function build_openssl {
 
 cd /usr/src
 build_perl $PERL_ROOT $PERL_HASH
-build_openssl $OPENSSL_ROOT $OPENSSL_HASH
+build_openssl "${OPENSSL_VERSION}" "${OPENSSL_HASH}"
 
 # Delete PERL
 rm -rf /opt/perl
