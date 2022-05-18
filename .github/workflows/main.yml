@@ -27,6 +27,7 @@ jobs:
       - name: build
         uses: nick-fields/retry@v2
         with:
+          timeout_minutes: 120
           retry_wait_seconds: 40
           max_attempts: 3
           retry_on: error
@@ -864,6 +865,7 @@ jobs:
       - name: build
         uses: nick-fields/retry@v2
         with:
+          timeout_minutes: 360
           retry_wait_seconds: 20
           max_attempts: 3
           retry_on: error
