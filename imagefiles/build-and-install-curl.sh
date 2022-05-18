@@ -10,8 +10,8 @@ source $MY_DIR/utils.sh
 # copied from https://github.com/pypa/manylinux/tree/master/docker/build_scripts
 #
 
-CURL_ROOT=curl-7.83.1
-CURL_HASH=93fb2cd4b880656b4e8589c912a9fd092750166d555166370247f09d18f5d0c0
+CURL_ROOT=curl-7.76.0
+CURL_HASH=3b4378156ba09e224008e81dcce854b7ce4d182b1f9cfb97fe5ed9e9c18c6bd3
 CURL_DOWNLOAD_URL=https://curl.haxx.se/download
 
 function do_curl_build {
