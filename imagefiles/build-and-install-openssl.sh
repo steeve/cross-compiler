@@ -57,12 +57,19 @@ if [[ -z "${OPENSSL_HASH}" ]]; then
   exit 1
 fi
 
+if [[ -z "${PERL_VERSION}" ]]; then
+  echo >&2 'error: PERL_VERSION env. variable must be set to a non-empty value'
+  exit 1
+fi
+
+if [[ -z "${PERL_HASH}" ]]; then
+  echo >&2 'error: PERL_HASH env. variable must be set to a non-empty value'
+  exit 1
+fi
+
 # Hash from https://www.openssl.org/source/openssl-1.1.1l.tar.gz.sha256
 OPENSSL_DOWNLOAD_URL=http://www.openssl.org/source/
 
-# a recent enough perl is needed to build openssl
-PERL_ROOT=perl-5.32.1
-PERL_HASH=03b693901cd8ae807231b1787798cf1f2e0b8a56218d07b7da44f784a7caeb2c
 PERL_DOWNLOAD_URL=https://www.cpan.org/src/5.0
 
 function do_perl_build {
@@ -118,7 +125,7 @@ function build_openssl {
 }
 
 cd /usr/src
-build_perl $PERL_ROOT $PERL_HASH
+build_perl "${PERL_VERSION}" "${PERL_HASH}"
 build_openssl "${OPENSSL_VERSION}" "${OPENSSL_HASH}"
 
 # Delete PERL

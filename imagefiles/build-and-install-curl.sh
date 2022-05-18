@@ -10,8 +10,16 @@ source $MY_DIR/utils.sh
 # copied from https://github.com/pypa/manylinux/tree/master/docker/build_scripts
 #
 
-CURL_ROOT=curl-7.76.0
-CURL_HASH=3b4378156ba09e224008e81dcce854b7ce4d182b1f9cfb97fe5ed9e9c18c6bd3
+if [[ -z "${CURL_VERSION}" ]]; then
+  echo >&2 'error: CURL_VERSION env. variable must be set to a non-empty value'
+  exit 1
+fi
+
+if [[ -z "${CURL_HASH}" ]]; then
+  echo >&2 'error: CURL_HASH env. variable must be set to a non-empty value'
+  exit 1
+fi
+
 CURL_DOWNLOAD_URL=https://curl.haxx.se/download
 
 function do_curl_build {
@@ -43,7 +51,7 @@ function build_curl {
 }
 
 cd /usr/src
-build_curl $CURL_ROOT $CURL_HASH
+build_curl "${CURL_VERSION}" "${CURL_HASH}"
 
 (cat /etc/ld.so.conf.d/usr-local.conf 2> /dev/null | grep -q "^/usr/local/lib$") ||
   echo '/usr/local/lib' >> /etc/ld.so.conf.d/usr-local.conf
