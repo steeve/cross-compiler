@@ -1,7 +1,8 @@
 WORKDIR /usr/src
 
-ARG GIT_VERSION=2.32.0
-ARG CMAKE_VERSION=3.21.1
+ARG GIT_VERSION=2.36.1
+ARG CMAKE_VERSION=3.23.1
+ARG NINJA_VERSION=1.11.0
 ARG FLATCC_VERSION=d90ed18ad09824297ffd5fbc578ccb1666d13890
 
 # Image build scripts
@@ -25,7 +26,7 @@ RUN \
   /buildscripts/build-and-install-openssh.sh && \
   /buildscripts/build-and-install-curl.sh && \
   /buildscripts/build-and-install-git.sh && \
-  if [ "$CMAKE_BIN" = "true" ]; then CMAKE_VERSION=3.17.1 && /buildscripts/install-cmake-binary.sh $X86_FLAG;else /buildscripts/build-and-install-cmake.sh  $X86_FLAG;fi && \
+  /buildscripts/build-and-install-cmake.sh $X86_FLAG && \
   /buildscripts/install-liquidprompt-binary.sh && \
   PYTHON=$([ -e /opt/python/cp38-cp38/bin/python ] && echo "/opt/python/cp38-cp38/bin/python" || echo "python3") && \
   /buildscripts/install-python-packages.sh -python ${PYTHON} && \
