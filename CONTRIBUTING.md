@@ -2,7 +2,7 @@
 
 ## Getting started
 
-## How to add a new image? (With crosstool-ng)
+## How to add a new image ? (With crosstool-ng)
 
 In this part, we will see how to add a new image, we will take example with `linux-arm64` for a raspberry pi 4, with [crosstool-ng](https://github.com/crosstool-ng/crosstool-ng).
 
