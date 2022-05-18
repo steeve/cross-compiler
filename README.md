@@ -9,31 +9,36 @@ Cross compiling toolchains in Docker images.
 
 ## Features
 
--   Pre-built and configured toolchains for cross compiling.
--   Most images also contain an emulator for the target system.
--   Clean separation of build tools, source code, and build artifacts.
--   Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
--   Make variables **CC**, **CXX**, **LD**, **AS** etc) are set to point to the appropriate tools in the container.
--   Recent [CMake](https://cmake.org) and ninja are precompiled.
--   [Conan.io](https://www.conan.io) can be used as a package manager.
--   Toolchain files configured for CMake.
--   Current directory is mounted as the container\'s workdir, `/work`.
--   Works with the [Docker for Mac](https://docs.docker.com/docker-for-mac/) and [Docker for Windows](https://docs.docker.com/docker-for-windows/).
--   Support using alternative container executor by setting **OCI_EXE** environment variable. By default, it searches for [docker](https://www.docker.com) and [podman](https://podman.io) executable.
--   [crosstool-ng](https://github.com/crosstool-ng/crosstool-ng) and [buildroot](https://github.com/buildroot/buildroot) configuration files.
+- Pre-built and configured toolchains for cross compiling.
+- Most images also contain an emulator for the target system.
+- Clean separation of build tools, source code, and build artifacts.
+- Commands in the container are run as the calling user, so that any created files have the expected ownership, (i.e. not root).
+- Make variables **CC**, **CXX**, **LD**, **AS** etc) are set to point to the appropriate tools in the container.
+- Recent [CMake](https://cmake.org) and ninja are precompiled.
+- [Conan.io](https://www.conan.io) can be used as a package manager.
+- Toolchain files configured for CMake.
+- Current directory is mounted as the container\'s workdir, `/work`.
+- Works with the [Docker for Mac](https://docs.docker.com/docker-for-mac/) and [Docker for Windows](https://docs.docker.com/docker-for-windows/).
+- Support using alternative container executor by setting **OCI_EXE** environment variable. By default, it searches for [docker](https://www.docker.com) and [podman](https://podman.io) executable.
+- [crosstool-ng](https://github.com/crosstool-ng/crosstool-ng) and [buildroot](https://github.com/buildroot/buildroot) configuration files.
 
 ## Examples
 
-1.  `dockcross make`: Build the *Makefile* in the current directory.
-2.  `dockcross cmake -Bbuild -H. -GNinja`: Run CMake with a build directory `./build` for a *CMakeLists.txt* file in the current directory and generate `ninja` build configuration files.
-3.  `dockcross ninja -Cbuild`: Run ninja in the `./build` directory.
-4.  `dockcross bash -c '$CC test/C/hello.c -o hello'`: Build the *hello.c* file with the compiler identified with the `CC` environmental variable in the build environment.
-5.  `dockcross bash`: Run an interactive shell in the build environment.
+1. `dockcross make`: Build the *Makefile* in the current directory.
+2. `dockcross cmake -Bbuild -H. -GNinja`: Run CMake with a build directory `./build` for a *CMakeLists.txt* file in the current directory and generate `ninja` build configuration files.
+3. `dockcross ninja -Cbuild`: Run ninja in the `./build` directory.
+4. `dockcross bash -c '$CC test/C/hello.c -o hello'`: Build the *hello.c* file with the compiler identified with the `CC` environmental variable in the build environment.
+5. `dockcross bash`: Run an interactive shell in the build environment.
 
 Note that commands are executed verbatim. If any shell processing for environment variable expansion or redirection is required, please use
+
 ```bash
 bash -c "<command args>"
 ```
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Installation
 
@@ -546,5 +551,6 @@ The key difference is that [dockbuild](https://github.com/dockbuild/dockbuild#re
 \-\--
 
 Credits:
+
 - [sdt/docker-raspberry-pi-cross-compiler](https://github.com/sdt/docker-raspberry-pi-cross-compiler), who invented the base of the **dockcross** script.
 - [https://github.com/steeve/cross-compiler](https://github.com/steeve/cross-compiler), 
