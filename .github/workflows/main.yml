@@ -185,6 +185,24 @@ jobs:
               cpython: "yes",
               cpython_arg: "--host=aarch64-buildroot-linux-gnu --target=aarch64-buildroot-linux-gnu",
             }
+          # Linux mipel images
+          - {
+              image: "linux-mipsel-lts",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: "",
+              cpython: "no",
+              cpython_arg: "",
+            }
           # Linux armv5 images
           - {
               image: "linux-armv5",
@@ -498,9 +516,27 @@ jobs:
               cpython: "yes",
               cpython_arg: "--host=s390x-ibm-linux-gnu --target=s390x-ibm-linux-gnu",
             }
-          # Linux mips images
+          # Linux mips images 
           - {
               image: "linux-mips",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-generic32",
+              C: "yes",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: "",
+              cpython: "yes",
+              cpython_arg: "--host=mips-unknown-linux-gnu --target=mips-unknown-linux-gnu",
+            }
+          # Linux mips images
+          - {
+              image: "linux-mips-lts",
               stockfish: "no",
               stockfish_arg: "",
               ninja: "yes",
