@@ -2,7 +2,7 @@ FROM dockcross/base:latest
 
 LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
 
-ARG CLANG_VERSION=13
+ARG CLANG_VERSION=14
 ENV CLANG_VERSION=${CLANG_VERSION}
 
 RUN echo "deb http://apt.llvm.org/bullseye/ llvm-toolchain-bullseye main" >> /etc/apt/sources.list \
