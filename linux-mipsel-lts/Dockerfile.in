@@ -2,10 +2,8 @@ FROM dockcross/base:latest
 
 LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
 
-# Crosstool-ng version
-# We use a git commit while waiting for 1.25 to release (1.24 is several years old)
-# crosstool-ng master 2022-04-22
-ENV CT_VERSION dd4d19fce2296aaadd4443f8f8551f2f8e5aa7a4
+# Crosstool-ng version 2022-05-19
+ENV CT_VERSION crosstool-ng-1.25.0
 
 # This is for 32-bit or 64-bit mipsel Linux (multilib)
 #include "common.crosstool"
