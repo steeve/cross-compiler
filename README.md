@@ -25,7 +25,7 @@ Cross compiling toolchains in Docker images.
 ## Examples
 
 1. `dockcross make`: Build the *Makefile* in the current directory.
-2. `dockcross cmake -Bbuild -H. -GNinja`: Run CMake with a build directory `./build` for a *CMakeLists.txt* file in the current directory and generate `ninja` build configuration files.
+2. `dockcross cmake -Bbuild -S. -GNinja`: Run CMake with a build directory `./build` for a *CMakeLists.txt* file in the current directory and generate `ninja` build configuration files.
 3. `dockcross ninja -Cbuild`: Run ninja in the `./build` directory.
 4. `dockcross bash -c '$CC test/C/hello.c -o hello'`: Build the *hello.c* file with the compiler identified with the `CC` environmental variable in the build environment.
 5. `dockcross bash`: Run an interactive shell in the build environment.
