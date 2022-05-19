@@ -50,9 +50,15 @@ jobs:
 
       - name: deploy
         if: github.ref == 'refs/heads/master'
-        run: |
-          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-          docker image push dockcross/base --all-tags
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 30
+          retry_wait_seconds: 30
+          max_attempts: 4
+          retry_on: error
+          command: |
+            docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+            docker image push dockcross/base --all-tags
 
   image:
     name: ${{ matrix.arch_name.image }}
@@ -951,6 +957,12 @@ jobs:
 
       - name: deploy
         if: github.ref == 'refs/heads/master'
-        run: |
-          docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
-          docker image push dockcross/${{ matrix.arch_name.image }} --all-tags
+        uses: nick-fields/retry@v2
+        with:
+          timeout_minutes: 30
+          retry_wait_seconds: 30
+          max_attempts: 4
+          retry_on: error
+          command: |
+            docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
+            docker image push dockcross/${{ matrix.arch_name.image }} --all-tags
