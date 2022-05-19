@@ -906,7 +906,7 @@ jobs:
       - name: cpython build test
         if: ${{ matrix.arch_name.cpython == 'yes' }}
         run: |
-          git clone --depth 1 --branch v3.10.4 https://github.com/python/cpython.git
+          git clone --depth 1 --branch v3.9.13 https://github.com/python/cpython.git
           cd cpython
           ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} ./configure ac_cv_file__dev_ptmx=no ac_cv_file__dev_ptc=no --disable-ipv6 ${{ matrix.arch_name.cpython_arg }} --build=x86_64-linux-gnu --enable-shared
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
