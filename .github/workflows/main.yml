@@ -25,13 +25,7 @@ jobs:
           fetch-depth: 1
 
       - name: build
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 120
-          retry_wait_seconds: 40
-          max_attempts: 3
-          retry_on: error
-          command: make base
+        run: for i in {1..3}; do make base && break || sleep 30; done
 
       - name: test
         run: make base.test
@@ -39,7 +33,7 @@ jobs:
       - name: archive base
         run: |
           mkdir -p cache
-          docker save dockcross/base:latest | xz -e9 -T0 > ./cache/base.tar.xz
+          docker save dockcross/base:latest | xz -e7 -T0 > ./cache/base.tar.xz
 
       - name: save base
         uses: actions/upload-artifact@v3
@@ -50,13 +44,7 @@ jobs:
 
       - name: deploy
         if: github.ref == 'refs/heads/master'
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 30
-          retry_wait_seconds: 30
-          max_attempts: 4
-          retry_on: error
-          command: |
+        run: |
             docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
             docker image push dockcross/base --all-tags
 
@@ -869,13 +857,7 @@ jobs:
         run: xz -d -k < ./cache/base.tar.xz | docker load
 
       - name: build
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 360
-          retry_wait_seconds: 20
-          max_attempts: 3
-          retry_on: error
-          command: make ${{ matrix.arch_name.image }}
+        run: for i in {1..3}; do make ${{ matrix.arch_name.image }} && break || sleep 30; done
 
       - name: basic test
         run: make ${{ matrix.arch_name.image }}.test
@@ -957,12 +939,6 @@ jobs:
 
       - name: deploy
         if: github.ref == 'refs/heads/master'
-        uses: nick-fields/retry@v2
-        with:
-          timeout_minutes: 30
-          retry_wait_seconds: 30
-          max_attempts: 4
-          retry_on: error
-          command: |
+        run: |
             docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_PASS }}
             docker image push dockcross/${{ matrix.arch_name.image }} --all-tags
