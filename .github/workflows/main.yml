@@ -25,7 +25,7 @@ jobs:
           fetch-depth: 1
 
       - name: build
-        run: for i in {1..3}; do make base && break || sleep 30; done
+        run: make base
 
       - name: test
         run: make base.test
@@ -857,7 +857,7 @@ jobs:
         run: xz -d -k < ./cache/base.tar.xz | docker load
 
       - name: build
-        run: for i in {1..3}; do make ${{ matrix.arch_name.image }} && break || sleep 30; done
+        run: make ${{ matrix.arch_name.image }}
 
       - name: basic test
         run: make ${{ matrix.arch_name.image }}.test
