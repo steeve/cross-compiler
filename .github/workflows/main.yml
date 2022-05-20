@@ -33,7 +33,7 @@ jobs:
       - name: archive base
         run: |
           mkdir -p cache
-          docker save dockcross/base:latest | xz -e7 -T0 > ./cache/base.tar.xz
+          docker save dockcross/base:latest | xz -e9 -T0 > ./cache/base.tar.xz
 
       - name: save base
         uses: actions/upload-artifact@v3
