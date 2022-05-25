@@ -6,7 +6,7 @@ ENV XCC_PREFIX /usr/xcc
 ENV CROSS_TRIPLE aarch64-w64-mingw32
 ENV CROSS_ROOT ${XCC_PREFIX}/${CROSS_TRIPLE}-cross
 
-ARG DOWNLOAD_URL=https://github.com/mstorsjo/llvm-mingw/releases/download/20210423/llvm-mingw-20210423-msvcrt-ubuntu-18.04-x86_64.tar.xz
+ARG DOWNLOAD_URL=https://github.com/mstorsjo/llvm-mingw/releases/download/20220323/llvm-mingw-20220323-msvcrt-ubuntu-18.04-x86_64.tar.xz
 ENV DOWNLOAD_URL=${DOWNLOAD_URL}
 
 RUN mkdir -p ${CROSS_ROOT} && wget -qO- "${DOWNLOAD_URL}" | tar xJvf - --strip 1 -C ${CROSS_ROOT}/ > /dev/null
