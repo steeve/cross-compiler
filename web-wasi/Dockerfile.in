@@ -2,7 +2,7 @@ FROM dockcross/base:latest
 
 LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
 
-ENV WASI_VERSION 15
+ENV WASI_VERSION 16
 ENV WASI_VERSION_FULL ${WASI_VERSION}.0
 RUN cd /usr/ && \
   curl -L -O https://github.com/WebAssembly/wasi-sdk/releases/download/wasi-sdk-${WASI_VERSION}/wasi-sdk-${WASI_VERSION_FULL}-linux.tar.gz && \
