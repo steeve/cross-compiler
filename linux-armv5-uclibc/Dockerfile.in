@@ -1,10 +1,9 @@
 FROM dockcross/base:latest
 
 LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
-# Crosstool-ng version
-# We use a git commit while waiting for 1.25 to release (1.24 is several years old)
-# crosstool-ng master 2021-09-17
-ENV CT_VERSION 392955a293573451baf3a9294139d0558b08ca2e
+
+# Crosstool-ng version 2022-05-19
+ENV CT_VERSION crosstool-ng-1.25.0
 
 # This is for compiling binaries for arm routers with uclibc (e.g ddwrt, asuswrt)
 #include "common.crosstool"
