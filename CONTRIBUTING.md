@@ -26,15 +26,15 @@ Change git branch:
 git checkout crosstool-ng-1.25.0
 ```
 
-Once in the **crosstool-ng** folder, you must first run the **bootstrap** script:
+Once in the **crosstool-ng** folder, you must first run the `bootstrap` script:
 
 ```bash
 ./bootstrap
 ```
 
-Then run the **configure** script:
+Then run the `configure` script:
 
-*Note: ***--enable-local*** Do a portable install of crosstool-ng.*:
+*Note: `-enable-local` does a portable install of crosstool-ng.*:
 
 ```bash
 ./configure --enable-local
@@ -58,10 +58,16 @@ Before starting the configuration of the toolchains, i recommend you to use one 
 ./ct-ng list-samples
 ```
 
-We will take the example of **aarch64-rpi4-linux-gnu**, a **.config** file will be created:
+We will take the example of `aarch64-rpi4-linux-gnu`, a `.config` file will be created:
 
 ```bash
 ./ct-ng aarch64-rpi4-linux-gnu
+```
+
+*Alternatively*, we could copy an existing `crosstool-ng.config` from one of the target folders in the `dockcross` project to the local `.config`:
+
+```bash
+cp path/to/dockcross/linux-arm64 .config
 ```
 
 We will configure the toolchains according to our needs:
@@ -78,13 +84,13 @@ Once the modifications are made, we will display the name of the toolchains, it 
 
 ### Configuring docker image
 
-You must create a file with the **same** name of the docker image (**linux-arm64**).
+You must create a file with the **same** name of the docker image (`linux-arm64`).
 
-Copy the **.config** of crosstool-ng to this file (**linux-arm64**) and rename it to **crosstool-ng.config**.
+Copy the `.config` of crosstool-ng to this file (`linux-arm64`) and rename it to `crosstool-ng.config`.
 
-You need to create a file named **Toolchain.cmake** in **linux-arm64**.
+You need to create a file named `Toolchain.cmake` in `linux-arm64`.
 
-Copy text to **Toolchain.cmake** file:
+Copy text to `Toolchain.cmake` file:
 
 ```cmake
 set(CMAKE_SYSTEM_NAME Linux)
@@ -116,9 +122,9 @@ set(CMAKE_SYSTEM_PROCESSOR ARM64)
 set(CMAKE_CROSSCOMPILING_EMULATOR /usr/bin/qemu-arm64)
 ```
 
-Then you must create a file named **Dockerfile.in** in the image folder (**linux-arm64**).
+Then you must create a file named `Dockerfile.in` in the image folder (`linux-arm64`).
 
-Copy text to **Dockerfile.in** file:
+Copy text to `Dockerfile.in` file:
 
 ```docker
 FROM dockcross/base:latest
@@ -183,11 +189,11 @@ ENV PKG_CONFIG_PATH /usr/lib/aarch64-linux-gnu/pkgconfig
 ENV ARCH arm64
 ```
 
-Once this part is finished, there must be 3 files in the **linux-arm64** folder:
+Once this part is finished, there must be 3 files in the `linux-arm64` folder:
 
-- **crosstool-ng.config**, the configuration of the toolchain/crosstool-ng.
-- **Dockerfile.in**, the docker file.
-- **Toolchain.cmake**, the CMake file for the toolchains.
+- **`crosstool-ng.config`**, the configuration of the toolchain/crosstool-ng.
+- **`Dockerfile.in`**, the docker file.
+- **`Toolchain.cmake`**, the CMake file for the toolchains.
 
 ### Makefile
 
@@ -208,7 +214,7 @@ STANDARD_IMAGES = android-arm android-arm64 android-x86 android-x86_64 \
  windows-shared-x86 windows-shared-x64 windows-shared-x64-posix windows-arm64
 ```
 
-You need to add the image/folder name (**linux-arm64**) to the **GEN_IMAGES** variable in the [Makefile](Makefile):
+You need to add the image/folder name (`linux-arm64`) to the `GEN_IMAGES` variable in the [Makefile](Makefile):
 
 ```make
 # Generated Dockerfiles.
@@ -261,7 +267,7 @@ With CMake + Ninja:
 
 ### CI (github action)
 
-To finish, you have to add to [Github Action](.github/workflows/main.yml) the image/folder name:
+To finish, you have to add to `.github/workflows/main.yml` the image/folder name:
 
 ```yml
           # Linux arm64/armv8 images

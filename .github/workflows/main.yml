@@ -352,6 +352,23 @@ jobs:
               cpython_arg: "--host=arm-cortexa8_neon-linux-gnueabihf --target=arm-cortexa8_neon-linux-gnueabihf",
             }
           - {
+              image: "linux-armv7a-lts",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=armv7-neon",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-armv4",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "yes",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: "",
+              cpython: "yes",
+              cpython_arg: "--host=arm-cortexa8_neon-linux-gnueabihf --target=arm-cortexa8_neon-linux-gnueabihf",
+            }
+          - {
               image: "linux-armv7-lts",
               stockfish: "yes",
               stockfish_arg: "ARCH=armv7",
@@ -852,6 +869,7 @@ jobs:
         with:
           name: cache
           path: ./cache
+          required: false
 
       - name: load base
         run: xz -d -k < ./cache/base.tar.xz | docker load

@@ -2,24 +2,24 @@ FROM dockcross/base:latest
 
 LABEL maintainer="Matt McCormick matt.mccormick@kitware.com"
 
-# Crosstool-ng version 2022-05-19
-ENV CT_VERSION crosstool-ng-1.25.0
+# This is for 32-bit ARMv7a Linux
 
-ARG QEMU_VERSION=6.0.0
+# We use a git commit while waiting for 1.25 to release (1.24 is several years old)
+# crosstool-ng 1.25.0
+ENV CT_VERSION crosstool-ng-1.25.0
 
 #include "common.crosstool"
 
-ENV CROSS_TRIPLE powerpc64le-unknown-linux-gnu
+# The cross-compiling emulator
+RUN apt-get update \
+&& apt-get install -y \
+  qemu-user \
+  qemu-user-static \
+&& apt-get clean --yes
 
-WORKDIR /usr/src
 
-RUN apt-get install -y libglib2.0-dev zlib1g-dev libpixman-1-dev && \
-  curl -L http://wiki.qemu-project.org/download/qemu-${QEMU_VERSION}.tar.bz2 | tar xj && \
-  cd qemu-${QEMU_VERSION} && \
-  ./configure --target-list=ppc64le-linux-user --prefix=/usr && \
-  make -j$(nproc) && \
-  make install && \
-  cd .. && rm -rf qemu-${QEMU_VERSION}
+# The CROSS_TRIPLE is a configured alias of the "aarch64-unknown-linux-gnueabi" target.
+ENV CROSS_TRIPLE arm-cortexa8_neon-linux-gnueabihf
 
 ENV CROSS_ROOT ${XCC_PREFIX}/${CROSS_TRIPLE}
 ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
@@ -33,16 +33,16 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
 ENV QEMU_LD_PREFIX "${CROSS_ROOT}/${CROSS_TRIPLE}/sysroot"
 ENV QEMU_SET_ENV "LD_LIBRARY_PATH=${CROSS_ROOT}/lib:${QEMU_LD_PREFIX}"
 
-WORKDIR /work
+ENV DEFAULT_DOCKCROSS_IMAGE dockcross/linux-armv7a
 
-COPY Toolchain.cmake /usr/lib/${CROSS_TRIPLE}/
-ENV CMAKE_TOOLCHAIN_FILE /usr/lib/${CROSS_TRIPLE}/Toolchain.cmake
+COPY Toolchain.cmake ${CROSS_ROOT}/
+ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
 
-ENV PKG_CONFIG_PATH /usr/lib/powerpc64le-unknown-linux-gnu/pkgconfig
+ENV PKG_CONFIG_PATH /usr/lib/arm-linux-gnueabihf/pkgconfig
 
 # Linux kernel cross compilation variables
 ENV PATH ${PATH}:${CROSS_ROOT}/bin
 ENV CROSS_COMPILE ${CROSS_TRIPLE}-
-ENV ARCH powerpc
+ENV ARCH arm
 
 #include "common.label-and-env"
