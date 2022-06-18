@@ -869,7 +869,7 @@ jobs:
               openssl_arg: "",
               C: "no",
               C_arg: "",
-              C-Plus-Plus: "yes",
+              C-Plus-Plus: "no",
               C-Plus-Plus_arg: "",
               fmt: "no",
               fmt_arg: "",
@@ -877,6 +877,8 @@ jobs:
               cpython_arg: "",
               mbedtls: "yes",
               mbedtls_arg: "",
+              ardupilot: "yes",
+              ardupilot_arg: "",
             }
     steps:
       - name: checkout code
@@ -985,6 +987,17 @@ jobs:
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.fmt_arg }} 
           cd ..
           rm -rf mbedtls
+
+      # Updated on 19/6/2022
+      - name: ardupilot build test
+        if: ${{ matrix.arch_name.ardupilot == 'yes' }}
+        run: |
+          git clone --depth 1 --branch  Copter-4.2.1 --recursive https://github.com/ArduPilot/ardupilot.git
+          cd ardupilot
+          docker run --rm dockcross/${{ matrix.arch_name.image }} > ./dockcross && chmod +x ./dockcross
+          ./dockcross bash -c "python -m pip install empy pexpect future && git config --global --add safe.directory '*' && ./waf configure --toolchain=/usr/xcc/arm-none-eabi/bin/arm-none-eabi --debug --board CubeBlack && ./waf copter"
+          cd ..
+          rm -rf ardupilot
 
       - name: deploy
         if: github.ref == 'refs/heads/master'

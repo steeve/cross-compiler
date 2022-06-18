@@ -2,7 +2,7 @@ set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_VERSION 1)
 set(CMAKE_SYSTEM_PROCESSOR arm)
 
-set(cross_triple "arm-none-eabihf")
+set(cross_triple "arm-none-eabi")
 set(cross_root /usr/xcc/${cross_triple})
 
 set(CMAKE_C_COMPILER $ENV{CC})

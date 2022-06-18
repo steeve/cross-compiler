@@ -4,12 +4,12 @@ LABEL maintainer="Chen Tao t.clydechen@gmail.com"
 
 # This is for armv7e-m+fp bare metal
 
-# Crosstool-ng version 1.25.0-rc1
-ENV CT_VERSION 1e47ca1e70497a38641b9025998a6333265fe84e
+# Crosstool-ng version 1.25.0
+ENV CT_VERSION 8fa98eeeff9bc53478d97ef722f366fea151ae64
 
 #include "common.crosstool"
 
-ENV CROSS_TRIPLE arm-none-eabihf
+ENV CROSS_TRIPLE arm-none-eabi
 
 ENV CROSS_ROOT ${XCC_PREFIX}/${CROSS_TRIPLE}
 ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
@@ -24,7 +24,7 @@ ENV AS=${CROSS_ROOT}/bin/${CROSS_TRIPLE}-as \
 COPY Toolchain.cmake ${CROSS_ROOT}/
 ENV CMAKE_TOOLCHAIN_FILE ${CROSS_ROOT}/Toolchain.cmake
 
-ENV PKG_CONFIG_PATH /usr/lib/arm-none-eabihf/pkgconfig
+ENV PKG_CONFIG_PATH /usr/lib/arm-none-eabi/pkgconfig
 
 # Linux kernel cross compilation variables
 ENV PATH ${PATH}:${CROSS_ROOT}/bin
