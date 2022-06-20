@@ -858,6 +858,28 @@ jobs:
               cpython: "no",
               cpython_arg: "",
             }
+          # Bare metal images
+          - {
+              image: "bare-armv7emhf-nano_newlib",
+              stockfish: "no",
+              stockfish_arg: "",
+              ninja: "no",
+              ninja_arg: "",
+              openssl: "no",
+              openssl_arg: "",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "no",
+              fmt_arg: "",
+              cpython: "no",
+              cpython_arg: "",
+              mbedtls: "yes",
+              mbedtls_arg: "",
+              libopencm3: "yes",
+              libopencm3_arg: "",
+            }
     steps:
       - name: checkout code
         uses: actions/checkout@v3
@@ -954,6 +976,34 @@ jobs:
           ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} -j2
           cd ..
           rm -rf cpython
+
+      # Updated on 31/3/2022
+      - name: mbedtls build test
+        if: ${{ matrix.arch_name.mbedtls == 'yes' }}
+        run: |
+          git clone --depth 1 --branch archive/baremetal https://github.com/Mbed-TLS/mbedtls.git
+          cd mbedtls
+          ./../tools/dockcross-command.sh ${{ matrix.arch_name.image }} scripts/config.pl baremetal
+          ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.fmt_arg }} 
+          cd ..
+          rm -rf mbedtls
+
+      # Updated on 20/6/2022
+      - name: libopencm3 build test
+        if: ${{ matrix.arch_name.libopencm3 == 'yes' }}
+        run: |
+          git clone https://github.com/libopencm3/libopencm3.git
+          cd libopencm3
+          git checkout 467522778329d6f41781a6c951b77d6ff6744de6
+          ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} "PREFIX=/usr/xcc/arm-none-eabi/bin/arm-none-eabi- \
+                                                                              TARGETS='stm32/f1 stm32/f2 stm32/f3 stm32/f4 stm32/f7 \
+                                                                              stm32/l1 stm32/l4 stm32/g4 stm32/h7 gd32/f1x0 lpc13xx \
+                                                                              lpc17xx lpc43xx/m4 lm3s lm4f msp432/e4 efm32/tg efm32/g \
+                                                                              efm32/lg efm32/gg efm32/wg efm32/ezr32wg nrf/51 nrf/52 \
+                                                                              sam/3a sam/3n sam/3s sam/3u sam/3x sam/4l vf6xx pac55xx' \
+                                                                              -j`nproc`"
+          cd ..
+          rm -rf libopencm3
 
       - name: deploy
         if: github.ref == 'refs/heads/master'
