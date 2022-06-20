@@ -877,8 +877,8 @@ jobs:
               cpython_arg: "",
               mbedtls: "yes",
               mbedtls_arg: "",
-              ardupilot: "yes",
-              ardupilot_arg: "",
+              libopencm3: "yes",
+              libopencm3_arg: "",
             }
     steps:
       - name: checkout code
@@ -988,16 +988,22 @@ jobs:
           cd ..
           rm -rf mbedtls
 
-      # Updated on 19/6/2022
-      - name: ardupilot build test
-        if: ${{ matrix.arch_name.ardupilot == 'yes' }}
+      # Updated on 20/6/2022
+      - name: libopencm3 build test
+        if: ${{ matrix.arch_name.libopencm3 == 'yes' }}
         run: |
-          git clone --depth 1 --branch  Copter-4.2.1 --recursive https://github.com/ArduPilot/ardupilot.git
-          cd ardupilot
-          docker run --rm dockcross/${{ matrix.arch_name.image }} > ./dockcross && chmod +x ./dockcross
-          ./dockcross bash -c "python -m pip install empy pexpect future && git config --global --add safe.directory '*' && ./waf configure --toolchain=/usr/xcc/arm-none-eabi/bin/arm-none-eabi --debug --board CubeBlack && ./waf copter"
+          git clone https://github.com/libopencm3/libopencm3.git
+          cd libopencm3
+          git checkout 467522778329d6f41781a6c951b77d6ff6744de6
+          ./../tools/dockcross-make-builder.sh ${{ matrix.arch_name.image }} "PREFIX=/usr/xcc/arm-none-eabi/bin/arm-none-eabi- \
+                                                                              TARGETS='stm32/f1 stm32/f2 stm32/f3 stm32/f4 stm32/f7 \
+                                                                              stm32/l1 stm32/l4 stm32/g4 stm32/h7 gd32/f1x0 lpc13xx \
+                                                                              lpc17xx lpc43xx/m4 lm3s lm4f msp432/e4 efm32/tg efm32/g \
+                                                                              efm32/lg efm32/gg efm32/wg efm32/ezr32wg nrf/51 nrf/52 \
+                                                                              sam/3a sam/3n sam/3s sam/3u sam/3x sam/4l vf6xx pac55xx' \
+                                                                              -j`nproc`"
           cd ..
-          rm -rf ardupilot
+          rm -rf libopencm3
 
       - name: deploy
         if: github.ref == 'refs/heads/master'
