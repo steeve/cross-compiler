@@ -45,7 +45,7 @@ NON_STANDARD_IMAGES = manylinux2014-x64 manylinux2014-x86 \
 		      manylinux2014-aarch64 web-wasm
 
 # Docker composite files
-DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux common.buildroot \
+DOCKER_COMPOSITE_SOURCES = common.docker common.debian common.manylinux2014 common.buildroot \
 	common.crosstool common.webassembly common.windows common-manylinux.crosstool common.dockcross \
 	common.label-and-env
 DOCKER_COMPOSITE_FOLDER_PATH = common/
@@ -98,7 +98,7 @@ $(GEN_IMAGE_DOCKERFILES) Dockerfile: %Dockerfile: %Dockerfile.in $(DOCKER_COMPOS
 	sed \
 		-e '/common.docker/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.docker' \
 		-e '/common.debian/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.debian' \
-		-e '/common.manylinux/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.manylinux' \
+		-e '/common.manylinux2014/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.manylinux2014' \
 		-e '/common.crosstool/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.crosstool' \
 		-e '/common.buildroot/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common.buildroot' \
 		-e '/common-manylinux.crosstool/ r $(DOCKER_COMPOSITE_FOLDER_PATH)common-manylinux.crosstool' \
