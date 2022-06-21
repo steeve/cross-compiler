@@ -771,6 +771,24 @@ jobs:
               cpython: "no",
               cpython_arg: "",
             }
+          # manylinux_2_24 images
+          - {
+              image: "manylinux_2_24-x64",
+              stockfish: "yes",
+              stockfish_arg: "ARCH=x86-64-modern",
+              ninja: "yes",
+              ninja_arg: "",
+              openssl: "yes",
+              openssl_arg: "linux-x86_64",
+              C: "no",
+              C_arg: "",
+              C-Plus-Plus: "no",
+              C-Plus-Plus_arg: "",
+              fmt: "yes",
+              fmt_arg: "",
+              cpython: "yes",
+              cpython_arg: "",
+            }
           # manylinux2014 images
           - {
               image: "manylinux2014-x86",

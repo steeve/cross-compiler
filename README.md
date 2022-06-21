@@ -108,6 +108,7 @@ The dockcross script will execute the given command-line inside the container, a
 | dockcross/linux-riscv64 | riscv64 | GCC | Linux |
 | dockcross/linux-m68k-uclibc | m68k | GCC + uclibc | Linux |
 | dockcross/linux-xtensa-uclibc | xtensa | GCC + uclibc | Linux |
+| dockcross/manylinux_2_24-x64 | x86_64 | GCC | Linux |
 | dockcross/manylinux2014-x86 | x86 | GCC | Linux |
 | dockcross/manylinux2014-x64 | x86_64 | GCC | Linux |
 | dockcross/linux-x86 | x86 | GCC | Linux |
@@ -346,6 +347,12 @@ Linux i686 cross compiler.
 ![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/linux-x64-tinycc/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/linux-x64-tinycc)
 
 Linux tcc compiler for C compiler, and GCC for C++ compiler, for linux x86_64/amd64 arch.
+
+### dockcross/manylinux_2_24-x64
+
+![Docker Image Size (tag)](https://img.shields.io/docker/image-size/dockcross/manylinux_2_24-x64/latest) ![Docker Pulls](https://img.shields.io/docker/pulls/dockcross/manylinux2014-x64)
+
+Docker [manylinux_2_24](https://github.com/pypa/manylinux) image for building Linux x86_64 / amd64 [Python wheel packages](http://pythonwheels.com/). It includes Python 3.6, 3.7, 3.8, 3.9, 3.10 and 3.11. Also has support for the dockcross script, and it has installations of CMake, Ninja, and [scikit-build](http://scikit-build.org). For CMake, it sets **MANYLINUX_2_24** to \"TRUE\" in the toolchain.
 
 ### dockcross/manylinux2014-x64
 
