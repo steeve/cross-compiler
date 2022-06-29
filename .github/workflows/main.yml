@@ -891,7 +891,6 @@ jobs:
         with:
           name: cache
           path: ./cache
-          required: false
 
       - name: load base
         run: xz -d -k < ./cache/base.tar.xz | docker load
