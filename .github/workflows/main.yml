@@ -1090,12 +1090,13 @@ jobs:
           cd ..
           rm -rf cpython
 
-      # Updated on 12/09/2022
+      # Updated on 12/09/2022 (4.2.0 branch not working)
       - name: raylib build test
         if: ${{ matrix.arch_name.raylib == 'yes' }}
         run: |
-          git clone --depth 1 --branch 4.2.0 https://github.com/raysan5/raylib.git
+          git clone https://github.com/raysan5/raylib.git
           cd raylib
+          git checkout a12ddacb7bfbc6e552e6145456f2fe6dfdfbe1c7
           ./../tools/dockcross-cmake-builder.sh ${{ matrix.arch_name.image }} ${{ matrix.arch_name.raylib_arg }}
           cd ..
           rm -rf raylib
